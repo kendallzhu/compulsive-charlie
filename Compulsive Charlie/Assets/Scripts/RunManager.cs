@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript : MonoBehaviour {
+public class RunManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// testing
+		
 	}
 	
 	// Update is called once per frame
