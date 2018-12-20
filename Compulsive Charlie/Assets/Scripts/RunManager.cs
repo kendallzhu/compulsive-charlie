@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script managing all the state and gameplay of a run
 public class RunManager : MonoBehaviour {
+    public GameManager gameManager;
+    public RunState runState;
+    public PlayerController player;
 
-	// Use this for initialization
+    // TODO: track which phase of game in variable, pass to player controller(?)
+
+	// Initialization
 	void Start () {
-        GameManager gameManager = Object.FindObjectOfType<GameManager>();
+        gameManager = Object.FindObjectOfType<GameManager>();
         Debug.Log(gameManager);
+        // get initial runState (based on profile)
+        runState = new RunState(0, new Dictionary<string, int>());
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	// TODO: advance timesteps, spawn platforms, offer thoughts
 }

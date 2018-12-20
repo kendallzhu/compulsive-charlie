@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Processing player commands, and dynamically change player graphics
 public class PlayerController : MonoBehaviour {
+    // TODO: different controls for different phases of the game
     public float maxJumpForce = 1000f;
     public float jumpPress = 0;
     public float jumpRelease = 0;
