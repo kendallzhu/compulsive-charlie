@@ -12,6 +12,7 @@ public class RunManager : MonoBehaviour {
 
 	// Initialization
 	void Start () {
+        // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
         Debug.Log(gameManager);
         // get initial runState (based on profile)
