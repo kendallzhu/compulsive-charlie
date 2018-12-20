@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-    // keep track of profile info
+    // keep track of profile info - TODO: modularize this into a class? Modularize emotions as well?
     public List<Thought> thoughts;
     public List<Activity> activities;
     public List<Upgrade> upgrades;
