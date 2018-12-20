@@ -1,6 +1,6 @@
 # Compulsive Charlie
 Game project (2018-2019)
-Game Design Document:
+Game Design Document (and Team Info):
 https://docs.google.com/document/d/1ejS0pLbu6hTbSK-cMp13Pj1E3HEIDYstzFSTd-O014E/edit?usp=sharing
 
 Start Instructions:
