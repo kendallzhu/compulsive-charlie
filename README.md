@@ -10,4 +10,5 @@ Start Instructions:
 (Add )
 
 Note: This project is initialized with Github for Unity (https://unity.github.com/).
-Please check their documentation if you have trouble with version control.
+This lets you use a Github GUI from within unity by clicking Window > Github.
+If you can't find how to do something, you can use regular command line with Window > Github Command Line as well. Please check their documentation if you have trouble with version control.
