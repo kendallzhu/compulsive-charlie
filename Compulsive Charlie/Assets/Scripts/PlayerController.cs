@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        // weird jump mechanic just for fun to see movement
         if (Input.GetButtonDown("Jump"))
         {
             jumpPress = Time.time;

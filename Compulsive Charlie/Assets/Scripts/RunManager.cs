@@ -18,6 +18,14 @@ public class RunManager : MonoBehaviour {
         // get initial runState (based on profile)
         runState = new RunState(0, new Dictionary<string, int>());
     }
-	
-	// TODO: advance timesteps, spawn platforms, offer thoughts
+
+    private void Update()
+    {
+        // makshift way to end run and advance scenes 
+        if (player.transform.position.y < -100)
+        {
+            gameManager.EndRun();
+        }
+    }
+    // TODO: advance timesteps, spawn platforms, offer thoughts
 }

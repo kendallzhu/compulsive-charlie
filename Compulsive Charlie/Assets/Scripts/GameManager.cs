@@ -20,6 +20,12 @@ public class GameManager : MonoBehaviour {
 
     public void StartGame()
     {
+        // right now just goes to profile menu, in future could load some backstory scenes
+        LoadProfile();
+    }
+
+    public void LoadProfile()
+    {
         // go to profile menu
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene(2);
@@ -30,5 +36,12 @@ public class GameManager : MonoBehaviour {
         // go to run scene
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene(3);
+    }
+
+    public void EndRun()
+    {
+        // go to run scene
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(4);
     }
 }
