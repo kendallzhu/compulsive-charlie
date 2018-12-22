@@ -14,8 +14,13 @@ public class ActivityPlatform : MonoBehaviour {
 
     private int GapSize(int ydiff)
     {
+        if (ydiff < 0)
+        {
+            return 0;
+        }
+        return 2;
         // x gap ~ height change for smooth jump
-        return System.Math.Max(0, ydiff - 1);
+        // return System.Math.Max(0, ydiff - 1);
     }
 
     // correctly position platform based on current state
@@ -31,25 +36,27 @@ public class ActivityPlatform : MonoBehaviour {
         ActivityPlatform current = runState.CurrentActivityPlatform();
         if (current != null)
         {
-            float endX = current.x + current.length;
-            x = (int)(endX + GapSize(y - current.y));
+            int endX = current.x + current.length;
+            x = endX + GapSize(y - current.y);
         }
-        gameObject.transform.position = new Vector3(x, y, 0);
+        gameObject.transform.position = new Vector2(x, y);
 
         // scale the prefab to the proper length
         // (this will work as long as prefab is a unit cube with default scale)
         length = activity.PlatformLength(runState);
-        gameObject.transform.localScale = new Vector3(length, 1, 1);
+        gameObject.transform.localScale = new Vector3(length, .3f, 1);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other);
         // if Charlie arrives on this platform we trigger updates
         if (other.name == "Charlie" && !explored)
         {
             explored = true;
+            other.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            // Debug.Log(x);
+            // other.transform.position = new Vector2(x + 1, y);
+            runManager.AdvanceTimeStep(this);
         }
-        runManager.AdvanceTimeStep(this);
     }
 }

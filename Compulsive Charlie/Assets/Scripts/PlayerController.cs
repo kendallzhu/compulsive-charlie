@@ -30,6 +30,13 @@ public class PlayerController : MonoBehaviour {
         {
             jumpRelease = Time.time;
         }
+        // avoid going up and over platforms
+        Vector2 velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+        if (velocity.y <= 0)
+        {
+            float cap = Mathf.Min(velocity.x, 1);
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(cap, velocity.y);
+        }
     }
 
     float GetJumpPower()
@@ -43,8 +50,7 @@ public class PlayerController : MonoBehaviour {
         if (jumpRelease > jumpPress)
         {
             float jumpForce = GetJumpPower();
-            // Debug.Log(jumpForce);
-            rb2d.AddForce(new Vector2(jumpForce / 2, jumpForce));
+            rb2d.AddForce(new Vector2(100, jumpForce));
             jumpPress = 0;
             jumpRelease = 0;
         }
