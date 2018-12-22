@@ -6,12 +6,13 @@ using UnityEngine;
 public abstract class Activity : MonoBehaviour {
     // unique name
     new public string name;
+    public string descriptionText;
     // TODO: animation(s)
 
     // changeable parameters
     public bool isUnlocked = false;
     public List<Thought> associatedThoughts;
-    Dictionary<string, int[]> availabilityThresholds;
+    public Dictionary<string, int[]> emotionThresholds;
 
     // whether this activity is available, given state of run
     public abstract bool IsAvailable(RunState runState);

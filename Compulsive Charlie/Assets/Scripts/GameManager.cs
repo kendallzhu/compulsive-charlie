@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(3);
     }
 
-    public void EndRun()
+    public void EndRun(int score)
     {
-        // go to run scene
+        // go to cut scene (TODO: different based on score, record score)
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene(4);
     }
