@@ -17,16 +17,8 @@ public class RunManager : MonoBehaviour {
     void Start () {
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
-        Debug.Log(gameManager);
         // get initial runState (based on profile)
         runState = new RunState(0, new Dictionary<string, int>());
-
-        // test - instantiate a new activity platform
-        Activity testActivity = gameManager.activities[0];
-        GameObject platform = Instantiate(platformPrefab);
-        //platform.AddComponent(System.Type.GetType("ActivityPlatform"));
-        Debug.Log(gameManager.activities[0]);
-        platform.GetComponent<ActivityPlatform>().Initialize(testActivity, runState);
     }
 
     private void Update()
@@ -36,6 +28,30 @@ public class RunManager : MonoBehaviour {
         {
             gameManager.EndRun(int.MinValue);
         }
+    }
+
+    // for when the player jumps to next set of activities, called via trigger in ActivityPlatform
+    public void AdvanceTimeStep(ActivityPlatform newActivityPlatform)
+    {
+        if (newActivityPlatform != null)
+        {
+            // increment timeSteps
+            runState.timeSteps += 1;
+            // update activity and score histories
+            runState.activityHistory.Add(newActivityPlatform);
+            runState.scoreHistory.Add(newActivityPlatform.y);
+        }
+
+        // spawn new set of platforms - TODO: select from pool of available, etc.
+        Activity testActivity = gameManager.activities[0];
+        SpawnPlatform(testActivity);
+    }
+
+    // instantiate a new activity platform
+    private void SpawnPlatform(Activity activity)
+    {
+        GameObject platform = Instantiate(platformPrefab);
+        platform.GetComponent<ActivityPlatform>().Initialize(activity, this);
     }
     // TODO: advance timesteps, spawn platforms as you go, offer thoughts
 }

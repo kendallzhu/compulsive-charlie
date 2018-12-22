@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
     public List<int> scores;
 
 	void Start () {
-        Debug.Log("game manager started");
+        //Debug.Log("game manager started");
         // this should be in preload scene, now load first scene
         SceneManager.LoadScene(1);
     }

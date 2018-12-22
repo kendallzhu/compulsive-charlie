@@ -20,6 +20,9 @@ public abstract class Activity : MonoBehaviour {
     // height of associated platform if it comes after given run state
     public abstract int PlatformHeight(RunState runState);
 
+    // length of associated platform if it comes after given run state
+    public abstract int PlatformLength(RunState runState);
+
     // how this activity modifies run state when rhythm is hit
     public abstract void RhythmEffect(RunState runState);
 }
