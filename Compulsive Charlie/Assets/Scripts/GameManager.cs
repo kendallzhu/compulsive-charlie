@@ -4,18 +4,33 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-    // keep track of profile info - TODO: modularize this into a class? Modularize emotions as well?
-    public List<Thought> thoughts;
-    public List<Activity> activities;
-    public List<Upgrade> upgrades;
-    public Dictionary<string, int> emotionEquilibriums;
+    public GameObject allActivities;
+    public GameObject allThoughts;
+    public GameObject allUpgrades;
 
-    public List<int> scores;
+    // keep track of profile info
+    public Profile profile;
 
-	void Start () {
+    void Start () {
         //Debug.Log("game manager started");
         // this should be in preload scene, now load first scene
         SceneManager.LoadScene(1);
+
+        // set starting profile of the game
+        profile = new Profile();
+        // load in all activities, thoughts and upgrades from the gameObjects (see editor)
+        foreach (Transform child in allActivities.transform)
+        {
+            profile.activities.Add(child.gameObject.GetComponent<Activity>());
+        }
+        foreach (Transform child in allThoughts.transform)
+        {
+            profile.thoughts.Add(child.gameObject.GetComponent<Thought>());
+        }
+        foreach (Transform child in allUpgrades.transform)
+        {
+            profile.upgrades.Add(child.gameObject.GetComponent<Upgrade>());
+        }
     }
 
     public void StartGame()

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TestActivity : Activity
 {
-
     // Use this for initialization
     void Start()
     {
@@ -13,7 +12,8 @@ public class TestActivity : Activity
         isUnlocked = true;
         associatedThoughts = new List<Thought>();
         // todo: emotion thresholds thing
-        emotionThresholds = new Dictionary<string, int[]>();
+        minEmotions = new EmotionState(int.MinValue);
+        maxEmotions = new EmotionState(int.MaxValue);
     }
 
     // whether this activity is available, given state of run

@@ -34,8 +34,9 @@ public class PlayerController : MonoBehaviour {
         Vector2 velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
         if (velocity.y <= 0)
         {
-            float cap = Mathf.Min(velocity.x, 1);
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(cap, velocity.y);
+            float capped = Mathf.Min(velocity.x, 5);
+            float newX = Mathf.Max(capped, 1);
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(newX, velocity.y);
         }
     }
 

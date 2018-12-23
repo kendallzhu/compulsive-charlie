@@ -5,7 +5,7 @@ using UnityEngine;
 public class RunState {
     public int timeSteps;
     public int energy;
-    public Dictionary<string, int> emotions;
+    public EmotionState emotions;
     public List<ActivityPlatform> activityHistory;
     public List<Thought> thoughtHistory;
     public List<int> scoreHistory;
@@ -13,7 +13,7 @@ public class RunState {
     // full constructor
     public RunState(int timeSteps, 
                     int energy,
-                    Dictionary<string, int> emotions,
+                    EmotionState emotions,
                     List<ActivityPlatform> activityHistory,
                     List<Thought> thoughtHistory,
                     List<int> scoreHistory) {
@@ -26,7 +26,7 @@ public class RunState {
     }
 
     // basic constructor
-    public RunState(int initialEnergy, Dictionary<string, int> initialEmotions)
+    public RunState(int initialEnergy, EmotionState initialEmotions)
     {
         this.timeSteps = 0;
         this.energy = initialEnergy;

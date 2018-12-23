@@ -13,8 +13,8 @@ public abstract class Upgrade : MonoBehaviour {
     public bool isUnlocked = false;
 
     // comb through lists of activities and thoughts and modify them to make upgrade
-    public abstract bool MakeUpgrade(List<Activity> activities, List<Thought> thoughts);
+    public abstract bool MakeUpgrade(Profile profile);
 
-    // criteria to unlock this upgrade during ar un
-    public abstract bool IsUnlock(RunState runState, List<Upgrade> upgradesList);
+    // criteria to unlock this upgrade during a run
+    public abstract bool IsUnlock(RunState runState, Profile profile);
 }

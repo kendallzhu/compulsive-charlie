@@ -18,7 +18,7 @@ public class RunManager : MonoBehaviour {
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
         // get initial runState (based on profile)
-        runState = new RunState(0, new Dictionary<string, int>());
+        runState = new RunState(0, new EmotionState());
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class RunManager : MonoBehaviour {
         }
 
         // spawn new set of platforms - TODO: select from pool of available, etc.
-        Activity testActivity = gameManager.activities[0];
+        Activity testActivity = gameManager.profile.activities[0];
         SpawnPlatform(testActivity);
     }
 

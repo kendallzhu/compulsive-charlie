@@ -11,7 +11,9 @@ public abstract class Thought : MonoBehaviour
 
     // changeable parameters
     public bool isUnlocked = false;
-    public Dictionary<string, int[]> emotionThresholds;
+    // thought is unavailable if any emotion is (< min) or (> max)
+    public EmotionState minEmotions;
+    public EmotionState maxEmotions;
 
     // whether this thought is available, given state of run
     // Don't use activity history (to keep modular)

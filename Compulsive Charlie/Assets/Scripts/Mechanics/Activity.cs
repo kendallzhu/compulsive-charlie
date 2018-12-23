@@ -12,7 +12,9 @@ public abstract class Activity : MonoBehaviour {
     // changeable parameters
     public bool isUnlocked = false;
     public List<Thought> associatedThoughts;
-    public Dictionary<string, int[]> emotionThresholds;
+    // activity is unavailable if any emotion is (< min) or (> max)
+    public EmotionState minEmotions;
+    public EmotionState maxEmotions;
 
     // whether this activity is available, given state of run
     public abstract bool IsAvailable(RunState runState);

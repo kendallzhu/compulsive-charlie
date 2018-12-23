@@ -141,11 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c4988e4dc38ad40822695c2a5c7f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thoughts: []
-  activities:
-  - {fileID: 1408512914}
-  upgrades: []
-  scores: 
+  allActivities: {fileID: 977672112}
+  allThoughts: {fileID: 1909439509}
+  allUpgrades: {fileID: 2122227343}
 --- !u!114 &725682864
 MonoBehaviour:
   m_ObjectHideFlags: 0
