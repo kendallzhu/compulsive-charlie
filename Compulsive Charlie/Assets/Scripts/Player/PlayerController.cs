@@ -5,7 +5,7 @@ using UnityEngine;
 // Processing player commands, and dynamically change player graphics
 public class PlayerController : MonoBehaviour {
     // control variables
-    // TODO: different controls for different phases of the game?
+    // TODO: different controls for different phases of the game? (no for now, only spacebar for jump)
     public float maxJumpForce = 1000f;
     public float jumpPress = 0;
     public float jumpRelease = 0;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour {
         }
         // avoid going up and over platforms
         Vector2 velocity = rb2d.velocity;
-        if (velocity.y < -.5 || velocity.y == 0 && grounded)
+        if (velocity.y < -1 || velocity.y == 0 && grounded)
         {
             float capped = Mathf.Min(velocity.x, 5);
             float newX = Mathf.Max(capped, minForwardSpeed);

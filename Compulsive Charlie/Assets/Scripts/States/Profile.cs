@@ -11,6 +11,9 @@ public class Profile
     public List<Upgrade> upgrades;
     public EmotionState emotionEquilibriums;
     public int initialEnergy;
+    public int timeLimit;
+    // exp buys upgrades
+    public int experience;
 
     public List<int> scores;
 
@@ -23,6 +26,9 @@ public class Profile
         thoughts = new List<Thought>();
         activities = new List<Activity>();
         upgrades = new List<Upgrade>();
+        timeLimit = 5;
+        experience = 0;
+        scores = new List<int>();
     }
 }
 

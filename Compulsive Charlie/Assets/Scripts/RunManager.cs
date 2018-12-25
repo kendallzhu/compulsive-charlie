@@ -29,6 +29,11 @@ public class RunManager : MonoBehaviour {
         {
             gameManager.EndRun(int.MinValue);
         }
+        // [makshift] if time limit exceeded, end run
+        if (runState.timeSteps > gameManager.profile.timeLimit)
+        {
+            gameManager.EndRun(runState.CurrentScore());
+        }
         // if near end of platform, zoom out for jump
         ActivityPlatform p = runState.CurrentActivityPlatform();
         if (p != null && p.x + p.length - player.transform.position.x < 4)

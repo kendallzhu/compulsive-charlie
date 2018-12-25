@@ -49,14 +49,13 @@ public class GameManager : MonoBehaviour {
     public void StartRun()
     {
         // go to run scene
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene(3);
     }
 
     public void EndRun(int score)
     {
-        // go to cut scene (TODO: different based on score, record score)
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // record score and go to cut scene (TODO: different based on score)
+        profile.scores.Add(score);
         SceneManager.LoadScene(4);
     }
 }
