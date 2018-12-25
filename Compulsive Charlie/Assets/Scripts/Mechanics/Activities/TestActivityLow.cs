@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestActivity : Activity
+public class TestActivityLow : Activity
 {
     // Use this for initialization
     void Start()
     {
-        name = "Test Activity";
-        descriptionText = "testing is great";
+        name = "Test Activity Low";
+        descriptionText = "testing is not great";
         isUnlocked = true;
         associatedThoughts = new List<Thought>();
         // always available
@@ -25,7 +25,7 @@ public class TestActivity : Activity
     // height of associated platform if it comes after given run state
     public override int PlatformHeight(RunState runState)
     {
-        return runState.CurrentScore() + 5;
+        return runState.CurrentScore() - 3;
     }
 
     // length of associated platform if it comes after given run state

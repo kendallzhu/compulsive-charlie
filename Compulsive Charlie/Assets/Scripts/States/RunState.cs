@@ -9,6 +9,8 @@ public class RunState {
     public List<ActivityPlatform> activityHistory;
     public List<Thought> thoughtHistory;
     public List<int> scoreHistory;
+    // the next set of prospective platforms
+    public List<ActivityPlatform> spawnedPlatforms = new List<ActivityPlatform>();
 
     // full constructor
     public RunState(int timeSteps, 
@@ -52,5 +54,18 @@ public class RunState {
             return null;
         }
         return activityHistory[activityHistory.Count - 1];
+    }
+
+    // destroy all platforms in the prospective set except chosen, clear list
+    public void ClearSpawned(ActivityPlatform chosen)
+    {
+        foreach (ActivityPlatform p in spawnedPlatforms)
+        {
+            if (p != chosen)
+            {
+                UnityEngine.Object.Destroy(p.gameObject);
+            }
+        }
+        spawnedPlatforms.Clear();
     }
 }

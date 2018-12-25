@@ -50,11 +50,15 @@ public class RunManager : MonoBehaviour {
             // update activity and score histories
             runState.activityHistory.Add(newActivityPlatform);
             runState.scoreHistory.Add(newActivityPlatform.y);
+            // clear out other spawnedPlatforms
+            runState.ClearSpawned(newActivityPlatform);
         }
 
-        // spawn new set of platforms - TODO: select from pool of available, etc.
+        // spawn new set of platforms - TODO: function to select from pool of available
         Activity testActivity = gameManager.profile.activities[0];
         SpawnPlatform(testActivity);
+        Activity testActivityLow = gameManager.profile.activities[1];
+        SpawnPlatform(testActivityLow);
     }
 
     // instantiate a new activity platform
@@ -62,6 +66,8 @@ public class RunManager : MonoBehaviour {
     {
         GameObject platform = Instantiate(platformPrefab);
         platform.GetComponent<ActivityPlatform>().Initialize(activity, this);
+        // add it to list of prospective platforms in runState
+        runState.spawnedPlatforms.Add(platform.GetComponent<ActivityPlatform>());
     }
     // TODO: advance timesteps, spawn platforms as you go, offer thoughts
 }

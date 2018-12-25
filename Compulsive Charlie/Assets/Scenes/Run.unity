@@ -198,7 +198,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4324346866363816, guid: 93c3919dbea88a14bb499be23dcd4b40, type: 2}
       propertyPath: m_LocalScale.x
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4324346866363816, guid: 93c3919dbea88a14bb499be23dcd4b40, type: 2}
       propertyPath: m_LocalScale.y
@@ -436,3 +436,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 155495549}
+  zoom: 5.5
