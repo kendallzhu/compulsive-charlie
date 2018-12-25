@@ -7,11 +7,12 @@ public class RunManager : MonoBehaviour {
     public GameManager gameManager;
     public RunState runState;
     public PlayerController player;
+    public CameraController camera;
 
     // prefabs
     public GameObject platformPrefab;
 
-    // TODO: track which phase of game in variable, pass to player controller(?)
+    // TODO: track which phase of game in variable, pass to player controller(no?)
 
     // Initialization
     void Start () {
@@ -27,6 +28,15 @@ public class RunManager : MonoBehaviour {
         if (player.transform.position.y < -100)
         {
             gameManager.EndRun(int.MinValue);
+        }
+        // if near end of platform, zoom out for jump
+        ActivityPlatform p = runState.CurrentActivityPlatform();
+        if (p != null && p.x + p.length - player.transform.position.x < 4)
+        {
+            camera.ZoomOut();
+        } else
+        {
+            camera.ZoomNormal();
         }
     }
 
