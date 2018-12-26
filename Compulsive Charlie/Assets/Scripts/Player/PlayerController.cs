@@ -49,9 +49,9 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    float GetJumpPower()
+    public float GetJumpPower(float releaseTime)
     {
-        float power = Mathf.Min(jumpRelease - jumpPress, maxJumpForce);
+        float power = Mathf.Min(releaseTime - jumpPress, maxJumpForce);
         return 400 * Mathf.Max(power, .2f);
     }
 
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (jumpRelease > jumpPress)
         {
-            float jumpForce = GetJumpPower();
+            float jumpForce = GetJumpPower(jumpRelease);
             rb2d.AddForce(new Vector2(100, jumpForce));
             jumpPress = 0;
             jumpRelease = 0;
