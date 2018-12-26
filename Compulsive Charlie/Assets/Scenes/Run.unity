@@ -162,7 +162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2.4}
+  m_AnchoredPosition: {x: 0, y: -2}
   m_SizeDelta: {x: 3.69, y: 1.134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &771275227
@@ -605,19 +605,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4324346866363816, guid: 93c3919dbea88a14bb499be23dcd4b40, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4324346866363816, guid: 93c3919dbea88a14bb499be23dcd4b40, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 114709010164846664, guid: 93c3919dbea88a14bb499be23dcd4b40,
         type: 2}
       propertyPath: runManager
       value: 
       objectReference: {fileID: 1652275278}
+    - target: {fileID: 114585283511678434, guid: 93c3919dbea88a14bb499be23dcd4b40,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114585283511678434, guid: 93c3919dbea88a14bb499be23dcd4b40,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224874843593193436, guid: 93c3919dbea88a14bb499be23dcd4b40,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93c3919dbea88a14bb499be23dcd4b40, type: 2}
   m_IsPrefabParent: 0

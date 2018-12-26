@@ -24,9 +24,10 @@ public class ActivityPlatform : MonoBehaviour {
     }
 
     // correctly position platform based on current state
-    public void Initialize(Activity activity, RunManager manager)
+    public void Initialize(Activity _activity, RunManager manager)
     {
         runManager = manager;
+        activity = _activity;
         RunState runState = manager.runState;
         // set the platform at the proper position
         // height specified by activity
@@ -41,22 +42,10 @@ public class ActivityPlatform : MonoBehaviour {
         }
         gameObject.transform.position = new Vector2(x, y);
 
-        // scale the prefab to the proper length
+        // scale the transform of the physical platform child to the proper length
         // (this will work as long as prefab is a unit cube with default scale)
         length = activity.PlatformLength(runState);
-        gameObject.transform.localScale = new Vector3(length, .3f, 1);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // if Charlie arrives on this platform we trigger updates
-        if (other.name == "Charlie" && !explored)
-        {
-            explored = true;
-            other.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            // Debug.Log(x);
-            // other.transform.position = new Vector2(x + 1, y);
-            runManager.AdvanceTimeStep(this);
-        }
+        Transform ground = gameObject.transform.Find("Ground");
+        ground.localScale = new Vector3(length, .3f, 1);
     }
 }
