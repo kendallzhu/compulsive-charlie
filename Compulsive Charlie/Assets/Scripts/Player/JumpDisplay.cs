@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// script for graphic display of timesteps left - right now just text but hopefully will be nicer
+// script for graphic display of timesteps left - right now weird bar but hopefully will be nicer
 public class JumpDisplay : MonoBehaviour
 {
     public PlayerController playerController;
     public float maxBarHeight = 2;
 
     // Initialization
-    void Start()
+    void Awake()
     {
         // get reference to playerController
         playerController = Object.FindObjectOfType<PlayerController>();

@@ -9,7 +9,7 @@ public class EnergyDisplay : MonoBehaviour
     public RunManager runManager;
 
     // Initialization
-    void Start()
+    void Awake()
     {
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();

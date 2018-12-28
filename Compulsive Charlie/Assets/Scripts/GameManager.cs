@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Overall manager for game, persistent accross scenes/runs
 public class GameManager : MonoBehaviour {
     public GameObject allActivities;
     public GameObject allThoughts;

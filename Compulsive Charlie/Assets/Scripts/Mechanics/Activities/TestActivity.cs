@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TestActivity : Activity
 {
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
         name = "Test Activity";
         descriptionText = "testing is great";
@@ -37,6 +36,7 @@ public class TestActivity : Activity
     // how this activity modifies run state when rhythm is hit
     public override void RhythmEffect(RunState runState)
     {
+        Debug.Log("Test Activity Rhythm");
         return;
     }
 }

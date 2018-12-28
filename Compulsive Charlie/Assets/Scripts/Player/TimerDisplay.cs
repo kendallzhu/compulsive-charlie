@@ -9,7 +9,7 @@ public class TimerDisplay : MonoBehaviour {
     private int timeLeft = 0;
 
     // Initialization
-    void Start()
+    void Awake()
     {
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();

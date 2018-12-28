@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-// Script managing all the state and gameplay of a run
+// Script managing all the state and gameplay of a single run
 public class RunManager : MonoBehaviour {
     public GameManager gameManager;
     public RunState runState;
@@ -15,7 +16,7 @@ public class RunManager : MonoBehaviour {
     // TODO: track which phase of game in variable, pass to player controller(no?)
 
     // Initialization
-    void Start () {
+    void Awake () {
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
         // get initial runState (based on profile)
@@ -50,6 +51,11 @@ public class RunManager : MonoBehaviour {
     {
         if (newActivityPlatform != null)
         {
+            // stop old platform spawning rhythm notes
+            if (runState.activityHistory.Count > 0)
+            {
+                runState.activityHistory.Last().StopRhythm();
+            }
             // increment timeSteps
             runState.timeSteps += 1;
             // update activity and score histories
@@ -57,6 +63,8 @@ public class RunManager : MonoBehaviour {
             runState.scoreHistory.Add(newActivityPlatform.y);
             // clear out other spawnedPlatforms
             runState.ClearSpawned(newActivityPlatform);
+            // start new platform spawning rhythm notes
+            newActivityPlatform.StartRhythm();
         }
 
         // spawn new set of platforms - TODO: function to select from pool of available
@@ -70,9 +78,9 @@ public class RunManager : MonoBehaviour {
     private void SpawnPlatform(Activity activity)
     {
         GameObject platform = Instantiate(platformPrefab);
-        platform.GetComponent<ActivityPlatform>().Initialize(activity, this);
+        platform.GetComponent<ActivityPlatform>().Initialize(activity);
         // add it to list of prospective platforms in runState
         runState.spawnedPlatforms.Add(platform.GetComponent<ActivityPlatform>());
     }
-    // TODO: advance timesteps, spawn platforms as you go, offer thoughts
+    // TODO: offer thoughts
 }

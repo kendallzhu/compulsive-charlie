@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// class for storing all the emotional axes of a player
 public class EmotionState
 {
     public int cravingContentment;

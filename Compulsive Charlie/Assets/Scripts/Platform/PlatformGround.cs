@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script for handling the interactions with the physical ground of the platform
 public class PlatformGround : MonoBehaviour {
     private ActivityPlatform ap;
 
-    void Start()
+    void Awake()
     {
         GameObject platform = this.transform.parent.gameObject;
         ap = platform.GetComponent<ActivityPlatform>();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Class for storing all data relevant to a given run
 public class RunState {
     public int timeSteps;
     public int energy;

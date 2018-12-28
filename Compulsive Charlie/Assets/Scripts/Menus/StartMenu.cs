@@ -8,7 +8,7 @@ public class StartMenu : MonoBehaviour {
     public GameManager gameManager;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
     }

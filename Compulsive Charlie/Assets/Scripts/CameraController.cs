@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// script for controlling camera during run
 public class CameraController : MonoBehaviour
 {
     private Camera camera;

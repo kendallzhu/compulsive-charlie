@@ -12,6 +12,9 @@ public class ActivityPlatform : MonoBehaviour {
     public int length;
     public bool explored = false;
 
+    // other prefabs
+    public GameObject rhythmNotePrefab;
+
     private int GapSize(int ydiff)
     {
         if (ydiff < 0)
@@ -23,12 +26,17 @@ public class ActivityPlatform : MonoBehaviour {
         // return System.Math.Max(0, ydiff - 1);
     }
 
-    // correctly position platform based on current state
-    public void Initialize(Activity _activity, RunManager manager)
+    void Awake()
     {
-        runManager = manager;
+        // get reference to runManager
+        runManager = Object.FindObjectOfType<RunManager>();
+    }
+
+    // correctly position platform based on current state
+    public void Initialize(Activity _activity)
+    {
         activity = _activity;
-        RunState runState = manager.runState;
+        RunState runState = runManager.runState;
         // set the platform at the proper position
         // height specified by activity
         y = activity.PlatformHeight(runState);
@@ -47,5 +55,26 @@ public class ActivityPlatform : MonoBehaviour {
         length = activity.PlatformLength(runState);
         Transform ground = gameObject.transform.Find("Ground");
         ground.localScale = new Vector3(length, .3f, 1);
+    }
+
+    public void StartRhythm()
+    {
+        if (activity != null)
+        {
+            // TODO: associate rhythm pattern with activity - use coroutine?
+            InvokeRepeating("SpawnRhythmNote", 1.0f, 1.0f);
+        }
+    }
+
+    public void StopRhythm()
+    {
+        CancelInvoke("SpawnRhythmNote");
+    }
+
+    public void SpawnRhythmNote()
+    {
+        // TODO: varying heights, parameter!
+        GameObject rhythmNote = Instantiate(rhythmNotePrefab, new Vector2(x, y + 3f), Quaternion.identity);
+        rhythmNote.GetComponent<RhythmNote>().Initialize(this);
     }
 }

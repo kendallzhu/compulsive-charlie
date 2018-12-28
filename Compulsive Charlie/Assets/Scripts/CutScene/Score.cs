@@ -9,7 +9,7 @@ public class Score : MonoBehaviour
     public GameManager gameManager;
 
     // Initialization
-    void Start()
+    void Awake()
     {
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();

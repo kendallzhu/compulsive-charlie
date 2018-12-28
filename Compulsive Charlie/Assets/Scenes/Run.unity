@@ -620,11 +620,6 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224874843593193436, guid: 93c3919dbea88a14bb499be23dcd4b40,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93c3919dbea88a14bb499be23dcd4b40, type: 2}
   m_IsPrefabParent: 0

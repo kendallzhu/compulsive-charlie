@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// class for storing overall persistent game state/progress
 public class Profile
 {
     // these lists are initially populated by GameManager

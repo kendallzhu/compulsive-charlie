@@ -37,6 +37,7 @@ public class TestActivityLow : Activity
     // how this activity modifies run state when rhythm is hit
     public override void RhythmEffect(RunState runState)
     {
+        Debug.Log("Test Activity Low Rhythm");
         return;
     }
 }
