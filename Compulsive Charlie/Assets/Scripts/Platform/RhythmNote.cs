@@ -29,7 +29,7 @@ public class RhythmNote : MonoBehaviour {
 	
 	// Auto-destroy when past platform end
 	void Update () {
-		if (transform.position.x > ap.x + ap.length - 2.5f)
+		if (transform.position.x > ap.x + ap.length)
         {
             Destroy(gameObject);
         }
@@ -40,6 +40,7 @@ public class RhythmNote : MonoBehaviour {
     {
         if (col.gameObject.name == "Charlie")
         {
+            // TODO: add more specifics, i.e. must hit from underneath
             ap.activity.RhythmEffect(runManager.runState);
             Destroy(gameObject);
             // allow Charlie to stop forward momentum when hitting a note

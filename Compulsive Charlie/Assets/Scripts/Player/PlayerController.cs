@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
     public float maxJumpForce = 1000f;
     public float jumpPress = 0;
     public float jumpRelease = 0;
-    public float minForwardSpeed = 1;
+    public float minForwardSpeed = .5f;
 
     public Transform groundCheck1;
     public Transform groundCheck2;
@@ -41,10 +41,10 @@ public class PlayerController : MonoBehaviour {
         }
         // avoid going up and over platforms
         Vector2 velocity = rb2d.velocity;
-        if (velocity.y < -1 || velocity.y == 0 && grounded)
+        if (velocity.y < -1 || (velocity.y == 0 && grounded))
         {
-            float capped = Mathf.Min(velocity.x, 5);
-            float newX = Mathf.Max(capped, minForwardSpeed);
+            //float capped = Mathf.Min(velocity.x, 5);
+            float newX = Mathf.Max(velocity.x, minForwardSpeed);
             rb2d.velocity = new Vector2(newX, velocity.y);
         }
     }

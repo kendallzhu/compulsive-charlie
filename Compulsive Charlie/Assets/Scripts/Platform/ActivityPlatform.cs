@@ -61,8 +61,9 @@ public class ActivityPlatform : MonoBehaviour {
     {
         if (activity != null)
         {
-            // TODO: associate rhythm pattern with activity - use coroutine?
-            InvokeRepeating("SpawnRhythmNote", 1.0f, 1.0f);
+            // TODO: associate rhythm pattern with activity - use coroutine and list of time intervals?
+            // right now doing a note every second:
+            InvokeRepeating("SpawnRhythmNote", .5f, 1f);
         }
     }
 
@@ -73,8 +74,8 @@ public class ActivityPlatform : MonoBehaviour {
 
     public void SpawnRhythmNote()
     {
-        // TODO: varying heights, parameter!
-        GameObject rhythmNote = Instantiate(rhythmNotePrefab, new Vector2(x, y + 3f), Quaternion.identity);
+        // TODO: varying heights? (parameter, specifying special notes?)
+        GameObject rhythmNote = Instantiate(rhythmNotePrefab, new Vector2(x, y + 2.2f), Quaternion.identity);
         rhythmNote.GetComponent<RhythmNote>().Initialize(this);
     }
 }

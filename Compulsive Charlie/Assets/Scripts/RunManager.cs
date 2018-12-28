@@ -37,8 +37,9 @@ public class RunManager : MonoBehaviour {
         }
         // if near end of platform, zoom out for jump
         ActivityPlatform p = runState.CurrentActivityPlatform();
-        if (p != null && p.x + p.length - player.transform.position.x < 4)
+        if (p != null && p.x + p.length - player.transform.position.x < 3)
         {
+            // TODO: dynamic zoom w/ parameter depening on platform heights
             camera.ZoomOut();
         } else
         {
