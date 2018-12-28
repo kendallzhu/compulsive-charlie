@@ -18,6 +18,6 @@ public class EnergyDisplay : MonoBehaviour
     void Update()
     {
         RunState runState = runManager.runState;
-        gameObject.GetComponent<TextMeshProUGUI>().text = runManager.runState.energy.ToString();
+        gameObject.GetComponent<TextMeshProUGUI>().text = runState.energy.ToString();
     }
 }

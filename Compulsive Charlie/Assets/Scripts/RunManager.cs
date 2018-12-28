@@ -8,7 +8,7 @@ public class RunManager : MonoBehaviour {
     public GameManager gameManager;
     public RunState runState;
     public PlayerController player;
-    public CameraController camera;
+    public new CameraController camera;
 
     // prefabs
     public GameObject platformPrefab;

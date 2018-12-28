@@ -4,11 +4,14 @@ using System.Collections;
 // script for controlling camera during run
 public class CameraController : MonoBehaviour
 {
-    private Camera camera;
+    private new Camera camera;
 
     public GameObject player;       //Public variable to store a reference to the player game object
     private float offsetX;
     private float offsetY;
+    private bool followingY; // if in the midst of catching up on y
+    private const float YThreshold = 1.5f; // threshold for adjust camera vertically
+    private const float YEpsilon = .1f; // close enough to desired position
 
     // zooming variables
     public float zoom = 5.5f;
@@ -29,9 +32,25 @@ public class CameraController : MonoBehaviour
     // LateUpdate is called after Update each frame
     void LateUpdate()
     {
-        // Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
         Vector3 p = player.transform.position;
-        transform.position = new Vector3(p.x + offsetX, p.y + offsetY, transform.position.z);
+        Vector3 desiredPosition = new Vector3(p.x + offsetX, p.y + offsetY, transform.position.z);
+        // Set camera to player horizontally, but offset by the calculated offset distance.
+        Vector3 newPosition = new Vector3(desiredPosition.x, transform.position.y, desiredPosition.z);
+        transform.position = newPosition;
+
+        // Set camera to follow player vertically only after a significant offset
+        if (Mathf.Abs(desiredPosition.y - transform.position.y) > YThreshold || followingY)
+        {
+            followingY = true;
+            float intermediateY = Mathf.Lerp(transform.position.y, desiredPosition.y, Time.deltaTime * smooth);
+            newPosition = new Vector3(transform.position.x, intermediateY, transform.position.z);
+            transform.position = newPosition;
+        }
+        if (Mathf.Abs(desiredPosition.y - transform.position.y) < YEpsilon)
+        {
+            followingY = false;
+        }
+
         // maintain specified zoom
         camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, zoom, Time.deltaTime * smooth);
     }

@@ -18,7 +18,7 @@ public class EmotionDisplay : MonoBehaviour
     void Update()
     {
         RunState runState = runManager.runState;
-        int value = runManager.runState.emotions.GetTotal();
+        int value = runState.emotions.GetTotal();
         gameObject.GetComponent<TextMeshProUGUI>().text = value.ToString();
     }
 }
