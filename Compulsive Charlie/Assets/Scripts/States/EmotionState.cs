@@ -69,4 +69,16 @@ public class EmotionState
             shameDiginity
         );
     }
+
+    // shift all emotion axes toward equilibrium levels by given factor
+    public void Equilibrate(EmotionState equilibrium, float factor)
+    {
+        cravingContentment += (int)((equilibrium.cravingContentment - cravingContentment) * factor);
+        anxietyTrust += (int)((equilibrium.anxietyTrust - anxietyTrust) * factor);
+        fearCuriosity += (int)((equilibrium.fearCuriosity - fearCuriosity) * factor);
+        frustrationAcceptance += (int)((equilibrium.frustrationAcceptance - frustrationAcceptance) * factor);
+        confusionClarity += (int)((equilibrium.confusionClarity - confusionClarity) * factor);
+        despairJoy += (int)((equilibrium.despairJoy - despairJoy) * factor);
+        shameDiginity += (int)((equilibrium.shameDiginity - shameDiginity) * factor);
+    }
 }

@@ -68,11 +68,23 @@ public class RunManager : MonoBehaviour {
             newActivityPlatform.StartRhythm();
         }
 
-        // spawn new set of platforms - TODO: function to select from pool of available
-        Activity testActivity = gameManager.profile.activities[0];
-        SpawnPlatform(testActivity);
-        Activity testActivityLow = gameManager.profile.activities[1];
-        SpawnPlatform(testActivityLow);
+        // spawn new set of platforms
+        foreach (Activity activity in SelectActivities())
+        {
+            SpawnPlatform(activity);
+        }
+
+        // gradually bring emotion axes back to equilibrium levels
+        // (TODO: certain activities can do this more strongly like sleep)
+        runState.emotions.Equilibrate(gameManager.profile.emotionEquilibriums, .1f);
+
+        // offer thoughts - TODO: freeze and provide a menu with a countdown timer
+        foreach (Thought thought in SelectThoughts())
+        {
+            runState.thoughtHistory.Add(thought);
+            thought.Effect(runState);
+            // TODO: add another thought effect trigger at the end of the activityPlatform
+        }
     }
 
     // instantiate a new activity platform
@@ -83,5 +95,21 @@ public class RunManager : MonoBehaviour {
         // add it to list of prospective platforms in runState
         runState.spawnedPlatforms.Add(platform.GetComponent<ActivityPlatform>());
     }
-    // TODO: offer thoughts
+
+    // select activities from pool of available
+    private List<Activity> SelectActivities()
+    {
+        // TODO: select one for each height range? if available?
+        Activity testActivity = gameManager.profile.activities[0];
+        Activity testActivityLow = gameManager.profile.activities[1];
+        return new List<Activity> { testActivity, testActivityLow };
+    }
+
+    // select thoughts from pool of available
+    private List<Thought> SelectThoughts()
+    {
+        // TODO: select 3 random, taking into account availability and activity association
+        Thought testThought = gameManager.profile.thoughts[0];
+        return new List<Thought> { testThought };
+    }
 }

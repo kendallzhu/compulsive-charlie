@@ -10,6 +10,8 @@ public class RunState {
     public List<ActivityPlatform> activityHistory;
     public List<Thought> thoughtHistory;
     public List<int> scoreHistory;
+    // todo: jump bonus?
+
     // the next set of prospective platforms
     public List<ActivityPlatform> spawnedPlatforms = new List<ActivityPlatform>();
 

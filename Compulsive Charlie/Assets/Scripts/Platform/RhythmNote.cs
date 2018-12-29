@@ -22,9 +22,15 @@ public class RhythmNote : MonoBehaviour {
     public void Initialize(ActivityPlatform _ap)
     {
         ap = _ap;
-        // TODO: get speed based on emotions
+        // make fast if lots of negative emotion
+        // TODO: add more nuance/ better design
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-        rb2d.velocity = new Vector2(6, 0);
+        rb2d.velocity = new Vector2(5, 0);
+        int e = runManager.runState.emotions.GetTotal();
+        if (e < -10)
+        {
+            rb2d.velocity = new Vector2(10, 0);
+        }
     }
 	
 	// Auto-destroy when past platform end

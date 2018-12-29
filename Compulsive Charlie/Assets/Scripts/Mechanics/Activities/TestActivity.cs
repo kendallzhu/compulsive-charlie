@@ -37,6 +37,8 @@ public class TestActivity : Activity
     public override void RhythmEffect(RunState runState)
     {
         Debug.Log("Test Activity Rhythm");
+        // test - reduce anxiety
+        runState.emotions.anxietyTrust += 1;
         return;
     }
 }
