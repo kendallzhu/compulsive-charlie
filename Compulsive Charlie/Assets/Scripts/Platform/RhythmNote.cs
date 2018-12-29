@@ -22,15 +22,8 @@ public class RhythmNote : MonoBehaviour {
     public void Initialize(ActivityPlatform _ap)
     {
         ap = _ap;
-        // make fast if lots of negative emotion
-        // TODO: add more nuance/ better design
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-        rb2d.velocity = new Vector2(5, 0);
-        int e = runManager.runState.emotions.GetTotal();
-        if (e < -10)
-        {
-            rb2d.velocity = new Vector2(10, 0);
-        }
+        rb2d.velocity = new Vector2(NoteSpeed(runManager.runState), 0);
     }
 	
 	// Auto-destroy when past platform end
@@ -52,5 +45,18 @@ public class RhythmNote : MonoBehaviour {
             // allow Charlie to stop forward momentum when hitting a note
             col.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -2);
         }
+    }
+
+    // calculate note speed based on runState
+    private float NoteSpeed(RunState runState)
+    {
+        // make fast if lots of negative emotion
+        // TODO: add more nuance/ better design
+        int e = runManager.runState.emotions.GetTotal();
+        if (e < -10)
+        {
+            return 10f;
+        }
+        return 5f;
     }
 }

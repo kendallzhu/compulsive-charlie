@@ -19,6 +19,9 @@ public abstract class Thought : MonoBehaviour
     // Don't use activity history (to keep modular)
     public abstract bool IsAvailable(RunState runState);
 
-    // how this thought modifies given state of run
+    // how this thought modifies given state of run when activated
     public abstract void Effect(RunState runState);
+
+    // how this thought modifies jump power when active
+    public abstract float JumpBonus(float power);
 }

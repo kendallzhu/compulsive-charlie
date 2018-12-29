@@ -54,7 +54,7 @@ public class ActivityPlatform : MonoBehaviour {
         // (this will work as long as prefab is a unit cube with default scale)
         length = activity.PlatformLength(runState);
         Transform ground = gameObject.transform.Find("Ground");
-        ground.localScale = new Vector3(length, .3f, 1);
+        ground.localScale = new Vector3(length, .3f, 1); // MAGIC NUMBER .3 for platform thickness
     }
 
     public void StartRhythm()

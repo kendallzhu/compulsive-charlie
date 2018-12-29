@@ -28,4 +28,10 @@ public class TestThought : Thought
         runState.emotions.anxietyTrust -= 5;
         return;
     }
+
+    // how this thought modifies jump power when active
+    public override float JumpBonus(float power)
+    {
+        return power;
+    }
 }

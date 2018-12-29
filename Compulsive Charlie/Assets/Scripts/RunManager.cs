@@ -13,8 +13,6 @@ public class RunManager : MonoBehaviour {
     // prefabs
     public GameObject platformPrefab;
 
-    // TODO: track which phase of game in variable, pass to player controller(no?)
-
     // Initialization
     void Awake () {
         // get reference to gameManager
