@@ -25,7 +25,7 @@ public class TestThought : Thought
     {
         Debug.Log("Test Thought");
         // test - add anxiety
-        runState.emotions.anxietyTrust -= 5;
+        runState.emotions.anxietyTrust -= 3;
         return;
     }
 

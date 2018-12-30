@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Script for handling the interactions with the physical ground of the platform
+// Script for handling the interactions with the main physical ground of the platform
 public class PlatformGround : MonoBehaviour {
     private ActivityPlatform ap;
 

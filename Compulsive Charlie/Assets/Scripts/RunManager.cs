@@ -50,11 +50,6 @@ public class RunManager : MonoBehaviour {
     {
         if (newActivityPlatform != null)
         {
-            // stop old platform spawning rhythm notes
-            if (runState.activityHistory.Count > 0)
-            {
-                runState.activityHistory.Last().StopRhythm();
-            }
             // increment timeSteps
             runState.timeSteps += 1;
             // update activity and score histories
@@ -72,17 +67,32 @@ public class RunManager : MonoBehaviour {
             SpawnPlatform(activity);
         }
 
-        // gradually bring emotion axes back to equilibrium levels
-        // (TODO: certain activities can do this more strongly like sleep)
-        runState.emotions.Equilibrate(gameManager.profile.emotionEquilibriums, .1f);
-
         // offer thoughts - TODO: freeze and provide a menu with a countdown timer
         foreach (Thought thought in SelectThoughts())
         {
             runState.thoughtHistory.Add(thought);
             thought.Effect(runState);
-            // TODO: add another thought effect trigger at the end of the activityPlatform
         }
+    }
+
+    // for when the player enters the jump Pad
+    public void EnterJumpPad(ActivityPlatform activityPlatform)
+    {
+        if (activityPlatform != null)
+        {
+            // stop platform spawning rhythm notes
+            if (runState.activityHistory.Count > 0)
+            {
+                runState.activityHistory.Last().StopRhythm();
+            }
+        }
+
+        // gradually bring emotion axes back to equilibrium levels
+        // (TODO: certain activities can do this more strongly like sleep)
+        runState.emotions.Equilibrate(gameManager.profile.emotionEquilibriums, .1f);
+
+        // trigger whatever thought is active by the end of this activity
+        runState.thoughtHistory.Last().Effect(runState);
     }
 
     // instantiate a new activity platform

@@ -57,6 +57,10 @@ public class RhythmNote : MonoBehaviour {
         {
             return 10f;
         }
+        if (e > 10)
+        {
+            return 3f;
+        }
         return 5f;
     }
 }
