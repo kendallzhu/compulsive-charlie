@@ -9,6 +9,7 @@ public class RunManager : MonoBehaviour {
     public RunState runState;
     public PlayerController player;
     public new CameraController camera;
+    public ThoughtMenu thoughtMenu;
 
     // prefabs
     public GameObject platformPrefab;
@@ -19,6 +20,7 @@ public class RunManager : MonoBehaviour {
         gameManager = Object.FindObjectOfType<GameManager>();
         // get initial runState (based on profile)
         runState = new RunState(0, new EmotionState());
+        thoughtMenu.Initialize();
     }
 
     private void Update()
@@ -67,12 +69,8 @@ public class RunManager : MonoBehaviour {
             SpawnPlatform(activity);
         }
 
-        // offer thoughts - TODO: freeze and provide a menu with a countdown timer
-        foreach (Thought thought in SelectThoughts())
-        {
-            runState.thoughtHistory.Add(thought);
-            thought.Effect(runState);
-        }
+        // offer thoughts
+        thoughtMenu.Activate(SelectThoughts());
     }
 
     // for when the player enters the jump Pad
