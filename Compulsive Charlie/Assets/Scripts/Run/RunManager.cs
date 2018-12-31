@@ -90,7 +90,10 @@ public class RunManager : MonoBehaviour {
         runState.emotions.Equilibrate(gameManager.profile.emotionEquilibriums, .1f);
 
         // trigger whatever thought is active by the end of this activity
-        runState.thoughtHistory.Last().Effect(runState);
+        if (runState.thoughtHistory.Count > 0)
+        {
+            runState.thoughtHistory.Last().Effect(runState);
+        }
     }
 
     // instantiate a new activity platform

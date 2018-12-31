@@ -11,7 +11,7 @@ public class EmotionState
     public int frustrationAcceptance;
     public int confusionClarity;
     public int despairJoy;
-    public int shameDiginity;
+    public int shameDignity;
 
     // full constructor
     public EmotionState(
@@ -21,7 +21,7 @@ public class EmotionState
         int _frustrationAcceptance,
         int _confusionClarity,
         int _despairJoy,
-        int _shameDiginity)
+        int _shameDignity)
     {
         cravingContentment = _cravingContentment;
         anxietyTrust = _anxietyTrust;
@@ -29,7 +29,7 @@ public class EmotionState
         frustrationAcceptance = _frustrationAcceptance;
         confusionClarity = _confusionClarity;
         despairJoy = _despairJoy;
-        shameDiginity = _shameDiginity;
+        shameDignity = _shameDignity;
     }
 
     // uniform value constructor
@@ -41,7 +41,7 @@ public class EmotionState
         frustrationAcceptance = value;
         confusionClarity = value;
         despairJoy = value;
-        shameDiginity = value;
+        shameDignity = value;
     }
 
     // basic constructor
@@ -53,7 +53,7 @@ public class EmotionState
         frustrationAcceptance = 0;
         confusionClarity = 0;
         despairJoy = 0;
-        shameDiginity = 0;
+        shameDignity = 0;
     }
 
     public int GetTotal()
@@ -66,7 +66,7 @@ public class EmotionState
             frustrationAcceptance +
             confusionClarity +
             despairJoy +
-            shameDiginity
+            shameDignity
         );
     }
 
@@ -79,6 +79,6 @@ public class EmotionState
         frustrationAcceptance += (int)((equilibrium.frustrationAcceptance - frustrationAcceptance) * factor);
         confusionClarity += (int)((equilibrium.confusionClarity - confusionClarity) * factor);
         despairJoy += (int)((equilibrium.despairJoy - despairJoy) * factor);
-        shameDiginity += (int)((equilibrium.shameDiginity - shameDiginity) * factor);
+        shameDignity += (int)((equilibrium.shameDignity - shameDignity) * factor);
     }
 }
