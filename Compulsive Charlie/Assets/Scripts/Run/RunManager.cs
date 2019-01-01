@@ -4,7 +4,8 @@ using UnityEngine;
 using System.Linq;
 
 // Script managing all the state and gameplay of a single run
-public class RunManager : MonoBehaviour {
+public class RunManager : MonoBehaviour
+{
     public GameManager gameManager;
     public RunState runState;
     public PlayerController player;
@@ -15,7 +16,8 @@ public class RunManager : MonoBehaviour {
     public GameObject platformPrefab;
 
     // Initialization
-    void Awake () {
+    void Awake()
+    {
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
         // get initial runState (based on profile)
@@ -41,7 +43,8 @@ public class RunManager : MonoBehaviour {
         {
             // TODO: dynamic zoom w/ parameter depening on platform heights
             camera.ZoomOut();
-        } else
+        }
+        else
         {
             camera.ZoomNormal();
         }
@@ -88,6 +91,11 @@ public class RunManager : MonoBehaviour {
         // gradually bring emotion axes back to equilibrium levels
         // (TODO: certain activities can do this more strongly like sleep)
         runState.emotions.Equilibrate(gameManager.profile.emotionEquilibriums, .1f);
+
+        // regenerate energy
+        runState.energy += gameManager.profile.energyRegen;
+        // cap energy
+        runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
 
         // trigger whatever thought is active by the end of this activity
         if (runState.thoughtHistory.Count > 0)
