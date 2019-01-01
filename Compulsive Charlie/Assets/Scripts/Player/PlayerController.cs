@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     public float jumpRelease = 0;
 
     // gameplay constants
-    public const float maxJumpPower = 700f;
+    public const float maxJumpPower = 400f; // range can go higher with higher energy, this is the minimum cap
     public const float minJumpPower = 80f;
     public const float forwardJumpForce = 100f;
     public const float fallingMinForwardSpeed = .5f; // idea: maybe can make this a profile upgrade?
@@ -41,7 +41,13 @@ public class PlayerController : MonoBehaviour {
         // weird jump mechanic just for fun to see movement
         if (Input.GetButtonDown("Jump") || !grounded)
         {
+
             jumpPress = Time.time;
+            /* // on jumps add a random interval so it's not predictable
+            if (Input.GetButtonDown("Jump") && grounded)
+            {
+                jumpPress = Time.time - Random.Range(0f, JumpPeriod(runManager.runState));
+            }*/
         }
         if (Input.GetButtonUp("Jump") || !grounded)
         {
@@ -66,18 +72,16 @@ public class PlayerController : MonoBehaviour {
     public float GetJumpPower(float releaseTime)
     {
         RunState runState = runManager.runState;
-        // TODO: incorporate energy in oscillating timing jump
-        // energy can timing more difficult or limit it, or both
         float period = JumpPeriod(runState);
         float timing = (releaseTime - jumpPress) % period;
-        float power = maxJumpPower * timing / period;
+        float power = MaxJumpPower(runState) * timing / period;
         // incorporate jump bonus from current thought
         List<Thought> thoughts = runState.thoughtHistory;
         if (thoughts.Count > 0)
         {
             power = thoughts.Last().JumpBonus(power);
         }
-        return Mathf.Max(power, minJumpPower);
+        return power + minJumpPower;
     }
 
     void FixedUpdate()
@@ -94,11 +98,40 @@ public class PlayerController : MonoBehaviour {
     // functions for gameplay parameters that depend on runState (emotions, etc.)
     private float PlatformMinForwardSpeed(RunState runState)
     {
-        return .5f;
+        // make fast if lots of negative emotion
+        // TODO: add more nuance/ better design
+        int e = runManager.runState.emotions.GetTotal();
+        if (e < -10)
+        {
+            return 1f;
+        }
+        if (e > 10)
+        {
+            return .4f;
+        }
+        return .7f;
     }
 
     private float JumpPeriod(RunState runState)
     {
-        return .7f;
+        // make more crazy/fast if lots of negative emotion (so harder to time)
+        // TODO: add more nuance/ better design
+        int e = runManager.runState.emotions.GetTotal();
+        if (e < -10)
+        {
+            return .3f;
+        }
+        if (e > 10)
+        {
+            return .9f;
+        }
+        return .6f;
+    }
+
+    private float MaxJumpPower(RunState runState)
+    {
+        // jump power goes up with energy - TODO: equation can always be tuned more
+        Debug.Log(maxJumpPower * Mathf.Pow(runState.energy / 10f, .5f));
+        return maxJumpPower * Mathf.Pow(runState.energy/10f, .5f);
     }
 }

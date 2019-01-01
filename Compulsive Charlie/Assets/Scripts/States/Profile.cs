@@ -23,7 +23,7 @@ public class Profile
     // constructor - (I think this will only be called once on game start)
     public Profile()
     {
-        // set starting profile of the game
+        // set starting profile of the game - TODO: Tune according to story of game, maybe start out shittier
         emotionEquilibriums = new EmotionState();
         initialEnergy = 0;
         thoughts = new List<Thought>();
@@ -32,8 +32,8 @@ public class Profile
         timeLimit = 5;
         experience = 0;
         scores = new List<int>();
-        energyCap = 10;
-        energyRegen = 1;
+        energyCap = 20;
+        energyRegen = 2;
     }
 }
 

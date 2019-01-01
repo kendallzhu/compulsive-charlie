@@ -24,8 +24,9 @@ public class TestThought : Thought
     public override void Effect(RunState runState)
     {
         Debug.Log("Test Thought");
-        // test - add anxiety
+        // add anxiety, drain 1 energy
         runState.emotions.anxietyTrust -= 3;
+        runState.energy = System.Math.Max(0, runState.energy - 1);
         return;
     }
 

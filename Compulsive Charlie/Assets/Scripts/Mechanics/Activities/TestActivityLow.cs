@@ -28,12 +28,6 @@ public class TestActivityLow : Activity
         return runState.CurrentScore() - 3;
     }
 
-    // length of associated platform if it comes after given run state
-    public override int PlatformLength(RunState runState)
-    {
-        return 10 + runState.energy / 2;
-    }
-
     // how this activity modifies run state when rhythm is hit
     public override void RhythmEffect(RunState runState)
     {

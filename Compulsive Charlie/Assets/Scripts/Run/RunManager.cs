@@ -20,33 +20,17 @@ public class RunManager : MonoBehaviour
     {
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
-        // get initial runState (based on profile)
-        runState = new RunState(0, new EmotionState());
+        // get initial runState (TODO: based on profile)
+        runState = new RunState(12, new EmotionState());
         thoughtMenu.Initialize();
     }
 
     private void Update()
     {
-        // [makshift] if fallen way down, end run and advance scenes
+        // [fail-check] if fallen way down, end run and advance scenes
         if (player.transform.position.y < -100)
         {
             gameManager.EndRun(int.MinValue);
-        }
-        // [makshift] if time limit exceeded, end run
-        if (runState.timeSteps > gameManager.profile.timeLimit)
-        {
-            gameManager.EndRun(runState.CurrentScore());
-        }
-        // if near end of platform, zoom out for jump
-        ActivityPlatform p = runState.CurrentActivityPlatform();
-        if (p != null && p.x + p.length - player.transform.position.x < 3)
-        {
-            // TODO: dynamic zoom w/ parameter depening on platform heights
-            camera.ZoomOut();
-        }
-        else
-        {
-            camera.ZoomNormal();
         }
     }
 
@@ -60,6 +44,12 @@ public class RunManager : MonoBehaviour
             // update activity and score histories
             runState.activityHistory.Add(newActivityPlatform);
             runState.scoreHistory.Add(newActivityPlatform.y);
+            // if time limit exceeded, end run (and skip the rest of the procedure)
+            if (runState.timeSteps > gameManager.profile.timeLimit)
+            {
+                gameManager.EndRun(runState.CurrentScore());
+                return;
+            }
             // clear out other spawnedPlatforms
             runState.ClearSpawned(newActivityPlatform);
             // start new platform spawning rhythm notes
@@ -74,11 +64,18 @@ public class RunManager : MonoBehaviour
 
         // offer thoughts
         thoughtMenu.Activate(SelectThoughts());
+
+        // return zoom to normal
+        camera.ZoomNormal();
     }
 
     // for when the player enters the jump Pad
     public void EnterJumpPad(ActivityPlatform activityPlatform)
     {
+        // Zoom out for jump
+        // TODO: dynamic zoom w/ parameter depening on platform heights
+        camera.ZoomOut();
+
         if (activityPlatform != null)
         {
             // stop platform spawning rhythm notes
@@ -126,6 +123,7 @@ public class RunManager : MonoBehaviour
     private List<Thought> SelectThoughts()
     {
         // TODO: select 3 random, taking into account availability and activity association
+        // associations should be 3x more likely, IDEA: CAN REPEAT, (this makes single associations more relevant)
         Thought testThought = gameManager.profile.thoughts[0];
         return new List<Thought> { testThought };
     }

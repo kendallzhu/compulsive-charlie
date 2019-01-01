@@ -27,18 +27,15 @@ public class TestActivity : Activity
         return runState.CurrentScore() + 5;
     }
 
-    // length of associated platform if it comes after given run state
-    public override int PlatformLength(RunState runState)
-    {
-        return 10 + runState.energy / 2;
-    }
-
     // how this activity modifies run state when rhythm is hit
     public override void RhythmEffect(RunState runState)
     {
         Debug.Log("Test Activity Rhythm");
         // test - reduce anxiety
-        runState.emotions.anxietyTrust += 1;
+        if (runState.emotions.anxietyTrust > 0)
+        {
+            runState.emotions.anxietyTrust += 1;
+        }
         return;
     }
 }

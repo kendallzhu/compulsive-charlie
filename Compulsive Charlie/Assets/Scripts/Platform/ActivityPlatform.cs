@@ -6,9 +6,11 @@ using UnityEngine;
 public class ActivityPlatform : MonoBehaviour {
     public RunManager runManager;
     public Activity activity;
-    // constants - TODO: may these ever depend on activity or runState?
+    // constants - TODO: may these ever depend on activity or runState i.e emotion? if so convert to function
+    // universal dimensions of all platforms - (design choice to simplify, don't think variable lengths add much)
     private const int jumpPadLength = 3;
     private const float platformThickness = .3f;
+    public int platformLength = 12;
     private const int standardGapLength = 2;
 
     public int x;
@@ -47,6 +49,7 @@ public class ActivityPlatform : MonoBehaviour {
         y = activity.PlatformHeight(runState);
         // x to the right of current platform, if there is one
         x = GapSize(y);
+        length = platformLength;
         ActivityPlatform current = runState.CurrentActivityPlatform();
         if (current != null)
         {
@@ -57,7 +60,6 @@ public class ActivityPlatform : MonoBehaviour {
 
         // scale the transform of the physical platform child to the proper length
         // (this will work as long as prefab is a unit cube with default scale)
-        length = activity.PlatformLength(runState);
         Transform ground = gameObject.transform.Find("Ground");
         ground.localScale = new Vector2(length, platformThickness);
         // scale the fixed length jump pad at the end of the platform
@@ -71,8 +73,10 @@ public class ActivityPlatform : MonoBehaviour {
         if (activity != null)
         {
             // TODO: associate rhythm pattern with activity - use coroutine and list of time intervals?
-            // right now doing a note every second:
-            InvokeRepeating("SpawnRhythmNote", .5f, 1f);
+            // tempo based on energy
+            float energy = runManager.runState.energy;
+            float tempo = Mathf.Pow(energy/10f, .5f);
+            InvokeRepeating("SpawnRhythmNote", .5f, 1f / tempo);
         }
     }
 

@@ -70,15 +70,29 @@ public class EmotionState
         );
     }
 
-    // shift all emotion axes toward equilibrium levels by given factor
+    // shift all emotion axes toward equilibrium levels by given factor (plus one)
     public void Equilibrate(EmotionState equilibrium, float factor)
     {
-        cravingContentment += (int)((equilibrium.cravingContentment - cravingContentment) * factor);
-        anxietyTrust += (int)((equilibrium.anxietyTrust - anxietyTrust) * factor);
-        fearCuriosity += (int)((equilibrium.fearCuriosity - fearCuriosity) * factor);
-        frustrationAcceptance += (int)((equilibrium.frustrationAcceptance - frustrationAcceptance) * factor);
-        confusionClarity += (int)((equilibrium.confusionClarity - confusionClarity) * factor);
-        despairJoy += (int)((equilibrium.despairJoy - despairJoy) * factor);
-        shameDignity += (int)((equilibrium.shameDignity - shameDignity) * factor);
+        // kinda cumbersome, but I think it's better like this so they actually reach equilibrium
+        int diff = equilibrium.cravingContentment - cravingContentment;
+        cravingContentment += (int)(diff * factor) + System.Math.Sign(diff);
+
+        diff = equilibrium.anxietyTrust - anxietyTrust;
+        anxietyTrust += (int)(diff * factor) + System.Math.Sign(diff);
+
+        diff = equilibrium.fearCuriosity - fearCuriosity;
+        fearCuriosity += (int)(diff * factor) + System.Math.Sign(diff);
+
+        diff = equilibrium.frustrationAcceptance - frustrationAcceptance;
+        frustrationAcceptance += (int)(diff * factor) + System.Math.Sign(diff);
+
+        diff = equilibrium.confusionClarity - confusionClarity;
+        confusionClarity += (int)(diff * factor) + System.Math.Sign(diff);
+
+        diff = equilibrium.despairJoy - despairJoy;
+        despairJoy += (int)(diff * factor) + System.Math.Sign(diff);
+
+        diff = equilibrium.shameDignity - shameDignity;
+        shameDignity += (int)(diff * factor) + System.Math.Sign(diff);
     }
 }

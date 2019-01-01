@@ -61,6 +61,6 @@ public class RhythmNote : MonoBehaviour {
         {
             return 3f;
         }
-        return 5f;
+        return 6f;
     }
 }
