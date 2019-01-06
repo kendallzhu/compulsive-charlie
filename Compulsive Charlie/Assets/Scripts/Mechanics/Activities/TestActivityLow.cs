@@ -7,25 +7,26 @@ public class TestActivityLow : Activity
     // Use this for initialization
     void Start()
     {
-        name = "Test Activity Low";
-        descriptionText = "testing is not great";
+        name = "Watching Youtube";
+        descriptionText = "my head hurts";
         isUnlocked = true;
         associatedThoughts = new List<Thought>();
         // always available
         minEmotions = new EmotionState(int.MinValue);
         maxEmotions = new EmotionState(int.MaxValue);
+        repeatProbability = 1f;
     }
 
     // whether this activity is available, given state of run
-    public override bool IsAvailable(RunState runState)
+    public override bool CustomIsAvailable(RunState runState)
     {
         return true;
     }
 
-    // height of associated platform if it comes after given run state
-    public override int PlatformHeight(RunState runState)
+    // raw height change platform if it comes after given run state
+    public override int HeightRating(RunState runState)
     {
-        return runState.CurrentScore() - 3;
+        return -3;
     }
 
     // how this activity modifies run state when rhythm is hit

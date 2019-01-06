@@ -18,11 +18,10 @@ public class ThoughtDisplay : MonoBehaviour
 
     void Update()
     {
-        List<Thought> thoughtHistory = runManager.runState.thoughtHistory ;
-        if (thoughtHistory.Count > 0)
+        Thought currentThought = runManager.runState.CurrentThought();
+        if (currentThought)
         {
-            Thought activeThought = thoughtHistory.Last();
-            string quote = "\"" + activeThought.name + "\"";
+            string quote = "\"" + currentThought.name + "\"";
             gameObject.GetComponent<TextMeshProUGUI>().text =  quote;
         }
     }

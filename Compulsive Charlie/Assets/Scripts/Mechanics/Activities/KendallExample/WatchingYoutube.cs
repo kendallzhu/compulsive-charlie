@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestActivity : Activity
+public class WatchingYoutube : Activity
 {
     void Awake()
     {
-        name = "Develop Game";
-        descriptionText = "ooh, maybe he'll edit me";
+        name = "Watching Youtube";
+        descriptionText = "something's fishy";
         isUnlocked = true;
-        associatedThoughts = new List<Thought>();
+        associatedThoughts = new List<Thought>
+        {
+            Object.FindObjectOfType<JustABitMore>(),
+            Object.FindObjectOfType<TakeMyProblemsAway>(),
+
+        };
         // always available
         minEmotions = new EmotionState(int.MinValue);
         maxEmotions = new EmotionState(int.MaxValue);
@@ -25,17 +30,23 @@ public class TestActivity : Activity
     // height of associated platform if it comes after given run state
     public override int HeightRating(RunState runState)
     {
-        return 5;
+        return -2;
     }
 
     // how this activity modifies run state when rhythm is hit
     public override void RhythmEffect(RunState runState)
     {
-        Debug.Log("Test Activity Rhythm");
-        // test - reduce anxiety
-        if (runState.emotions.anxietyTrust < 0)
+        if (runState.emotions.despairJoy < 0)
         {
-            runState.emotions.anxietyTrust += 1;
+            runState.emotions.despairJoy += 1;
+        }
+        if (runState.emotions.fearCuriosity < 0)
+        {
+            runState.emotions.fearCuriosity += 1;
+        }
+        if (runState.emotions.cravingContentment < 0)
+        {
+            runState.emotions.cravingContentment += 1;
         }
         return;
     }

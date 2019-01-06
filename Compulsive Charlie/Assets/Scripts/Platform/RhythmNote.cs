@@ -35,12 +35,21 @@ public class RhythmNote : MonoBehaviour {
     }
 
     // destroy and trigger activity bonus effect when hit by player
+    // (only applies to trigger box collider, underneath)
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Charlie")
+        {
+            // TODO: tune to improve gameplay experience
+            ap.activity.RhythmEffect(runManager.runState);
+        }
+    }
+
+    // destroy when hit by player
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.name == "Charlie")
         {
-            // TODO: add more specifics, i.e. must hit from underneath
-            ap.activity.RhythmEffect(runManager.runState);
             Destroy(gameObject);
             // allow Charlie to stop forward momentum when hitting a note
             col.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -2);

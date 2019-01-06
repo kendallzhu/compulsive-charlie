@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 // Class for storing all data relevant to a given run
 public class RunState {
@@ -46,16 +47,36 @@ public class RunState {
         {
             return 0;
         }
-        return scoreHistory[scoreHistory.Count - 1];
+        return scoreHistory.Last();
     }
 
+    // TODO: make null activity + thought, use lastordefault, get rid of all checks?
     public ActivityPlatform CurrentActivityPlatform()
     {
         if (activityHistory.Count == 0)
         {
             return null;
         }
-        return activityHistory[activityHistory.Count - 1];
+        return activityHistory.Last();
+    }
+
+    public Activity CurrentActivity()
+    {
+        ActivityPlatform ap = CurrentActivityPlatform();
+        if (ap == null || ap.activity == null)
+        {
+            return null;
+        }
+        return ap.activity;
+    }
+
+    public Thought CurrentThought()
+    {
+        if (thoughtHistory.Count == 0)
+        {
+            return null;
+        }
+        return thoughtHistory.Last();
     }
 
     // destroy all platforms in the prospective set except chosen, clear list

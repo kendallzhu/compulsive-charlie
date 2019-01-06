@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestThought : Thought
+public class ThisMightNotWork : Thought
 {
     void Awake()
     {
-        name = "Test Thought";
-        descriptionText = "thinking about testing";
+        name = "This might not work";
+        descriptionText = "guess I'll waver and half-ass it";
         isUnlocked = true;
         // always available
         minEmotions = new EmotionState(int.MinValue);
@@ -23,8 +23,7 @@ public class TestThought : Thought
     // how this thought modifies run state when thunk
     public override void CustomEffect(RunState runState)
     {
-        Debug.Log("Test Thought");
-        // add anxiety
-        runState.emotions.anxietyTrust -= 3;
+        runState.emotions.confusionClarity -= 2;
+        runState.emotions.anxietyTrust -= 2;
     }
 }

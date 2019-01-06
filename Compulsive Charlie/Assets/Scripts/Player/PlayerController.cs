@@ -76,10 +76,9 @@ public class PlayerController : MonoBehaviour {
         float timing = (releaseTime - jumpPress) % period;
         float power = MaxJumpPower(runState) * timing / period;
         // incorporate jump bonus from current thought
-        List<Thought> thoughts = runState.thoughtHistory;
-        if (thoughts.Count > 0)
+        if (runState.CurrentThought())
         {
-            power = thoughts.Last().JumpBonus(power);
+            power = runState.CurrentThought().JumpBonus(power);
         }
         return power + minJumpPower;
     }
@@ -130,8 +129,14 @@ public class PlayerController : MonoBehaviour {
 
     private float MaxJumpPower(RunState runState)
     {
+        // if we are not on the jump pad yet, keep it simple and allow only small jump
+        if (!runState.CurrentActivityPlatform().jumpPadExplored)
+        {
+            return minJumpPower;
+        }
         // jump power goes up with energy - TODO: equation can always be tuned more
-        Debug.Log(maxJumpPower * Mathf.Pow(runState.energy / 10f, .5f));
+        // TODO: maybe decrease with score, since platform heights will do the same
+        // Debug.Log(maxJumpPower * Mathf.Pow(runState.energy / 10f, .5f));
         return maxJumpPower * Mathf.Pow(runState.energy/10f, .5f);
     }
 }

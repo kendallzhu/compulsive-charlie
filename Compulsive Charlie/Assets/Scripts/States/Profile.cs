@@ -29,7 +29,7 @@ public class Profile
         thoughts = new List<Thought>();
         activities = new List<Activity>();
         upgrades = new List<Upgrade>();
-        timeLimit = 5;
+        timeLimit = 12;
         experience = 0;
         scores = new List<int>();
         energyCap = 20;

@@ -11,17 +11,54 @@ public abstract class Thought : MonoBehaviour
 
     // changeable parameters
     public bool isUnlocked = false;
+    public int energyCost = 1;
     // thought is unavailable if any emotion is (< min) or (> max)
     public EmotionState minEmotions;
     public EmotionState maxEmotions;
 
+    // non-emotion thought-specific availability conditions 
+    // (Don't use activity history - to keep modular)
+    public abstract bool CustomIsAvailable(RunState runState);
+
     // whether this thought is available, given state of run
-    // Don't use activity history (to keep modular)
-    public abstract bool IsAvailable(RunState runState);
+    public bool IsAvailable(RunState runState)
+    {
+        // check if thought is unlocked
+        if (!isUnlocked)
+        {
+            return false;
+        }
+        // check within emotion thresholds
+        if (!runState.emotions.Within(minEmotions, maxEmotions))
+        {
+            return false;
+        }
+        return CustomIsAvailable(runState);
+    }
 
     // how this thought modifies given state of run when activated
-    public abstract void Effect(RunState runState);
+    public abstract void CustomEffect(RunState runState);
+
+    // common effect (factored out from Effect)
+    public void Effect(RunState runState)
+    {
+        // drain energy
+        runState.energy = System.Math.Max(0, runState.energy - energyCost);
+        // make thought-specific effects
+        CustomEffect(runState);
+    }
 
     // how this thought modifies jump power when active
-    public abstract float JumpBonus(float power);
+    // (default: no impact)
+    public virtual float JumpBonus(float power)
+    {
+        return power;
+    }
+
+    // how this thought modifies probability of last activity being available again
+    // (default: no impact)
+    public virtual float Repeat(float probOffered)
+    {
+        return probOffered;
+    }
 }

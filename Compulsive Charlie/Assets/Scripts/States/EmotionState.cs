@@ -70,6 +70,27 @@ public class EmotionState
         );
     }
 
+    // checks if state is within the thresholds
+    public bool Within(EmotionState minEmotions, EmotionState maxEmotions)
+    {
+        return (
+            cravingContentment >= minEmotions.cravingContentment &&
+            cravingContentment <= maxEmotions.cravingContentment &&
+            anxietyTrust >= minEmotions.anxietyTrust &&
+            anxietyTrust <= maxEmotions.anxietyTrust &&
+            fearCuriosity >= minEmotions.fearCuriosity &&
+            fearCuriosity <= maxEmotions.fearCuriosity &&
+            frustrationAcceptance >= minEmotions.frustrationAcceptance &&
+            frustrationAcceptance <= maxEmotions.frustrationAcceptance &&
+            confusionClarity >= minEmotions.confusionClarity &&
+            confusionClarity <= maxEmotions.confusionClarity &&
+            despairJoy >= minEmotions.despairJoy &&
+            despairJoy <= maxEmotions.despairJoy &&
+            shameDignity >= minEmotions.shameDignity &&
+            shameDignity <= maxEmotions.shameDignity
+        );
+    }
+
     // shift all emotion axes toward equilibrium levels by given factor (plus one)
     public void Equilibrate(EmotionState equilibrium, float factor)
     {

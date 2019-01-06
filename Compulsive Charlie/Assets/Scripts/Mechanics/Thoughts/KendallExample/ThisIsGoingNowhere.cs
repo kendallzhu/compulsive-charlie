@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestThought : Thought
+public class ThisIsGoingNowhere : Thought
 {
     void Awake()
     {
-        name = "Test Thought";
-        descriptionText = "thinking about testing";
+        name = "This is going nowhere";
+        descriptionText = "might as well give up now";
         isUnlocked = true;
         // always available
         minEmotions = new EmotionState(int.MinValue);
@@ -23,8 +23,13 @@ public class TestThought : Thought
     // how this thought modifies run state when thunk
     public override void CustomEffect(RunState runState)
     {
-        Debug.Log("Test Thought");
-        // add anxiety
-        runState.emotions.anxietyTrust -= 3;
+        runState.emotions.frustrationAcceptance -= 2;
+        runState.emotions.despairJoy -= 2;
+    }
+
+    // how this thought modifies probability of last activity being available again
+    public override float Repeat(float probOffered)
+    {
+        return probOffered - .5f;
     }
 }

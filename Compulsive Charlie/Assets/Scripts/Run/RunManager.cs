@@ -34,7 +34,7 @@ public class RunManager : MonoBehaviour
         }
     }
 
-    // for when the player jumps to next set of activities, called via trigger in ActivityPlatform
+    // for when the player arrives on next activity, called via trigger in ActivityPlatform
     public void AdvanceTimeStep(ActivityPlatform newActivityPlatform)
     {
         if (newActivityPlatform != null)
@@ -56,12 +56,6 @@ public class RunManager : MonoBehaviour
             newActivityPlatform.StartRhythm();
         }
 
-        // spawn new set of platforms
-        foreach (Activity activity in SelectActivities())
-        {
-            SpawnPlatform(activity);
-        }
-
         // offer thoughts
         thoughtMenu.Activate(SelectThoughts());
 
@@ -72,6 +66,12 @@ public class RunManager : MonoBehaviour
     // for when the player enters the jump Pad
     public void EnterJumpPad(ActivityPlatform activityPlatform)
     {
+        // spawn new set of platforms
+        foreach (Activity activity in SelectActivities())
+        {
+            SpawnPlatform(activity);
+        }
+
         // Zoom out for jump
         // TODO: dynamic zoom w/ parameter depening on platform heights
         camera.ZoomOut();
@@ -79,9 +79,9 @@ public class RunManager : MonoBehaviour
         if (activityPlatform != null)
         {
             // stop platform spawning rhythm notes
-            if (runState.activityHistory.Count > 0)
+            if (runState.CurrentActivityPlatform())
             {
-                runState.activityHistory.Last().StopRhythm();
+                runState.CurrentActivityPlatform().StopRhythm();
             }
         }
 
@@ -95,9 +95,9 @@ public class RunManager : MonoBehaviour
         runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
 
         // trigger whatever thought is active by the end of this activity
-        if (runState.thoughtHistory.Count > 0)
+        if (runState.CurrentThought())
         {
-            runState.thoughtHistory.Last().Effect(runState);
+            runState.CurrentThought().Effect(runState);
         }
     }
 
@@ -112,19 +112,84 @@ public class RunManager : MonoBehaviour
 
     // select activities from pool of available
     private List<Activity> SelectActivities()
-    {
-        // TODO: select one for each height range? if available?
-        Activity testActivity = gameManager.profile.activities[0];
-        Activity testActivityLow = gameManager.profile.activities[1];
-        return new List<Activity> { testActivity, testActivityLow };
+    {      
+        List<Activity> offeredActivities = new List<Activity>();
+        // depending on repeat probability, first determine if current activity is offered again
+        if (runState.CurrentActivity())
+        {
+            float p = runState.CurrentActivity().repeatProbability;
+            if (runState.CurrentThought())
+            {
+                p = runState.CurrentThought().Repeat(p);
+            }
+            if (Random.Range(0f, 1f) < p)
+            {
+                offeredActivities.Add(runState.CurrentActivity());
+            }
+        }
+        // get all available activities (other than current)
+        List<Activity> availableActivities = new List<Activity>();
+        foreach (Activity activity in gameManager.profile.activities)
+        {
+            if (activity.IsAvailable(runState) && activity != runState.CurrentActivity())
+            {
+                availableActivities.Add(activity);
+            }
+        }
+        // TODO: tinker with this scheme (right now it sort of randomly picks activities one at a time)
+        availableActivities = availableActivities.OrderBy(x => Random.value).ToList();
+        foreach (Activity available in availableActivities)
+        {
+            // don't offer activities that are too crammed together
+            bool crammed = false;
+            foreach (Activity offered in offeredActivities)
+            {
+                if (System.Math.Abs(offered.PlatformHeight(runState) - available.PlatformHeight(runState)) < 2)
+                {
+                    crammed = true;
+                }
+            }
+            if (!crammed)
+            {
+                offeredActivities.Add(available);
+            }
+        }
+        // TODO: there's got to be at least one activity lower than current!
+        return offeredActivities;
     }
 
     // select thoughts from pool of available
     private List<Thought> SelectThoughts()
     {
-        // TODO: select 3 random, taking into account availability and activity association
-        // associations should be 3x more likely, IDEA: CAN REPEAT, (this makes single associations more relevant)
-        Thought testThought = gameManager.profile.thoughts[0];
-        return new List<Thought> { testThought };
+        // get all available thoughts
+        List<Thought> availableThoughts = new List<Thought>();
+        foreach (Thought thought in gameManager.profile.thoughts)
+        {
+            if (thought.IsAvailable(runState))
+            {
+                availableThoughts.Add(thought);
+                if (runState.CurrentActivity() && runState.CurrentActivity().associatedThoughts.Contains(thought))
+                {
+                    // associated thoughts are 3x as likely - TODO: tune, maybe use different scheme i.e. every thought .5 prob
+                    availableThoughts.Add(thought);
+                    availableThoughts.Add(thought);
+                }
+            }
+        }
+        // if none available, return special filler thought
+        if (availableThoughts.Count == 0)
+        {
+            // right now it's just the first one in the list
+            Thought filler = gameManager.profile.thoughts[0];
+            return new List<Thought> { filler };
+        }
+        // select 3 random (with repeat)
+        List<Thought> offeredThoughts = new List<Thought>();
+        for (int i=0; i < 3; i++)
+        {
+            int r = Random.Range(0, availableThoughts.Count);
+            offeredThoughts.Add(availableThoughts[r]);
+        }
+        return offeredThoughts;
     }
 }

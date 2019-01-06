@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestActivity : Activity
+public class TakingBreak : Activity
 {
     void Awake()
     {
-        name = "Develop Game";
-        descriptionText = "ooh, maybe he'll edit me";
+        name = "Taking a Break";
+        descriptionText = "wow";
         isUnlocked = true;
-        associatedThoughts = new List<Thought>();
+        associatedThoughts = new List<Thought>
+        {
+            Object.FindObjectOfType<PlsChill>()
+
+        };
         // always available
         minEmotions = new EmotionState(int.MinValue);
         maxEmotions = new EmotionState(int.MaxValue);
-        repeatProbability = 1f;
+        repeatProbability = .5f;
     }
 
     // whether this activity is available, given state of run
@@ -25,18 +29,13 @@ public class TestActivity : Activity
     // height of associated platform if it comes after given run state
     public override int HeightRating(RunState runState)
     {
-        return 5;
+        return 0;
     }
 
     // how this activity modifies run state when rhythm is hit
     public override void RhythmEffect(RunState runState)
     {
-        Debug.Log("Test Activity Rhythm");
-        // test - reduce anxiety
-        if (runState.emotions.anxietyTrust < 0)
-        {
-            runState.emotions.anxietyTrust += 1;
-        }
+        runState.energy += 1; // TODO: 20% chance?
         return;
     }
 }
