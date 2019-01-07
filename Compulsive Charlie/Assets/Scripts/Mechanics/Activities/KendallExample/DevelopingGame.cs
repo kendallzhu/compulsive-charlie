@@ -18,13 +18,13 @@ public class DevelopingGame : Activity
         // always available
         minEmotions = new EmotionState(int.MinValue);
         maxEmotions = new EmotionState(int.MaxValue);
-        repeatProbability = 1f;
+        repeatProbability = .7f;
     }
 
-    // whether this activity is available, given state of run
-    public override bool CustomIsAvailable(RunState runState)
+    // (weighted) availability of activity, given state of run
+    public override int CustomAvailability(RunState runState)
     {
-        return true;
+        return 1;
     }
 
     // height of associated platform if it comes after given run state
@@ -36,9 +36,27 @@ public class DevelopingGame : Activity
     // how this activity modifies run state when rhythm is hit
     public override void RhythmEffect(RunState runState)
     {
-        runState.emotions.anxietyTrust += 1;
-        runState.emotions.shameDignity += 1;
-        runState.emotions.confusionClarity += 1;
-        return;
+        // TODO: too much rng?
+        if (Random.value < .9)
+        {
+            runState.emotions.anxietyTrust += 1;
+        } else
+        {
+            runState.emotions.anxietyTrust -= 5;
+        }
+        if (Random.value < .9)
+        {
+            runState.emotions.shameDignity += 1;
+        } else
+        {
+            runState.emotions.shameDignity -= 5;
+        }
+        if (Random.value < .9)
+        {
+            runState.emotions.confusionClarity += 1;
+        } else
+        {
+            runState.emotions.confusionClarity -= 5;
+        }
     }
 }

@@ -18,22 +18,22 @@ public abstract class Thought : MonoBehaviour
 
     // non-emotion thought-specific availability conditions 
     // (Don't use activity history - to keep modular)
-    public abstract bool CustomIsAvailable(RunState runState);
+    public abstract int CustomAvailability(RunState runState);
 
     // whether this thought is available, given state of run
-    public bool IsAvailable(RunState runState)
+    public int Availability(RunState runState)
     {
         // check if thought is unlocked
         if (!isUnlocked)
         {
-            return false;
+            return 0;
         }
         // check within emotion thresholds
         if (!runState.emotions.Within(minEmotions, maxEmotions))
         {
-            return false;
+            return 0;
         }
-        return CustomIsAvailable(runState);
+        return CustomAvailability(runState);
     }
 
     // how this thought modifies given state of run when activated

@@ -70,6 +70,26 @@ public class EmotionState
         );
     }
 
+    private float Extremeness(int value)
+    {
+        float shaved = Mathf.Max(Mathf.Abs(value) - 5, 0);
+        return shaved / 20f;
+    }
+
+    // how much energy does extreme emotion take up? - TODO: tune
+    public int EnergyDrain()
+    {
+        float drain = 0;
+        drain += Extremeness(cravingContentment);
+        drain += Extremeness(anxietyTrust);
+        drain += Extremeness(fearCuriosity);
+        drain += Extremeness(frustrationAcceptance);
+        drain += Extremeness(confusionClarity);
+        drain += Extremeness(despairJoy);
+        drain += Extremeness(shameDignity);
+        return (int)drain;
+    }
+
     // checks if state is within the thresholds
     public bool Within(EmotionState minEmotions, EmotionState maxEmotions)
     {

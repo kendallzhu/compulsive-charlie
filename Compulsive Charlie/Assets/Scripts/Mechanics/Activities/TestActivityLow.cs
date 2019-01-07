@@ -18,9 +18,9 @@ public class TestActivityLow : Activity
     }
 
     // whether this activity is available, given state of run
-    public override bool CustomIsAvailable(RunState runState)
+    public override int CustomAvailability(RunState runState)
     {
-        return true;
+        return 1;
     }
 
     // raw height change platform if it comes after given run state

@@ -85,13 +85,18 @@ public class RunManager : MonoBehaviour
             }
         }
 
-        // gradually bring emotion axes back to equilibrium levels
-        // (TODO: certain activities can do this more strongly like sleep)
-        runState.emotions.Equilibrate(gameManager.profile.emotionEquilibriums, .1f);
-
         // regenerate energy
         runState.energy += gameManager.profile.energyRegen;
-        // cap energy
+        // drain energy when emotions are strong (was gonna do for high score too but thinking nah)
+        // Debug.Log(runState.emotions.EnergyDrain());
+        runState.energy -= runState.emotions.EnergyDrain();
+
+        // gradually bring emotion axes back to equilibrium levels
+        // (TODO: certain activities can do this more strongly like sleep)
+        runState.emotions.Equilibrate(gameManager.profile.emotionEquilibriums, .2f);
+
+        // cap/floor energy
+        runState.energy = System.Math.Max(runState.energy, 0);
         runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
 
         // trigger whatever thought is active by the end of this activity
@@ -131,9 +136,12 @@ public class RunManager : MonoBehaviour
         List<Activity> availableActivities = new List<Activity>();
         foreach (Activity activity in gameManager.profile.activities)
         {
-            if (activity.IsAvailable(runState) && activity != runState.CurrentActivity())
+            if (activity != runState.CurrentActivity())
             {
-                availableActivities.Add(activity);
+                for (int i = 0; i < activity.Availability(runState); i++)
+                {
+                    availableActivities.Add(activity);
+                }
             }
         }
         // TODO: tinker with this scheme (right now it sort of randomly picks activities one at a time)
@@ -149,6 +157,7 @@ public class RunManager : MonoBehaviour
                     crammed = true;
                 }
             }
+            // TODO: limit height differentials based on emotions!
             if (!crammed)
             {
                 offeredActivities.Add(available);
@@ -165,17 +174,23 @@ public class RunManager : MonoBehaviour
         List<Thought> availableThoughts = new List<Thought>();
         foreach (Thought thought in gameManager.profile.thoughts)
         {
-            if (thought.IsAvailable(runState))
+            for (int i=0; i < thought.Availability(runState); i++)
             {
                 availableThoughts.Add(thought);
-                if (runState.CurrentActivity() && runState.CurrentActivity().associatedThoughts.Contains(thought))
+            }
+        }
+        // associated thoughts are extra likely - TODO: tune, maybe use different scheme?
+        if (runState.CurrentActivity())
+        {
+            foreach (Thought thought in runState.CurrentActivity().associatedThoughts)
+            {
+                for (int i = 0; i < thought.Availability(runState); i++)
                 {
-                    // associated thoughts are 3x as likely - TODO: tune, maybe use different scheme i.e. every thought .5 prob
-                    availableThoughts.Add(thought);
                     availableThoughts.Add(thought);
                 }
             }
         }
+            
         // if none available, return special filler thought
         if (availableThoughts.Count == 0)
         {

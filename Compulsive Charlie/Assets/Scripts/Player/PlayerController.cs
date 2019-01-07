@@ -134,9 +134,7 @@ public class PlayerController : MonoBehaviour {
         {
             return minJumpPower;
         }
-        // jump power goes up with energy - TODO: equation can always be tuned more
-        // TODO: maybe decrease with score, since platform heights will do the same
-        // Debug.Log(maxJumpPower * Mathf.Pow(runState.energy / 10f, .5f));
+        // jump power goes up with energy - TODO: tune, at one point I thought decrease w/ score but nah        
         return maxJumpPower * Mathf.Pow(runState.energy/10f, .5f);
     }
 }

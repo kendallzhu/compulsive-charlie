@@ -15,9 +15,9 @@ public class TestThought : Thought
     }
 
     // whether this activity is available, given state of run
-    public override bool CustomIsAvailable(RunState runState)
+    public override int CustomAvailability(RunState runState)
     {
-        return true;
+        return 1;
     }
 
     // how this thought modifies run state when thunk

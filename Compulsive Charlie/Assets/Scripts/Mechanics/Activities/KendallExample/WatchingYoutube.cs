@@ -21,10 +21,10 @@ public class WatchingYoutube : Activity
         repeatProbability = 1f;
     }
 
-    // whether this activity is available, given state of run
-    public override bool CustomIsAvailable(RunState runState)
+    // (weighted) availability of activity, given state of run
+    public override int CustomAvailability(RunState runState)
     {
-        return true;
+        return 1;
     }
 
     // height of associated platform if it comes after given run state

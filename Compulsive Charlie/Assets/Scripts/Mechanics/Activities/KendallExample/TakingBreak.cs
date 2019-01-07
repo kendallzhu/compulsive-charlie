@@ -17,13 +17,13 @@ public class TakingBreak : Activity
         // always available
         minEmotions = new EmotionState(int.MinValue);
         maxEmotions = new EmotionState(int.MaxValue);
-        repeatProbability = .5f;
+        repeatProbability = .4f;
     }
 
-    // whether this activity is available, given state of run
-    public override bool CustomIsAvailable(RunState runState)
+    // (weighted) availability of activity, given state of run
+    public override int CustomAvailability(RunState runState)
     {
-        return true;
+        return 1;
     }
 
     // height of associated platform if it comes after given run state
@@ -35,7 +35,9 @@ public class TakingBreak : Activity
     // how this activity modifies run state when rhythm is hit
     public override void RhythmEffect(RunState runState)
     {
-        runState.energy += 1; // TODO: 20% chance?
-        return;
+        if (Random.value < .2)
+        {
+            runState.energy += 1;
+        }
     }
 }

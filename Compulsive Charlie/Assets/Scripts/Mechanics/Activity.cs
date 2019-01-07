@@ -18,23 +18,23 @@ public abstract class Activity : MonoBehaviour {
     public EmotionState minEmotions;
     public EmotionState maxEmotions;
 
-    // availability check specific to activity, given state of run
-    public abstract bool CustomIsAvailable(RunState runState);
+    // (weighted) availability specific to activity, given state of run
+    public abstract int CustomAvailability(RunState runState);
 
-    // whether this activity is available, given state of run
-    public bool IsAvailable(RunState runState)
+    // (weighted) availability of activity, given state of run
+    public int Availability(RunState runState)
     {
         // check that it's unlocked
         if (!isUnlocked)
         {
-            return false;
+            return 0;
         }
         // check emotion thresholds
         if (!runState.emotions.Within(minEmotions, maxEmotions))
         {
-            return false;
+            return 0;
         }
-        return CustomIsAvailable(runState);
+        return CustomAvailability(runState);
     }
 
     // (specific to activity)
@@ -45,9 +45,32 @@ public abstract class Activity : MonoBehaviour {
     public int PlatformHeight(RunState runState)
     {
         int diff = HeightRating(runState);
-        int score = runState.scoreHistory.Last();
-        // TODO: for high scores, differentials get scaled down
+        int score = runState.CurrentScore();
+        // for high scores, differentials get scaled down
+        if (score > 0)
+        {
+            if (diff > 0)
+            {
+                diff /= (score + 10) / 10;
+            }
+            else if (diff < 0)
+            {
+                diff *= (score + 10) / 10; // TODO: This gets extreme - other ideas?
+            }
+        }
         // for negative scores, differentials get scaled up
+        // for high scores, differentials get scaled down
+        if (score < 0)
+        {
+            if (diff < 0)
+            {
+                diff /= (score + 10) / 10;
+            }
+            else if (diff > 0)
+            {
+                diff *= (score + 10) / 10; // TODO: This gets extreme - other ideas?
+            }
+        }
         return score + diff;
     }
 

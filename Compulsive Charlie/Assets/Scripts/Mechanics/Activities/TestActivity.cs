@@ -17,9 +17,9 @@ public class TestActivity : Activity
     }
 
     // whether this activity is available, given state of run
-    public override bool CustomIsAvailable(RunState runState)
+    public override int CustomAvailability(RunState runState)
     {
-        return true;
+        return 1;
     }
 
     // height of associated platform if it comes after given run state

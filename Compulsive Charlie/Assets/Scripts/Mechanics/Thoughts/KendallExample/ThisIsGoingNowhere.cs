@@ -15,15 +15,24 @@ public class ThisIsGoingNowhere : Thought
     }
 
     // whether this activity is available, given state of run
-    public override bool CustomIsAvailable(RunState runState)
+    public override int CustomAvailability(RunState runState)
     {
-        return true;
+        return 1;
     }
 
     // how this thought modifies run state when thunk
     public override void CustomEffect(RunState runState)
     {
+        // add frustration and despair
+        if (runState.emotions.frustrationAcceptance > 0)
+        {
+            runState.emotions.frustrationAcceptance /= 2;
+        }
         runState.emotions.frustrationAcceptance -= 2;
+        if (runState.emotions.despairJoy > 0)
+        {
+            runState.emotions.despairJoy /= 2;
+        }
         runState.emotions.despairJoy -= 2;
     }
 

@@ -15,16 +15,19 @@ public class TakeMyProblemsAway : Thought
     }
 
     // whether this activity is available, given state of run
-    public override bool CustomIsAvailable(RunState runState)
+    public override int CustomAvailability(RunState runState)
     {
-        return runState.emotions.GetTotal() < 0;
+        if (runState.emotions.GetTotal() < 0)
+        {
+            return 1;
+        }
+        return 0;
     }
 
     // how this thought modifies run state when thunk
     public override void CustomEffect(RunState runState)
     {
-        // add anxiety
-        runState.emotions.anxietyTrust -= 3;
+        return;
     }
 
     // how this thought modifies jump power when active
