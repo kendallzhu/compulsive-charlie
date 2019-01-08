@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour {
     private float MaxJumpPower(RunState runState)
     {
         // if we are not on the jump pad yet, keep it simple and allow only small jump
-        if (!runState.CurrentActivityPlatform().jumpPadExplored)
+        if (!runState.CurrentActivityPlatform() || !runState.CurrentActivityPlatform().jumpPadExplored)
         {
             return minJumpPower;
         }
