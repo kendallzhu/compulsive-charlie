@@ -8,6 +8,7 @@ public abstract class Activity : MonoBehaviour {
     // unique name
     new public string name;
     public string descriptionText; // these are actually supposed to be informative for the real game
+    public string infoText; // for full info
     // TODO: animation(s)
 
     // changeable parameters

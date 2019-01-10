@@ -24,12 +24,12 @@ public class FullEmotionDisplay : MonoBehaviour {
         Transform confusionClarity = gameObject.transform.Find("ConfusionClarity");
         Transform despairJoy = gameObject.transform.Find("DespairJoy");
         Transform shameDignity = gameObject.transform.Find("ShameDignity");
-        cravingContentment.GetComponent<TextMeshProUGUI>().text = "" + emotions.cravingContentment;
-        anxietyTrust.GetComponent<TextMeshProUGUI>().text = "" + emotions.anxietyTrust;
-        fearCuriosity.GetComponent<TextMeshProUGUI>().text = "" + emotions.fearCuriosity;
-        frustrationAcceptance.GetComponent<TextMeshProUGUI>().text = "" + emotions.frustrationAcceptance;
-        confusionClarity.GetComponent<TextMeshProUGUI>().text = "" + emotions.confusionClarity;
-        despairJoy.GetComponent<TextMeshProUGUI>().text = "" + emotions.despairJoy;
-        shameDignity.GetComponent<TextMeshProUGUI>().text = "" + emotions.shameDignity;
+        cravingContentment.GetComponent<TextMeshProUGUI>().text = "cr" + emotions.cravingContentment;
+        anxietyTrust.GetComponent<TextMeshProUGUI>().text = "an" + emotions.anxietyTrust;
+        fearCuriosity.GetComponent<TextMeshProUGUI>().text = "fe" + emotions.fearCuriosity;
+        frustrationAcceptance.GetComponent<TextMeshProUGUI>().text = "fr" + emotions.frustrationAcceptance;
+        confusionClarity.GetComponent<TextMeshProUGUI>().text = "cn" + emotions.confusionClarity;
+        despairJoy.GetComponent<TextMeshProUGUI>().text = "ds" + emotions.despairJoy;
+        shameDignity.GetComponent<TextMeshProUGUI>().text = "sh" + emotions.shameDignity;
     }
 }

@@ -40,22 +40,12 @@ public class DevelopingGame : Activity
         if (Random.value < .9)
         {
             runState.emotions.anxietyTrust += 1;
-        } else
-        {
-            runState.emotions.anxietyTrust -= 5;
-        }
-        if (Random.value < .9)
-        {
             runState.emotions.shameDignity += 1;
-        } else
-        {
-            runState.emotions.shameDignity -= 5;
-        }
-        if (Random.value < .9)
-        {
             runState.emotions.confusionClarity += 1;
         } else
         {
+            runState.emotions.anxietyTrust -= 5;
+            runState.emotions.shameDignity -= 5;
             runState.emotions.confusionClarity -= 5;
         }
     }

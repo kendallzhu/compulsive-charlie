@@ -8,6 +8,7 @@ public abstract class Thought : MonoBehaviour
     // unique name
     new public string name;
     public string descriptionText;
+    public string infoText; // for full info
 
     // changeable parameters
     public bool isUnlocked = false;
