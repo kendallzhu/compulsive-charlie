@@ -19,15 +19,10 @@ public class JumpDisplay : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Jump"))
-        {
-            float power = playerController.GetJumpPower(Time.time);
-            // use the constant [min] cap for consistency (don't factor in energy)
-            float height = maxBarHeight * power / PlayerController.maxJumpPower;
-            transform.localScale = new Vector3(.2f, height, 1f);
-        } else
-        {
-            transform.localScale = new Vector3(.2f, 0, 1f);
-        }
+        // should be * max willpower/energy
+        float maxPower = PlayerController.powerPerEnergy * 15;
+        float power = playerController.jumpPower;
+        float height = maxBarHeight * power / maxPower;
+        transform.localScale = new Vector3(.2f, height, 1f);
     }
 }

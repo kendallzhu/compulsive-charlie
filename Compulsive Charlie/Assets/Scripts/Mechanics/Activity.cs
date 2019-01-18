@@ -52,7 +52,7 @@ public abstract class Activity : MonoBehaviour {
         {
             if (diff > 0)
             {
-                diff /= (score + 10) / 10;
+                diff /= System.Math.Max(1, (score + 10)) / 10;
             }
             else if (diff < 0)
             {
@@ -65,7 +65,7 @@ public abstract class Activity : MonoBehaviour {
         {
             if (diff < 0)
             {
-                diff /= (score + 10) / 10;
+                diff /= System.Math.Max(1, (score + 10)) / 10;
             }
             else if (diff > 0)
             {
