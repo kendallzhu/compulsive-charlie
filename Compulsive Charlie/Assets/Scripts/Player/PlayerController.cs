@@ -33,10 +33,21 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        /* pulse hitbox edge radius to prevent sticking
+        if (rb2d.GetComponent<BoxCollider2D>().edgeRadius == 0)
+        {
+            rb2d.GetComponent<BoxCollider2D>().edgeRadius = 0.05f;
+        } else
+        {
+            rb2d.GetComponent<BoxCollider2D>().edgeRadius = 0;
+        }*/
+        
+
         // check for grounded
         grounded = Physics2D.Linecast(transform.position, groundCheck1.position, 1 << LayerMask.NameToLayer("Ground")) ||
             Physics2D.Linecast(transform.position, groundCheck2.position, 1 << LayerMask.NameToLayer("Ground"));
 
+        // check for if near end of platform
         Vector2 forwardPosHigh = new Vector2(transform.position.x + 1, transform.position.y);
         Vector2 forwardPosLow = new Vector2(transform.position.x + 1, transform.position.y - 2);
         nearEdge = !Physics2D.Linecast(forwardPosHigh, forwardPosLow, 1 << LayerMask.NameToLayer("Ground"));
@@ -47,6 +58,7 @@ public class PlayerController : MonoBehaviour {
             jumpPower += powerPerEnergy;
             runManager.runState.energy -= 1;
         }
+
         // apply passive forward speed when grounded
         Vector2 velocity = rb2d.velocity;
         RunState runState = runManager.runState;
@@ -65,6 +77,7 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
+        // auto-activate jump when near edge of platform
         if (grounded && nearEdge && jumpPower > 0 && rb2d.velocity.y <= 0)
         {
             rb2d.AddForce(new Vector2(forwardJumpForce, jumpPower));

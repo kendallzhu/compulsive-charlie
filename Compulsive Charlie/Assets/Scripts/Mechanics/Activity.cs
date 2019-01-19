@@ -47,31 +47,6 @@ public abstract class Activity : MonoBehaviour {
     {
         int diff = HeightRating(runState);
         int score = runState.CurrentScore();
-        // for high scores, differentials get scaled down
-        if (score > 0)
-        {
-            if (diff > 0)
-            {
-                diff /= System.Math.Max(1, (score + 10)) / 10;
-            }
-            else if (diff < 0)
-            {
-                diff *= (score + 10) / 10; // TODO: This gets extreme - other ideas?
-            }
-        }
-        // for negative scores, differentials get scaled up
-        // for high scores, differentials get scaled down
-        if (score < 0)
-        {
-            if (diff < 0)
-            {
-                diff /= System.Math.Max(1, (score + 10)) / 10;
-            }
-            else if (diff > 0)
-            {
-                diff *= (score + 10) / 10; // TODO: This gets extreme - other ideas?
-            }
-        }
         return score + diff;
     }
 
