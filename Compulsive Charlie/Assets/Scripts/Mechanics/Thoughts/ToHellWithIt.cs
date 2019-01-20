@@ -2,29 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestThought : Thought
+public class ToHellWithIt : Thought
 {
     void Awake()
     {
-        name = "Test Thought";
-        descriptionText = "thinking about testing";
+        name = "To Hell With It";
+        descriptionText = "I don't care anymore";
         isUnlocked = true;
-        // always available
-        minEmotions = new EmotionState(int.MinValue);
-        maxEmotions = new EmotionState(int.MaxValue);
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        return 1;
+        // TODO: convert threshold to variable for upgrading
+        if (runState.emotions.Extremeness() >= 1)
+        {
+            return 1;
+        }
+        return 0;
     }
 
     // how this thought modifies run state when thunk
     public override void CustomEffect(RunState runState)
     {
-        Debug.Log("Test Thought");
-        // add anxiety
-        runState.emotions.anxietyTrust -= 3;
+        // TODO: disable note hitting for next activity
     }
 }

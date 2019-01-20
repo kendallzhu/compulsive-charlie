@@ -7,6 +7,9 @@ using System.Linq;
 public class RunState {
     public int timeSteps;
     public int energy;
+    public int money;
+    public int craving;
+    public int cravingMultiplier;
     public EmotionState emotions;
     public List<ActivityPlatform> activityHistory;
     public List<Thought> thoughtHistory;

@@ -13,9 +13,6 @@ public abstract class Thought : MonoBehaviour
     // changeable parameters
     public bool isUnlocked = false;
     public int energyCost = 1;
-    // thought is unavailable if any emotion is (< min) or (> max)
-    public EmotionState minEmotions;
-    public EmotionState maxEmotions;
 
     // non-emotion thought-specific availability conditions 
     // (Don't use activity history - to keep modular)
@@ -26,11 +23,6 @@ public abstract class Thought : MonoBehaviour
     {
         // check if thought is unlocked
         if (!isUnlocked)
-        {
-            return 0;
-        }
-        // check within emotion thresholds
-        if (!runState.emotions.Within(minEmotions, maxEmotions))
         {
             return 0;
         }

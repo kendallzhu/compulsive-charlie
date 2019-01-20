@@ -17,7 +17,6 @@ public class ScoreDisplay : MonoBehaviour
 
     void Update()
     {
-        RunState runState = runManager.runState;
         int score = runManager.runState.CurrentScore();
         gameObject.GetComponent<TextMeshProUGUI>().text = score.ToString();
     }

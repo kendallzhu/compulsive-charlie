@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 // Script managing all the state and gameplay of a single run
 public class RunManager : MonoBehaviour
@@ -20,8 +21,13 @@ public class RunManager : MonoBehaviour
     {
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
-        // get initial runState (TODO: based on profile)
-        runState = new RunState(12, new EmotionState());
+        // if no gameManager, load preload scene first
+        if (gameManager == null)
+        {
+            SceneManager.LoadScene(0);
+        }
+        // get initial runState based on profile
+        runState = new RunState(gameManager.profile.initialEnergy, new EmotionState(gameManager.profile.emotionEquilibriums));
         thoughtMenu.Initialize();
     }
 
@@ -52,8 +58,8 @@ public class RunManager : MonoBehaviour
             }
             // clear out other spawnedPlatforms
             runState.ClearSpawned(newActivityPlatform);
-            // start new platform spawning rhythm notes
-            newActivityPlatform.StartRhythm();
+            // start new platform spawning rhythm notes - deactivate this
+            // newActivityPlatform.StartRhythm();
         }
 
         // offer thoughts
@@ -87,8 +93,7 @@ public class RunManager : MonoBehaviour
 
         // regenerate energy
         runState.energy += gameManager.profile.energyRegen;
-        // drain energy when emotions are strong (was gonna do for high score too but thinking nah)
-        // Debug.Log(runState.emotions.EnergyDrain());
+        // modify energy according to emotions
         runState.energy -= runState.emotions.EnergyDrain();
 
         // gradually bring emotion axes back to equilibrium levels
@@ -99,11 +104,8 @@ public class RunManager : MonoBehaviour
         runState.energy = System.Math.Max(runState.energy, 0);
         runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
 
-        // trigger whatever thought is active by the end of this activity
-        if (runState.CurrentThought())
-        {
-            runState.CurrentThought().Effect(runState);
-        }
+        // offer thoughts
+        thoughtMenu.Activate(SelectThoughts());
     }
 
     // instantiate a new activity platform

@@ -33,15 +33,14 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        /* pulse hitbox edge radius to prevent sticking
-        if (rb2d.GetComponent<BoxCollider2D>().edgeRadius == 0)
+        // pulse hitbox edge radius to prevent sticking
+        if (rb2d.GetComponent<BoxCollider2D>().edgeRadius < .05f)
         {
-            rb2d.GetComponent<BoxCollider2D>().edgeRadius = 0.05f;
+            rb2d.GetComponent<BoxCollider2D>().edgeRadius = .05f;
         } else
         {
-            rb2d.GetComponent<BoxCollider2D>().edgeRadius = 0;
-        }*/
-        
+            rb2d.GetComponent<BoxCollider2D>().edgeRadius = 0.04f;
+        }
 
         // check for grounded
         grounded = Physics2D.Linecast(transform.position, groundCheck1.position, 1 << LayerMask.NameToLayer("Ground")) ||
@@ -89,17 +88,5 @@ public class PlayerController : MonoBehaviour {
     private float PlatformMinForwardSpeed(RunState runState)
     {
         return 2f;
-        // make fast if lots of negative emotion
-        // TODO: add more nuance/ better design
-        int e = runManager.runState.emotions.GetTotal();
-        if (e < -10)
-        {
-            return 1f;
-        }
-        if (e > 10)
-        {
-            return .4f;
-        }
-        return .7f;
     }
 }

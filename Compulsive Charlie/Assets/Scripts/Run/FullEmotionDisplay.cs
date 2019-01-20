@@ -17,19 +17,11 @@ public class FullEmotionDisplay : MonoBehaviour {
         RunState runState = runManager.runState;
         EmotionState emotions = runState.emotions;
         // set the data for each emotion axis - TODO: make actual UI
-        Transform cravingContentment = gameObject.transform.Find("CravingContentment");
-        Transform anxietyTrust = gameObject.transform.Find("AnxietyTrust");
-        Transform fearCuriosity = gameObject.transform.Find("FearCuriosity");
-        Transform frustrationAcceptance = gameObject.transform.Find("FrustrationAcceptance");
-        Transform confusionClarity = gameObject.transform.Find("ConfusionClarity");
-        Transform despairJoy = gameObject.transform.Find("DespairJoy");
-        Transform shameDignity = gameObject.transform.Find("ShameDignity");
-        cravingContentment.GetComponent<TextMeshProUGUI>().text = "cr" + emotions.cravingContentment;
-        anxietyTrust.GetComponent<TextMeshProUGUI>().text = "an" + emotions.anxietyTrust;
-        fearCuriosity.GetComponent<TextMeshProUGUI>().text = "fe" + emotions.fearCuriosity;
-        frustrationAcceptance.GetComponent<TextMeshProUGUI>().text = "fr" + emotions.frustrationAcceptance;
-        confusionClarity.GetComponent<TextMeshProUGUI>().text = "cn" + emotions.confusionClarity;
-        despairJoy.GetComponent<TextMeshProUGUI>().text = "ds" + emotions.despairJoy;
-        shameDignity.GetComponent<TextMeshProUGUI>().text = "sh" + emotions.shameDignity;
+        Transform anxiety = gameObject.transform.Find("anxiety");
+        Transform frustration = gameObject.transform.Find("frustration");
+        Transform despair = gameObject.transform.Find("despair");
+        anxiety.GetComponent<TextMeshProUGUI>().text = ":\\ " + emotions.anxiety;
+        frustration.GetComponent<TextMeshProUGUI>().text = ">:( " + emotions.frustration;
+        despair.GetComponent<TextMeshProUGUI>().text = ":'( " + emotions.despair;
     }
 }

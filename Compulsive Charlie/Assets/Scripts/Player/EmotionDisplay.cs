@@ -18,7 +18,8 @@ public class EmotionDisplay : MonoBehaviour
     void Update()
     {
         RunState runState = runManager.runState;
-        int value = runState.emotions.GetTotal();
-        gameObject.GetComponent<TextMeshProUGUI>().text = value.ToString();
+        string dominantEmotion = runState.emotions.GetDominantEmotion();
+        int extremeness = runState.emotions.Extremeness();
+        gameObject.GetComponent<TextMeshProUGUI>().text = dominantEmotion + ":" + extremeness.ToString();
     }
 }

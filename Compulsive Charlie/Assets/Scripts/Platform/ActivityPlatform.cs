@@ -10,8 +10,8 @@ public class ActivityPlatform : MonoBehaviour {
     // universal dimensions of all platforms - (design choice to simplify, don't think variable lengths add much)
     private const int jumpPadLength = 3;
     private const float platformThickness = .3f;
-    public int platformLength = 12;
     private const int standardGapLength = 2;
+    public int platformLength = 12;
 
     public int x;
     public int y;

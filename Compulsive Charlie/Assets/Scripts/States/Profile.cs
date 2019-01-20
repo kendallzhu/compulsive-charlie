@@ -24,16 +24,16 @@ public class Profile
     public Profile()
     {
         // set starting profile of the game - TODO: Tune according to story of game, maybe start out shittier
-        emotionEquilibriums = new EmotionState();
+        emotionEquilibriums = new EmotionState(0, 0, 0);
         initialEnergy = 0;
         thoughts = new List<Thought>();
         activities = new List<Activity>();
         upgrades = new List<Upgrade>();
-        timeLimit = 12;
+        timeLimit = 999; // not using time limit as of now
         experience = 0;
         scores = new List<int>();
         energyCap = 20;
-        energyRegen = 2;
+        energyRegen = 3;
     }
 }
 

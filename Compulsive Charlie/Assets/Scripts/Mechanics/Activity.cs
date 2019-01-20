@@ -13,11 +13,8 @@ public abstract class Activity : MonoBehaviour {
 
     // changeable parameters
     public bool isUnlocked = false;
-    public List<Thought> associatedThoughts;
+    public List<Thought> associatedThoughts = new List<Thought>();
     public float repeatProbability = 1f; // probablility it's offered after just doing it
-    // activity is unavailable if any emotion is (< min) or (> max)
-    public EmotionState minEmotions;
-    public EmotionState maxEmotions;
 
     // (weighted) availability specific to activity, given state of run
     public abstract int CustomAvailability(RunState runState);
@@ -27,11 +24,6 @@ public abstract class Activity : MonoBehaviour {
     {
         // check that it's unlocked
         if (!isUnlocked)
-        {
-            return 0;
-        }
-        // check emotion thresholds
-        if (!runState.emotions.Within(minEmotions, maxEmotions))
         {
             return 0;
         }
@@ -50,8 +42,11 @@ public abstract class Activity : MonoBehaviour {
         return score + diff;
     }
 
-    // how this activity modifies run state when rhythm is hit
-    public abstract void RhythmEffect(RunState runState);
+    // how this activity modifies run state when rhythm note is hit
+    public abstract void HitEffect(RunState runState);
+
+    // how this activity modifies run state when rhythm note is missed
+    public abstract void MissEffect(RunState runState);
 
     // TODO: should activities have effects? - i.e. energy cost
 }

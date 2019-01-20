@@ -1,139 +1,119 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-// class for storing all the emotional axes of a player
+// class for storing the core emotional axes of a player
 public class EmotionState
 {
-    public int cravingContentment;
-    public int anxietyTrust;
-    public int fearCuriosity;
-    public int frustrationAcceptance;
-    public int confusionClarity;
-    public int despairJoy;
-    public int shameDignity;
+    public int anxiety;
+    public int frustration;
+    public int despair;
 
-    // full constructor
+    // constructor
     public EmotionState(
-        int _cravingContentment,
-        int _anxietyTrust,
-        int _fearCuriosity,
-        int _frustrationAcceptance,
-        int _confusionClarity,
-        int _despairJoy,
-        int _shameDignity)
+        int _anxiety,
+        int _frustration,
+        int _despair)
     {
-        cravingContentment = _cravingContentment;
-        anxietyTrust = _anxietyTrust;
-        fearCuriosity = _fearCuriosity;
-        frustrationAcceptance = _frustrationAcceptance;
-        confusionClarity = _confusionClarity;
-        despairJoy = _despairJoy;
-        shameDignity = _shameDignity;
+        anxiety = _anxiety;
+        frustration = _frustration;
+        despair = _despair;
+    }
+    
+    // copy constructor
+    public EmotionState(EmotionState e)
+    {
+        anxiety = e.anxiety;
+        frustration = e.frustration;
+        despair = e.despair;
     }
 
-    // uniform value constructor
-    public EmotionState(int value)
+    // methods for modifying and flooring values
+    public void AddAnxiety(int val)
     {
-        cravingContentment = value;
-        anxietyTrust = value;
-        fearCuriosity = value;
-        frustrationAcceptance = value;
-        confusionClarity = value;
-        despairJoy = value;
-        shameDignity = value;
+        anxiety = Math.Max(0, anxiety + val);
     }
 
-    // basic constructor
-    public EmotionState()
+    public void AddFrustration(int val)
     {
-        cravingContentment = 0;
-        anxietyTrust = 0;
-        fearCuriosity = 0;
-        frustrationAcceptance = 0;
-        confusionClarity = 0;
-        despairJoy = 0;
-        shameDignity = 0;
+        frustration = Math.Max(0, frustration + val);
     }
 
-    public int GetTotal()
+    public void AddDespair(int val)
     {
-        // aggregate axes
-        return (
-            cravingContentment +
-            anxietyTrust +
-            fearCuriosity +
-            frustrationAcceptance +
-            confusionClarity +
-            despairJoy +
-            shameDignity
-        );
+        despair = Math.Max(0, despair + val);
     }
 
-    private float Extremeness(int value)
+    // return name of emotion with highest magnitude
+    public string GetDominantEmotion()
     {
-        float shaved = Mathf.Max(Mathf.Abs(value) - 5, 0);
-        return shaved / 20f;
+        int maxValue = Math.Max(anxiety, Math.Max(frustration, despair));
+        if (maxValue == 0)
+        {
+            return "None";
+        }
+        if (frustration == maxValue)
+        {
+            return "frustration";
+        }
+        else if (anxiety == maxValue)
+        {
+            return "anxiety";
+        }
+        else
+        {
+            return "despair";
+        }
     }
 
-    // how much energy does extreme emotion take up? - TODO: tune
+    // return discretized "level" (0-3) of emotion with highest magnitude
+    public int Extremeness()
+    {
+        int maxValue = Math.Max(anxiety, Math.Max(frustration, despair));
+        return Math.Min(maxValue / 10, 3);
+    }
+
+    // how much energy does extreme emotion take up? (Can be negative = replenish energy)
     public int EnergyDrain()
     {
-        float drain = 0;
-        drain += Extremeness(cravingContentment);
-        drain += Extremeness(anxietyTrust);
-        drain += Extremeness(fearCuriosity);
-        drain += Extremeness(frustrationAcceptance);
-        drain += Extremeness(confusionClarity);
-        drain += Extremeness(despairJoy);
-        drain += Extremeness(shameDignity);
-        return (int)drain;
+        int drain = this.Extremeness();
+        if (this.Extremeness() == 0)
+        {
+            drain = -2;
+        }
+        return drain;
+    }
+
+    // shift all emotion axes toward equilibrium levels by given factor (plus one)
+    public void Equilibrate(EmotionState equilibrium, float factor)
+    {
+        // adjust at least 1 point toward equilibrium
+        int diff = equilibrium.anxiety - anxiety;
+        anxiety += (int)(diff * factor) + Math.Sign(diff);
+
+        diff = equilibrium.frustration - frustration;
+        frustration += (int)(diff * factor) + Math.Sign(diff);
+
+        diff = equilibrium.despair - despair;
+        despair += (int)(diff * factor) + Math.Sign(diff);
+
+        // floor emotions at 0
+        anxiety = Math.Max(anxiety, 0);
+        frustration = Math.Max(frustration, 0);
+        despair = Math.Max(despair, 0);
     }
 
     // checks if state is within the thresholds
     public bool Within(EmotionState minEmotions, EmotionState maxEmotions)
     {
         return (
-            cravingContentment >= minEmotions.cravingContentment &&
-            cravingContentment <= maxEmotions.cravingContentment &&
-            anxietyTrust >= minEmotions.anxietyTrust &&
-            anxietyTrust <= maxEmotions.anxietyTrust &&
-            fearCuriosity >= minEmotions.fearCuriosity &&
-            fearCuriosity <= maxEmotions.fearCuriosity &&
-            frustrationAcceptance >= minEmotions.frustrationAcceptance &&
-            frustrationAcceptance <= maxEmotions.frustrationAcceptance &&
-            confusionClarity >= minEmotions.confusionClarity &&
-            confusionClarity <= maxEmotions.confusionClarity &&
-            despairJoy >= minEmotions.despairJoy &&
-            despairJoy <= maxEmotions.despairJoy &&
-            shameDignity >= minEmotions.shameDignity &&
-            shameDignity <= maxEmotions.shameDignity
+            anxiety >= minEmotions.anxiety &&
+            anxiety <= maxEmotions.anxiety &&
+            frustration >= minEmotions.frustration &&
+            frustration <= maxEmotions.frustration &&
+            despair >= minEmotions.despair &&
+            despair <= maxEmotions.despair
         );
-    }
-
-    // shift all emotion axes toward equilibrium levels by given factor (plus one)
-    public void Equilibrate(EmotionState equilibrium, float factor)
-    {
-        // kinda cumbersome, but I think it's better like this so they actually reach equilibrium
-        int diff = equilibrium.cravingContentment - cravingContentment;
-        cravingContentment += (int)(diff * factor) + System.Math.Sign(diff);
-
-        diff = equilibrium.anxietyTrust - anxietyTrust;
-        anxietyTrust += (int)(diff * factor) + System.Math.Sign(diff);
-
-        diff = equilibrium.fearCuriosity - fearCuriosity;
-        fearCuriosity += (int)(diff * factor) + System.Math.Sign(diff);
-
-        diff = equilibrium.frustrationAcceptance - frustrationAcceptance;
-        frustrationAcceptance += (int)(diff * factor) + System.Math.Sign(diff);
-
-        diff = equilibrium.confusionClarity - confusionClarity;
-        confusionClarity += (int)(diff * factor) + System.Math.Sign(diff);
-
-        diff = equilibrium.despairJoy - despairJoy;
-        despairJoy += (int)(diff * factor) + System.Math.Sign(diff);
-
-        diff = equilibrium.shameDignity - shameDignity;
-        shameDignity += (int)(diff * factor) + System.Math.Sign(diff);
     }
 }

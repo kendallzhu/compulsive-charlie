@@ -41,7 +41,7 @@ public class RhythmNote : MonoBehaviour {
         if (other.gameObject.name == "Charlie")
         {
             // TODO: tune to improve gameplay experience
-            ap.activity.RhythmEffect(runManager.runState);
+            ap.activity.HitEffect(runManager.runState);
         }
     }
 
@@ -59,17 +59,6 @@ public class RhythmNote : MonoBehaviour {
     // calculate note speed based on runState
     private float NoteSpeed(RunState runState)
     {
-        // make fast if lots of negative emotion
-        // TODO: add more nuance/ better design
-        int e = runManager.runState.emotions.GetTotal();
-        if (e < -10)
-        {
-            return 10f;
-        }
-        if (e > 10)
-        {
-            return 3f;
-        }
         return 6f;
     }
 }
