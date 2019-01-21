@@ -38,15 +38,23 @@ public class ThoughtMenu : MonoBehaviour {
             gameObject.transform.Find("Option2Button"),
             gameObject.transform.Find("Option3Button")
         };
-        for (int i = 0; i < thoughts.Count; i++)
+        for (int i = 0; i < 3; i++)
         {
             Transform card = cards[i];
             GameObject nameText = card.Find("NameText").gameObject;
             GameObject descriptionText = card.Find("DescriptionText").gameObject;
-            nameText.GetComponent<TextMeshProUGUI>().text = thoughts[i].name;
-            descriptionText.GetComponent<TextMeshProUGUI>().text = thoughts[i].descriptionText;
+            // show only cards which thoughts are provided
+            if (i < thoughts.Count)
+            {
+                card.gameObject.SetActive(true);
+                nameText.GetComponent<TextMeshProUGUI>().text = thoughts[i].name;
+                descriptionText.GetComponent<TextMeshProUGUI>().text = thoughts[i].descriptionText;
+            } else
+            {
+                card.gameObject.SetActive(false);
+            }
+            
         }
-        // TODO: hide/disable extra cards if < 3 provided?
         // TODO: create a countdown timer to limit decision time
     }
 

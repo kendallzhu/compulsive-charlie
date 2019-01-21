@@ -204,11 +204,11 @@ public class RunManager : MonoBehaviour
         // if none available, return special filler thought
         if (availableThoughts.Count == 0)
         {
-            // right now it's just the first one in the list
-            Thought filler = gameManager.profile.thoughts[0];
+            // right now it's called "Nothing"
+            Thought filler = Object.FindObjectOfType<Nothing>(); ;
             return new List<Thought> { filler };
         }
-        // select 3 random (with repeat)
+        // select <=3 randomly (with repeat)
         List<Thought> offeredThoughts = new List<Thought>();
         for (int i=0; i < 3; i++)
         {
