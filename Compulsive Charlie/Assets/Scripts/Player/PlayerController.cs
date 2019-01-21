@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
         // increase jump by spending energy (on tap)
         if (Input.GetButtonDown("Jump") && grounded && !nearEdge && runManager.runState.energy > 0)
         {
-            jumpPower += powerPerEnergy;
+            jumpPower += powerPerEnergy * Mathf.Max(0, (100 - runManager.runState.craving) / 100f);
             runManager.runState.energy -= 1;
         }
 

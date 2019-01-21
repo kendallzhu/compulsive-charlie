@@ -25,6 +25,8 @@ public class RunState {
     {
         this.timeSteps = 0;
         this.money = initialMoney;
+        this.craving = 0;
+        this.cravingMultiplier = 1;
         this.energy = initialEnergy;
         this.emotions = initialEmotions;
         this.activityHistory = new List<ActivityPlatform>();

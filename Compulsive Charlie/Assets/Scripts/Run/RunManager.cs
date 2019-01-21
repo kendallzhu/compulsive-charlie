@@ -105,6 +105,9 @@ public class RunManager : MonoBehaviour
         // (TODO: certain activities can do this more strongly like sleep)
         runState.emotions.Equilibrate(gameManager.profile.emotionEquilibriums, .2f);
 
+        // gradually increase craving
+        runState.craving += runState.cravingMultiplier;
+
         // cap/floor energy
         runState.energy = System.Math.Max(runState.energy, 0);
         runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
