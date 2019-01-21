@@ -4,9 +4,8 @@ using UnityEngine;
 using TMPro;
 
 // script for graphic display of timesteps left - right now just text but hopefully will be nicer
-public class TimerDisplay : MonoBehaviour {
+public class TimeDisplay : MonoBehaviour {
     public RunManager runManager;
-    private int timeLeft = 0;
 
     // Initialization
     void Awake()
@@ -18,7 +17,6 @@ public class TimerDisplay : MonoBehaviour {
     void Update()
     {
         RunState runState = runManager.runState;
-        timeLeft = runManager.gameManager.profile.timeLimit - runState.timeSteps;
-        gameObject.GetComponent<TextMeshProUGUI>().text = timeLeft.ToString();
+        gameObject.GetComponent<TextMeshProUGUI>().text = "Time: " + runState.timeSteps.ToString();
     }
 }

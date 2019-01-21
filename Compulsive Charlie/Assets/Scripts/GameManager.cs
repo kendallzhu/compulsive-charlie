@@ -53,10 +53,10 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(3);
     }
 
-    public void EndRun(int score)
+    public void EndRun(RunState runState)
     {
-        // record score and go to cut scene (TODO: different based on score)
-        profile.scores.Add(score);
+        // record run and go to cut scene
+        profile.allRuns.Add(runState);
         SceneManager.LoadScene(4);
     }
 }

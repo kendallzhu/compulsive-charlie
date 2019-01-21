@@ -38,8 +38,7 @@ public abstract class Activity : MonoBehaviour {
     public int PlatformHeight(RunState runState)
     {
         int diff = HeightRating(runState);
-        int score = runState.CurrentScore();
-        return score + diff;
+        return runState.height + diff;
     }
 
     // how this activity modifies run state when rhythm note is hit

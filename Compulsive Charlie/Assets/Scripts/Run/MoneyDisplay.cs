@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 // script for graphic display of score - right now just text but hopefully will be nicer
-public class ScoreDisplay : MonoBehaviour
+public class MoneyDisplay : MonoBehaviour
 {
     public RunManager runManager;
 
@@ -17,7 +17,6 @@ public class ScoreDisplay : MonoBehaviour
 
     void Update()
     {
-        int score = runManager.runState.CurrentScore();
-        gameObject.GetComponent<TextMeshProUGUI>().text = score.ToString();
+        gameObject.GetComponent<TextMeshProUGUI>().text = "$" + runManager.runState.money.ToString();
     }
 }

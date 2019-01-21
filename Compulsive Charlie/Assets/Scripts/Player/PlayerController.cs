@@ -51,8 +51,8 @@ public class PlayerController : MonoBehaviour {
         Vector2 forwardPosLow = new Vector2(transform.position.x + 1, transform.position.y - 2);
         nearEdge = !Physics2D.Linecast(forwardPosHigh, forwardPosLow, 1 << LayerMask.NameToLayer("Ground"));
 
-        // increase jump by tapping button
-        if (Input.GetButtonDown("Jump") && grounded && !nearEdge) // && runManager.runState.energy > 0)
+        // increase jump by spending energy (on tap)
+        if (Input.GetButtonDown("Jump") && grounded && !nearEdge && runManager.runState.energy > 0)
         {
             jumpPower += powerPerEnergy;
             runManager.runState.energy -= 1;

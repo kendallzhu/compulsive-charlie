@@ -25,9 +25,14 @@ public class RunManager : MonoBehaviour
         if (gameManager == null)
         {
             SceneManager.LoadScene(0);
+            return;
         }
         // get initial runState based on profile
-        runState = new RunState(gameManager.profile.initialEnergy, new EmotionState(gameManager.profile.emotionEquilibriums));
+        runState = new RunState(
+            gameManager.profile.initialMoney,
+            gameManager.profile.initialEnergy, 
+            new EmotionState(gameManager.profile.emotionEquilibriums)
+        );
         thoughtMenu.Initialize();
     }
 
@@ -36,7 +41,7 @@ public class RunManager : MonoBehaviour
         // [fail-check] if fallen way down, end run and advance scenes
         if (player.transform.position.y < -100)
         {
-            gameManager.EndRun(int.MinValue);
+            gameManager.EndRun(runState);
         }
     }
 
@@ -49,11 +54,11 @@ public class RunManager : MonoBehaviour
             runState.timeSteps += 1;
             // update activity and score histories
             runState.activityHistory.Add(newActivityPlatform);
-            runState.scoreHistory.Add(newActivityPlatform.y);
+            runState.height = newActivityPlatform.y;
             // if time limit exceeded, end run (and skip the rest of the procedure)
-            if (runState.timeSteps > gameManager.profile.timeLimit)
+            if (runState.money <= 0)
             {
-                gameManager.EndRun(runState.CurrentScore());
+                gameManager.EndRun(runState);
                 return;
             }
             // clear out other spawnedPlatforms

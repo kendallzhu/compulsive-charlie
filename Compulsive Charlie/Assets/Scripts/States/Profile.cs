@@ -11,29 +11,28 @@ public class Profile
     public List<Activity> activities;
     public List<Upgrade> upgrades;
     public EmotionState emotionEquilibriums;
+    public int initialMoney;
     public int initialEnergy;
     public int energyRegen;
     public int energyCap;
-    public int timeLimit;
     // exp buys upgrades
     public int experience;
-
-    public List<int> scores;
+    public List<RunState> allRuns;
 
     // constructor - (I think this will only be called once on game start)
     public Profile()
     {
         // set starting profile of the game - TODO: Tune according to story of game, maybe start out shittier
         emotionEquilibriums = new EmotionState(0, 0, 0);
+        initialMoney = 50;
         initialEnergy = 0;
         thoughts = new List<Thought>();
         activities = new List<Activity>();
         upgrades = new List<Upgrade>();
-        timeLimit = 999; // not using time limit as of now
         experience = 0;
-        scores = new List<int>();
         energyCap = 20;
         energyRegen = 3;
+        allRuns = new List<RunState>();
     }
 }
 
