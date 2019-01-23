@@ -74,4 +74,18 @@ public class RunState {
         }
         spawnedPlatforms.Clear();
     }
+
+    // return number of timesteps since last occurrence of activity, or run start
+    public int TimeSinceLast(Activity activity)
+    {
+        int time = timeSteps;
+        for (int i = 0; i < activityHistory.Count; i++)
+        {
+            if (activityHistory[i].activity == activity)
+            {
+                time = activityHistory.Count - i;
+            }
+        }
+        return time;
+    }
 }

@@ -14,7 +14,6 @@ public abstract class Activity : MonoBehaviour {
     // changeable parameters
     public bool isUnlocked = false;
     public List<Thought> associatedThoughts = new List<Thought>();
-    public float repeatProbability = 1f; // probablility it's offered after just doing it
 
     // (weighted) availability specific to activity, given state of run
     public abstract int CustomAvailability(RunState runState);

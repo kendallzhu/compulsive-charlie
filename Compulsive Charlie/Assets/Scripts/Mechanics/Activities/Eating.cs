@@ -14,7 +14,10 @@ public class Eating : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        // TODO: or if haven't eaten in a while (helper in runState to check history)
+        if (runState.TimeSinceLast(this) >= 5)
+        {
+            return 1;
+        }
         if (runState.emotions.Extremeness() >= 1)
         {
             return 1;

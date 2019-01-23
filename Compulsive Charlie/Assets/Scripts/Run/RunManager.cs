@@ -129,29 +129,13 @@ public class RunManager : MonoBehaviour
     private List<Activity> SelectActivities()
     {      
         List<Activity> offeredActivities = new List<Activity>();
-        // depending on repeat probability, first determine if current activity is offered again
-        if (runState.CurrentActivity())
-        {
-            float p = runState.CurrentActivity().repeatProbability;
-            if (runState.CurrentThought())
-            {
-                p = runState.CurrentThought().Repeat(p);
-            }
-            if (Random.Range(0f, 1f) < p)
-            {
-                offeredActivities.Add(runState.CurrentActivity());
-            }
-        }
-        // get all available activities (other than current)
+        // get all available activities
         List<Activity> availableActivities = new List<Activity>();
         foreach (Activity activity in gameManager.profile.activities)
         {
-            if (activity != runState.CurrentActivity())
+            for (int i = 0; i < activity.Availability(runState); i++)
             {
-                for (int i = 0; i < activity.Availability(runState); i++)
-                {
-                    availableActivities.Add(activity);
-                }
+                availableActivities.Add(activity);
             }
         }
         // TODO: tinker with this scheme (right now it sort of randomly picks activities one at a time)
