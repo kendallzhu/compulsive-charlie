@@ -151,13 +151,18 @@ public class RunManager : MonoBehaviour
                     crammed = true;
                 }
             }
-            // TODO: limit height differentials based on emotions!
             if (!crammed)
             {
                 offeredActivities.Add(available);
             }
         }
-        // TODO: there's got to be at least one activity lower than current!
+        // There's got to be at least one activity lower than current!
+        if (offeredActivities.Where(a => a.HeightRating(runState) < 0).ToList().Count == 0)
+        {
+            // right now it's called "Do Nothing"
+            Activity fallBack = Object.FindObjectOfType<DoNothing>(); ;
+            offeredActivities.Add(fallBack);
+        }
         return offeredActivities;
     }
 
@@ -189,8 +194,8 @@ public class RunManager : MonoBehaviour
         if (availableThoughts.Count == 0)
         {
             // right now it's called "Nothing"
-            Thought filler = Object.FindObjectOfType<Nothing>(); ;
-            return new List<Thought> { filler };
+            Thought fallBack = Object.FindObjectOfType<Nothing>(); ;
+            return new List<Thought> { fallBack };
         }
         // select <=3 randomly (with repeat)
         List<Thought> offeredThoughts = new List<Thought>();

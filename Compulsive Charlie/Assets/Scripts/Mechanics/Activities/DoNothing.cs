@@ -14,14 +14,14 @@ public class DoNothing : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        // TODO: only available if all other default activities are not available
-        return 1;
+        // only used if all other default activities are not available (see runManager)
+        return 0;
     }
 
     // height of associated platform if it comes after given run state
     public override int HeightRating(RunState runState)
     {
-        return -2;
+        return defaultPlatformHeightDiff;
     }
 
     // how this activity modifies run state when rhythm is hit

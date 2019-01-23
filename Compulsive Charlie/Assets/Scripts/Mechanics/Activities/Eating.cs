@@ -28,7 +28,7 @@ public class Eating : Activity
     // height of associated platform if it comes after given run state
     public override int HeightRating(RunState runState)
     {
-        return -2;
+        return defaultPlatformHeightDiff;
     }
 
     // how this activity modifies run state when rhythm is hit

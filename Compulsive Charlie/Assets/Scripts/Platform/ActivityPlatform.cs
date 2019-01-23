@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 // class used for instantiating a single instance of an activity (platform during a run)
 public class ActivityPlatform : MonoBehaviour {
@@ -25,11 +26,11 @@ public class ActivityPlatform : MonoBehaviour {
     // calculate horizontal gap for a given platform
     private int GapSize(int ydiff)
     {
-        if (ydiff < 0)
+        // make only default platforms have gap 0
+        if (ydiff == Activity.defaultPlatformHeightDiff)
         {
             return 0;
         }
-        // TODO: make only lowest platform be gap 0, reference runState
         return standardGapLength;
     }
 
