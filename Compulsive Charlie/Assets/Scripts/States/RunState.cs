@@ -99,11 +99,11 @@ public class RunState {
     public int TimeSinceLast(Activity activity)
     {
         int time = timeSteps;
-        for (int i = 0; i < activityHistory.Count; i++)
+        for (int i = 0; i < activityHistory.Count - 1; i++)
         {
             if (activityHistory[i].activity == activity)
             {
-                time = activityHistory.Count - i;
+                time = activityHistory.Count - i - 1;
             }
         }
         return time;

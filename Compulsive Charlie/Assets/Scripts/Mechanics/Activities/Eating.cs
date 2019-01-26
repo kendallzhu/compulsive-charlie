@@ -42,7 +42,9 @@ public class Eating : Activity
     // how this activity modifies run state when rhythm is missed
     public override void MissEffect(RunState runState)
     {
-        int tooSoon = System.Math.Max(0, timeInterval - runState.TimeSinceLast(this));
-        runState.IncreaseEnergy(-tooSoon);
+        if (runState.TimeSinceLast(this) < timeInterval)
+        {
+            runState.IncreaseEnergy(-1);
+        }
     }
 }
