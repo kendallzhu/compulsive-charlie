@@ -15,8 +15,11 @@ public class Nothing : Thought
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        // TODO: only available if all other default activities are not available
-        return 1;
+        if (runState.emotions.Extremeness() == 0)
+        {
+            return 1;
+        }
+        return 0;
     }
 
     // how this thought modifies run state when thunk

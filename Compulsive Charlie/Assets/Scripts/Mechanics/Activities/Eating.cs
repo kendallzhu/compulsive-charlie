@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Eating : Activity
 {
+    private const int timeInterval = 5;
+
     void Awake()
     {
         name = "Eating";
@@ -14,7 +16,7 @@ public class Eating : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.TimeSinceLast(this) >= 5)
+        if (runState.TimeSinceLast(this) >= timeInterval)
         {
             return 1;
         }
@@ -34,12 +36,13 @@ public class Eating : Activity
     // how this activity modifies run state when rhythm is hit
     public override void HitEffect(RunState runState)
     {
-        runState.emotions.AddFrustration(-2);
+        runState.emotions.Equilibrate(.1f);
     }
 
     // how this activity modifies run state when rhythm is missed
     public override void MissEffect(RunState runState)
     {
-        return;
+        int tooSoon = System.Math.Max(0, timeInterval - runState.TimeSinceLast(this));
+        runState.IncreaseEnergy(-tooSoon);
     }
 }

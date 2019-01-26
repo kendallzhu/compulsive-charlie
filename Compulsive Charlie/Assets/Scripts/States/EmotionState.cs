@@ -71,7 +71,11 @@ public class EmotionState
     public int Extremeness()
     {
         int maxValue = Math.Max(anxiety, Math.Max(frustration, despair));
-        return Math.Min(maxValue / 10, 3);
+        if (maxValue == 0)
+        {
+            return 0;
+        }
+        return Math.Min(maxValue / 10 + 1, 3);
     }
 
     // how much energy does extreme emotion take up? (Can be negative = replenish energy)
@@ -85,17 +89,17 @@ public class EmotionState
         return drain;
     }
 
-    // shift all emotion axes toward equilibrium levels by given factor (plus one)
-    public void Equilibrate(EmotionState equilibrium, float factor)
+    // shift all emotion axes towards 0 by given factor (plus one)
+    public void Equilibrate(float factor)
     {
         // adjust at least 1 point toward equilibrium
-        int diff = equilibrium.anxiety - anxiety;
+        int diff = 0 - anxiety;
         anxiety += (int)(diff * factor) + Math.Sign(diff);
 
-        diff = equilibrium.frustration - frustration;
+        diff = 0 - frustration;
         frustration += (int)(diff * factor) + Math.Sign(diff);
 
-        diff = equilibrium.despair - despair;
+        diff = 0 - despair;
         despair += (int)(diff * factor) + Math.Sign(diff);
 
         // floor emotions at 0

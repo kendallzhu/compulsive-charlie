@@ -34,6 +34,17 @@ public class RunState {
         this.moneyHistory = new List<int>();
     }
 
+    public void IncreaseCraving(int amount)
+    {
+        craving += cravingMultiplier * amount;
+    }
+
+    public void IncreaseEnergy(int amount)
+    {
+        energy += amount;
+        energy = System.Math.Max(energy, 0);
+    }
+
     public ActivityPlatform CurrentActivityPlatform()
     {
         if (activityHistory.Count == 0)
@@ -60,6 +71,15 @@ public class RunState {
             return null;
         }
         return thoughtHistory.Last();
+    }
+
+    public int MoneyDiff(int time = 1)
+    {
+        if (moneyHistory.Count < time + 1)
+        {
+            return 0;
+        }
+        return moneyHistory.Last() - moneyHistory[moneyHistory.Count - time];
     }
 
     // destroy all platforms in the prospective set except chosen, clear list

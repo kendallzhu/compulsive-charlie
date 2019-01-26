@@ -32,6 +32,6 @@ public class Chores : Activity
     // how this activity modifies run state when rhythm is missed
     public override void MissEffect(RunState runState)
     {
-        runState.emotions.AddFrustration(1);
+        runState.emotions.AddFrustration(3);
     }
 }

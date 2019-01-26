@@ -21,13 +21,13 @@ public class DoNothing : Activity
     // height of associated platform if it comes after given run state
     public override int HeightRating(RunState runState)
     {
-        return defaultPlatformHeightDiff - 1;
+        return defaultPlatformHeightDiff - 2;
     }
 
     // how this activity modifies run state when rhythm is hit
     public override void HitEffect(RunState runState)
     {
-        return;
+        runState.emotions.Equilibrate(.1f);
     }
 
     // how this activity modifies run state when rhythm is missed

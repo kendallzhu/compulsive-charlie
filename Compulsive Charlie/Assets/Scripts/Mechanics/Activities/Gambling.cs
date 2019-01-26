@@ -23,17 +23,35 @@ public class Gambling : Activity
         return defaultPlatformHeightDiff;
     }
 
+    private int Spend(RunState runState)
+    {
+        if (runState.TimeSinceLast(this) < 1)
+        {
+            return runState.money;
+        }
+        return 10;
+    }
+
     // how this activity modifies run state when rhythm is hit
     public override void HitEffect(RunState runState)
     {
-        runState.money -= 2;
-        runState.emotions.AddAnxiety(-1);
+        runState.money -= Spend(runState) / 5;
     }
 
     // how this activity modifies run state when rhythm is missed
     public override void MissEffect(RunState runState)
     {
-        runState.money -= 10;
-        runState.emotions.AddDespair(3);
+        int spent = Spend(runState);
+        if (Random.value > .05)
+        {
+            runState.emotions.AddDespair(5);
+        } else
+        {
+            runState.money += spent * 5;
+            runState.emotions.despair = 0;
+            runState.craving = 0;
+            runState.cravingMultiplier += 1;
+        }
+        runState.money -= spent;
     }
 }

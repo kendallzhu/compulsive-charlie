@@ -14,7 +14,7 @@ public class Walk : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.energy >= 5)
+        if (runState.energy >= 5 && runState.TimeSinceLast(this) > 0)
         {
             return 1;
         }
@@ -30,12 +30,12 @@ public class Walk : Activity
     // how this activity modifies run state when rhythm is hit
     public override void HitEffect(RunState runState)
     {
-        runState.emotions.AddDespair(-2);
+        runState.emotions.Equilibrate(.1f);
     }
 
     // how this activity modifies run state when rhythm is missed
     public override void MissEffect(RunState runState)
     {
-        runState.emotions.AddFrustration(1);
+        runState.IncreaseEnergy(-1);
     }
 }

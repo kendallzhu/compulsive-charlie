@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour {
         // increase jump by spending energy (on tap)
         if (Input.GetButtonDown("Jump") && grounded && !nearEdge && runState.energy > 0)
         {
-            jumpPower += powerPerEnergy * Mathf.Max(0, (100 - runState.craving) / 100f);
-            runState.energy -= 1;
+            jumpPower += runState.CurrentThought().JumpBonus(powerPerEnergy);
+            runState.IncreaseEnergy(-1);
         }
 
         // apply passive forward speed when grounded
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour {
         if (grounded && nearEdge && jumpPower > 0 && rb2d.velocity.y <= 0)
         {
             rb2d.AddForce(new Vector2(forwardJumpForce, jumpPower));
-            jumpPower = 0;
+            jumpPower = -runManager.runState.craving * powerPerEnergy;
         }
     }
 

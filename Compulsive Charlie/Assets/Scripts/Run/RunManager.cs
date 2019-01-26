@@ -43,6 +43,12 @@ public class RunManager : MonoBehaviour
         {
             gameManager.EndRun(runState);
         }
+        // if broke, end run (and skip the rest of the procedure)
+        if (runState.money <= 0)
+        {
+            gameManager.EndRun(runState);
+            return;
+        }
     }
 
     // for when the player arrives on next activity, called via trigger in ActivityPlatform
@@ -55,12 +61,6 @@ public class RunManager : MonoBehaviour
             // update activity and score histories
             runState.activityHistory.Add(newActivityPlatform);
             runState.height = newActivityPlatform.y;
-            // if time limit exceeded, end run (and skip the rest of the procedure)
-            if (runState.money <= 0)
-            {
-                gameManager.EndRun(runState);
-                return;
-            }
             // clear out other spawnedPlatforms
             runState.ClearSpawned(newActivityPlatform);
             // start new platform spawning rhythm notes - deactivate this
@@ -68,7 +68,7 @@ public class RunManager : MonoBehaviour
         }
 
         // offer thoughts
-        thoughtMenu.Activate(SelectThoughts());
+        // thoughtMenu.Activate(SelectThoughts());
 
         // return zoom to normal
         camera.ZoomNormal();
@@ -97,19 +97,14 @@ public class RunManager : MonoBehaviour
         }
 
         // regenerate energy
-        runState.energy += gameManager.profile.energyRegen;
+        runState.IncreaseEnergy(gameManager.profile.energyRegen);
         // modify energy according to emotions
-        runState.energy -= runState.emotions.EnergyDrain();
-
-        // gradually bring emotion axes back to equilibrium levels
-        // (TODO: certain activities can do this more strongly like sleep)
-        runState.emotions.Equilibrate(gameManager.profile.emotionEquilibriums, .2f);
+        runState.IncreaseEnergy(-runState.emotions.EnergyDrain());
 
         // gradually increase craving
-        runState.craving += runState.cravingMultiplier;
+        runState.IncreaseCraving(1);
 
-        // cap/floor energy
-        runState.energy = System.Math.Max(runState.energy, 0);
+        // cap energy
         runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
 
         // offer thoughts

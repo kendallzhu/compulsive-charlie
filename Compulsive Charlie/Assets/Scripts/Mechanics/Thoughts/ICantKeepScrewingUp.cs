@@ -25,6 +25,7 @@ public class ICantKeepScrewingUp : Thought
     public override void CustomEffect(RunState runState)
     {
         runState.emotions.AddFrustration(3);
+        runState.emotions.AddAnxiety(3);
         // eliminate gambling from upcoming activities
         foreach (ActivityPlatform p in runState.spawnedPlatforms)
         {
