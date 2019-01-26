@@ -157,7 +157,7 @@ public class RunManager : MonoBehaviour
             }
         }
         // There's got to be at least one activity lower than current!
-        if (offeredActivities.Where(a => a.HeightRating(runState) < 0).ToList().Count == 0)
+        if (true) // (offeredActivities.Where(a => a.HeightRating(runState) < 0).ToList().Count == 0)
         {
             // right now it's called "Do Nothing"
             Activity fallBack = Object.FindObjectOfType<DoNothing>(); ;

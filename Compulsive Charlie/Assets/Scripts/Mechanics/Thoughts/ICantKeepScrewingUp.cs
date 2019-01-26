@@ -31,6 +31,8 @@ public class ICantKeepScrewingUp : Thought
             if (p.activity is Gambling)
             {
                 UnityEngine.Object.Destroy(p.gameObject);
+                runState.spawnedPlatforms.Remove(p);
+                break;
             }
         }
     }

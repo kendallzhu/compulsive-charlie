@@ -33,6 +33,17 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        RunState runState = runManager.runState;
+        // mock rhythm hits and misses
+        if (Input.GetButtonDown("Hit"))
+        {
+            runState.CurrentActivity().HitEffect(runState);
+        }
+        if (Input.GetButtonDown("Miss"))
+        {
+            runState.CurrentActivity().MissEffect(runState);
+        }
+
         // pulse hitbox edge radius to prevent sticking
         if (rb2d.GetComponent<BoxCollider2D>().edgeRadius < .05f)
         {
@@ -52,15 +63,14 @@ public class PlayerController : MonoBehaviour {
         nearEdge = !Physics2D.Linecast(forwardPosHigh, forwardPosLow, 1 << LayerMask.NameToLayer("Ground"));
 
         // increase jump by spending energy (on tap)
-        if (Input.GetButtonDown("Jump") && grounded && !nearEdge && runManager.runState.energy > 0)
+        if (Input.GetButtonDown("Jump") && grounded && !nearEdge && runState.energy > 0)
         {
-            jumpPower += powerPerEnergy * Mathf.Max(0, (100 - runManager.runState.craving) / 100f);
-            runManager.runState.energy -= 1;
+            jumpPower += powerPerEnergy * Mathf.Max(0, (100 - runState.craving) / 100f);
+            runState.energy -= 1;
         }
 
         // apply passive forward speed when grounded
         Vector2 velocity = rb2d.velocity;
-        RunState runState = runManager.runState;
         if (grounded)
         {
             float newX = Mathf.Max(velocity.x, PlatformMinForwardSpeed(runState));
