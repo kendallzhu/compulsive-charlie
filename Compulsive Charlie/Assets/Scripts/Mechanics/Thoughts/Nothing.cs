@@ -9,6 +9,7 @@ public class Nothing : Thought
         name = "Nothing";
         descriptionText = "really, nothing?";
         isUnlocked = true;
+        energyCost = 0;
     }
 
     // whether this activity is available, given state of run

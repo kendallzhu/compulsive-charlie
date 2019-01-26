@@ -27,7 +27,7 @@ public class ActivityPlatform : MonoBehaviour {
     private int GapSize(int ydiff)
     {
         // make only default platforms have gap 0
-        if (ydiff == Activity.defaultPlatformHeightDiff)
+        if (ydiff <= Activity.defaultPlatformHeightDiff)
         {
             return 0;
         }

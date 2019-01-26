@@ -25,6 +25,13 @@ public class ICantKeepScrewingUp : Thought
     public override void CustomEffect(RunState runState)
     {
         runState.emotions.AddFrustration(3);
-        // TODO: eliminate gambling from upcoming activities
+        // eliminate gambling from upcoming activities
+        foreach (ActivityPlatform p in runState.spawnedPlatforms)
+        {
+            if (p.activity is Gambling)
+            {
+                UnityEngine.Object.Destroy(p.gameObject);
+            }
+        }
     }
 }

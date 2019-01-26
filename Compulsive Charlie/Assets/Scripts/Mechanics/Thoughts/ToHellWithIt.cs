@@ -25,6 +25,12 @@ public class ToHellWithIt : Thought
     // how this thought modifies run state when thunk
     public override void CustomEffect(RunState runState)
     {
-        // TODO: disable note hitting for next activity
+        return;
+    }
+
+    // how this thought modifies jump power when active
+    public override float JumpBonus(float power)
+    {
+        return power * .5f;
     }
 }

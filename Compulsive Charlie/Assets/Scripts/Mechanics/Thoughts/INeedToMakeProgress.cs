@@ -32,6 +32,6 @@ public class INeedToMakeProgress : Thought
     public override float JumpBonus(float power)
     {
         // TODO: make variable for upgrades
-        return power * 1.4f;
+        return power * 1.5f;
     }
 }
