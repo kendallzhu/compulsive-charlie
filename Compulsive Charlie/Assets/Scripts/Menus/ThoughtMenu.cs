@@ -61,31 +61,27 @@ public class ThoughtMenu : MonoBehaviour {
     // Functions for selecting a thought and closing menu
     public void Select1()
     {
-        Time.timeScale = 1;
-        canvas.SetActive(false);
-        // trigger the selected thought effect
-        RunState runState = runManager.runState;
-        runState.thoughtHistory.Add(thoughts[0]);
-        thoughts[0].Effect(runState);
+        SelectThought(0);
     }
 
     public void Select2()
     {
-        Time.timeScale = 1;
-        canvas.SetActive(false);
-        // trigger the selected thought effect
-        RunState runState = runManager.runState;
-        runState.thoughtHistory.Add(thoughts[1]);
-        thoughts[1].Effect(runState);
+        SelectThought(1);
     }
 
     public void Select3()
+    {
+        SelectThought(2);
+    }
+
+    public void SelectThought(int index)
     {
         Time.timeScale = 1;
         canvas.SetActive(false);
         // trigger the selected thought effect
         RunState runState = runManager.runState;
-        runState.thoughtHistory.Add(thoughts[2]);
-        thoughts[2].Effect(runState);
+        runState.thoughtHistory.Add(thoughts[index]);
+        thoughts[index].Effect(runState);
+        runManager.PostThoughtSelect();
     }
 }

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 // Script managing all the state and gameplay of a single run
 public class RunManager : MonoBehaviour
 {
+    public const int minPlatformHeightDiff = 2;
+
     public GameManager gameManager;
     public RunState runState;
     public PlayerController player;
@@ -110,6 +112,16 @@ public class RunManager : MonoBehaviour
         thoughtMenu.Activate(SelectThoughts());
     }
 
+    public void PostThoughtSelect()
+    {
+        // refill available platforms in case any were deleted
+        foreach (Activity activity in SelectActivities())
+        {
+            SpawnPlatform(activity);
+        }
+
+    }
+
     // instantiate a new activity platform
     private void SpawnPlatform(Activity activity)
     {
@@ -132,15 +144,17 @@ public class RunManager : MonoBehaviour
                 availableActivities.Add(activity);
             }
         }
-        // TODO: tinker with this scheme (right now it sort of randomly picks activities one at a time)
+        // Randomly pick activities one at a time)
         availableActivities = availableActivities.OrderBy(x => Random.value).ToList();
         foreach (Activity available in availableActivities)
         {
             // don't offer activities that are too crammed together
             bool crammed = false;
-            foreach (Activity offered in offeredActivities)
+            foreach (Activity offered in offeredActivities.Concat(runState.spawnedPlatforms.Select(x => x.activity)))
             {
-                if (System.Math.Abs(offered.PlatformHeight(runState) - available.PlatformHeight(runState)) < 2)
+                int h1 = offered.HeightRating(runState);
+                int h2 = available.HeightRating(runState);
+                if (System.Math.Abs(h1 - h2) < minPlatformHeightDiff)
                 {
                     crammed = true;
                 }
@@ -150,8 +164,9 @@ public class RunManager : MonoBehaviour
                 offeredActivities.Add(available);
             }
         }
-        // There's got to be at least one activity lower than current!
-        if (true) // (offeredActivities.Where(a => a.HeightRating(runState) < 0).ToList().Count == 0)
+        // There's got to be at least one default activity
+        List<Activity> allActivities = offeredActivities.Concat(runState.spawnedPlatforms.Select(x => x.activity)).ToList();
+        if (allActivities.Where(a => a.HeightRating(runState) == Activity.defaultPlatformHeightDiff).ToList().Count == 0)
         {
             // right now it's called "Do Nothing"
             Activity fallBack = Object.FindObjectOfType<DoNothing>(); ;
