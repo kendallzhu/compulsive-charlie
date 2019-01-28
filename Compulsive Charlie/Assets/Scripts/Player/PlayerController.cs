@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
     public Transform groundCheck2;
     public bool grounded = false;
     public bool nearEdge = false;
+    public bool nearEdgeLastFrame = false;
     // private Animator anim;
     private Rigidbody2D rb2d;
     private RunManager runManager;
@@ -54,13 +55,8 @@ public class PlayerController : MonoBehaviour {
         grounded = Physics2D.Linecast(transform.position, groundCheck1.position, 1 << LayerMask.NameToLayer("Ground")) ||
             Physics2D.Linecast(transform.position, groundCheck2.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        // check for if near end of platform
-        Vector2 forwardPosHigh = new Vector2(transform.position.x + .5f, transform.position.y);
-        Vector2 forwardPosLow = new Vector2(transform.position.x + .5f, transform.position.y - 2);
-        nearEdge = !Physics2D.Linecast(forwardPosHigh, forwardPosLow, 1 << LayerMask.NameToLayer("Ground"));
-
         // increase jump by spending energy (on tap)
-        if (Input.GetButtonDown("Jump") && grounded && !nearEdge && runState.energy > 0)
+        if (Input.GetButtonDown("Jump") && grounded && runState.energy > 0)
         {
             runState.jumpPower += 1;
             runState.IncreaseEnergy(-1);
@@ -79,13 +75,24 @@ public class PlayerController : MonoBehaviour {
             float newX = Mathf.Max(velocity.x, fallingMinForwardSpeed);
             rb2d.velocity = new Vector2(newX, velocity.y);
         }
+
+        // auto-activate jump callback sequence when first near edge of platform
+        nearEdgeLastFrame = nearEdge;
+        Vector2 forwardPosHigh = new Vector2(transform.position.x + .5f, transform.position.y);
+        Vector2 forwardPosLow = new Vector2(transform.position.x + .5f, transform.position.y - 2);
+        nearEdge = !Physics2D.Linecast(forwardPosHigh, forwardPosLow, 1 << LayerMask.NameToLayer("Ground"));
+        // runManager.PreJump => thoughtMenu.Activate => runManager.PostThoughtSelect => player.Jump
+        if (nearEdge && !nearEdgeLastFrame)
+        {
+            runManager.PreJump();
+        }
     }
 
-    void FixedUpdate()
+    // called from runManager.PostThoughtSelect
+    public void Jump()
     {
         RunState runState = runManager.runState;
-        // auto-activate jump when near edge of platform
-        if (grounded && nearEdge && runState.jumpPower > 0 && rb2d.velocity.y <= 0)
+        if (runState.jumpPower > 0)
         {
             float upwardJumpForce = runState.CurrentThought().JumpBonus(runState.jumpPower * jumpForcePerEnergy);
             rb2d.AddForce(new Vector2(forwardJumpForce, upwardJumpForce));

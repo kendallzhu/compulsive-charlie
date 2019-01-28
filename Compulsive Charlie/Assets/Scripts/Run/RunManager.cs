@@ -80,14 +80,7 @@ public class RunManager : MonoBehaviour
     // for when the player enters the jump Pad
     public void EnterJumpPad(ActivityPlatform activityPlatform)
     {
-        // spawn new set of platforms
-        foreach (Activity activity in SelectActivities())
-        {
-            SpawnPlatform(activity);
-        }
-
         // Zoom out for jump
-        // TODO: dynamic zoom w/ parameter depening on platform heights
         camera.ZoomOut();
 
         if (activityPlatform != null)
@@ -108,10 +101,21 @@ public class RunManager : MonoBehaviour
         // cap energy
         runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
 
+        // spawn new set of platforms
+        foreach (Activity activity in SelectActivities())
+        {
+            SpawnPlatform(activity);
+        }
+    }
+
+    // called from player controller after sensing ready to jump
+    public void PreJump()
+    {
         // offer thoughts
         thoughtMenu.Activate(SelectThoughts());
     }
 
+    // called from thought menu after selecting a thought
     public void PostThoughtSelect()
     {
         // refill available platforms in case any were deleted
@@ -119,7 +123,7 @@ public class RunManager : MonoBehaviour
         {
             SpawnPlatform(activity);
         }
-
+        player.Jump();
     }
 
     // instantiate a new activity platform
