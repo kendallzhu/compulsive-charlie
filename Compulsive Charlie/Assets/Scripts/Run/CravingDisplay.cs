@@ -18,7 +18,7 @@ public class CravingDisplay : MonoBehaviour
     void Update()
     {
         string cravingString = "Craving: " + runManager.runState.craving.ToString();
-        string multiplierString = " (X" + runManager.runState.cravingMultiplier.ToString() + ")";
+        string multiplierString = ""; // " (X" + runManager.runState.cravingMultiplier.ToString() + ")";
         gameObject.GetComponent<TextMeshProUGUI>().text = cravingString + multiplierString;
     }
 }

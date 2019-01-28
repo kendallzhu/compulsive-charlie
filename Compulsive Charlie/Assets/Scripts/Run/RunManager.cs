@@ -58,8 +58,9 @@ public class RunManager : MonoBehaviour
         {
             // increment timeSteps
             runState.timeSteps += 1;
-            // update activity and score histories
+            // update activity and money histories
             runState.activityHistory.Add(newActivityPlatform);
+            runState.moneyHistory.Add(runState.money);
             runState.height = newActivityPlatform.y;
             // clear out other spawnedPlatforms
             runState.ClearSpawned(newActivityPlatform);
@@ -98,11 +99,9 @@ public class RunManager : MonoBehaviour
 
         // regenerate energy
         runState.IncreaseEnergy(gameManager.profile.energyRegen);
-        // modify energy according to emotions
-        runState.IncreaseEnergy(-runState.emotions.EnergyDrain());
 
-        // gradually increase craving
-        runState.IncreaseCraving(1);
+        // gradually increase craving based on emotion intensity
+        runState.IncreaseCraving(runState.emotions.CravingIncrease());
 
         // cap energy
         runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);

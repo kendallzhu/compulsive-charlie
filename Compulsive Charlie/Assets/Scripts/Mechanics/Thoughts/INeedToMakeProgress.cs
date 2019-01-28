@@ -25,13 +25,13 @@ public class INeedToMakeProgress : Thought
     // how this thought modifies run state when thunk
     public override void CustomEffect(RunState runState)
     {
-        runState.emotions.AddAnxiety(3);
+        runState.emotions.AddAnxiety(5);
     }
 
     // how this thought modifies jump power when active
     public override float JumpBonus(float power)
     {
         // TODO: make variable for upgrades
-        return power * 1.5f;
+        return power * 2f;
     }
 }

@@ -8,6 +8,7 @@ public class RunState {
     public int timeSteps;
     public int energy;
     public int money;
+    public int jumpPower;
     public int craving;
     public int cravingMultiplier;
     public EmotionState emotions;
@@ -37,6 +38,10 @@ public class RunState {
     public void IncreaseCraving(int amount)
     {
         craving += cravingMultiplier * amount;
+        if (craving < 0)
+        {
+            craving = 0;
+        }
     }
 
     public void IncreaseEnergy(int amount)
@@ -73,13 +78,13 @@ public class RunState {
         return thoughtHistory.Last();
     }
 
-    public int MoneyDiff(int time = 1)
+    public int MoneyDiff(int time = 0)
     {
         if (moneyHistory.Count < time + 1)
         {
             return 0;
         }
-        return moneyHistory.Last() - moneyHistory[moneyHistory.Count - time];
+        return money - moneyHistory[moneyHistory.Count - time - 1];
     }
 
     // destroy all platforms in the prospective set except chosen, clear list

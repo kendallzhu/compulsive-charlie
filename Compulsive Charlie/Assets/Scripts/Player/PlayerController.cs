@@ -7,12 +7,9 @@ using System.Linq;
 // For now, spacebar is only control
 public class PlayerController : MonoBehaviour {
     // gameplay constants
-    public const float powerPerEnergy = 50f;
+    public const float jumpForcePerEnergy = 50f;
     public const float forwardJumpForce = 100f;
     public const float fallingMinForwardSpeed = .5f; // idea: maybe can make this a profile upgrade?
-
-    // control variables
-    public float jumpPower = 0f;
 
     public Transform groundCheck1;
     public Transform groundCheck2;
@@ -58,14 +55,14 @@ public class PlayerController : MonoBehaviour {
             Physics2D.Linecast(transform.position, groundCheck2.position, 1 << LayerMask.NameToLayer("Ground"));
 
         // check for if near end of platform
-        Vector2 forwardPosHigh = new Vector2(transform.position.x + 1, transform.position.y);
-        Vector2 forwardPosLow = new Vector2(transform.position.x + 1, transform.position.y - 2);
+        Vector2 forwardPosHigh = new Vector2(transform.position.x + .5f, transform.position.y);
+        Vector2 forwardPosLow = new Vector2(transform.position.x + .5f, transform.position.y - 2);
         nearEdge = !Physics2D.Linecast(forwardPosHigh, forwardPosLow, 1 << LayerMask.NameToLayer("Ground"));
 
         // increase jump by spending energy (on tap)
         if (Input.GetButtonDown("Jump") && grounded && !nearEdge && runState.energy > 0)
         {
-            jumpPower += runState.CurrentThought().JumpBonus(powerPerEnergy);
+            runState.jumpPower += 1;
             runState.IncreaseEnergy(-1);
         }
 
@@ -86,11 +83,13 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
+        RunState runState = runManager.runState;
         // auto-activate jump when near edge of platform
-        if (grounded && nearEdge && jumpPower > 0 && rb2d.velocity.y <= 0)
+        if (grounded && nearEdge && runState.jumpPower > 0 && rb2d.velocity.y <= 0)
         {
-            rb2d.AddForce(new Vector2(forwardJumpForce, jumpPower));
-            jumpPower = -runManager.runState.craving * powerPerEnergy;
+            float upwardJumpForce = runState.CurrentThought().JumpBonus(runState.jumpPower * jumpForcePerEnergy);
+            rb2d.AddForce(new Vector2(forwardJumpForce, upwardJumpForce));
+            runState.jumpPower = -runManager.runState.craving;
         }
     }
 

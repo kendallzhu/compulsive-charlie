@@ -78,15 +78,10 @@ public class EmotionState
         return Math.Min(maxValue / 10 + 1, 3);
     }
 
-    // how much energy does extreme emotion take up? (Can be negative = replenish energy)
-    public int EnergyDrain()
+    // how much craving does extreme emotion generate?
+    public int CravingIncrease()
     {
-        int drain = this.Extremeness();
-        if (this.Extremeness() == 0)
-        {
-            drain = -2;
-        }
-        return drain;
+        return this.Extremeness() - 1;
     }
 
     // shift all emotion axes towards 0 by given factor (plus one)

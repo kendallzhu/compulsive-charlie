@@ -25,12 +25,12 @@ public class ToHellWithIt : Thought
     // how this thought modifies run state when thunk
     public override void CustomEffect(RunState runState)
     {
-        return;
+        runState.jumpPower = 0;
     }
 
     // how this thought modifies jump power when active
     public override float JumpBonus(float power)
     {
-        return power * .5f;
+        return 0f;
     }
 }

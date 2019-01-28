@@ -14,7 +14,8 @@ public class ICantKeepScrewingUp : Thought
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.GetDominantEmotion() == "despair")
+        Debug.Log(runState.MoneyDiff());
+        if (runState.emotions.GetDominantEmotion() == "despair" && runState.MoneyDiff() < 0)
         {
             return 1;
         }
