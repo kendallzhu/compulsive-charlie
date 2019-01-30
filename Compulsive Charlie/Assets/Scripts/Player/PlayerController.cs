@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour {
         // auto-activate jump callback sequence when first near edge of platform
         nearEdgeLastFrame = nearEdge;
         Vector2 forwardPosHigh = new Vector2(transform.position.x + .5f, transform.position.y);
-        Vector2 forwardPosLow = new Vector2(transform.position.x + .5f, transform.position.y - 2);
+        Vector2 forwardPosLow = new Vector2(transform.position.x + .6f, transform.position.y - 2);
         nearEdge = !Physics2D.Linecast(forwardPosHigh, forwardPosLow, 1 << LayerMask.NameToLayer("Ground"));
         // runManager.PreJump => thoughtMenu.Activate => runManager.PostThoughtSelect => player.Jump
         if (nearEdge && !nearEdgeLastFrame)
