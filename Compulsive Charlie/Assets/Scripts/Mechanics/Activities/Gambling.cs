@@ -25,10 +25,6 @@ public class Gambling : Activity
 
     private int Spend(RunState runState)
     {
-        if (runState.TimeSinceLast(this) <= 1)
-        {
-            return runState.money;
-        }
         return 10;
     }
 

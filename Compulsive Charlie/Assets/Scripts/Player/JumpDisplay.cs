@@ -20,7 +20,7 @@ public class JumpDisplay : MonoBehaviour
     void Update()
     {
         // should be * max willpower/energy TODO: change display
-        float maxPower = 15;
+        float maxPower = 6;
         float power = runManager.runState.jumpPower;
         float height = maxBarHeight * power / maxPower;
         transform.localScale = new Vector3(.2f, height, 1f);
