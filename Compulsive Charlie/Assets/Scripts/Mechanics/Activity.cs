@@ -16,10 +16,14 @@ public abstract class Activity : MonoBehaviour {
 
     // changeable parameters
     public bool isUnlocked = false;
+    public EmotionState emotionNotes = new EmotionState(0, 0, 0);
     public List<Thought> associatedThoughts = new List<Thought>();
 
     // (weighted) availability specific to activity, given state of run
-    public abstract int CustomAvailability(RunState runState);
+    public virtual int CustomAvailability(RunState runState)
+    {
+        return 1;
+    }
 
     // (weighted) availability of activity, given state of run
     public int Availability(RunState runState)
@@ -34,7 +38,10 @@ public abstract class Activity : MonoBehaviour {
 
     // (specific to activity)
     // raw height change of platform from previous platform given run state
-    public abstract int HeightRating(RunState runState);
+    public virtual int HeightRating(RunState runState)
+    {
+        return emotionNotes.GetSum() + defaultPlatformHeightDiff;
+    }
 
     // height of associated platform if it comes after given run state
     public int PlatformHeight(RunState runState)
@@ -44,10 +51,16 @@ public abstract class Activity : MonoBehaviour {
     }
 
     // how this activity modifies run state when rhythm note is hit
-    public abstract void HitEffect(RunState runState);
+    public virtual void HitEffect(RunState runState)
+    {
+        runState.energy += 1;
+    }
 
     // how this activity modifies run state when rhythm note is missed
-    public abstract void MissEffect(RunState runState);
+    public virtual void MissEffect(RunState runState)
+    {
+        runState.energy -= 1;
+    }
 
     // TODO: should activities have effects? - i.e. energy cost
 }

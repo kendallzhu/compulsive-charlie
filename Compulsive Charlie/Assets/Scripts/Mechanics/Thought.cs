@@ -12,7 +12,8 @@ public abstract class Thought : MonoBehaviour
 
     // changeable parameters
     public bool isUnlocked = false;
-    public int energyCost = 1;
+    public int energyCost = 0;
+    public int jumpPower = 0;
 
     // non-emotion thought-specific availability conditions 
     // (Don't use activity history - to keep modular)
@@ -22,7 +23,7 @@ public abstract class Thought : MonoBehaviour
     public int Availability(RunState runState)
     {
         // check if thought is unlocked
-        if (!isUnlocked)
+        if (!isUnlocked || runState.energy < energyCost)
         {
             return 0;
         }
@@ -36,7 +37,8 @@ public abstract class Thought : MonoBehaviour
     public void Effect(RunState runState)
     {
         // drain energy
-        runState.energy = System.Math.Max(0, runState.energy - energyCost);
+        runState.IncreaseEnergy(-energyCost);
+        runState.jumpPower += jumpPower;
         // make thought-specific effects
         CustomEffect(runState);
     }

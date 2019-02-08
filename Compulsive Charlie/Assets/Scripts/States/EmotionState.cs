@@ -29,6 +29,11 @@ public class EmotionState
         despair = e.despair;
     }
 
+    public int GetSum()
+    {
+        return anxiety + frustration + despair;
+    }
+
     // methods for modifying and flooring values
     public void AddAnxiety(int val)
     {

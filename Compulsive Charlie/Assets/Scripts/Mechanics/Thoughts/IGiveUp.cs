@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Nothing : Thought
+public class IGiveUp : Thought
 {
     void Awake()
     {
-        name = "Nothing";
-        descriptionText = "really, nothing?";
+        name = "I Give Up";
+        descriptionText = "it's hopeless";
         isUnlocked = true;
-        energyCost = 0;
+        energyCost = 1;
         jumpPower = 0;
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.Extremeness() == 0)
+        if (runState.emotions.GetDominantEmotion() == "despair")
         {
             return 1;
         }

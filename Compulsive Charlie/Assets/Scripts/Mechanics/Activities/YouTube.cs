@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Eating : Activity
+public class YouTube : Activity
 {
     void Awake()
     {
-        name = "Eating";
-        descriptionText = "it comes naturally";
+        name = "YouTube";
+        descriptionText = "suggested videos";
         isUnlocked = true;
     }
 
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.GetDominantEmotion() == "despair")
+        if (runState.emotions.GetDominantEmotion() == "anxiety")
         {
             return 1;
         }

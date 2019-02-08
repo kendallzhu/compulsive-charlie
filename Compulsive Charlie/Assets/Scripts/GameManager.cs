@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour {
         {
             profile.upgrades.Add(child.gameObject.GetComponent<Upgrade>());
         }
+        // set starting schedule for the game
+        profile.schedule.Add(Object.FindObjectOfType<DoNothing>());
     }
 
     public void StartGame()

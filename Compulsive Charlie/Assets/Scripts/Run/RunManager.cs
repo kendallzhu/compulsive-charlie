@@ -207,7 +207,7 @@ public class RunManager : MonoBehaviour
         if (availableThoughts.Count == 0)
         {
             // right now it's called "Nothing"
-            Thought fallBack = Object.FindObjectOfType<Nothing>(); ;
+            Thought fallBack = Object.FindObjectOfType<Nothing>();
             return new List<Thought> { fallBack };
         }
         // select <=3 randomly (with repeat)

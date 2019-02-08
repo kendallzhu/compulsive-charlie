@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Nothing : Thought
+public class SuckItUp : Thought
 {
     void Awake()
     {
-        name = "Nothing";
-        descriptionText = "really, nothing?";
+        name = "Suck It Up";
+        descriptionText = "can't let it stop u";
         isUnlocked = true;
-        energyCost = 0;
-        jumpPower = 0;
+        energyCost = 5;
+        jumpPower = 6;
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.Extremeness() == 0)
+        if (runState.emotions.GetDominantEmotion() == "frustration")
         {
             return 1;
         }

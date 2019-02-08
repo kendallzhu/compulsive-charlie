@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Nothing : Thought
+public class GoWithTheFlow : Thought
 {
     void Awake()
     {
-        name = "Nothing";
-        descriptionText = "really, nothing?";
+        name = "Go With the Flow";
+        descriptionText = "it's chill";
         isUnlocked = true;
-        energyCost = 0;
-        jumpPower = 0;
+        energyCost = 2;
+        jumpPower = 3;
     }
 
     // whether this activity is available, given state of run

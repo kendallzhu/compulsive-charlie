@@ -11,6 +11,7 @@ public class Profile
     public List<Activity> activities;
     public List<Upgrade> upgrades;
     public EmotionState emotionEquilibriums;
+    public List<Activity> schedule;
     public int initialMoney;
     public int initialEnergy;
     public int energyRegen;
@@ -25,10 +26,11 @@ public class Profile
         // set starting profile of the game - TODO: Tune according to story of game, maybe start out shittier
         emotionEquilibriums = new EmotionState(0, 0, 0);
         initialMoney = 50;
-        initialEnergy = 0;
+        initialEnergy = 2;
         thoughts = new List<Thought>();
         activities = new List<Activity>();
         upgrades = new List<Upgrade>();
+        schedule = new List<Activity>();
         experience = 0;
         energyCap = 20;
         energyRegen = 3;

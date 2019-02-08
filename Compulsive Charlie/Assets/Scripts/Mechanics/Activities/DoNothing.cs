@@ -8,6 +8,7 @@ public class DoNothing : Activity
     {
         name = "Do Nothing";
         descriptionText = "wait - actually nothing?";
+        emotionNotes = new EmotionState(5, 5, 5); // ~current state?
         isUnlocked = true;
     }
 
@@ -22,17 +23,5 @@ public class DoNothing : Activity
     public override int HeightRating(RunState runState)
     {
         return defaultPlatformHeightDiff;
-    }
-
-    // how this activity modifies run state when rhythm is hit
-    public override void HitEffect(RunState runState)
-    {
-        runState.emotions.Equilibrate(.1f);
-    }
-
-    // how this activity modifies run state when rhythm is missed
-    public override void MissEffect(RunState runState)
-    {
-        return;
     }
 }

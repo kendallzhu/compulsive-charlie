@@ -7,8 +7,8 @@ using System.Linq;
 // For now, spacebar is only control
 public class PlayerController : MonoBehaviour {
     // gameplay constants
-    public const float jumpForcePerEnergy = 50f;
-    public const float forwardJumpForce = 100f;
+    public const float jumpForcePerEnergy = 80f;
+    public const float forwardJumpForce = 70f;
     public const float fallingMinForwardSpeed = .5f; // idea: maybe can make this a profile upgrade?
 
     public Transform groundCheckLeft;
@@ -56,12 +56,12 @@ public class PlayerController : MonoBehaviour {
         grounded = Physics2D.Linecast(transform.position, groundCheckLeft.position, 1 << LayerMask.NameToLayer("Ground")) ||
             Physics2D.Linecast(transform.position, groundCheckRight.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        // increase jump by spending energy (on tap)
+        /* increase jump by spending energy (on tap)
         if (Input.GetButtonDown("Jump") && grounded && runState.energy > 0)
         {
             runState.jumpPower += 1;
             runState.IncreaseEnergy(-1);
-        }
+        } */
 
         // apply passive forward speed when grounded
         Vector2 velocity = rb2d.velocity;
