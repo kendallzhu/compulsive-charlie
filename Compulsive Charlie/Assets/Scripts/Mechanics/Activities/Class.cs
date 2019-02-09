@@ -8,7 +8,7 @@ public class Class : Activity
     {
         name = "Class";
         descriptionText = "I'm in school?";
-        emotionNotes = new EmotionState(1, 1, 6);
+        emotionNotes = new EmotionState(1, 1, 4);
         isUnlocked = true;
     }
 }

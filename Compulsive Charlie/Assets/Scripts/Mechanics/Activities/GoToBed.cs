@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shower : Activity
+public class GoToBed : Activity
 {
     void Awake()
     {
-        name = "Shower";
-        descriptionText = "pls";
+        name = "Go To Bed";
+        descriptionText = "it's all over";
         emotionNotes = new EmotionState(1, 1, 1);
         isUnlocked = true;
     }
@@ -15,7 +15,10 @@ public class Shower : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        // for now, only when scheduled
+        if (runState.timeSteps > 9)
+        {
+            return 1;
+        }
         return 0;
     }
 }

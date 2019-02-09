@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Script managing all the state and gameplay of a single run
 public class RunManager : MonoBehaviour
 {
-    public const int minPlatformHeightDiff = 2;
+    public const int minPlatformHeightDiff = 3;
 
     public GameManager gameManager;
     public RunState runState;
@@ -58,6 +58,10 @@ public class RunManager : MonoBehaviour
     {
         if (newActivityPlatform != null)
         {
+            if (runState.activityHistory.Count == 0 && newActivityPlatform.activity == null)
+            {
+                newActivityPlatform.activity = Object.FindObjectOfType<SleepIn>();
+            }
             // increment timeSteps
             runState.timeSteps += 1;
             // update activity and money histories
@@ -148,8 +152,10 @@ public class RunManager : MonoBehaviour
                 availableActivities.Add(activity);
             }
         }
-        // Randomly pick activities one at a time)
+        // Randomly pick activities one at a time
         availableActivities = availableActivities.OrderBy(x => Random.value).ToList();
+        // Put scheduled activity at front of list so it is always offered
+        availableActivities.Insert(0, gameManager.profile.schedule[runState.timeSteps - 1]);
         foreach (Activity available in availableActivities)
         {
             // don't offer activities that are too crammed together

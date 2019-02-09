@@ -33,7 +33,7 @@ public class Profile
         schedule = new List<Activity>();
         experience = 0;
         energyCap = 20;
-        energyRegen = 3;
+        energyRegen = 0;
         allRuns = new List<RunState>();
     }
 }
