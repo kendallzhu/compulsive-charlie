@@ -12,6 +12,11 @@ public class GoToBed : Activity
         isUnlocked = true;
     }
 
+    public override void Effect(RunState runState)
+    {
+        runState.done = true;
+    }
+
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {

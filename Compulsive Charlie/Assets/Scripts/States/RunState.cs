@@ -6,6 +6,7 @@ using System.Linq;
 // Class for storing all data relevant to a given run
 public class RunState {
     public int timeSteps;
+    public bool done;
     public int energy;
     public int money;
     public int jumpPower;

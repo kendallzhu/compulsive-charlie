@@ -46,7 +46,7 @@ public class RunManager : MonoBehaviour
             gameManager.EndRun(runState);
         }
         // if broke, end run (and skip the rest of the procedure)
-        if (runState.money <= 0)
+        if (runState.done)
         {
             gameManager.EndRun(runState);
             return;
@@ -94,6 +94,8 @@ public class RunManager : MonoBehaviour
             {
                 runState.CurrentActivityPlatform().StopRhythm();
             }
+            // trigger activity special effect
+            runState.CurrentActivityPlatform().activity.Effect(runState);
         }
 
         // regenerate energy

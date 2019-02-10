@@ -62,5 +62,9 @@ public abstract class Activity : MonoBehaviour {
         runState.energy -= 1;
     }
 
-    // TODO: should activities have effects? - i.e. energy cost
+    // activity special effects
+    public virtual void Effect(RunState runState)
+    {
+        return;
+    }
 }

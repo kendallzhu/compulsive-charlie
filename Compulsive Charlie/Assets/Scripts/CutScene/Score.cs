@@ -19,7 +19,18 @@ public class Score : MonoBehaviour
     void Update()
     {
         RunState lastRun = gameManager.profile.allRuns.Last();
+        List<Activity> schedule = gameManager.profile.schedule;
+        List<Activity> reality = lastRun.activityHistory.Select(ap=>ap.activity).ToList();
+        int numCompleted = 0;
+        for (int i = 0; i < schedule.Count; i++)
+        {
+            if (schedule[i] == reality[i])
+            {
+                numCompleted++;
+            }
+        }
+        string completion = numCompleted.ToString() + "/" + schedule.Count.ToString();
+        gameObject.GetComponent<TextMeshProUGUI>().text = "Schedule Completion: " + completion;
         // TODO: also show max money, other achievements?
-        gameObject.GetComponent<TextMeshProUGUI>().text = "Time Lasted: " + lastRun.timeSteps.ToString();
     }
 }
