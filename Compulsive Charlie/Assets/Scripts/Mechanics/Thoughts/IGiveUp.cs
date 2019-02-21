@@ -9,7 +9,7 @@ public class IGiveUp : Thought
         name = "I Give Up";
         descriptionText = "it's hopeless";
         isUnlocked = true;
-        energyCost = 1;
+        energyCost = 2;
         jumpPower = 0;
     }
 

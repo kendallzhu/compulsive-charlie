@@ -157,7 +157,8 @@ public class RunManager : MonoBehaviour
         // Randomly pick activities one at a time
         availableActivities = availableActivities.OrderBy(x => Random.value).ToList();
         // Put scheduled activity at front of list so it is always offered
-        availableActivities.Insert(0, gameManager.profile.schedule[runState.timeSteps - 1]);
+        Activity scheduledActivity = gameManager.profile.schedule[runState.timeSteps - 1];
+        availableActivities.Insert(0, scheduledActivity);
         foreach (Activity available in availableActivities)
         {
             // don't offer activities that are too crammed together
@@ -167,6 +168,11 @@ public class RunManager : MonoBehaviour
                 int h1 = offered.HeightRating(runState);
                 int h2 = available.HeightRating(runState);
                 if (System.Math.Abs(h1 - h2) < minPlatformHeightDiff)
+                {
+                    crammed = true;
+                }
+                // dont add activities that are above the scheduled one
+                if (h2 - scheduledActivity.HeightRating(runState) > 0)
                 {
                     crammed = true;
                 }

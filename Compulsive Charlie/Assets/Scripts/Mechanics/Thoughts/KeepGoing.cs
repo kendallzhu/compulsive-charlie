@@ -9,7 +9,7 @@ public class KeepGoing : Thought
         name = "Keep Going";
         descriptionText = "stay strong";
         isUnlocked = true;
-        energyCost = 5;
+        energyCost = 6;
         jumpPower = 6;
     }
 

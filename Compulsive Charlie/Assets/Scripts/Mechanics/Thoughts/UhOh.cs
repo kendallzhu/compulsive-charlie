@@ -9,7 +9,7 @@ public class UhOh : Thought
         name = "UhOh";
         descriptionText = "yikes";
         isUnlocked = true;
-        energyCost = 1;
+        energyCost = 2;
         jumpPower = 0;
     }
 

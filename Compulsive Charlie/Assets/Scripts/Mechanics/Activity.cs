@@ -62,9 +62,12 @@ public abstract class Activity : MonoBehaviour {
         runState.energy -= 1;
     }
 
-    // activity special effects
+    // activity specific effects
     public virtual void Effect(RunState runState)
     {
+        runState.emotions.AddAnxiety(emotionNotes.anxiety);
+        runState.emotions.AddFrustration(emotionNotes.frustration);
+        runState.emotions.AddDespair(emotionNotes.despair);
         return;
     }
 }

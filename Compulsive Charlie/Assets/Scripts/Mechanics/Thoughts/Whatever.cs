@@ -9,7 +9,7 @@ public class Whatever : Thought
         name = "Whatever";
         descriptionText = "pfft";
         isUnlocked = true;
-        energyCost = 3;
+        energyCost = 4;
         jumpPower = 3;
     }
 

@@ -9,7 +9,7 @@ public class WTF : Thought
         name = "WTF";
         descriptionText = "screw this";
         isUnlocked = true;
-        energyCost = 1;
+        energyCost = 2;
         jumpPower = 0;
     }
 

@@ -9,7 +9,7 @@ public class Relax : Thought
         name = "Relax";
         descriptionText = "not end of world";
         isUnlocked = true;
-        energyCost = 3;
+        energyCost = 4;
         jumpPower = 3;
     }
 

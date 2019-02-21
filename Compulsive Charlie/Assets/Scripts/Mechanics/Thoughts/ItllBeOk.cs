@@ -9,7 +9,7 @@ public class ItllBeOk : Thought
         name = "It'll Be Ok";
         descriptionText = "hang in there";
         isUnlocked = true;
-        energyCost = 3;
+        energyCost = 4;
         jumpPower = 3;
     }
 

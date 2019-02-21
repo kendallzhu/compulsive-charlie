@@ -9,7 +9,7 @@ public class SuckItUp : Thought
         name = "Suck It Up";
         descriptionText = "can't let it stop u";
         isUnlocked = true;
-        energyCost = 5;
+        energyCost = 6;
         jumpPower = 6;
     }
 
