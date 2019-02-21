@@ -218,12 +218,14 @@ public class RunManager : MonoBehaviour
             Thought fallBack = Object.FindObjectOfType<Nothing>();
             return new List<Thought> { fallBack };
         }
-        // select <=3 randomly (with repeat)
+        // select <=3 randomly (without repeat)
         List<Thought> offeredThoughts = new List<Thought>();
-        for (int i=0; i < 3; i++)
+        while (offeredThoughts.Count < 3 && availableThoughts.Count > 0)
         {
             int r = Random.Range(0, availableThoughts.Count);
-            offeredThoughts.Add(availableThoughts[r]);
+            Thought t = availableThoughts[r];
+            availableThoughts.Remove(t);
+            offeredThoughts.Add(t);
         }
         return offeredThoughts;
     }
