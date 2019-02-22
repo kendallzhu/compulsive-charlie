@@ -1884,7 +1884,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &842127939
 RectTransform:
@@ -2530,6 +2530,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133142111}
   m_CullTransparentMesh: 0
+--- !u!1 &1176975324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1176975326}
+  - component: {fileID: 1176975325}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1176975325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176975324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c2e61eaaa8e6848aae850e6abf59c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 2073298194576490733, guid: ebba332c31602c143b91d31ae1013734, type: 3}
+  imageWidth: 48
+  imageHeight: 32
+  maxX: 0
+  mainCamera: {fileID: 0}
+--- !u!4 &1176975326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176975324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1202999056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,6 +2661,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114709010164846664, guid: 93c3919dbea88a14bb499be23dcd4b40,
+        type: 3}
+      propertyPath: runManager
+      value: 
+      objectReference: {fileID: 1652275278}
+    - target: {fileID: 114709010164846664, guid: 93c3919dbea88a14bb499be23dcd4b40,
+        type: 3}
+      propertyPath: platformLength
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4324346866363816, guid: 93c3919dbea88a14bb499be23dcd4b40, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -2644,16 +2702,6 @@ PrefabInstance:
     - target: {fileID: 4324346866363816, guid: 93c3919dbea88a14bb499be23dcd4b40, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114709010164846664, guid: 93c3919dbea88a14bb499be23dcd4b40,
-        type: 3}
-      propertyPath: runManager
-      value: 
-      objectReference: {fileID: 1652275278}
-    - target: {fileID: 114709010164846664, guid: 93c3919dbea88a14bb499be23dcd4b40,
-        type: 3}
-      propertyPath: platformLength
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114585283511678434, guid: 93c3919dbea88a14bb499be23dcd4b40,
         type: 3}

@@ -14,9 +14,9 @@ public class CameraController : MonoBehaviour
     private const float YEpsilon = .1f; // close enough to desired position
 
     // zooming variables
-    public float zoom = 5.5f;
-    float zoomedOut = 10f;
-    float zoomedNormal = 5.5f;
+    public float zoom = 4.8f;
+    float zoomedOut = 9.7f;
+    float zoomedNormal = 4.8f;
     private float smooth = 5;
 
     // Use this for initialization
