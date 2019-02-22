@@ -13,14 +13,16 @@ public class IGiveUp : Thought
         jumpPower = 0;
     }
 
-    // whether this activity is available, given state of run
+    // whether this thought is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
+        int availability = 0;
         if (runState.emotions.GetDominantEmotion() == "despair")
         {
-            return 1;
+            availability++;
         }
-        return 0;
+        availability += runState.emotions.Extremeness("despair");
+        return availability;
     }
 
     // how this thought modifies run state when thunk

@@ -8,7 +8,7 @@ public abstract class Thought : MonoBehaviour
     // unique name
     new public string name;
     public string descriptionText;
-    public string infoText; // for full info
+    public string infoText; // for full info?
 
     // changeable parameters
     public bool isUnlocked = false;
@@ -16,13 +16,13 @@ public abstract class Thought : MonoBehaviour
     public int jumpPower = 0;
 
     // non-emotion thought-specific availability conditions 
-    // (Don't use activity history - to keep modular)
+    // (Don't use activity history - to keep modular)?
     public abstract int CustomAvailability(RunState runState);
 
     // whether this thought is available, given state of run
     public int Availability(RunState runState)
     {
-        // check if thought is unlocked
+        // check if thought is unlocked and there is enough energy to use it
         if (!isUnlocked || runState.energy < energyCost)
         {
             return 0;

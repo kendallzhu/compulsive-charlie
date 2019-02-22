@@ -13,14 +13,16 @@ public class UhOh : Thought
         jumpPower = 0;
     }
 
-    // whether this activity is available, given state of run
+    // whether this thought is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
+        int availability = 0;
         if (runState.emotions.GetDominantEmotion() == "anxiety")
         {
-            return 1;
+            availability++;
         }
-        return 0;
+        availability += runState.emotions.Extremeness("anxiety");
+        return availability;
     }
 
     // how this thought modifies run state when thunk

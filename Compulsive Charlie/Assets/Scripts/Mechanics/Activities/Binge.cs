@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Eating : Activity
+public class Binge : Activity
 {
     void Awake()
     {
-        name = "Eating";
-        descriptionText = "it comes naturally";
+        name = "Binge";
+        descriptionText = "fill the hole with food";
         isUnlocked = true;
     }
 
@@ -18,6 +18,9 @@ public class Eating : Activity
         {
             return 1;
         }
-        return 0;
+        Activity balancedMeal = Object.FindObjectOfType<BalancedMeal>();
+        int timeSinceEat = System.Math.Min(runState.TimeSinceLast(this), runState.TimeSinceLast(balancedMeal));
+        int hunger = System.Math.Max(0, timeSinceEat - 2);
+        return hunger;
     }
 }
