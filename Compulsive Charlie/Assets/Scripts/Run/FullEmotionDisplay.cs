@@ -20,8 +20,8 @@ public class FullEmotionDisplay : MonoBehaviour {
         Transform anxiety = gameObject.transform.Find("anxiety");
         Transform frustration = gameObject.transform.Find("frustration");
         Transform despair = gameObject.transform.Find("despair");
-        anxiety.GetComponent<TextMeshProUGUI>().text = ":\\ " + emotions.anxiety;
-        frustration.GetComponent<TextMeshProUGUI>().text = ">:( " + emotions.frustration;
-        despair.GetComponent<TextMeshProUGUI>().text = ":'( " + emotions.despair;
+        anxiety.Find("Text").GetComponent<TextMeshProUGUI>().text = "" + emotions.anxiety;
+        frustration.Find("Text").GetComponent<TextMeshProUGUI>().text = "" + emotions.frustration;
+        despair.Find("Text").GetComponent<TextMeshProUGUI>().text = "" + emotions.despair;
     }
 }
