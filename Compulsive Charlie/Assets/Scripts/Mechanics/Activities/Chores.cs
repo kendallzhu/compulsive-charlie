@@ -8,7 +8,7 @@ public class Chores : Activity
     {
         name = "Chores";
         descriptionText = "less mess";
-        emotionNotes = new EmotionState(0, 4, 0);
+        emotionNotes = new EmotionState(0, 2, 2);
         isUnlocked = true;
     }
 }

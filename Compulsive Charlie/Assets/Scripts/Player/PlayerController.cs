@@ -8,8 +8,8 @@ using System.Linq;
 public class PlayerController : MonoBehaviour {
     // gameplay constants
     public const float jumpForcePerEnergy = 80f;
-    public const float forwardJumpForce = 70f;
-    public const float fallingMinForwardSpeed = .5f; // idea: maybe can make this a profile upgrade?
+    public const float forwardJumpForce = 50f;
+    public const float fallingMinForwardSpeed = .5f;
 
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
@@ -102,6 +102,6 @@ public class PlayerController : MonoBehaviour {
     // functions for gameplay parameters that depend on runState (emotions, etc.)
     private float PlatformMinForwardSpeed(RunState runState)
     {
-        return 3f;
+        return 5f;
     }
 }

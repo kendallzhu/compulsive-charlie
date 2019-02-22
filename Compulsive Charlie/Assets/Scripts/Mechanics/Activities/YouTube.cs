@@ -20,4 +20,10 @@ public class YouTube : Activity
         }
         return 0;
     }
+
+    public override void Effect(RunState runState)
+    {
+        runState.emotions.AddDespair(1);
+        return;
+    }
 }

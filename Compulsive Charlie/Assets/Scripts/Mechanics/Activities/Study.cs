@@ -8,7 +8,7 @@ public class Study : Activity
     {
         name = "Study";
         descriptionText = "learning and burning";
-        emotionNotes = new EmotionState(6, 1, 1);
+        emotionNotes = new EmotionState(3, 1, 0);
         isUnlocked = true;
     }
 }

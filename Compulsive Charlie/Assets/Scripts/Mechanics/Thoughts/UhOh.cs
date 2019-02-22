@@ -6,8 +6,8 @@ public class UhOh : Thought
 {
     void Awake()
     {
-        name = "UhOh";
-        descriptionText = "yikes";
+        name = "Uh Oh";
+        descriptionText = "look away";
         isUnlocked = true;
         energyCost = 2;
         jumpPower = 0;

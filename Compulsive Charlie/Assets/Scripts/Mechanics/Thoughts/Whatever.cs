@@ -7,7 +7,7 @@ public class Whatever : Thought
     void Awake()
     {
         name = "Whatever";
-        descriptionText = "pfft";
+        descriptionText = "moving on";
         isUnlocked = true;
         energyCost = 4;
         jumpPower = 3;

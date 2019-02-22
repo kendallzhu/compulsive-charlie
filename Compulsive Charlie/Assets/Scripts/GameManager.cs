@@ -32,10 +32,8 @@ public class GameManager : MonoBehaviour {
         {
             profile.upgrades.Add(child.gameObject.GetComponent<Upgrade>());
         }
-        // set starting schedule for the game
-        profile.schedule.Add(Object.FindObjectOfType<SleepIn>());
-        profile.schedule.Add(Object.FindObjectOfType<SleepIn>());
-        profile.schedule.Add(Object.FindObjectOfType<Class>());
+        // set starting schedule for the game - TODO: factor out?
+        /*profile.schedule.Add(Object.FindObjectOfType<SleepIn>());
         profile.schedule.Add(Object.FindObjectOfType<VideoGames>());
         profile.schedule.Add(Object.FindObjectOfType<Eating>());
         profile.schedule.Add(Object.FindObjectOfType<YouTube>());
@@ -44,7 +42,17 @@ public class GameManager : MonoBehaviour {
         profile.schedule.Add(Object.FindObjectOfType<Drinking>());
         profile.schedule.Add(Object.FindObjectOfType<Eating>());
         profile.schedule.Add(Object.FindObjectOfType<Drinking>());
-        profile.schedule.Add(Object.FindObjectOfType<Drinking>());
+        profile.schedule.Add(Object.FindObjectOfType<GoToBed>());*/
+
+        // ambitious schedule
+        profile.schedule.Add(Object.FindObjectOfType<Eating>());
+        profile.schedule.Add(Object.FindObjectOfType<Class>());
+        profile.schedule.Add(Object.FindObjectOfType<Eating>());
+        profile.schedule.Add(Object.FindObjectOfType<Study>());
+        profile.schedule.Add(Object.FindObjectOfType<Walk>());
+        profile.schedule.Add(Object.FindObjectOfType<Eating>());
+        profile.schedule.Add(Object.FindObjectOfType<Study>());
+        profile.schedule.Add(Object.FindObjectOfType<Shower>());
         profile.schedule.Add(Object.FindObjectOfType<GoToBed>());
     }
 

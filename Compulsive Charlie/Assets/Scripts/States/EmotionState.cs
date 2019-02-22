@@ -34,6 +34,11 @@ public class EmotionState
         return anxiety + frustration + despair;
     }
 
+    public int DotProduct(EmotionState other)
+    {
+        return anxiety * other.anxiety + frustration * other.frustration + despair * other.despair;
+    }
+
     // methods for modifying and flooring values
     public void AddAnxiety(int val)
     {

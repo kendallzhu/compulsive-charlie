@@ -72,6 +72,9 @@ public class RunManager : MonoBehaviour
             runState.ClearSpawned(newActivityPlatform);
             // start new platform spawning rhythm notes - deactivate this
             // newActivityPlatform.StartRhythm();
+
+            // trigger activity special effect
+            runState.CurrentActivityPlatform().activity.Effect(runState);
         }
 
         // offer thoughts
@@ -94,8 +97,6 @@ public class RunManager : MonoBehaviour
             {
                 runState.CurrentActivityPlatform().StopRhythm();
             }
-            // trigger activity special effect
-            runState.CurrentActivityPlatform().activity.Effect(runState);
         }
 
         // regenerate energy
@@ -157,7 +158,7 @@ public class RunManager : MonoBehaviour
         // Randomly pick activities one at a time
         availableActivities = availableActivities.OrderBy(x => Random.value).ToList();
         // Put scheduled activity at front of list so it is always offered
-        Activity scheduledActivity = gameManager.profile.schedule[runState.timeSteps - 1];
+        Activity scheduledActivity = gameManager.profile.GetSchedule(runState.timeSteps);
         availableActivities.Insert(0, scheduledActivity);
         foreach (Activity available in availableActivities)
         {
@@ -186,9 +187,16 @@ public class RunManager : MonoBehaviour
         List<Activity> allActivities = offeredActivities.Concat(runState.spawnedPlatforms.Select(x => x.activity)).ToList();
         if (allActivities.Where(a => a.HeightRating(runState) == Activity.defaultPlatformHeightDiff).ToList().Count == 0)
         {
-            // right now it's called "Do Nothing"
-            Activity fallBack = Object.FindObjectOfType<DoNothing>(); ;
-            offeredActivities.Add(fallBack);
+            Activity defaultActivity = availableActivities.Find(a => a.HeightRating(runState) == Activity.defaultPlatformHeightDiff);
+            if (defaultActivity != null)
+            {
+                offeredActivities.Add(defaultActivity);
+            } else
+            {
+                // right now default to "Do Nothing"
+                Activity fallBack = Object.FindObjectOfType<DoNothing>();
+                offeredActivities.Add(fallBack);
+            }
         }
         return offeredActivities;
     }

@@ -40,7 +40,13 @@ public abstract class Activity : MonoBehaviour {
     // raw height change of platform from previous platform given run state
     public virtual int HeightRating(RunState runState)
     {
-        return emotionNotes.GetSum() + defaultPlatformHeightDiff;
+        // for activites with emotions, difficulty depends on emotions of player
+        float emotionCharge = emotionNotes.DotProduct(runState.emotions) / 5f;
+        if (emotionCharge > 0)
+        {
+            return (int)emotionCharge;
+        }
+        return  defaultPlatformHeightDiff;
     }
 
     // height of associated platform if it comes after given run state

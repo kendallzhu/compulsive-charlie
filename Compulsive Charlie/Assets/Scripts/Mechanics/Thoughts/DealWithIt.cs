@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuckItUp : Thought
+public class DealWithIt : Thought
 {
     void Awake()
     {
-        name = "Suck It Up";
-        descriptionText = "can't let it stop u";
+        name = "Deal With It";
+        descriptionText = "overcome";
         isUnlocked = true;
         energyCost = 6;
         jumpPower = 6;

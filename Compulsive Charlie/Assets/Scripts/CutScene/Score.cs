@@ -24,7 +24,7 @@ public class Score : MonoBehaviour
         int numCompleted = 0;
         for (int i = 0; i < schedule.Count; i++)
         {
-            if (schedule[i] == reality[i])
+            if (i+1 < reality.Count && schedule[i] == reality[i + 1])
             {
                 numCompleted++;
             }

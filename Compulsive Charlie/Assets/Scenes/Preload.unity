@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 591712283}
   - component: {fileID: 591712284}
   m_Layer: 0
-  m_Name: SuckItUp
+  m_Name: DealWithIt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1117,7 +1117,7 @@ GameObject:
   - component: {fileID: 1408761705}
   - component: {fileID: 1408761706}
   m_Layer: 0
-  m_Name: WTF
+  m_Name: ScrewThis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

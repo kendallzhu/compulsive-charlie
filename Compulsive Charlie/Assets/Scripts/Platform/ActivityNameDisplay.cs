@@ -25,7 +25,7 @@ public class ActivityNameDisplay : MonoBehaviour
         {
             gameObject.GetComponent<TextMeshProUGUI>().text = ap.activity.name.ToString();
             // mark scheduled activities
-            if (gameManager.profile.schedule[runManager.runState.timeSteps - 1] == ap.activity)
+            if (gameManager.profile.GetSchedule(runManager.runState.timeSteps) == ap.activity)
             {
                 gameObject.GetComponent<TextMeshProUGUI>().text += "*";
             }

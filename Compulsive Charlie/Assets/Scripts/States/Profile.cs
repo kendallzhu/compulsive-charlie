@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 // class for storing overall persistent game state/progress
 public class Profile
@@ -33,8 +34,18 @@ public class Profile
         schedule = new List<Activity>();
         experience = 0;
         energyCap = 20;
-        energyRegen = 0;
+        energyRegen = 1;
         allRuns = new List<RunState>();
+    }
+
+    // get activity scheduled for given timestep
+    public Activity GetSchedule(int time)
+    {
+        if (time > schedule.Count)
+        {
+            return schedule.Last();
+        }
+        return schedule[time - 1];
     }
 }
 

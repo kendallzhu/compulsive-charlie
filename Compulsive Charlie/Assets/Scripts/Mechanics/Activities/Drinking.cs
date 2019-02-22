@@ -8,6 +8,7 @@ public class Drinking : Activity
     {
         name = "Drinking";
         descriptionText = "problem and solution";
+        emotionNotes = new EmotionState(0, 0, 0);
         isUnlocked = true;
     }
 
@@ -19,5 +20,11 @@ public class Drinking : Activity
             return 1;
         }
         return 0;
+    }
+
+    public override void Effect(RunState runState)
+    {
+        runState.emotions.AddDespair(3);
+        return;
     }
 }

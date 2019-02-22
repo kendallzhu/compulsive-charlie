@@ -16,7 +16,7 @@ public class Nothing : Thought
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.Extremeness() == 0)
+        if (runState.emotions.Extremeness() <= 0)
         {
             return 1;
         }

@@ -7,7 +7,7 @@ public class KeepGoing : Thought
     void Awake()
     {
         name = "Keep Going";
-        descriptionText = "stay strong";
+        descriptionText = "be strong";
         isUnlocked = true;
         energyCost = 6;
         jumpPower = 6;

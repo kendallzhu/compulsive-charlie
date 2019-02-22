@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WTF : Thought
+public class ScrewThis : Thought
 {
     void Awake()
     {
-        name = "WTF";
-        descriptionText = "screw this";
+        name = "Screw This";
+        descriptionText = "I'm out";
         isUnlocked = true;
         energyCost = 2;
         jumpPower = 0;

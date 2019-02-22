@@ -7,7 +7,7 @@ public class IGiveUp : Thought
     void Awake()
     {
         name = "I Give Up";
-        descriptionText = "it's hopeless";
+        descriptionText = "it's no use";
         isUnlocked = true;
         energyCost = 2;
         jumpPower = 0;
