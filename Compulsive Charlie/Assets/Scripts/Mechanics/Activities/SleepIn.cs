@@ -14,7 +14,7 @@ public class SleepIn : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.timeSteps <= 1 || runState.TimeSinceLast(this) <= 1)
+        if (runState.timeSteps <= 1 || runState.TimeSinceLast(this) == 0)
         {
             return 1;
         }
