@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour {
         profile.schedule.Add(Object.FindObjectOfType<Walk>());
         profile.schedule.Add(Object.FindObjectOfType<BalancedMeal>());
         profile.schedule.Add(Object.FindObjectOfType<Study>());
+        profile.schedule.Add(Object.FindObjectOfType<Study>());
         profile.schedule.Add(Object.FindObjectOfType<Shower>());
         profile.schedule.Add(Object.FindObjectOfType<GoToBed>());
     }

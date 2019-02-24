@@ -8,7 +8,8 @@ public class GoToBed : Activity
     {
         name = "Go To Bed";
         descriptionText = "it's all over";
-        emotionNotes = new EmotionState(1, 1, 1);
+        emotionNotes = new EmotionState(1, 1, 0);
+        emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
     }
 

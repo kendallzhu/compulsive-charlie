@@ -8,6 +8,8 @@ public class YouTube : Activity
     {
         name = "YouTube";
         descriptionText = "suggested videos";
+        emotionNotes = new EmotionState(0, 0, 0);
+        emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
     }
 

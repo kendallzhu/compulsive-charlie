@@ -8,7 +8,8 @@ public class DoNothing : Activity
     {
         name = "Do Nothing";
         descriptionText = "wait - actually nothing?";
-        emotionNotes = new EmotionState(5, 5, 5); // ~current state?
+        emotionNotes = new EmotionState(5, 5, 5);
+        emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
     }
 

@@ -108,7 +108,7 @@ public class EmotionState
         {
             return Level(despair);
         }
-        Debug.Log("Extremeness called with wrong args");
+        Debug.Log("Extremeness called with invalid emotion name");
         return 0;
     }
 
@@ -121,20 +121,29 @@ public class EmotionState
     // shift all emotion axes towards 0 by given factor (plus one)
     public void Equilibrate(float factor)
     {
-        // adjust at least 1 point toward equilibrium
-        int diff = 0 - anxiety;
-        anxiety += (int)(diff * factor) + Math.Sign(diff);
+        Equilibrate("anxiety", factor);
+        Equilibrate("frustration", factor);
+        Equilibrate("despair", factor);
+    }
 
-        diff = 0 - frustration;
-        frustration += (int)(diff * factor) + Math.Sign(diff);
-
-        diff = 0 - despair;
-        despair += (int)(diff * factor) + Math.Sign(diff);
-
-        // floor emotions at 0
-        anxiety = Math.Max(anxiety, 0);
-        frustration = Math.Max(frustration, 0);
-        despair = Math.Max(despair, 0);
+    public void Equilibrate(string emotionName, float factor = .2f)
+    {
+        if (emotionName == "anxiety")
+        {
+            int diff = 0 - anxiety;
+            anxiety += (int)(diff * factor) + Math.Sign(diff);
+        }
+        else if (emotionName == "frustration")
+        {
+            int diff = 0 - frustration;
+            frustration += (int)(diff * factor) + Math.Sign(diff);
+        }
+        else if (emotionName == "despair")
+        {
+            int diff = 0 - despair;
+            despair += (int)(diff * factor) + Math.Sign(diff);
+        }
+        Debug.Log("Extremeness called with invalid emotion Name");
     }
 
     // checks if state is within the thresholds

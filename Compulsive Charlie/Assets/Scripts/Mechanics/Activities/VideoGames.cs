@@ -8,6 +8,8 @@ public class VideoGames : Activity
     {
         name = "Video Games";
         descriptionText = "...";
+        emotionNotes = new EmotionState(0, 1, 0);
+        emotionEffect = new EmotionState(0, 1, 1);
         isUnlocked = true;
     }
 

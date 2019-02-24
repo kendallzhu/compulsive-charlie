@@ -17,6 +17,7 @@ public abstract class Activity : MonoBehaviour {
     // changeable parameters
     public bool isUnlocked = false;
     public EmotionState emotionNotes = new EmotionState(0, 0, 0);
+    public EmotionState emotionEffect = new EmotionState(0, 0, 0);
     public List<Thought> associatedThoughts = new List<Thought>();
 
     // (weighted) availability specific to activity, given state of run
@@ -71,9 +72,9 @@ public abstract class Activity : MonoBehaviour {
     // activity specific effects
     public virtual void Effect(RunState runState)
     {
-        runState.emotions.AddAnxiety(emotionNotes.anxiety);
-        runState.emotions.AddFrustration(emotionNotes.frustration);
-        runState.emotions.AddDespair(emotionNotes.despair);
+        runState.emotions.AddAnxiety(emotionEffect.anxiety);
+        runState.emotions.AddFrustration(emotionEffect.frustration);
+        runState.emotions.AddDespair(emotionEffect.despair);
         return;
     }
 }

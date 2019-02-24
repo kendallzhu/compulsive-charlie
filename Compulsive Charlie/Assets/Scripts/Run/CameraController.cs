@@ -24,9 +24,11 @@ public class CameraController : MonoBehaviour
     {
         camera = GetComponent<Camera>();
         //Calculate and store the offset value by getting the distance between the player's position and camera's position.
-        Vector3 offset = transform.position - player.transform.position;
-        offsetX = offset.x;
-        offsetY = offset.y;
+        // Vector3 offset = transform.position - player.transform.position;
+        // offsetX = offset.x;
+        // offsetY = offset.y;
+        offsetX = 0;
+        offsetY = 0;
     }
 
     // LateUpdate is called after Update each frame

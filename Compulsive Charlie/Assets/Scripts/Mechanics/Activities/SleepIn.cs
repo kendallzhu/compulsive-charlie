@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SleepIn : Activity
 {
-    void Awake()
+    void Awake() // haha
     {
         name = "Sleep In";
         descriptionText = "ugh";
+        emotionNotes = new EmotionState(0, 0, 0);
+        emotionEffect = new EmotionState(0, 0, 1);
         isUnlocked = true;
     }
 

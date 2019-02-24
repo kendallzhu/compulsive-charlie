@@ -33,8 +33,8 @@ public class Background : MonoBehaviour
     void Update()
     {
         // Instantiate new copies of background sprite when camera view exceeds existing sprites
-        float horzExtent = Camera.main.orthographicSize * Screen.width / Screen.height;
-        float vertExtent = Camera.main.orthographicSize;
+        float horzExtent = 2 * Camera.main.orthographicSize * Screen.width / Screen.height;
+        float vertExtent = 2 * Camera.main.orthographicSize;
         float x = mainCamera.transform.position.x;
         float y = mainCamera.transform.position.y;
         // deal with horizontal extensions
@@ -55,7 +55,7 @@ public class Background : MonoBehaviour
         }
         // deal with vertical tiling
         float rightMost = maxX - spriteWidth / 2;
-        float leftMost = x - (rightMost - x);
+        float leftMost = x - (rightMost - x) - 1;
         if (maxY - y < vertExtent)
         {
             for (float lateral = rightMost; lateral >= leftMost; lateral -= spriteWidth)

@@ -9,6 +9,7 @@ public class Class : Activity
         name = "Class";
         descriptionText = "I'm in school?";
         emotionNotes = new EmotionState(1, 1, 1);
+        emotionEffect = new EmotionState(2, 1, 2);
         isUnlocked = true;
     }
 }

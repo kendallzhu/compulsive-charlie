@@ -8,6 +8,8 @@ public class Binge : Activity
     {
         name = "Binge";
         descriptionText = "fill the hole with food";
+        emotionNotes = new EmotionState(0, 0, 0);
+        emotionEffect = new EmotionState(0, 0, 2);
         isUnlocked = true;
     }
 
