@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 // script for graphic display of energy - right now just text but hopefully will be nicer
 public class EnergyDisplay : MonoBehaviour
@@ -19,6 +20,9 @@ public class EnergyDisplay : MonoBehaviour
         runManager = Object.FindObjectOfType<RunManager>();
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
+        // get reference to image display
+        transform.Find("Filler").GetComponent<Image>().type = Image.Type.Filled;
+        transform.Find("Filler").GetComponent<Image>().fillMethod = Image.FillMethod.Horizontal;
     }
 
     void Update()
@@ -29,6 +33,6 @@ public class EnergyDisplay : MonoBehaviour
         float maxEnergy = gameManager.profile.energyCap;
         float energy = runManager.runState.energy;
         float size = maxBarSize * energy / maxEnergy;
-        transform.Find("Bar").localScale = new Vector3(size, barThickness, 1f);
+        transform.Find("Filler").GetComponent<Image>().fillAmount = energy / maxEnergy;
     }
 }

@@ -15,8 +15,8 @@ public class CameraController : MonoBehaviour
 
     // zooming variables
     public float zoom = 4.8f;
-    float zoomedOut = 9.7f;
-    float zoomedNormal = 4.8f;
+    float zoomedOut = 7f;
+    float zoomedNormal = 4.7f;
     private float smooth = 5;
 
     // Use this for initialization
@@ -27,8 +27,8 @@ public class CameraController : MonoBehaviour
         // Vector3 offset = transform.position - player.transform.position;
         // offsetX = offset.x;
         // offsetY = offset.y;
-        offsetX = 0;
-        offsetY = 0;
+        offsetX = 5;
+        offsetY = 1.9f;
     }
 
     // LateUpdate is called after Update each frame

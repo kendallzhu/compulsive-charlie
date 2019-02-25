@@ -40,7 +40,7 @@ public class ActivityPlatform : MonoBehaviour {
         runManager = Object.FindObjectOfType<RunManager>();
     }
 
-    // correctly position platform based on current state
+    // correctly position platform based on current states
     public void Initialize(Activity _activity)
     {
         activity = _activity;

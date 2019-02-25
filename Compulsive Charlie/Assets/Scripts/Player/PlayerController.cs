@@ -8,7 +8,7 @@ using System.Linq;
 public class PlayerController : MonoBehaviour {
     // gameplay constants
     public const float jumpForcePerEnergy = 80f;
-    public const float forwardJumpForce = 30f;
+    public const float forwardJumpForce = 40f;
     public const float fallingMinForwardSpeed = .5f;
 
     public Transform groundCheckLeft;
