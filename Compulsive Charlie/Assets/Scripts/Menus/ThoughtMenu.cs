@@ -34,21 +34,26 @@ public class ThoughtMenu : MonoBehaviour {
         canvas.SetActive(true);
         // set the contents of cards properly
         List<Transform> cards = new List<Transform> {
-            gameObject.transform.Find("Option1Button"),
-            gameObject.transform.Find("Option2Button"),
-            gameObject.transform.Find("Option3Button")
+            gameObject.transform.Find("ThoughtCard1"),
+            gameObject.transform.Find("ThoughtCard2"),
+            gameObject.transform.Find("ThoughtCard3")
         };
         for (int i = 0; i < 3; i++)
         {
             Transform card = cards[i];
             GameObject nameText = card.Find("NameText").gameObject;
             GameObject descriptionText = card.Find("DescriptionText").gameObject;
+            GameObject energyText = card.Find("EnergyText").gameObject;
+            GameObject jumpPowerText = card.Find("JumpPowerText").gameObject;
             // show only cards which thoughts are provided
             if (i < thoughts.Count)
             {
                 card.gameObject.SetActive(true);
                 nameText.GetComponent<TextMeshProUGUI>().text = thoughts[i].name;
                 descriptionText.GetComponent<TextMeshProUGUI>().text = thoughts[i].descriptionText;
+                energyText.GetComponent<TextMeshProUGUI>().text = thoughts[i].energyCost.ToString();
+                jumpPowerText.GetComponent<TextMeshProUGUI>().text = thoughts[i].jumpPower.ToString();
+
             } else
             {
                 card.gameObject.SetActive(false);
