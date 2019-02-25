@@ -21,7 +21,7 @@ public class ThoughtDisplay : MonoBehaviour
         Thought currentThought = runManager.runState.CurrentThought();
         if (currentThought)
         {
-            string quote = "\"" + currentThought.name + "\"";
+            string quote = "\"" + currentThought.descriptionText + "\"";
             gameObject.GetComponent<TextMeshProUGUI>().text =  quote;
         }
     }

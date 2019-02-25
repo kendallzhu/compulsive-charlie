@@ -22,7 +22,7 @@ public class Binge : Activity
         }
         Activity balancedMeal = Object.FindObjectOfType<BalancedMeal>();
         int timeSinceEat = System.Math.Min(runState.TimeSinceLast(this), runState.TimeSinceLast(balancedMeal));
-        int hunger = System.Math.Max(0, timeSinceEat - 2);
+        int hunger = System.Math.Max(0, timeSinceEat - 3);
         return hunger;
     }
 }
