@@ -3221,13 +3221,23 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114679623816895726, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1299305578723604, guid: b9a8dbc6f1379bb45a0f8970adc86e77, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1838028454838460, guid: b9a8dbc6f1379bb45a0f8970adc86e77, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212379976457415568, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a8dbc6f1379bb45a0f8970adc86e77, type: 3}
