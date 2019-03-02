@@ -2031,6 +2031,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6785824306375721920, guid: ebba332c31602c143b91d31ae1013734,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 26497cf12c49a90429835b5d390d2faa,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebba332c31602c143b91d31ae1013734, type: 3}
 --- !u!4 &1433304469 stripped
@@ -2408,7 +2414,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1059496099
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e5f6465e9d632b14d9ac244ca3eb844a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3238,6 +3244,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61350051186962232, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0590775
+      objectReference: {fileID: 0}
+    - target: {fileID: 61350051186962232, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.056364
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a8dbc6f1379bb45a0f8970adc86e77, type: 3}
