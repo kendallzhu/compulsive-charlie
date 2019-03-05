@@ -10,7 +10,7 @@ public class LetsDoThis : Thought
         descriptionText = "leggo";
         isUnlocked = true;
         energyCost = 4;
-        jumpPower = 6;
+        jumpPower = 5;
     }
 
     // whether this activity is available, given state of run

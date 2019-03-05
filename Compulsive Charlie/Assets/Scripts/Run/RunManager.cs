@@ -116,6 +116,7 @@ public class RunManager : MonoBehaviour
     }
 
     // called from player controller after sensing ready to jump
+    // may be called again from thought menu if wanting to offer thoughts again
     public void PreJump()
     {
         // offer thoughts

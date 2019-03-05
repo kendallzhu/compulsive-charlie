@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeepGoing : Thought
+public class LemmeThink : Thought
 {
     void Awake()
     {
-        name = "Keep Going";
-        descriptionText = "be strong";
+        name = "Lemme Think";
+        descriptionText = "hmmm";
         isUnlocked = true;
-        energyCost = 6;
-        jumpPower = 5;
+        energyCost = 2;
+        jumpPower = 0;
+        rethink = true;
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.GetDominantEmotion() == "despair")
+        /* if (runState.emotions.GetDominantEmotion() == "anxiety")
         {
-            return 1;
-        }
-        return 0;
+            return runState.emotions.Extremeness();
+        } */
+        return 1;
     }
 
     // how this thought modifies run state when thunk

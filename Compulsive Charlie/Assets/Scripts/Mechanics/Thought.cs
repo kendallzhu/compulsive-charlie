@@ -14,6 +14,7 @@ public abstract class Thought : MonoBehaviour
     public bool isUnlocked = false;
     public int energyCost = 0;
     public int jumpPower = 0;
+    public bool rethink = false;
 
     // non-emotion thought-specific availability conditions 
     // (Don't use activity history - to keep modular)?

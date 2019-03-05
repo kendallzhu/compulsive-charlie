@@ -9,8 +9,8 @@ public class FaceIt : Thought
         name = "Face It";
         descriptionText = "be brave";
         isUnlocked = true;
-        energyCost = 5;
-        jumpPower = 6;
+        energyCost = 6;
+        jumpPower = 5;
     }
 
     // whether this activity is available, given state of run

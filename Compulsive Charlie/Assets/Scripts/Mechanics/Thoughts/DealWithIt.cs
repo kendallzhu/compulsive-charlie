@@ -10,7 +10,7 @@ public class DealWithIt : Thought
         descriptionText = "overcome";
         isUnlocked = true;
         energyCost = 6;
-        jumpPower = 6;
+        jumpPower = 5;
     }
 
     // whether this activity is available, given state of run

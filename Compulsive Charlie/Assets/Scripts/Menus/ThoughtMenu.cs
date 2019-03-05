@@ -45,6 +45,9 @@ public class ThoughtMenu : MonoBehaviour {
             GameObject descriptionText = card.Find("DescriptionText").gameObject;
             GameObject energyText = card.Find("EnergyText").gameObject;
             GameObject jumpPowerText = card.Find("JumpPowerText").gameObject;
+
+            GameObject upArrowIcon = card.Find("UpArrowIcon").gameObject;
+            GameObject rethinkIcon = card.Find("RethinkIcon").gameObject;
             // show only cards which thoughts are provided
             if (i < thoughts.Count)
             {
@@ -53,7 +56,17 @@ public class ThoughtMenu : MonoBehaviour {
                 descriptionText.GetComponent<TextMeshProUGUI>().text = thoughts[i].descriptionText;
                 energyText.GetComponent<TextMeshProUGUI>().text = thoughts[i].energyCost.ToString();
                 jumpPowerText.GetComponent<TextMeshProUGUI>().text = thoughts[i].jumpPower.ToString();
-
+                // add a rethinking icon for cards that cause rethink
+                if (thoughts[i].rethink)
+                {
+                    upArrowIcon.SetActive(false);
+                    rethinkIcon.SetActive(true);
+                    
+                } else
+                {
+                    upArrowIcon.SetActive(true);
+                    rethinkIcon.SetActive(false);
+                }
             } else
             {
                 card.gameObject.SetActive(false);
@@ -85,8 +98,15 @@ public class ThoughtMenu : MonoBehaviour {
         canvas.SetActive(false);
         // trigger the selected thought effect
         RunState runState = runManager.runState;
-        runState.thoughtHistory.Add(thoughts[index]);
-        thoughts[index].Effect(runState);
-        runManager.PostThoughtSelect();
+        Thought chosenThought = thoughts[index];
+        runState.thoughtHistory.Add(chosenThought);
+        chosenThought.Effect(runState);
+        if (chosenThought.rethink)
+        {
+            runManager.PreJump();
+        } else
+        {
+            runManager.PostThoughtSelect();
+        }
     }
 }
