@@ -46,7 +46,7 @@ public class RunManager : MonoBehaviour
             gameManager.EndRun(runState);
         }
         // if broke, end run (and skip the rest of the procedure)
-        if (true || runState.done)
+        if (runState.done)
         {
             gameManager.EndRun(runState);
             return;
@@ -86,6 +86,7 @@ public class RunManager : MonoBehaviour
     // for when the player enters the jump Pad
     public void EnterJumpPad(ActivityPlatform activityPlatform)
     {
+        gameManager.EndRun(runState); //test
         // Zoom out for jump
         camera.ZoomOut();
 

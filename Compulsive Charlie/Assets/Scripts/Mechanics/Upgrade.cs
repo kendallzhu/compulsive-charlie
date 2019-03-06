@@ -7,6 +7,8 @@ public abstract class Upgrade : MonoBehaviour {
     // unique name
     new public string name;
     public string descriptionText;
+    // energy, emotion, thought, or action
+    public string category;
     // TODO: sprite/icon
 
     // comb through lists of activities and thoughts and modify them to make upgrade
