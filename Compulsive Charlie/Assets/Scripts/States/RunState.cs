@@ -9,14 +9,12 @@ public class RunState {
     public bool done;
     public int energy;
     public int energyCap;
-    public int money;
     public int jumpPower;
     public int craving;
     public int cravingMultiplier;
     public EmotionState emotions;
     public List<ActivityPlatform> activityHistory;
     public List<Thought> thoughtHistory;
-    public List<int> moneyHistory;
     // height could have more meaning?
     public int height = 0;
 
@@ -24,10 +22,9 @@ public class RunState {
     public List<ActivityPlatform> spawnedPlatforms = new List<ActivityPlatform>();
 
     // basic constructor
-    public RunState(int initialMoney, int initialEnergy, int energyCap, EmotionState initialEmotions)
+    public RunState(int initialEnergy, int energyCap, EmotionState initialEmotions)
     {
         this.timeSteps = 0;
-        this.money = initialMoney;
         this.craving = 0;
         this.cravingMultiplier = 1;
         this.energy = initialEnergy;
@@ -35,7 +32,6 @@ public class RunState {
         this.emotions = initialEmotions;
         this.activityHistory = new List<ActivityPlatform>();
         this.thoughtHistory = new List<Thought>();
-        this.moneyHistory = new List<int>();
     }
 
     public void IncreaseCraving(int amount)
@@ -80,15 +76,6 @@ public class RunState {
             return null;
         }
         return thoughtHistory.Last();
-    }
-
-    public int MoneyDiff(int time = 0)
-    {
-        if (moneyHistory.Count < time + 1)
-        {
-            return 0;
-        }
-        return money - moneyHistory[moneyHistory.Count - time - 1];
     }
 
     // destroy all platforms in the prospective set except chosen, clear list

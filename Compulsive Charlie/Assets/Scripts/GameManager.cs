@@ -32,29 +32,26 @@ public class GameManager : MonoBehaviour {
         {
             profile.upgrades.Add(child.gameObject.GetComponent<Upgrade>());
         }
-        // tutorial schedule - TODO: factor out?
-        /*profile.schedule.Add(Object.FindObjectOfType<SleepIn>());
-        profile.schedule.Add(Object.FindObjectOfType<VideoGames>());
-        profile.schedule.Add(Object.FindObjectOfType<Eating>());
-        profile.schedule.Add(Object.FindObjectOfType<YouTube>());
-        profile.schedule.Add(Object.FindObjectOfType<VideoGames>());
-        profile.schedule.Add(Object.FindObjectOfType<Eating>());
-        profile.schedule.Add(Object.FindObjectOfType<Drinking>());
-        profile.schedule.Add(Object.FindObjectOfType<Eating>());
-        profile.schedule.Add(Object.FindObjectOfType<Drinking>());
-        profile.schedule.Add(Object.FindObjectOfType<GoToBed>());*/
 
+        profile.defaultInitialEmotions = new EmotionState(10, 10, 10);
+        profile.defaultInitialEnergy = 2;
+        profile.defaultEnergyCap = 10;
+        profile.defaultEnergyRegen = 0;
+
+        profile.defaultSchedule = new List<Activity>();
         // ambitious schedule
-        profile.schedule.Add(Object.FindObjectOfType<BalancedMeal>());
-        profile.schedule.Add(Object.FindObjectOfType<Class>());
-        profile.schedule.Add(Object.FindObjectOfType<BalancedMeal>());
-        profile.schedule.Add(Object.FindObjectOfType<Study>());
-        profile.schedule.Add(Object.FindObjectOfType<Walk>());
-        profile.schedule.Add(Object.FindObjectOfType<BalancedMeal>());
-        profile.schedule.Add(Object.FindObjectOfType<Study>());
-        profile.schedule.Add(Object.FindObjectOfType<Study>());
-        profile.schedule.Add(Object.FindObjectOfType<Shower>());
-        profile.schedule.Add(Object.FindObjectOfType<GoToBed>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<BalancedMeal>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<Class>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<BalancedMeal>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<Study>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<Walk>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<BalancedMeal>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<Study>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<Study>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<Shower>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<GoToBed>());
+
+        profile.Reset();
     }
 
     public void StartGame()

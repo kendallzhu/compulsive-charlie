@@ -161,6 +161,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
 --- !u!1 &113567079
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +259,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
 --- !u!1 &297974631
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +309,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
 --- !u!1 &302372027
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +359,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
 --- !u!1 &385407947
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +457,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
 --- !u!1 &546489417
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +621,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
 --- !u!1 &595282485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,6 +1112,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 1
   jumpPower: 0
+  rethink: 0
 --- !u!1 &1167472921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1162,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
 --- !u!1 &1274033688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1212,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
 --- !u!1 &1408761704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1262,54 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
+--- !u!1 &1445534576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1445534577}
+  - component: {fileID: 1445534578}
+  m_Layer: 0
+  m_Name: WakeUpFresh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1445534577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445534576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2122227344}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1445534578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445534576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52c96b521bcae94a8f8ffc2987495eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  descriptionText: 
+  expCost: 0
+  isUnlocked: 0
 --- !u!1 &1468555390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,6 +1359,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
 --- !u!1 &1479288457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1457,7 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0
 --- !u!1 &1677881883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,7 +1575,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.0433707, y: 0.2557096, z: 0.056311168}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1445534577}
   m_Father: {fileID: 725682865}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1617,3 +1677,4 @@ MonoBehaviour:
   isUnlocked: 0
   energyCost: 0
   jumpPower: 0
+  rethink: 0

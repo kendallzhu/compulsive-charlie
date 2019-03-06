@@ -31,10 +31,9 @@ public class RunManager : MonoBehaviour
         }
         // get initial runState based on profile
         runState = new RunState(
-            gameManager.profile.initialMoney,
             gameManager.profile.initialEnergy,
             gameManager.profile.energyCap,
-            new EmotionState(gameManager.profile.emotionEquilibriums)
+            new EmotionState(gameManager.profile.initialEmotions)
         );
         thoughtMenu.Initialize();
     }
@@ -47,7 +46,7 @@ public class RunManager : MonoBehaviour
             gameManager.EndRun(runState);
         }
         // if broke, end run (and skip the rest of the procedure)
-        if (runState.done)
+        if (true || runState.done)
         {
             gameManager.EndRun(runState);
             return;
@@ -65,9 +64,8 @@ public class RunManager : MonoBehaviour
             }
             // increment timeSteps
             runState.timeSteps += 1;
-            // update activity and money histories
+            // update activity history
             runState.activityHistory.Add(newActivityPlatform);
-            runState.moneyHistory.Add(runState.money);
             runState.height = newActivityPlatform.y;
             // clear out other spawnedPlatforms
             runState.ClearSpawned(newActivityPlatform);

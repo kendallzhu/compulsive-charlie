@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Script for handling the menu after the cutScene
 // (All non-ui functions called through gameManager, so it can keep track of stuff)
-public class CutSceneMenu : MonoBehaviour
+public class RecapMenu : MonoBehaviour
 {
     public GameManager gameManager;
 

@@ -31,6 +31,6 @@ public class Score : MonoBehaviour
         }
         string completion = numCompleted.ToString() + "/" + schedule.Count.ToString();
         gameObject.GetComponent<TextMeshProUGUI>().text = "Schedule Completion: " + completion;
-        // TODO: also show max money, other achievements?
+        // TODO: also show other achievements?
     }
 }

@@ -11,30 +11,29 @@ public class Profile
     public List<Thought> thoughts;
     public List<Activity> activities;
     public List<Upgrade> upgrades;
-    public EmotionState emotionEquilibriums;
+
+    // parameters
+    public EmotionState emotionEquilibriums = new EmotionState(0, 0, 0);
+    public EmotionState defaultInitialEmotions;
+    public EmotionState initialEmotions;
+    public List<Activity> defaultSchedule;
     public List<Activity> schedule;
-    public int initialMoney;
+    public int defaultInitialEnergy;
     public int initialEnergy;
+    public int defaultEnergyRegen;
     public int energyRegen;
+    public int defaultEnergyCap;
     public int energyCap;
-    // exp buys upgrades
-    public int experience;
+    // run history
     public List<RunState> allRuns;
 
     // constructor - (I think this will only be called once on game start)
     public Profile()
     {
-        // set starting profile of the game - TODO: Tune according to story of game, maybe start out shittier
-        emotionEquilibriums = new EmotionState(10, 10, 10);
-        initialMoney = 50;
-        initialEnergy = 2;
         thoughts = new List<Thought>();
         activities = new List<Activity>();
         upgrades = new List<Upgrade>();
         schedule = new List<Activity>();
-        experience = 0;
-        energyCap = 10;
-        energyRegen = 1;
         allRuns = new List<RunState>();
     }
 
@@ -46,6 +45,16 @@ public class Profile
             return schedule.Last();
         }
         return schedule[time - 1];
+    }
+
+    // reset profile to defaults
+    public void Reset()
+    {
+        initialEmotions = new EmotionState(defaultInitialEmotions);
+        initialEnergy = defaultInitialEnergy;
+        energyRegen = defaultEnergyRegen;
+        energyCap = defaultEnergyCap;
+        schedule = new List<Activity>(defaultSchedule);
     }
 }
 
