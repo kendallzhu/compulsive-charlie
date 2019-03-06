@@ -25,7 +25,7 @@ public class Profile
     public Profile()
     {
         // set starting profile of the game - TODO: Tune according to story of game, maybe start out shittier
-        emotionEquilibriums = new EmotionState(0, 0, 0);
+        emotionEquilibriums = new EmotionState(10, 10, 10);
         initialMoney = 50;
         initialEnergy = 2;
         thoughts = new List<Thought>();
@@ -33,7 +33,7 @@ public class Profile
         upgrades = new List<Upgrade>();
         schedule = new List<Activity>();
         experience = 0;
-        energyCap = 20;
+        energyCap = 10;
         energyRegen = 1;
         allRuns = new List<RunState>();
     }

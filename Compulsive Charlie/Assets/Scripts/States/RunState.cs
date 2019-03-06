@@ -8,6 +8,7 @@ public class RunState {
     public int timeSteps;
     public bool done;
     public int energy;
+    public int energyCap;
     public int money;
     public int jumpPower;
     public int craving;
@@ -23,13 +24,14 @@ public class RunState {
     public List<ActivityPlatform> spawnedPlatforms = new List<ActivityPlatform>();
 
     // basic constructor
-    public RunState(int initialMoney, int initialEnergy, EmotionState initialEmotions)
+    public RunState(int initialMoney, int initialEnergy, int energyCap, EmotionState initialEmotions)
     {
         this.timeSteps = 0;
         this.money = initialMoney;
         this.craving = 0;
         this.cravingMultiplier = 1;
         this.energy = initialEnergy;
+        this.energyCap = energyCap;
         this.emotions = initialEmotions;
         this.activityHistory = new List<ActivityPlatform>();
         this.thoughtHistory = new List<Thought>();
@@ -48,6 +50,7 @@ public class RunState {
     public void IncreaseEnergy(int amount)
     {
         energy += amount;
+        energy = System.Math.Min(energy, energyCap);
         energy = System.Math.Max(energy, 0);
     }
 

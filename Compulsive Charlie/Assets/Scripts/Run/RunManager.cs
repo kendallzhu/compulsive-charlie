@@ -32,7 +32,8 @@ public class RunManager : MonoBehaviour
         // get initial runState based on profile
         runState = new RunState(
             gameManager.profile.initialMoney,
-            gameManager.profile.initialEnergy, 
+            gameManager.profile.initialEnergy,
+            gameManager.profile.energyCap,
             new EmotionState(gameManager.profile.emotionEquilibriums)
         );
         thoughtMenu.Initialize();
