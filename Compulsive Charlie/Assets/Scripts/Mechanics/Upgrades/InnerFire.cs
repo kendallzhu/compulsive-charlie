@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class WakeUpFresh : Upgrade
+public class InnerFire : Upgrade
 {
     void Awake()
     {
-        name = "Wake Up Fresh";
-        descriptionText = "Start with more energy";
+        name = "Inner Fire";
+        descriptionText = "Generate energy through the day";
     }
 
     // comb through lists of activities and thoughts and modify them to make upgrade
     public override void Activate(Profile profile)
     {
-        profile.initialEnergy = 12;
+        profile.energyRegen = 2;
     }
 
     // criteria for upgrade to be available after a run
-    public override bool IsAvailable (Profile profile)
+    public override bool IsAvailable(Profile profile)
     {
         RunState lastRunState = profile.allRuns.Last();
         return lastRunState.activityHistory.Count() <= 12;

@@ -143,7 +143,7 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.31617647, g: 0.31617647, b: 0.31617647, a: 1}
+  m_Color: {r: 0.9811321, g: 0.96724814, b: 0.96724814, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -424,9 +424,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.547}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.741}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 0.3764706}
+    m_HighlightedColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0.6431373}
+    m_PressedColor: {r: 0.8940014, g: 0.9245283, b: 0.90105253, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -482,7 +482,12 @@ PrefabInstance:
     - target: {fileID: 7941444646584232563, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
       propertyPath: m_Name
-      value: Thought
+      value: ThoughtIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232563, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
@@ -547,12 +552,12 @@ PrefabInstance:
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.9999847
+      value: -8.7
       objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 30
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
@@ -589,6 +594,27 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232561, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b40c361fd1b87a9468403eccca11abab,
+        type: 3}
+    - target: {fileID: 7941444646584232561, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232561, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9484129
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232561, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.06741722
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8be57d6117690fd449b3ab8bfbb20ba0, type: 3}
 --- !u!224 &7679749396842593219 stripped
@@ -607,7 +633,12 @@ PrefabInstance:
     - target: {fileID: 7941444646584232563, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
       propertyPath: m_Name
-      value: EnergyIcon (3)
+      value: ActionIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232563, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
@@ -672,17 +703,17 @@ PrefabInstance:
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.9999847
+      value: -7.52
       objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 30
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
@@ -714,6 +745,27 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232561, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.55108577
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232561, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.88737565
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232561, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.9056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232561, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 70d227d6b78566d4aa47aea4bd8af041,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8be57d6117690fd449b3ab8bfbb20ba0, type: 3}
 --- !u!224 &8420013112768846612 stripped
@@ -733,6 +785,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EmotionIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232563, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
@@ -797,7 +854,7 @@ PrefabInstance:
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.9999847
+      value: -6.88
       objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
@@ -875,6 +932,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnergyIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 7941444646584232563, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -938,7 +1000,7 @@ PrefabInstance:
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.9999847
+      value: -7.8
       objectReference: {fileID: 0}
     - target: {fileID: 7941444646584232562, guid: 8be57d6117690fd449b3ab8bfbb20ba0,
         type: 3}

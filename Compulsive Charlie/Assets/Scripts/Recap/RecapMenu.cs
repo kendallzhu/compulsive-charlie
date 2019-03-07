@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 // Script for handling the menu after the cutScene
 // (All non-ui functions called through gameManager, so it can keep track of stuff)
@@ -38,7 +39,13 @@ public class RecapMenu : MonoBehaviour
 
     public void UpgradesPanel(string category = "")
     {
-        if (category == "")
+        // get available upgrades according to the category
+        Profile p = gameManager.profile;
+        RunState lastRunState = p.allRuns.Last();
+        List<Upgrade> allUpgrades = p.upgrades;
+        List<Upgrade> availableUpgrades = allUpgrades.Where(u => u.IsAvailable(p)).ToList();
+        // List<Upgrade> categoryUpgrades = 
+        if (category == "" || availableUpgrades.Count == 0)
         {
             upgradesPanel.SetActive(false);
             upgradesButton.SetActive(false);
@@ -46,16 +53,24 @@ public class RecapMenu : MonoBehaviour
         }
         else
         {
-            // populate the upgrade cards TODO: according to the category
+            // populate the upgrade cards
             List<Transform> cards = new List<Transform> {
                 upgradesPanel.transform.Find("UpgradeCard1"),
                 upgradesPanel.transform.Find("UpgradeCard2"),
                 upgradesPanel.transform.Find("UpgradeCard3"),
             };
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Transform card = cards[i];
-                card.GetComponent<UpgradeCard>().Initialize(Object.FindObjectOfType<WakeUpFresh>());
+                if (i < availableUpgrades.Count())
+                {
+                    card.gameObject.SetActive(true);
+                    card.GetComponent<UpgradeCard>().Initialize(availableUpgrades[i]);
+                } else
+                {
+                    card.gameObject.SetActive(false);
+                }
+                
             }
             upgradesPanel.SetActive(true);
         }

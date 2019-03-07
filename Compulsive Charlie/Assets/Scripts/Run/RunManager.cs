@@ -86,7 +86,7 @@ public class RunManager : MonoBehaviour
     // for when the player enters the jump Pad
     public void EnterJumpPad(ActivityPlatform activityPlatform)
     {
-        gameManager.EndRun(runState); //test
+        // gameManager.EndRun(runState); //test
         // Zoom out for jump
         camera.ZoomOut();
 
