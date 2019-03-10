@@ -72,6 +72,10 @@ public class RunManager : MonoBehaviour
             // start new platform spawning rhythm notes - deactivate this
             // newActivityPlatform.StartRhythm();
 
+            // start activity animation
+            Debug.Log("activityHash:" + Animator.StringToHash(newActivityPlatform.activity.name));
+            player.GetComponent<Animator>().SetInteger("activityHash", Animator.StringToHash(newActivityPlatform.activity.name));
+
             // trigger activity special effect
             runState.CurrentActivityPlatform().activity.Effect(runState);
         }
@@ -87,6 +91,9 @@ public class RunManager : MonoBehaviour
     public void EnterJumpPad(ActivityPlatform activityPlatform)
     {
         // gameManager.EndRun(runState); //test
+        // end activity animation
+        player.GetComponent<Animator>().SetInteger("activityHash", 0);
+
         // Zoom out for jump
         camera.ZoomOut();
 
