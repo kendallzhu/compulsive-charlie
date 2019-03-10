@@ -10,8 +10,6 @@ public class RunState {
     public int energy;
     public int energyCap;
     public int jumpPower;
-    public int craving;
-    public int cravingMultiplier;
     public EmotionState emotions;
     public List<ActivityPlatform> activityHistory;
     public List<Thought> thoughtHistory;
@@ -25,22 +23,11 @@ public class RunState {
     public RunState(int initialEnergy, int energyCap, EmotionState initialEmotions)
     {
         this.timeSteps = 0;
-        this.craving = 0;
-        this.cravingMultiplier = 1;
         this.energy = initialEnergy;
         this.energyCap = energyCap;
         this.emotions = initialEmotions;
         this.activityHistory = new List<ActivityPlatform>();
         this.thoughtHistory = new List<Thought>();
-    }
-
-    public void IncreaseCraving(int amount)
-    {
-        craving += cravingMultiplier * amount;
-        if (craving < 0)
-        {
-            craving = 0;
-        }
     }
 
     public void IncreaseEnergy(int amount)

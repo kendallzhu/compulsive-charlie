@@ -14,7 +14,7 @@ public class WakeUpFresh : Upgrade
     // comb through lists of activities and thoughts and modify them to make upgrade
     public override void Activate(Profile profile)
     {
-        profile.initialEnergy = 12;
+        profile.initialEnergy = profile.energyCap;
     }
 
     // criteria for upgrade to be available after a run

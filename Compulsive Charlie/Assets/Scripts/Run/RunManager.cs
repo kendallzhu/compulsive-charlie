@@ -109,9 +109,6 @@ public class RunManager : MonoBehaviour
         // regenerate energy
         runState.IncreaseEnergy(gameManager.profile.energyRegen);
 
-        // gradually increase craving based on emotion intensity
-        runState.IncreaseCraving(runState.emotions.CravingIncrease());
-
         // cap energy
         runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
 

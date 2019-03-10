@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
             profile.upgrades.Add(child.gameObject.GetComponent<Upgrade>());
         }
 
-        profile.defaultInitialEmotions = new EmotionState(10, 10, 10);
+        profile.defaultInitialEmotions = new EmotionState(5, 5, 5);
         profile.defaultInitialEnergy = 2;
         profile.defaultEnergyCap = 10;
         profile.defaultEnergyRegen = 0;

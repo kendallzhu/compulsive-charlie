@@ -95,13 +95,13 @@ public class PlayerController : MonoBehaviour {
         {
             float upwardJumpForce = runState.CurrentThought().JumpBonus(runState.jumpPower * jumpForcePerEnergy);
             rb2d.AddForce(new Vector2(forwardJumpForce, upwardJumpForce));
-            runState.jumpPower = -runManager.runState.craving;
+            runState.jumpPower = 0;
         }
     }
 
     // functions for gameplay parameters that depend on runState (emotions, etc.)
     private float PlatformMinForwardSpeed(RunState runState)
     {
-        return 5f;
+        return 2f;
     }
 }

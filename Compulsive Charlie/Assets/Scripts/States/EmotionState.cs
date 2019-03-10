@@ -112,12 +112,6 @@ public class EmotionState
         return 0;
     }
 
-    // how much craving does extreme emotion generate?
-    public int CravingIncrease()
-    {
-        return 0; // this.Extremeness() - 1;
-    }
-
     // shift all emotion axes towards 0 by given factor (plus one)
     public void Equilibrate(float factor)
     {
