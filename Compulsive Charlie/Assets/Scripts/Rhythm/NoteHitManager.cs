@@ -9,12 +9,10 @@ public class NoteHitManager : MonoBehaviour
     GameObject hitNote;
 
     NoteManager noteManager;
-    Vector3 hitAreaPos;
     GameObject noteStatus;    
 
     private void Start()
     {
-        hitAreaPos = GameObject.FindWithTag("HitArea").transform.position;
         noteManager = FindObjectOfType<NoteManager>();
         missNote = gameObject.transform.Find("miss").gameObject;
         hitNote = gameObject.transform.Find("hit").gameObject;
@@ -44,14 +42,12 @@ public class NoteHitManager : MonoBehaviour
 
     public void Miss()
     {
-        //noteStatus = Instantiate(missNote, hitAreaPos, Quaternion.identity, transform.parent);
         StartCoroutine(ShowAndHide(missNote, 0.1f));
         noteManager.DestroyNote();
     }
 
     public void Hit()
     {
-        //noteStatus = Instantiate(hitNote, hitAreaPos, Quaternion.identity, transform.parent);
         StartCoroutine(ShowAndHide(hitNote, 0.1f));
         noteManager.DestroyNote();
     }
