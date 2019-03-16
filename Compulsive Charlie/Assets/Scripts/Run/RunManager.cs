@@ -73,8 +73,9 @@ public class RunManager : MonoBehaviour
             StartRhythm();
 
             // start activity animation
-            Debug.Log("activityHash:" + Animator.StringToHash(newActivityPlatform.activity.name));
+            Debug.Log(newActivityPlatform.activity.name + " hash:" + Animator.StringToHash(newActivityPlatform.activity.name));
             player.GetComponent<Animator>().SetInteger("activityHash", Animator.StringToHash(newActivityPlatform.activity.name));
+            player.GetComponent<Animator>().SetTrigger("startActivity");
 
             // trigger activity special effect
             runState.CurrentActivityPlatform().activity.Effect(runState);
@@ -92,7 +93,7 @@ public class RunManager : MonoBehaviour
     {
         // gameManager.EndRun(runState); //test
         // end activity animation
-        player.GetComponent<Animator>().SetInteger("activityHash", 0);
+        player.GetComponent<Animator>().SetTrigger("finishActivity");
 
         // Zoom out for jump
         camera.ZoomOut();

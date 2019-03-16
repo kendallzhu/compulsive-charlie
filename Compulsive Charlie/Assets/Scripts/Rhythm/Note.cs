@@ -8,9 +8,6 @@ public class Note : MonoBehaviour
     RhythmManager rhythmManager;
     Transform hitArea;
 
-    // how long it takes for notes to get to hit area
-    const float travelTime = 2f;
-
     float spawnTime;
     public float arrivalTime;
     float travelDistance;
@@ -21,14 +18,14 @@ public class Note : MonoBehaviour
         hitArea = GameObject.FindWithTag("HitArea").transform;
 
         spawnTime = Time.time;
-        arrivalTime = Time.time + travelTime;
+        arrivalTime = Time.time + RhythmManager.travelTime;
         travelDistance = transform.position.x - hitArea.position.x;
     }
 
     void Update()
     {
         // move note to proper position
-        float newX = hitArea.position.x + travelDistance * (arrivalTime - Time.time) / travelTime;
+        float newX = hitArea.position.x + travelDistance * (arrivalTime - Time.time) / RhythmManager.travelTime;
         newX = System.Math.Max(hitArea.position.x, newX);
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
     }

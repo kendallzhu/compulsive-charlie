@@ -7,6 +7,8 @@ public class RhythmManager : MonoBehaviour
     // how forgiving we are for note hits
     public const float hitWindowLate = .05f;
     public const float hitWindowEarly = .05f;
+    // how long it takes for notes to get to hit area
+    public const float travelTime = 1.5f;
 
     public RunManager runManager;
     public GameObject Note; // note prefab
@@ -24,7 +26,7 @@ public class RhythmManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Vector3 staffPos = transform.parent.position;
-            Vector3 startingPos = new Vector3(staffPos.x + 16f, staffPos.y);
+            Vector3 startingPos = new Vector3(staffPos.x + 12f, staffPos.y);
             GameObject note = Instantiate(Note, startingPos, Quaternion.identity, transform.parent);
             notes.Add(note.GetComponent<Note>());
         }

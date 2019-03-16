@@ -17,13 +17,14 @@ public class PlayerController : MonoBehaviour {
     public bool grounded;
     public bool nearEdge;
     public bool nearEdgeLastFrame;
-    // private Animator anim;
+
+    private Animator anim;
     private Rigidbody2D rb2d;
     private RunManager runManager;
 
     void Awake()
     {
-        // anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();
@@ -97,11 +98,13 @@ public class PlayerController : MonoBehaviour {
             rb2d.AddForce(new Vector2(forwardJumpForce, upwardJumpForce));
             runState.jumpPower = 0;
         }
+        // trigger jumping animation
+        anim.SetTrigger("jumping");
     }
 
     // functions for gameplay parameters that depend on runState (emotions, etc.)
     private float PlatformMinForwardSpeed(RunState runState)
     {
-        return 1f;
+        return 2f;
     }
 }
