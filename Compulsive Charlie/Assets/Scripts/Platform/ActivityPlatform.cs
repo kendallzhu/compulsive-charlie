@@ -12,7 +12,7 @@ public class ActivityPlatform : MonoBehaviour {
     private const int jumpPadLength = 3;
     private const float platformThickness = .3f;
     private const int standardGapLength = 2;
-    public int platformLength = 12;
+    private const int platformLength = 24;
 
     public int x;
     public int y;
@@ -67,23 +67,6 @@ public class ActivityPlatform : MonoBehaviour {
         Transform jumpPad = gameObject.transform.Find("JumpPad");
         jumpPad.position = new Vector2(x + length, y); 
         jumpPad.localScale = new Vector2(jumpPadLength, platformThickness);
-    }
-
-    public void StartRhythm()
-    {
-        if (activity != null)
-        {
-            // TODO: associate rhythm pattern with activity - use coroutine and list of time intervals?
-            // tempo based on energy
-            float energy = runManager.runState.energy;
-            float tempo = Mathf.Pow(energy/10f, .5f);
-            InvokeRepeating("SpawnRhythmNote", .5f, 1f / tempo);
-        }
-    }
-
-    public void StopRhythm()
-    {
-        CancelInvoke("SpawnRhythmNote");
     }
 
     public void SpawnRhythmNote()

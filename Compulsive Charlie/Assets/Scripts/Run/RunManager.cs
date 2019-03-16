@@ -70,7 +70,7 @@ public class RunManager : MonoBehaviour
             // clear out other spawnedPlatforms
             runState.ClearSpawned(newActivityPlatform);
             // start new platform spawning rhythm notes - deactivate this
-            // newActivityPlatform.StartRhythm();
+            StartRhythm();
 
             // start activity animation
             Debug.Log("activityHash:" + Animator.StringToHash(newActivityPlatform.activity.name));
@@ -99,10 +99,10 @@ public class RunManager : MonoBehaviour
 
         if (activityPlatform != null)
         {
-            // stop platform spawning rhythm notes
+            // stop rhythm game
             if (runState.CurrentActivityPlatform())
             {
-                runState.CurrentActivityPlatform().StopRhythm();
+                StopRhythm();
             }
         }
 
@@ -117,6 +117,18 @@ public class RunManager : MonoBehaviour
         {
             SpawnPlatform(activity);
         }
+    }
+
+    // activate the rhythm game for the current activity
+    public void StartRhythm()
+    {
+        player.transform.Find("Staff").gameObject.SetActive(true);
+    }
+
+    // deactivate the rhythm game
+    public void StopRhythm()
+    {
+        player.transform.Find("Staff").gameObject.SetActive(false);
     }
 
     // called from player controller after sensing ready to jump

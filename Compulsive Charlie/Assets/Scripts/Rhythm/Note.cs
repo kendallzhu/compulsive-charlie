@@ -5,50 +5,43 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    Clock clock;
-    NoteManager noteManager;
-    NoteHitManager noteHitManager;
+    RhythmManager rhythmManager;
+    Transform hitArea;
 
-    public int id;          // used for SpriteRenderer sorting order
-    public int noteType;    // this must correspond to a drum type
+    // how long it takes for notes to get to hit area
+    const float travelTime = 2f;
 
-    float travelTime = 2f;  // take one second to get to hit area 
-    float noteSpeed;
+    float spawnTime;
+    public float arrivalTime;
     float travelDistance;
-    float timing;    
 
-    void Start()
+    void Awake()
     {
-        clock = FindObjectOfType<Clock>();
-        noteManager = FindObjectOfType<NoteManager>();
-        noteHitManager = FindObjectOfType<NoteHitManager>();
-        
-        timing = clock.getTime() + travelTime;
-        travelDistance = transform.position.x + Mathf.Abs(GameObject.FindWithTag("HitArea").transform.position.x);
-        noteSpeed = travelDistance / travelTime;
+        rhythmManager = FindObjectOfType<RhythmManager>();
+        hitArea = GameObject.FindWithTag("HitArea").transform;
 
-        gameObject.GetComponent<SpriteRenderer>().sortingOrder = id; // sort each sprite by when it was created
-
-        noteManager.notes.Add(gameObject);
-        noteManager.timings.Add(timing);
+        spawnTime = Time.time;
+        arrivalTime = Time.time + travelTime;
+        travelDistance = transform.position.x - hitArea.position.x;
     }
 
     void Update()
     {
-        Move();
-        CheckMiss();
+        // move note to proper position
+        float newX = hitArea.position.x + travelDistance * (arrivalTime - Time.time) / travelTime;
+        newX = System.Math.Max(hitArea.position.x, newX);
+        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
     }
 
-    void Move()
+    // TODO: functions to display show miss/hit, also note types (inheritance?)
+    public void OnMiss(RunState runState)
     {
-        transform.Translate(Vector3.left * noteSpeed * Time.deltaTime);
+        Destroy(gameObject);
     }
 
-    void CheckMiss()
+    public void OnHit(RunState runState)
     {
-        if(clock.getTime() - noteManager.window > timing)
-        {
-            noteHitManager.Miss();
-        }
+        runState.IncreaseEnergy(1);
+        Destroy(gameObject);
     }
 }
