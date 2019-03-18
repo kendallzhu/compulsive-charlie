@@ -33,15 +33,14 @@ public class Note : MonoBehaviour
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
     }
 
-    // TODO: functions to display show miss/hit, also note types (inheritance?)
-    public void OnMiss(RunState runState)
+    // functions for miss/hit effects
+    public virtual void OnMiss(RunState runState)
     {
         Destroy(gameObject);
     }
 
-    public void OnHit(RunState runState)
+    public virtual void OnHit(RunState runState)
     {
-        runState.IncreaseEnergy(1);
         Destroy(gameObject);
     }
 }

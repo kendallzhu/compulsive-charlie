@@ -1641,6 +1641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 155495550}
+  rhythmManager: {fileID: 0}
   camera: {fileID: 2023551936}
   thoughtMenu: {fileID: 1785507607}
   platformPrefab: {fileID: 1743287043617584, guid: 93c3919dbea88a14bb499be23dcd4b40,
@@ -2730,6 +2731,36 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 2.056364
       objectReference: {fileID: 0}
+    - target: {fileID: 108630225338520776, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: energyNote
+      value: 
+      objectReference: {fileID: 9064274710088238145, guid: d8d1e3b14aef4c649b73483045948e05,
+        type: 3}
+    - target: {fileID: 108630225338520776, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: emotionNote
+      value: 
+      objectReference: {fileID: 9064274710088238145, guid: a2077cc6a5a90d942a4b9894a87440e7,
+        type: 3}
+    - target: {fileID: 108630225338520776, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: anxietyNote
+      value: 
+      objectReference: {fileID: 9064274710088238145, guid: d009b57f73e7ef649b6ffba0af20d0ce,
+        type: 3}
+    - target: {fileID: 108630225338520776, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: frustrationNote
+      value: 
+      objectReference: {fileID: 9064274710088238145, guid: 50e66bad03fad594ebba9e5c24b9d6a5,
+        type: 3}
+    - target: {fileID: 108630225338520776, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: despairNote
+      value: 
+      objectReference: {fileID: 9064274710088238145, guid: a2077cc6a5a90d942a4b9894a87440e7,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a8dbc6f1379bb45a0f8970adc86e77, type: 3}
 --- !u!1001 &6579902386324754734

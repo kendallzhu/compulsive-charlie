@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8000805593408062549}
   - component: {fileID: 7900241280005001468}
   m_Layer: 0
-  m_Name: EnergyIcon
+  m_Name: EmotionIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,8 +82,8 @@ SpriteRenderer:
   m_SortingLayerID: -1059496099
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ceee8484fc66d7d46a14bfc01f6bc780, type: 3}
-  m_Color: {r: 0.97311616, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 5064a9fe300b1b44fb241c21e9b65b64, type: 3}
+  m_Color: {r: 0.4433962, g: 0, b: 0.021694183, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,10 +103,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5736870833501046347}
   - component: {fileID: 2555263256862566791}
-  - component: {fileID: 6866188071821833696}
   - component: {fileID: 6709132305370413335}
+  - component: {fileID: 7134404958849245564}
   m_Layer: 0
-  m_Name: note
+  m_Name: FrustrationNote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 77d3e829651e57043b2dc273b6f397cd, type: 3}
-  m_Color: {r: 1, g: 0.60640585, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.032495625, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -180,19 +180,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6866188071821833696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9064274710088238145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290da4d59a8f21741b50a3476f47d8ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrivalTime: 0
 --- !u!222 &6709132305370413335
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -201,3 +188,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9064274710088238145}
   m_CullTransparentMesh: 0
+--- !u!114 &7134404958849245564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064274710088238145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63eb2ddeea813314e9bc268a91ce3334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrivalTime: 0
+  type: frustration

@@ -13,12 +13,19 @@ public class RhythmManager : MonoBehaviour
     public const float travelTime = 1.5f;
     // time between smallest increments of a rhythm pattern
     public const float tempoIncrement = .2f;
+    // time between repetitions of a rhythm pattern
+    public const float measureOffset = 1f;
 
     public RunManager runManager;
-    public GameObject Note; // note prefab
+    // note prefabs
+    public GameObject energyNote;
+    public GameObject anxietyNote;
+    public GameObject frustrationNote;
+    public GameObject despairNote;
 
     public float time;
     private List<float> noteSpawnTimes = new List<float>();
+    private List<string> noteSpawnTypes = new List<string>();
     private List<Note> notes = new List<Note>(); // active notes (in order)
 
     void Awake()
@@ -31,7 +38,10 @@ public class RhythmManager : MonoBehaviour
     {
         time = 0;
         // load in notes for this activity
-        activity.rhythmPattern.ForEach(i => noteSpawnTimes.Add(i * tempoIncrement));
+        activity.rhythmPattern.ForEach(i => {
+            noteSpawnTimes.Add(i * tempoIncrement);
+            noteSpawnTypes.Add("energy");
+        });
     }
 
     public void StopRhythm()
@@ -46,17 +56,14 @@ public class RhythmManager : MonoBehaviour
         // update time - with current settings goes in increments of about .016
         // Debug.Log(Time.deltaTime);
         time += Time.deltaTime;
-        // user spawn notes for testing
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            SpawnNote(time);
-        }
+        
         // spawn the next preloaded note if the time has come
         if (noteSpawnTimes.Count > 0 && time >= noteSpawnTimes[0])
         {
             // spawn note, with time adjusted to be exact with intended pattern
-            SpawnNote(noteSpawnTimes[0]);
+            SpawnNote(noteSpawnTimes[0], noteSpawnTypes[0]);
             noteSpawnTimes.RemoveAt(0);
+            noteSpawnTypes.RemoveAt(0);
         }
         if (notes.Count > 0)
         {
@@ -76,21 +83,51 @@ public class RhythmManager : MonoBehaviour
                 {
                     nearestNote.OnHit(runManager.runState);
                     notes.Remove(nearestNote);
+                    // hitting notes spawns more notes
+                    if (noteSpawnTimes.Count > -1)
+                    {
+                        float notesOffset = tempoIncrement * (noteSpawnTimes.Count + notes.Count);
+                        noteSpawnTimes.Add(nearestNote.arrivalTime + notesOffset + measureOffset);
+                        noteSpawnTypes.Add("energy");
+                    }
                 }
                 else
                 {
-                    // stun? miss that note?
+                    // false hits cause miss next note
+                    nearestNote.OnMiss(runManager.runState);
+                    notes.Remove(nearestNote);
                 }
             }
         }
     }
 
-    // create a note with specified spawn time
-    void SpawnNote(float spawnTime)
+    // create a note with specified type + spawn time
+    void SpawnNote(float spawnTime, string type)
     {
         Vector3 staffPos = transform.parent.position;
         Vector3 startingPos = new Vector3(staffPos.x + travelDist, staffPos.y);
-        GameObject note = Instantiate(Note, startingPos, Quaternion.identity, transform.parent);
+        GameObject note;
+        if (type == "energy")
+        {
+            note = Instantiate(energyNote, startingPos, Quaternion.identity, transform.parent);
+        }
+        else if (type == "anxiety")
+        {
+            note = Instantiate(anxietyNote, startingPos, Quaternion.identity, transform.parent);
+        }
+        else if (type == "frustration")
+        {
+            note = Instantiate(frustrationNote, startingPos, Quaternion.identity, transform.parent);
+        }
+        else if (type == "despair")
+        {
+            note = Instantiate(despairNote, startingPos, Quaternion.identity, transform.parent);
+        }
+        else
+        {
+            Debug.Log("invalid note type");
+            return;
+        }
         note.GetComponent<Note>().Initialize(spawnTime);
         notes.Add(note.GetComponent<Note>());
     }
