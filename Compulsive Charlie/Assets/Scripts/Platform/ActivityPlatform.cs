@@ -68,11 +68,4 @@ public class ActivityPlatform : MonoBehaviour {
         jumpPad.position = new Vector2(x + length, y); 
         jumpPad.localScale = new Vector2(jumpPadLength, platformThickness);
     }
-
-    public void SpawnRhythmNote()
-    {
-        // TODO: varying heights? (parameter, specifying special notes?)
-        GameObject rhythmNote = Instantiate(rhythmNotePrefab, new Vector2(x, y + 2.2f), Quaternion.identity);
-        rhythmNote.GetComponent<RhythmNote>().Initialize(this);
-    }
 }

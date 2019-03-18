@@ -58,19 +58,6 @@ public abstract class Activity : MonoBehaviour {
         return runState.height + diff;
     }
 
-    // how this activity modifies run state when rhythm note is hit
-    public virtual void HitEffect(RunState runState)
-    {
-        runState.IncreaseEnergy(1);
-    }
-
-    // how this activity modifies run state when rhythm note is missed
-    public virtual void MissEffect(RunState runState)
-    {
-        return;
-        // runState.IncreaseEnergy(-1);
-    }
-
     // activity specific effects
     public virtual void Effect(RunState runState)
     {

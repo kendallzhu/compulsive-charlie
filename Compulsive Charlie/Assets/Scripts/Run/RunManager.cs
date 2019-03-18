@@ -49,12 +49,6 @@ public class RunManager : MonoBehaviour
         {
             gameManager.EndRun(runState);
         }
-        // if broke, end run (and skip the rest of the procedure)
-        if (runState.done)
-        {
-            gameManager.EndRun(runState);
-            return;
-        }
     }
 
     // for when the player arrives on next activity, called via trigger in ActivityPlatform
@@ -95,7 +89,12 @@ public class RunManager : MonoBehaviour
     // for when the player enters the jump Pad
     public void EnterJumpPad(ActivityPlatform activityPlatform)
     {
-        // gameManager.EndRun(runState); //test
+        // if done, end run (and skip the rest of the procedure)
+        if (runState.done)
+        {
+            gameManager.EndRun(runState);
+            return;
+        }
         // end activity animation
         player.GetComponent<Animator>().SetTrigger("finishActivity");
 

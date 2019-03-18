@@ -11,6 +11,7 @@ public class Note : MonoBehaviour
     float spawnTime;
     public float arrivalTime;
     float travelDistance;
+    public string type;
 
     void Awake()
     {

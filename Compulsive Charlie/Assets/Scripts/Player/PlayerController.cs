@@ -34,15 +34,6 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
         RunState runState = runManager.runState;
-        // mock rhythm hits and misses
-        if (Input.GetButtonDown("Hit"))
-        {
-            runState.CurrentActivity().HitEffect(runState);
-        }
-        if (Input.GetButtonDown("Miss"))
-        {
-            runState.CurrentActivity().MissEffect(runState);
-        }
 
         // pulse hitbox edge radius to prevent sticking
         if (rb2d.GetComponent<BoxCollider2D>().edgeRadius < .05f)

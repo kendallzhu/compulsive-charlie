@@ -201,3 +201,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrivalTime: 0
+  type: energy

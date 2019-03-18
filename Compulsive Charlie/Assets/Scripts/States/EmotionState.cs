@@ -136,8 +136,10 @@ public class EmotionState
         {
             int diff = 0 - despair;
             despair += (int)(diff * factor) + Math.Sign(diff);
+        } else
+        {
+            Debug.Log("Extremeness called with invalid emotion Name");
         }
-        Debug.Log("Extremeness called with invalid emotion Name");
     }
 
     // checks if state is within the thresholds
