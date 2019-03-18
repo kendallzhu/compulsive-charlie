@@ -16,16 +16,19 @@ public class Note : MonoBehaviour
     {
         rhythmManager = FindObjectOfType<RhythmManager>();
         hitArea = GameObject.FindWithTag("HitArea").transform;
+    }
 
-        spawnTime = Time.time;
-        arrivalTime = Time.time + RhythmManager.travelTime;
+    public void Initialize(float trueSpawnTime)
+    {
+        spawnTime = trueSpawnTime;
+        arrivalTime = trueSpawnTime + RhythmManager.travelTime;
         travelDistance = transform.position.x - hitArea.position.x;
     }
 
     void Update()
     {
         // move note to proper position
-        float newX = hitArea.position.x + travelDistance * (arrivalTime - Time.time) / RhythmManager.travelTime;
+        float newX = hitArea.position.x + travelDistance * (arrivalTime - rhythmManager.time) / RhythmManager.travelTime;
         newX = System.Math.Max(hitArea.position.x, newX);
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
     }

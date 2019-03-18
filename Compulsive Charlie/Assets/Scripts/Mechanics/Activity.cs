@@ -19,6 +19,7 @@ public abstract class Activity : MonoBehaviour {
     public EmotionState emotionNotes = new EmotionState(0, 0, 0);
     public EmotionState emotionEffect = new EmotionState(0, 0, 0);
     public List<Thought> associatedThoughts = new List<Thought>();
+    public List<int> rhythmPattern = new List<int> { 0, 1, 2, 3, 5, 6 };
 
     // (weighted) availability specific to activity, given state of run
     public virtual int CustomAvailability(RunState runState)

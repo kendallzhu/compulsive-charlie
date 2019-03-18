@@ -12,6 +12,7 @@ public class RunManager : MonoBehaviour
     public GameManager gameManager;
     public RunState runState;
     public PlayerController player;
+    public RhythmManager rhythmManager;
     public new CameraController camera;
     public ThoughtMenu thoughtMenu;
 
@@ -29,6 +30,9 @@ public class RunManager : MonoBehaviour
             SceneManager.LoadScene(0);
             return;
         }
+        // get reference to playerController and rhythmManager
+        player = Object.FindObjectOfType<PlayerController>();
+        rhythmManager = Object.FindObjectOfType<RhythmManager>();
         // get initial runState based on profile
         runState = new RunState(
             gameManager.profile.initialEnergy,
@@ -70,7 +74,7 @@ public class RunManager : MonoBehaviour
             // clear out other spawnedPlatforms
             runState.ClearSpawned(newActivityPlatform);
             // start new platform spawning rhythm notes - deactivate this
-            StartRhythm();
+            rhythmManager.StartRhythm(newActivityPlatform.activity);
 
             // start activity animation
             Debug.Log(newActivityPlatform.activity.name + " hash:" + Animator.StringToHash(newActivityPlatform.activity.name));
@@ -103,7 +107,7 @@ public class RunManager : MonoBehaviour
             // stop rhythm game
             if (runState.CurrentActivityPlatform())
             {
-                StopRhythm();
+                rhythmManager.StopRhythm();
             }
         }
 
@@ -118,18 +122,6 @@ public class RunManager : MonoBehaviour
         {
             SpawnPlatform(activity);
         }
-    }
-
-    // activate the rhythm game for the current activity
-    public void StartRhythm()
-    {
-        player.transform.Find("Staff").gameObject.SetActive(true);
-    }
-
-    // deactivate the rhythm game
-    public void StopRhythm()
-    {
-        player.transform.Find("Staff").gameObject.SetActive(false);
     }
 
     // called from player controller after sensing ready to jump
