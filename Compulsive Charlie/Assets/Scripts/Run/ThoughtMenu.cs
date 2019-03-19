@@ -6,7 +6,7 @@ using TMPro;
 public class ThoughtMenu : MonoBehaviour {
     private GameObject canvas;
     private RunManager runManager;
-    private List<Thought> thoughts;
+    private List<Thought> thoughts = new List<Thought>();
 
 	// one-time initialization (used instead of awake because it starts deactivated)
 	public void Initialize () {
@@ -14,6 +14,26 @@ public class ThoughtMenu : MonoBehaviour {
         runManager = Object.FindObjectOfType<RunManager>();
         // get reference to parent canvas
         canvas = transform.parent.gameObject;
+    }
+
+    // take button input
+    private void Update()
+    {
+        bool b1 = Input.GetButtonDown("Button1");
+        bool b2 = Input.GetButtonDown("Button2");
+        bool b3 = Input.GetButtonDown("Button3");
+        if (b1 && thoughts.Count >= 1)
+        {
+            Select1();
+        }
+        else if (b2 && thoughts.Count >= 2)
+        {
+            Select2();
+        }
+        else if (b3 && thoughts.Count >= 3)
+        {
+            Select3();
+        }
     }
 
     // activate the menu with a countdown timer
