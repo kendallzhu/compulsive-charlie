@@ -12,6 +12,8 @@ public class Note : MonoBehaviour
     public float arrivalTime;
     float travelDistance;
     public string type;
+    // "animator" prefabs
+    public GameObject hitPrefab;
 
     void Awake()
     {
@@ -35,13 +37,26 @@ public class Note : MonoBehaviour
     }
 
     // functions for miss/hit effects
-    public virtual void OnMiss(RunState runState)
+    public void OnMiss(RunState runState)
     {
+        MissEffect(runState);
         Destroy(gameObject);
     }
 
-    public virtual void OnHit(RunState runState)
+    public void OnHit(RunState runState)
     {
+        HitEffect(runState);
         Destroy(gameObject);
+        Instantiate(hitPrefab, transform.position, Quaternion.identity, transform.parent);
+    }
+
+    public virtual void HitEffect(RunState runState)
+    {
+        return;
+    }
+
+    public virtual void MissEffect(RunState runState)
+    {
+        return;
     }
 }

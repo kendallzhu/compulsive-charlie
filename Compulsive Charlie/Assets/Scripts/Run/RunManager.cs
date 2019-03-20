@@ -56,6 +56,7 @@ public class RunManager : MonoBehaviour
     {
         if (newActivityPlatform != null)
         {
+            // make first activity "sleep in"
             if (runState.activityHistory.Count == 0 && newActivityPlatform.activity == null)
             {
                 newActivityPlatform.activity = Object.FindObjectOfType<SleepIn>();
@@ -70,12 +71,12 @@ public class RunManager : MonoBehaviour
             // start new platform spawning rhythm notes - deactivate this
             rhythmManager.StartRhythm(newActivityPlatform.activity);
 
+            // trigger activity special effect
+            runState.CurrentActivityPlatform().activity.Effect(runState);
+
             // start activity animation
             player.GetComponent<Animator>().SetInteger("activityHash", Animator.StringToHash(newActivityPlatform.activity.name));
             player.GetComponent<Animator>().SetTrigger("startActivity");
-
-            // trigger activity special effect
-            runState.CurrentActivityPlatform().activity.Effect(runState);
         }
 
         // offer thoughts
@@ -94,8 +95,12 @@ public class RunManager : MonoBehaviour
             gameManager.EndRun(runState);
             return;
         }
-        // end activity animation
+        // trigger end activity animation
         player.GetComponent<Animator>().SetTrigger("finishActivity");
+        // clear out all other animation triggers
+        player.GetComponent<Animator>().ResetTrigger("startJump");
+        player.GetComponent<Animator>().ResetTrigger("activityFail");
+        player.GetComponent<Animator>().ResetTrigger("startActivity");
 
         // Zoom out for jump
         camera.ZoomOut();

@@ -104,9 +104,9 @@ GameObject:
   - component: {fileID: 5736870833501046347}
   - component: {fileID: 2555263256862566791}
   - component: {fileID: 6709132305370413335}
-  - component: {fileID: 7134404958849245564}
+  - component: {fileID: 2764164778939231346}
   m_Layer: 0
-  m_Name: FrustrationNote
+  m_Name: FrustrationHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,7 +188,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9064274710088238145}
   m_CullTransparentMesh: 0
---- !u!114 &7134404958849245564
+--- !u!114 &2764164778939231346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,10 +197,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9064274710088238145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63eb2ddeea813314e9bc268a91ce3334, type: 3}
+  m_Script: {fileID: 11500000, guid: 18ab949e638d7e241af40daccbd4c218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrivalTime: 0
-  type: frustration
-  hitPrefab: {fileID: 9064274710088238145, guid: 7ed4d2aab5044f74a878033638a84ae7,
-    type: 3}

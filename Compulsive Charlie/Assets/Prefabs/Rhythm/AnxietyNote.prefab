@@ -202,3 +202,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrivalTime: 0
   type: anxiety
+  hitPrefab: {fileID: 9064274710088238145, guid: fe984d58a7d9ed348ad296b33ac053d3,
+    type: 3}
