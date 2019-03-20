@@ -21,6 +21,12 @@ public abstract class Activity : MonoBehaviour {
     public List<Thought> associatedThoughts = new List<Thought>();
     public List<int> rhythmPattern = new List<int> { 0, 1, 2, 3, 5, 6 };
 
+    private void Start()
+    {
+        // for debugging/checks
+        Debug.Log(name + " hash: " + Animator.StringToHash(name));
+    }
+
     // (weighted) availability specific to activity, given state of run
     public virtual int CustomAvailability(RunState runState)
     {

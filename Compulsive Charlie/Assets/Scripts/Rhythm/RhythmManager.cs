@@ -17,6 +17,7 @@ public class RhythmManager : MonoBehaviour
     // time between repetitions of a rhythm pattern
     public const float measureOffset = 1f;
 
+    public PlayerController player;
     public RunManager runManager;
     // note prefabs
     public GameObject energyNote;
@@ -32,8 +33,9 @@ public class RhythmManager : MonoBehaviour
 
     void Awake()
     {
-        // get reference to runManager
+        // get reference to runManager + player
         runManager = Object.FindObjectOfType<RunManager>();
+        player = Object.FindObjectOfType<PlayerController>();
     }
 
     public void StartRhythm(Activity activity)
@@ -120,6 +122,9 @@ public class RhythmManager : MonoBehaviour
                     notes.Remove(nearestNote);
                 }
             }
+        } else
+        {
+            player.GetComponent<Animator>().SetTrigger("activityFail");
         }
     }
 

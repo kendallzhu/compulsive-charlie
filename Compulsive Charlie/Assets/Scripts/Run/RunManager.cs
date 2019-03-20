@@ -71,7 +71,6 @@ public class RunManager : MonoBehaviour
             rhythmManager.StartRhythm(newActivityPlatform.activity);
 
             // start activity animation
-            Debug.Log(newActivityPlatform.activity.name + " hash:" + Animator.StringToHash(newActivityPlatform.activity.name));
             player.GetComponent<Animator>().SetInteger("activityHash", Animator.StringToHash(newActivityPlatform.activity.name));
             player.GetComponent<Animator>().SetTrigger("startActivity");
 

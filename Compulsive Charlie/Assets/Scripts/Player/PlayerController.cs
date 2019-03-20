@@ -77,20 +77,26 @@ public class PlayerController : MonoBehaviour {
         {
             runManager.PreJump();
         }
-    }
 
-    // called from runManager.PostThoughtSelect
-    public void Jump()
-    {
-        RunState runState = runManager.runState;
-        if (runState.jumpPower > 0)
+        // while jump start animation is playing, stay still
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("charlie_jump_start"))
+        {
+            rb2d.velocity = new Vector2(0, 0);
+        }
+        // once jump start animation finished, apply force
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("charlie_jumping") && runState.jumpPower > 0)
         {
             float upwardJumpForce = runState.CurrentThought().JumpBonus(runState.jumpPower * jumpForcePerEnergy);
             rb2d.AddForce(new Vector2(forwardJumpForce, upwardJumpForce));
             runState.jumpPower = 0;
         }
-        // trigger jumping animation
-        anim.SetTrigger("jumping");
+    }
+
+    // called from runManager.PostThoughtSelect
+    public void Jump()
+    {
+        // trigger jump start animation - actual jump^ in Update(), after start anim completes
+        anim.SetTrigger("startJump");
     }
 
     // functions for gameplay parameters that depend on runState (emotions, etc.)
