@@ -7,15 +7,16 @@ public class RhythmManager : MonoBehaviour
     // how forgiving we are for note hits
     public const float hitWindowLate = .05f;
     public const float hitWindowEarly = .05f;
-    public const float lateHitPeriod = .1f; // duration after window that is considered a late hit for that note
     // how far to the right of the hit area are notes spawned
     public const float travelDist = 12f;
     // how long it takes for notes to get to hit area
     public const float travelTime = 1.5f;
     // time between smallest increments of a rhythm pattern
     public const float tempoIncrement = .2f;
+    // duration after window that is considered a late hit for that note
+    public const float lateHitPeriod = tempoIncrement / 2; 
     // time between repetitions of a rhythm pattern
-    public const float measureOffset = 1f;
+    public const float measureOffset = .8f;
 
     public PlayerController player;
     public RunManager runManager;

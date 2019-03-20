@@ -89,6 +89,8 @@ public class PlayerController : MonoBehaviour {
             float upwardJumpForce = runState.CurrentThought().JumpBonus(runState.jumpPower * jumpForcePerEnergy);
             rb2d.AddForce(new Vector2(forwardJumpForce, upwardJumpForce));
             runState.jumpPower = 0;
+            // small translation
+            //transform.position = new Vector2(transform.position.x + 1, transform.position.y + 1);
         }
     }
 
