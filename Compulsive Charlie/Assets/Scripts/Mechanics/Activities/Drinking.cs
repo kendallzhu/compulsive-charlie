@@ -16,7 +16,7 @@ public class Drinking : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.Extremeness() > 0 || runState.timeSteps > 8)
+        if (runState.emotions.Extremeness() > 1 || runState.timeSteps > 8)
         {
             return 1;
         }
@@ -25,7 +25,7 @@ public class Drinking : Activity
 
     public override void Effect(RunState runState)
     {
-        runState.emotions.AddDespair(3);
+        runState.emotions.Add("despair", 3);
         return;
     }
 }

@@ -48,13 +48,6 @@ public class PlayerController : MonoBehaviour {
         grounded = Physics2D.Linecast(transform.position, groundCheckLeft.position, 1 << LayerMask.NameToLayer("Ground")) ||
             Physics2D.Linecast(transform.position, groundCheckRight.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        /* increase jump by spending energy (on tap)
-        if (Input.GetButtonDown("Jump") && grounded && runState.energy > 0)
-        {
-            runState.jumpPower += 1;
-            runState.IncreaseEnergy(-1);
-        } */
-
         // apply passive forward speed when grounded
         Vector2 velocity = rb2d.velocity;
         if (grounded)
@@ -90,7 +83,6 @@ public class PlayerController : MonoBehaviour {
             rb2d.AddForce(new Vector2(forwardJumpForce, upwardJumpForce));
             runState.jumpPower = 0;
             // small translation
-            //transform.position = new Vector2(transform.position.x + 1, transform.position.y + 1);
         }
     }
 

@@ -18,7 +18,7 @@ public class EnergyHit : MonoBehaviour
     {
         transform.Translate(new Vector3(0, .1f, 0));
         Color tmp = gameObject.GetComponent<SpriteRenderer>().color;
-        tmp.a = 0; // .5f - (transform.position.y - startY) / fadeDist;
+        tmp.a = 1f - (transform.position.y - startY) / fadeDist;
         gameObject.GetComponent<SpriteRenderer>().color = tmp;
         if (transform.position.y > startY + fadeDist)
         {

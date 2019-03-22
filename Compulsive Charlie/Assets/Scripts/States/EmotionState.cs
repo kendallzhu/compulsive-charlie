@@ -40,19 +40,26 @@ public class EmotionState
     }
 
     // methods for modifying and flooring values
-    public void AddAnxiety(int val)
+    public void Add(string type, int val)
     {
-        anxiety = Math.Max(0, anxiety + val);
+        if (type == "anxiety")
+        {
+            anxiety = Math.Max(0, anxiety + val);
+        }
+        else if (type == "frustration")
+        {
+            frustration = Math.Max(0, frustration + val);
+        }
+        else if (type == "despair")
+        {
+            despair = Math.Max(0, despair + val);
+        }
     }
-
-    public void AddFrustration(int val)
+    public void Add(EmotionState other)
     {
-        frustration = Math.Max(0, frustration + val);
-    }
-
-    public void AddDespair(int val)
-    {
-        despair = Math.Max(0, despair + val);
+        Add("anxiety", other.anxiety);
+        Add("frustration", other.frustration);
+        Add("despair", other.despair);
     }
 
     // return name of emotion with highest magnitude

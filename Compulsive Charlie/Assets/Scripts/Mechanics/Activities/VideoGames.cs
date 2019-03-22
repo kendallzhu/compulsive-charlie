@@ -25,7 +25,7 @@ public class VideoGames : Activity
 
     public override void Effect(RunState runState)
     {
-        runState.emotions.AddDespair(1);
+        runState.emotions.Add("despair", 1);
         return;
     }
 }

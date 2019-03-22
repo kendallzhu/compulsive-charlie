@@ -8,15 +8,15 @@ public class RhythmManager : MonoBehaviour
     public const float hitWindowLate = .05f;
     public const float hitWindowEarly = .05f;
     // how far to the right of the hit area are notes spawned
-    public const float travelDist = 12f;
+    public const float travelDist = 16f;
     // how long it takes for notes to get to hit area
     public const float travelTime = 1.5f;
     // time between smallest increments of a rhythm pattern
     public const float tempoIncrement = .2f;
     // duration after window that is considered a late hit for that note
-    public const float lateHitPeriod = tempoIncrement / 2; 
-    // time between repetitions of a rhythm pattern
-    public const float measureOffset = .8f;
+    public const float lateHitPeriod = tempoIncrement / 2;
+    // duration between repeating measures of same activity
+    public const float measureOffset = .4f;
 
     public PlayerController player;
     public RunManager runManager;
@@ -28,6 +28,7 @@ public class RhythmManager : MonoBehaviour
 
     public float time;
     public float lateHitPeriodEnd;
+    private Activity activity;
     private List<float> noteSpawnTimes = new List<float>();
     private List<string> noteSpawnTypes = new List<string>();
     private List<Note> notes = new List<Note>(); // active notes (in order)
@@ -39,13 +40,31 @@ public class RhythmManager : MonoBehaviour
         player = Object.FindObjectOfType<PlayerController>();
     }
 
-    public void StartRhythm(Activity activity)
+    public void StartRhythm(Activity activity_)
     {
-        time = 0;
         lateHitPeriodEnd = 0;
+        activity = activity_;
+    }
+
+    public void StopRhythm()
+    {
+        activity = null;
+        // notes.ForEach(n => Destroy(n.gameObject));
+        // notes.Clear();
+        noteSpawnTimes.Clear();
+        noteSpawnTypes.Clear();
+    }
+
+    private void LoadMeasure()
+    {
+        // Debug.Log("load measure");
+        // reset time
+        time = -measureOffset;
         // load in notes for this activity
-        activity.rhythmPattern.ForEach(i => {
-            noteSpawnTimes.Add(i * tempoIncrement);
+        List<int> pattern = activity.rhythmPattern;
+        for (int i = 0; i < pattern.Count; i++)
+        {
+            noteSpawnTimes.Add(pattern[i] * tempoIncrement);
             // choose a note type based on the activity emotion notes
             string type = "energy";
             int r = Random.Range(0, 10);
@@ -62,23 +81,13 @@ public class RhythmManager : MonoBehaviour
                 type = "despair";
             }
             noteSpawnTypes.Add(type);
-        });
-    }
-
-    public void StopRhythm()
-    {
-        notes.ForEach(n => Destroy(n.gameObject));
-        notes.Clear();
-        noteSpawnTimes.Clear();
-        noteSpawnTypes.Clear();
+        }
     }
 
     void Update()
     {
         // update time - with current settings goes in increments of about .016
-        // Debug.Log(Time.deltaTime);
         time += Time.deltaTime;
-        
         // spawn the next preloaded note if the time has come
         if (noteSpawnTimes.Count > 0 && time >= noteSpawnTimes[0])
         {
@@ -111,21 +120,20 @@ public class RhythmManager : MonoBehaviour
                 {
                     nearestNote.OnHit(runManager.runState);
                     notes.Remove(nearestNote);
-                    // hitting notes spawns more notes
-                    float notesOffset = tempoIncrement * (noteSpawnTimes.Count + notes.Count);
-                    noteSpawnTimes.Add(nearestNote.arrivalTime + notesOffset + measureOffset);
-                    noteSpawnTypes.Add(nearestNote.type);
                 }
                 else if (time > lateHitPeriodEnd)
                 {
                     // meaningful false hits cause miss next note
                     nearestNote.OnMiss(runManager.runState);
                     notes.Remove(nearestNote);
+                    // player.GetComponent<Animator>().SetTrigger("activityFail");
                 }
             }
-        } else
+        }
+        else if (activity != null && noteSpawnTimes.Count == 0)
         {
-            player.GetComponent<Animator>().SetTrigger("activityFail");
+            // repeat the pattern
+            LoadMeasure();
         }
     }
 

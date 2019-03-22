@@ -60,19 +60,20 @@ public class RunManager : MonoBehaviour
             if (runState.activityHistory.Count == 0 && newActivityPlatform.activity == null)
             {
                 newActivityPlatform.activity = Object.FindObjectOfType<SleepIn>();
+            } else
+            {
+                // clear out other spawnedPlatforms
+                runState.ClearSpawned(newActivityPlatform);
+                // start new platform spawning rhythm notes - deactivate this
+                rhythmManager.StartRhythm(newActivityPlatform.activity);
+                // trigger activity special effect
+                runState.CurrentActivityPlatform().activity.Effect(runState);
             }
             // increment timeSteps
             runState.timeSteps += 1;
             // update activity history
             runState.activityHistory.Add(newActivityPlatform);
             runState.height = newActivityPlatform.y;
-            // clear out other spawnedPlatforms
-            runState.ClearSpawned(newActivityPlatform);
-            // start new platform spawning rhythm notes - deactivate this
-            rhythmManager.StartRhythm(newActivityPlatform.activity);
-
-            // trigger activity special effect
-            runState.CurrentActivityPlatform().activity.Effect(runState);
 
             // start activity animation
             player.GetComponent<Animator>().SetInteger("activityHash", Animator.StringToHash(newActivityPlatform.activity.name));
@@ -97,10 +98,6 @@ public class RunManager : MonoBehaviour
         }
         // trigger end activity animation
         player.GetComponent<Animator>().SetTrigger("finishActivity");
-        // clear out all other animation triggers
-        player.GetComponent<Animator>().ResetTrigger("startJump");
-        player.GetComponent<Animator>().ResetTrigger("activityFail");
-        player.GetComponent<Animator>().ResetTrigger("startActivity");
 
         // Zoom out for jump
         camera.ZoomOut();
@@ -125,6 +122,10 @@ public class RunManager : MonoBehaviour
         {
             SpawnPlatform(activity);
         }
+        // clear out all other animation triggers
+        player.GetComponent<Animator>().ResetTrigger("startJump");
+        player.GetComponent<Animator>().ResetTrigger("activityFail");
+        player.GetComponent<Animator>().ResetTrigger("startActivity");
     }
 
     // called from player controller after sensing ready to jump

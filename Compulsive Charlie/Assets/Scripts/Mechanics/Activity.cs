@@ -67,9 +67,7 @@ public abstract class Activity : MonoBehaviour {
     // activity specific effects
     public virtual void Effect(RunState runState)
     {
-        runState.emotions.AddAnxiety(emotionEffect.anxiety);
-        runState.emotions.AddFrustration(emotionEffect.frustration);
-        runState.emotions.AddDespair(emotionEffect.despair);
+        runState.emotions.Add(emotionEffect);
         return;
     }
 }
