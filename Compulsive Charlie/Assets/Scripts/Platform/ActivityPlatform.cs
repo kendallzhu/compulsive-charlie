@@ -19,6 +19,7 @@ public class ActivityPlatform : MonoBehaviour {
     public int length;
     public bool explored = false;
     public bool jumpPadExplored = false;
+    public int bestCombo = 0;
 
     // other prefabs
     public GameObject rhythmNotePrefab;

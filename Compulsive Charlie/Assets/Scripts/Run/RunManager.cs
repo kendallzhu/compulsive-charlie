@@ -44,11 +44,14 @@ public class RunManager : MonoBehaviour
 
     private void Update()
     {
-        // [fail-check] if fallen way down, end run and advance scenes
-        if (player.transform.position.y < -100)
+        if (runState.rhythmCombo == 0)
         {
-            gameManager.EndRun(runState);
+            player.GetComponent<Animator>().SetTrigger("activityFail");
+        } else
+        {
+            player.GetComponent<Animator>().ResetTrigger("activityFail");
         }
+        
     }
 
     // for when the player arrives on next activity, called via trigger in ActivityPlatform
@@ -56,6 +59,12 @@ public class RunManager : MonoBehaviour
     {
         if (newActivityPlatform != null)
         {
+            // increment timeSteps
+            runState.timeSteps += 1;
+            // update activity history
+            runState.activityHistory.Add(newActivityPlatform);
+            runState.height = newActivityPlatform.y;
+
             // make first activity "sleep in"
             if (runState.activityHistory.Count == 0 && newActivityPlatform.activity == null)
             {
@@ -69,11 +78,6 @@ public class RunManager : MonoBehaviour
                 // trigger activity special effect
                 runState.CurrentActivityPlatform().activity.Effect(runState);
             }
-            // increment timeSteps
-            runState.timeSteps += 1;
-            // update activity history
-            runState.activityHistory.Add(newActivityPlatform);
-            runState.height = newActivityPlatform.y;
 
             // start activity animation
             player.GetComponent<Animator>().SetInteger("activityHash", Animator.StringToHash(newActivityPlatform.activity.name));

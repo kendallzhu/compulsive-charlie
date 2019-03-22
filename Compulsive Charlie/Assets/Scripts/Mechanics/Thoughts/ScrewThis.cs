@@ -21,7 +21,7 @@ public class ScrewThis : Thought
         {
             availability++;
         }
-        availability += runState.emotions.Extremeness("frustration");
+        // availability += runState.emotions.Extremeness("frustration");
         return availability;
     }
 

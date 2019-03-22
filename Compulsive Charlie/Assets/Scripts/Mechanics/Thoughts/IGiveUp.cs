@@ -21,7 +21,7 @@ public class IGiveUp : Thought
         {
             availability++;
         }
-        availability += runState.emotions.Extremeness("despair");
+        // availability += runState.emotions.Extremeness("despair");
         return availability;
     }
 

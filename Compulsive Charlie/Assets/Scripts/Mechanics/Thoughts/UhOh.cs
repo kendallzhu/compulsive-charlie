@@ -21,7 +21,7 @@ public class UhOh : Thought
         {
             availability++;
         }
-        availability += runState.emotions.Extremeness("anxiety");
+        // availability += runState.emotions.Extremeness("anxiety");
         return availability;
     }
 

@@ -37,14 +37,23 @@ public class Note : MonoBehaviour
     }
 
     // functions for miss/hit effects
+    public void OnSemiHit(RunState runState)
+    {
+        runState.IncreaseCombo();
+        Destroy(gameObject);
+        Instantiate(hitPrefab, transform.position, Quaternion.identity, transform.parent);
+    }
+
     public void OnMiss(RunState runState)
     {
+        runState.ResetCombo();
         MissEffect(runState);
         Destroy(gameObject);
     }
 
     public void OnHit(RunState runState)
     {
+        runState.IncreaseCombo();
         HitEffect(runState);
         Destroy(gameObject);
         Instantiate(hitPrefab, transform.position, Quaternion.identity, transform.parent);

@@ -53,6 +53,7 @@ public class RhythmManager : MonoBehaviour
         // notes.Clear();
         noteSpawnTimes.Clear();
         noteSpawnTypes.Clear();
+        runManager.runState.ResetCombo();
     }
 
     private void LoadMeasure()
@@ -66,17 +67,26 @@ public class RhythmManager : MonoBehaviour
         {
             noteSpawnTimes.Add(pattern[i] * tempoIncrement);
             // choose a note type based on the activity emotion notes
+            EmotionState curr = runManager.runState.emotions;
+            /*int a = activity.emotionNotes.anxiety + curr.Extremeness("anxiety");
+            int f = activity.emotionNotes.frustration + curr.Extremeness("frustration");
+            int d = activity.emotionNotes.despair + curr.Extremeness("despair");*/
+            int a = curr.anxiety;
+            int f = curr.frustration;
+            int d = curr.despair;
+            int total = a + f + d + 10;
+
             string type = "energy";
-            int r = Random.Range(0, 10);
-            if (r < activity.emotionNotes.anxiety)
+            int r = Random.Range(0, total);
+            if (r < a)
             {
                 type = "anxiety";
             }
-            else if (r < activity.emotionNotes.anxiety + activity.emotionNotes.frustration)
+            else if (r < a + f)
             {
                 type = "frustration";
             }
-            else if (r < activity.emotionNotes.GetSum())
+            else if (r < a + f + d)
             {
                 type = "despair";
             }
@@ -116,17 +126,26 @@ public class RhythmManager : MonoBehaviour
             if (b0 || b1 || b2 || b3)
             {
                 string type = b0 ? "energy" : b1 ? "anxiety" : b2 ? "frustration" : "despair";
-                if (time > nearestNote.arrivalTime - hitWindowEarly && nearestNote.type == type)
+                if (time > nearestNote.arrivalTime - hitWindowEarly)
                 {
-                    nearestNote.OnHit(runManager.runState);
-                    notes.Remove(nearestNote);
+                    // perfect hit
+                    if (nearestNote.type == type)
+                    {
+                        nearestNote.OnHit(runManager.runState);
+                        notes.Remove(nearestNote);
+                    }
+                    // semi-hit (use main button to hit emotions)
+                    else if (b0)
+                    {
+                        nearestNote.OnSemiHit(runManager.runState);
+                        notes.Remove(nearestNote);
+                    }
                 }
                 else if (time > lateHitPeriodEnd)
                 {
                     // meaningful false hits cause miss next note
                     nearestNote.OnMiss(runManager.runState);
                     notes.Remove(nearestNote);
-                    // player.GetComponent<Animator>().SetTrigger("activityFail");
                 }
             }
         }

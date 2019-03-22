@@ -19,10 +19,11 @@ public class ThoughtDisplay : MonoBehaviour
     void Update()
     {
         Thought currentThought = runManager.runState.CurrentThought();
+        int combo = runManager.runState.rhythmCombo;
         if (currentThought)
         {
             string quote = "\"" + currentThought.descriptionText + "\"";
-            gameObject.GetComponent<TextMeshProUGUI>().text =  quote;
+            gameObject.GetComponent<TextMeshProUGUI>().text = combo + " " + quote;
         }
     }
 }

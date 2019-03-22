@@ -10,6 +10,7 @@ public class RunState {
     public int energy;
     public int energyCap;
     public int jumpPower;
+    public int rhythmCombo;
     public EmotionState emotions;
     public List<ActivityPlatform> activityHistory;
     public List<Thought> thoughtHistory;
@@ -26,6 +27,7 @@ public class RunState {
         this.energy = initialEnergy;
         this.energyCap = energyCap;
         this.emotions = initialEmotions;
+        this.rhythmCombo = 0;
         this.activityHistory = new List<ActivityPlatform>();
         this.thoughtHistory = new List<Thought>();
     }
@@ -44,6 +46,21 @@ public class RunState {
             return null;
         }
         return activityHistory.Last();
+    }
+
+    public void IncreaseCombo()
+    {
+        rhythmCombo++;
+        ActivityPlatform ap = CurrentActivityPlatform();
+        if (rhythmCombo > ap.bestCombo)
+        {
+            ap.bestCombo = rhythmCombo;
+        }
+    }
+
+    public void ResetCombo()
+    {
+        rhythmCombo = 0;
     }
 
     public Activity CurrentActivity()
