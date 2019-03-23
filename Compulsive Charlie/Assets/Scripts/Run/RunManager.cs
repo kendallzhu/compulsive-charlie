@@ -82,7 +82,10 @@ public class RunManager : MonoBehaviour
     public void Resume()
     {
         pauseMenu.SetActive(false);
-        Time.timeScale = 1;
+        if (!thoughtMenu.gameObject.activeSelf)
+        {
+            Time.timeScale = 1;
+        }
         paused = false;
     }
     
