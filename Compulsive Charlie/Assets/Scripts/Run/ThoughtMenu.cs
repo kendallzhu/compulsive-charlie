@@ -4,13 +4,15 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ThoughtMenu : MonoBehaviour {
+public class ThoughtMenu : MonoBehaviour
+{
     private GameObject canvas;
     private RunManager runManager;
     private List<Thought> thoughts = new List<Thought>();
 
-	// one-time initialization (used instead of awake because it starts deactivated)
-	public void Initialize () {
+    // one-time initialization (used instead of awake because it starts deactivated)
+    public void Initialize()
+    {
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();
         // get reference to parent canvas
@@ -20,9 +22,10 @@ public class ThoughtMenu : MonoBehaviour {
     // take button input
     private void Update()
     {
-        bool b1 = Input.GetButtonDown("Button1");
-        bool b2 = Input.GetButtonDown("Button2");
-        bool b3 = Input.GetButtonDown("Button3");
+        // todo: dpad/joystick selection
+        bool b1 = Input.GetButtonDown("blue");
+        bool b2 = Input.GetButtonDown("green") || Input.GetButtonDown("yellow");
+        bool b3 = Input.GetButtonDown("red");
         if (b1 && thoughts.Count >= 1)
         {
             Select1();
@@ -83,17 +86,19 @@ public class ThoughtMenu : MonoBehaviour {
                 {
                     upArrowIcon.SetActive(false);
                     rethinkIcon.SetActive(true);
-                    
-                } else
+
+                }
+                else
                 {
                     upArrowIcon.SetActive(true);
                     rethinkIcon.SetActive(false);
                 }
-            } else
+            }
+            else
             {
                 card.gameObject.SetActive(false);
             }
-            
+
         }
         // TODO: create a countdown timer to limit decision time
     }
@@ -126,7 +131,8 @@ public class ThoughtMenu : MonoBehaviour {
         if (chosenThought.rethink)
         {
             runManager.PreJump();
-        } else
+        }
+        else
         {
             runManager.PostThoughtSelect();
         }

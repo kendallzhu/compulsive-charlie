@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 // Script managing all the state and gameplay of a single run
 public class RunManager : MonoBehaviour
 {
+    private bool paused = false;
     public const int minPlatformHeightDiff = 3;
 
     public GameManager gameManager;
@@ -15,6 +16,7 @@ public class RunManager : MonoBehaviour
     public RhythmManager rhythmManager;
     public new CameraController camera;
     public ThoughtMenu thoughtMenu;
+    public GameObject pauseMenu;
 
     // prefabs
     public GameObject platformPrefab;
@@ -51,7 +53,45 @@ public class RunManager : MonoBehaviour
         {
             player.GetComponent<Animator>().ResetTrigger("activityFail");
         }
-        
+        // pause menu
+        if (!paused && (Input.GetButtonDown("start") || Input.GetButtonDown("back")))
+        {
+            Pause();
+        }
+        else if (paused)
+        {
+            if (Input.GetButtonDown("start"))
+            {
+                Resume();
+            }
+            if (Input.GetButtonDown("back"))
+            {
+                Restart();
+            }
+        }
+
+    }
+
+    public void Pause()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        paused = true;
+    }
+
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        paused = false;
+    }
+    
+    public void Restart()
+    {
+        pauseMenu.SetActive(false);
+        paused = false;
+        Time.timeScale = 1;
+        gameManager.LoadProfile();
     }
 
     // for when the player arrives on next activity, called via trigger in ActivityPlatform

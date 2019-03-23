@@ -20,6 +20,14 @@ public class StartMenu : MonoBehaviour {
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("start"))
+        {
+            OnPlay();
+        }
+    }
+
     public void OnPlay()
     {
         gameManager.StartGame();

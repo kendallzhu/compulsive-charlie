@@ -32,6 +32,14 @@ public class RecapMenu : MonoBehaviour
         gameManager.profile.Reset();
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("start"))
+        {
+            OnProfile();
+        }
+    }
+
     public void OnProfile()
     {
         gameManager.LoadProfile();

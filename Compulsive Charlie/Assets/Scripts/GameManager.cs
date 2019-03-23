@@ -13,9 +13,7 @@ public class GameManager : MonoBehaviour {
     public Profile profile;
 
     void Start () {
-        //Debug.Log("game manager started");
-        // this should be in preload scene, now load first scene
-        SceneManager.LoadScene(1);
+        LoadSplash();
 
         // set starting profile of the game
         profile = new Profile();
@@ -58,6 +56,12 @@ public class GameManager : MonoBehaviour {
     {
         // right now just goes to profile menu, in future could load some backstory scenes
         LoadProfile();
+    }
+
+    public void LoadSplash()
+    {
+        // go to splash screen
+        SceneManager.LoadScene(1);
     }
 
     public void LoadProfile()

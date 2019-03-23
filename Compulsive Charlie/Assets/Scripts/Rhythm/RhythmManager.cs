@@ -6,8 +6,8 @@ using System.Linq;
 public class RhythmManager : MonoBehaviour
 {
     // how forgiving we are for note hits
-    public const float hitWindowLate = .05f;
-    public const float hitWindowEarly = .05f;
+    public const float hitWindowLate = .07f;
+    public const float hitWindowEarly = .03f;
     // how far to the right of the hit area are notes spawned
     public const float travelDist = 16f;
     // how long it takes for notes to get to hit area
@@ -115,13 +115,13 @@ public class RhythmManager : MonoBehaviour
                 lateHitPeriodEnd = time + lateHitPeriod;
             }
             // detect rhythm hits
-            bool b0 = Input.GetButtonDown("MainButton");
-            bool b1 = Input.GetButtonDown("Button1");
-            bool b2 = Input.GetButtonDown("Button2");
-            bool b3 = Input.GetButtonDown("Button3");
-            if (b0 || b1 || b2 || b3)
+            bool yellow = Input.GetButtonDown("yellow");
+            bool blue = Input.GetButtonDown("blue");
+            bool green = Input.GetButtonDown("green");
+            bool red = Input.GetButtonDown("red");
+            if (yellow || blue || green || red)
             {
-                string type = b0 ? "energy" : b1 ? "anxiety" : b2 ? "frustration" : "despair";
+                string type = yellow ? "energy" : green ? "anxiety" : red ? "frustration" : "despair";
                 if (time > nearestNote.arrivalTime - hitWindowEarly)
                 {
                     // perfect hit
@@ -131,7 +131,7 @@ public class RhythmManager : MonoBehaviour
                         notes.Remove(nearestNote);
                     }
                     // semi-hit (use main button to hit emotions)
-                    else if (b0)
+                    else if (yellow)
                     {
                         nearestNote.OnSemiHit(runManager.runState);
                         notes.Remove(nearestNote);

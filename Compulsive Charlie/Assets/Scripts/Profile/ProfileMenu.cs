@@ -15,6 +15,18 @@ public class ProfileMenu : MonoBehaviour
         gameManager = Object.FindObjectOfType<GameManager>();
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("start"))
+        {
+            OnStart();
+        }
+        if (Input.GetButtonDown("back"))
+        {
+            gameManager.LoadSplash();
+        }
+    }
+
     public void OnStart()
     {
         gameManager.StartRun();
