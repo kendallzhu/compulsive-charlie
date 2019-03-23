@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RhythmManager : MonoBehaviour
 {
@@ -49,10 +50,6 @@ public class RhythmManager : MonoBehaviour
     public void StopRhythm()
     {
         activity = null;
-        // notes.ForEach(n => Destroy(n.gameObject));
-        // notes.Clear();
-        noteSpawnTimes.Clear();
-        noteSpawnTypes.Clear();
         runManager.runState.ResetCombo();
     }
 
@@ -66,11 +63,8 @@ public class RhythmManager : MonoBehaviour
         for (int i = 0; i < pattern.Count; i++)
         {
             noteSpawnTimes.Add(pattern[i] * tempoIncrement);
-            // choose a note type based on the activity emotion notes
+            // choose a note type based on current emotional state
             EmotionState curr = runManager.runState.emotions;
-            /*int a = activity.emotionNotes.anxiety + curr.Extremeness("anxiety");
-            int f = activity.emotionNotes.frustration + curr.Extremeness("frustration");
-            int d = activity.emotionNotes.despair + curr.Extremeness("despair");*/
             int a = curr.anxiety;
             int f = curr.frustration;
             int d = curr.despair;
@@ -90,12 +84,14 @@ public class RhythmManager : MonoBehaviour
             {
                 type = "despair";
             }
-            noteSpawnTypes.Add(type);
+            // first note is always energy
+            noteSpawnTypes.Add(i == 0 ? "energy" : type);
         }
     }
 
     void Update()
     {
+        RunState runState = runManager.runState;
         // update time - with current settings goes in increments of about .016
         time += Time.deltaTime;
         // spawn the next preloaded note if the time has come
@@ -153,6 +149,16 @@ public class RhythmManager : MonoBehaviour
         {
             // repeat the pattern
             LoadMeasure();
+            // abort if the player is almost at the end of the platform
+            // (so no notes can spawn that reach player after they reach end)
+            float lastSpawnTime = noteSpawnTimes.Last();
+            ActivityPlatform ap = runState.CurrentActivityPlatform();
+            float distLeft = ap.x + ap.length - player.transform.position.x;
+            if ((lastSpawnTime + travelTime - time) * player.PlatformMinForwardSpeed(runState) > distLeft)
+            {
+                noteSpawnTimes.Clear();
+                noteSpawnTypes.Clear();
+            }
         }
     }
 

@@ -11,6 +11,7 @@ public class IGiveUp : Thought
         isUnlocked = true;
         energyCost = 2;
         jumpPower = 0;
+        invisibleEmotions = new List<string> { "despair" };
     }
 
     // whether this thought is available, given state of run

@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Note : MonoBehaviour
 {
+    RunManager runManager;
     RhythmManager rhythmManager;
     Transform hitArea;
 
@@ -17,6 +19,7 @@ public class Note : MonoBehaviour
 
     void Awake()
     {
+        runManager = FindObjectOfType<RunManager>();
         rhythmManager = FindObjectOfType<RhythmManager>();
         hitArea = GameObject.FindWithTag("HitArea").transform;
     }
@@ -34,6 +37,11 @@ public class Note : MonoBehaviour
         float newX = hitArea.position.x + travelDistance * (arrivalTime - rhythmManager.time) / RhythmManager.travelTime;
         newX = System.Math.Max(hitArea.position.x, newX);
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+        // make invisible - test
+        if (runManager.runState.thoughtHistory.Last().invisibleEmotions.Contains(type))
+        {
+            transform.localScale = new Vector3(0, 0, 0);
+        }
     }
 
     // functions for miss/hit effects

@@ -61,13 +61,15 @@ public class RunManager : MonoBehaviour
         {
             // increment timeSteps
             runState.timeSteps += 1;
+
             // update activity history
             runState.activityHistory.Add(newActivityPlatform);
             runState.height = newActivityPlatform.y;
 
             // make first activity "sleep in"
-            if (runState.activityHistory.Count == 0 && newActivityPlatform.activity == null)
+            if (newActivityPlatform.activity == null)
             {
+                Debug.Assert(runState.activityHistory.Count == 1);
                 newActivityPlatform.activity = Object.FindObjectOfType<SleepIn>();
             } else
             {
@@ -76,7 +78,7 @@ public class RunManager : MonoBehaviour
                 // start new platform spawning rhythm notes - deactivate this
                 rhythmManager.StartRhythm(newActivityPlatform.activity);
                 // trigger activity special effect
-                runState.CurrentActivityPlatform().activity.Effect(runState);
+                newActivityPlatform.activity.Effect(runState);
             }
 
             // start activity animation

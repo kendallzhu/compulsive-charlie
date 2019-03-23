@@ -11,6 +11,7 @@ public class UhOh : Thought
         isUnlocked = true;
         energyCost = 2;
         jumpPower = 0;
+        invisibleEmotions = new List<string> { "anxiety" };
     }
 
     // whether this thought is available, given state of run

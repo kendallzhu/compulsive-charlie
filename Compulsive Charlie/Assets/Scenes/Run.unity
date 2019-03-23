@@ -1451,6 +1451,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackgroundImage
       objectReference: {fileID: 0}
+    - target: {fileID: 2073298194576490733, guid: ebba332c31602c143b91d31ae1013734,
+        type: 3}
+      propertyPath: m_TagString
+      value: Background
+      objectReference: {fileID: 0}
     - target: {fileID: 9036744675892293482, guid: ebba332c31602c143b91d31ae1013734,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1512,6 +1517,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 26497cf12c49a90429835b5d390d2faa,
         type: 3}
+    - target: {fileID: 6785824306375721920, guid: ebba332c31602c143b91d31ae1013734,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785824306375721920, guid: ebba332c31602c143b91d31ae1013734,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785824306375721920, guid: ebba332c31602c143b91d31ae1013734,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785824306375721920, guid: ebba332c31602c143b91d31ae1013734,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebba332c31602c143b91d31ae1013734, type: 3}
 --- !u!4 &1433304469 stripped
@@ -2761,6 +2786,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9064274710088238145, guid: a2077cc6a5a90d942a4b9894a87440e7,
         type: 3}
+    - target: {fileID: 5829218121883359414, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_TagString
+      value: HitArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253586748496613003, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225944133168239178, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225944133168239178, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a8dbc6f1379bb45a0f8970adc86e77, type: 3}
 --- !u!1001 &6579902386324754734

@@ -11,6 +11,7 @@ public class DealWithIt : Thought
         isUnlocked = true;
         energyCost = 6;
         jumpPower = 5;
+        invisibleEmotions = new List<string> { "frustration" };
     }
 
     // whether this activity is available, given state of run

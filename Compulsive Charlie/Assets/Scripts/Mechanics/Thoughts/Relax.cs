@@ -11,6 +11,7 @@ public class Relax : Thought
         isUnlocked = true;
         energyCost = 4;
         jumpPower = 3;
+        invisibleEmotions = new List<string> { "anxiety" };
     }
 
     // whether this activity is available, given state of run

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ThoughtMenu : MonoBehaviour {
     private GameObject canvas;
@@ -72,6 +73,7 @@ public class ThoughtMenu : MonoBehaviour {
             if (i < thoughts.Count)
             {
                 card.gameObject.SetActive(true);
+                card.GetComponent<Image>().color = thoughts[i].GetColor();
                 nameText.GetComponent<TextMeshProUGUI>().text = thoughts[i].name;
                 descriptionText.GetComponent<TextMeshProUGUI>().text = thoughts[i].descriptionText;
                 energyText.GetComponent<TextMeshProUGUI>().text = thoughts[i].energyCost.ToString();
