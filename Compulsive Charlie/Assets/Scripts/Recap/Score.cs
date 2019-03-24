@@ -10,27 +10,24 @@ public class Score : MonoBehaviour
     public GameManager gameManager;
 
     // Initialization
-    void Awake()
+    void Start()
     {
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
-    }
+        // sort activities by best combo
+        List<ActivityPlatform> history = gameManager.profile.allRuns.Last().activityHistory;
+        List<ActivityPlatform> sortedHistory = history.OrderBy(ap => -ap.bestCombo).ToList();
 
-    void Update()
-    {
-        RunState lastRun = gameManager.profile.allRuns.Last();
-        List<Activity> schedule = gameManager.profile.schedule;
-        List<Activity> reality = lastRun.activityHistory.Select(ap=>ap.activity).ToList();
-        int numCompleted = 0;
-        for (int i = 0; i < schedule.Count; i++)
+        // retrieve name and best combos for each activity
+        List<string> activityNames = history.Select(ap => ap.activity.name).ToList();
+        List<int> bestCombos = sortedHistory.Select(ap => ap.bestCombo).ToList();
+        string comboStrings = "";
+        for (int i = 0; i < sortedHistory.Count && i < 5; i++)
         {
-            if (i+1 < reality.Count && schedule[i] == reality[i + 1])
-            {
-                numCompleted++;
-            }
+            comboStrings += activityNames[i] + ": " + bestCombos[i].ToString() + "\n";
         }
-        string completion = numCompleted.ToString() + "/" + schedule.Count.ToString();
-        gameObject.GetComponent<TextMeshProUGUI>().text = "Schedule Completion: " + completion;
-        // TODO: also show other achievements?
+
+        // load everything into the text box
+        gameObject.GetComponent<TextMeshProUGUI>().text = comboStrings;
     }
 }

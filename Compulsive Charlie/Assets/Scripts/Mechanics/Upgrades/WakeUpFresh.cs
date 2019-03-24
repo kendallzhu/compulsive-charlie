@@ -9,6 +9,7 @@ public class WakeUpFresh : Upgrade
     {
         name = "Wake Up Fresh";
         descriptionText = "Start with more energy";
+        category = "action";
     }
 
     // comb through lists of activities and thoughts and modify them to make upgrade

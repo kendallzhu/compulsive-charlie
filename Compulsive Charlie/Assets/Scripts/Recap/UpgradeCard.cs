@@ -7,6 +7,11 @@ public class UpgradeCard : MonoBehaviour
 {
     public GameManager gameManager;
     public RecapMenu recapMenu;
+    // icons
+    public GameObject energyIcon;
+    public GameObject emotionIcon;
+    public GameObject thoughtIcon;
+    public GameObject actionIcon;
 
     public Upgrade upgrade;
     // Start is called before the first frame update
@@ -18,12 +23,32 @@ public class UpgradeCard : MonoBehaviour
         recapMenu = transform.parent.parent.GetComponent<RecapMenu>();
     }
 
-    // correctly position platform based on current states
+    // set the display of hte card
     public void Initialize(Upgrade _upgrade)
     {
         upgrade = _upgrade;
         GameObject nameText = transform.Find("NameText").gameObject;
         nameText.GetComponent<TextMeshProUGUI>().text = upgrade.name;
+        energyIcon.SetActive(false);
+        emotionIcon.SetActive(false);
+        thoughtIcon.SetActive(false);
+        actionIcon.SetActive(false);
+        if (upgrade.category == "energy")
+        {
+            energyIcon.SetActive(true);
+        }
+        else if (upgrade.category == "emotion")
+        {
+            emotionIcon.SetActive(true);
+        }
+        else if (upgrade.category == "thought")
+        {
+            thoughtIcon.SetActive(true);
+        }
+        else if (upgrade.category == "action")
+        {
+            actionIcon.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -34,7 +59,7 @@ public class UpgradeCard : MonoBehaviour
             upgrade.Activate(gameManager.profile);
         }
         // move to next upgrade category
-        recapMenu.UpgradesPanel("");
+        recapMenu.CloseUpgrades();
         return;
     }
 }

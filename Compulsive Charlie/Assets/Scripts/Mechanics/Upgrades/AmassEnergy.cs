@@ -9,6 +9,7 @@ public class AmassEnergy : Upgrade
     {
         name = "Amass Energy";
         descriptionText = "Increase energy capacity";
+        category = "energy";
     }
 
     // comb through lists of activities and thoughts and modify them to make upgrade

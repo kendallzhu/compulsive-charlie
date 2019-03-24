@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ThoughtMenu : MonoBehaviour
 {
-    private GameObject canvas;
+    public GameObject canvas;
     private RunManager runManager;
     private List<Thought> thoughts = new List<Thought>();
 

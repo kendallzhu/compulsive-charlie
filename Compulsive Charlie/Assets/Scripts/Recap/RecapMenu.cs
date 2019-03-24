@@ -36,6 +36,10 @@ public class RecapMenu : MonoBehaviour
     {
         if (Input.GetButtonDown("start"))
         {
+            UpgradesPanel();
+        }
+        if (Input.GetButtonDown("back"))
+        {
             OnProfile();
         }
     }
@@ -45,43 +49,37 @@ public class RecapMenu : MonoBehaviour
         gameManager.LoadProfile();
     }
 
-    public void UpgradesPanel(string category = "")
+    public void CloseUpgrades()
+    {
+        upgradesPanel.SetActive(false);
+    }
+
+    public void UpgradesPanel()
     {
         // get available upgrades according to the category
         Profile p = gameManager.profile;
         RunState lastRunState = p.allRuns.Last();
         List<Upgrade> allUpgrades = p.upgrades;
         List<Upgrade> availableUpgrades = allUpgrades.Where(u => u.IsAvailable(p)).ToList();
-        // List<Upgrade> categoryUpgrades = 
-        if (category == "" || availableUpgrades.Count == 0)
+        // populate the upgrade cards
+        List<Transform> cards = new List<Transform> {
+            upgradesPanel.transform.Find("UpgradeCard1"),
+            upgradesPanel.transform.Find("UpgradeCard2"),
+            upgradesPanel.transform.Find("UpgradeCard3"),
+        };
+        for (int i = 0; i < 3; i++)
         {
-            upgradesPanel.SetActive(false);
-            upgradesButton.SetActive(false);
-            profileButton.SetActive(true);
-        }
-        else
-        {
-            // populate the upgrade cards
-            List<Transform> cards = new List<Transform> {
-                upgradesPanel.transform.Find("UpgradeCard1"),
-                upgradesPanel.transform.Find("UpgradeCard2"),
-                upgradesPanel.transform.Find("UpgradeCard3"),
-            };
-            for (int i = 0; i < 3; i++)
+            Transform card = cards[i];
+            if (i < availableUpgrades.Count())
             {
-                Transform card = cards[i];
-                if (i < availableUpgrades.Count())
-                {
-                    card.gameObject.SetActive(true);
-                    card.GetComponent<UpgradeCard>().Initialize(availableUpgrades[i]);
-                } else
-                {
-                    card.gameObject.SetActive(false);
-                }
-                
+                card.gameObject.SetActive(true);
+                card.GetComponent<UpgradeCard>().Initialize(availableUpgrades[i]);
+            } else
+            {
+                card.gameObject.SetActive(false);
             }
-            upgradesPanel.SetActive(true);
+                
         }
-
+        upgradesPanel.SetActive(true);
     }
 }

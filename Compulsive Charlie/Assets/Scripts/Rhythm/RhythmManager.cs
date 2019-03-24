@@ -15,7 +15,7 @@ public class RhythmManager : MonoBehaviour
     // time between smallest increments of a rhythm pattern
     public const float tempoIncrement = .2f;
     // duration after window that is considered a late hit for that note
-    public const float lateHitPeriod = tempoIncrement / 2;
+    public const float lateHitPeriod = hitWindowLate + tempoIncrement / 2;
     // duration between repeating measures of same activity
     public const float measureOffset = .4f;
 

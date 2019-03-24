@@ -42,10 +42,15 @@ public class RunManager : MonoBehaviour
             new EmotionState(gameManager.profile.initialEmotions)
         );
         thoughtMenu.Initialize();
+        Time.timeScale = 1;
     }
 
     private void Update()
     {
+        if (Input.GetKey("1") && Input.GetKey("2") && Input.GetKey("2")) // cheatcode to skip to recap
+        {
+            gameManager.EndRun(runState);
+        }
         if (runState.rhythmCombo == 0)
         {
             player.GetComponent<Animator>().SetTrigger("activityFail");
@@ -82,7 +87,7 @@ public class RunManager : MonoBehaviour
     public void Resume()
     {
         pauseMenu.SetActive(false);
-        if (!thoughtMenu.gameObject.activeSelf)
+        if (!thoughtMenu.canvas.activeSelf)
         {
             Time.timeScale = 1;
         }

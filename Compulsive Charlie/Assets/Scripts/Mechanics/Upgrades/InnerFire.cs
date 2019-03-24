@@ -9,6 +9,7 @@ public class InnerFire : Upgrade
     {
         name = "Inner Fire";
         descriptionText = "Generate energy through the day";
+        category = "thought";
     }
 
     // comb through lists of activities and thoughts and modify them to make upgrade
