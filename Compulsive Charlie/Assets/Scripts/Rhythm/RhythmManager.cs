@@ -6,8 +6,8 @@ using System.Linq;
 public class RhythmManager : MonoBehaviour
 {
     // how forgiving we are for note hits
-    public const float hitWindowLate = .07f;
-    public const float hitWindowEarly = .03f;
+    public const float hitWindowLate = .1f;
+    public const float hitWindowEarly = .5f;
     // how far to the right of the hit area are notes spawned
     public const float travelDist = 16f;
     // how long it takes for notes to get to hit area

@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Thought : MonoBehaviour
 {
     // consts
-    private const float colorBase = .1f;
+    private const float colorBase = 0f;
 
     // unique name
     new public string name;
@@ -78,8 +78,8 @@ public abstract class Thought : MonoBehaviour
         {
             bg.GetComponent<SpriteRenderer>().color = BackgroundColor();
         }
-        // drain energy
-        runState.IncreaseEnergy(-energyCost);
+        // drain energy - (SYNCHRONIZING ENERGY WITH COMBO)
+        // runState.IncreaseEnergy(-energyCost);
         runState.jumpPower += jumpPower;
         // make thought-specific effects
         CustomEffect(runState);

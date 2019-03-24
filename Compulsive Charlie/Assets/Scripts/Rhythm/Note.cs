@@ -16,6 +16,7 @@ public class Note : MonoBehaviour
     public string type;
     // "animator" prefabs
     public GameObject hitPrefab;
+    public GameObject missPrefab;
 
     void Awake()
     {
@@ -55,13 +56,19 @@ public class Note : MonoBehaviour
     public void OnMiss(RunState runState)
     {
         runState.ResetCombo();
+        runState.energy = 0;
         MissEffect(runState);
         Destroy(gameObject);
+        if (missPrefab)
+        {
+            Instantiate(missPrefab, transform.position, Quaternion.identity, transform.parent);
+        }
     }
 
     public void OnHit(RunState runState)
     {
         runState.IncreaseCombo();
+        runState.energy = runState.rhythmCombo;
         HitEffect(runState);
         Destroy(gameObject);
         Instantiate(hitPrefab, transform.position, Quaternion.identity, transform.parent);

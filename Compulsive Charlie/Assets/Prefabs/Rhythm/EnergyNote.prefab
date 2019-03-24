@@ -204,3 +204,5 @@ MonoBehaviour:
   type: energy
   hitPrefab: {fileID: 9064274710088238145, guid: 4da8d44d9b964f94099e7bdd12a0ba0e,
     type: 3}
+  missPrefab: {fileID: 9064274710088238145, guid: ae1ddd82f2d2f264d9c9cf7d4d08421c,
+    type: 3}

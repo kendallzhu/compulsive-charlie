@@ -8,8 +8,8 @@ public class LemmeThink : Thought
     {
         name = "Lemme Think";
         descriptionText = "hmmm";
-        isUnlocked = true;
-        energyCost = 2;
+        isUnlocked = false;
+        energyCost = 1;
         jumpPower = 0;
         rethink = true;
     }
