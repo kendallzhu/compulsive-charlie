@@ -15,9 +15,10 @@ public abstract class Thought : MonoBehaviour
 
     // changeable parameters
     public bool isUnlocked = false;
-    public int energyCost = 0;
+    public int energyCost = 0; // now its just a requirement
     public int jumpPower = 0;
     public bool rethink = false;
+    // which emotion(s) it hides
     public List<string> invisibleEmotions = new List<string>();
 
     // derives color from the invisible emotions list
@@ -36,7 +37,7 @@ public abstract class Thought : MonoBehaviour
         {
             b = 1;
         }
-        return new Color(r, g, b, .4f);
+        return new Color(r, g, b, 1f);
     }
     // version of color to tint background after selecting this thought
     public Color BackgroundColor()
@@ -78,7 +79,7 @@ public abstract class Thought : MonoBehaviour
         {
             bg.GetComponent<SpriteRenderer>().color = BackgroundColor();
         }
-        // drain energy - (SYNCHRONIZING ENERGY WITH COMBO)
+        // drain energy - (REMOVED: SYNCHRONIZING ENERGY WITH COMBO)
         // runState.IncreaseEnergy(-energyCost);
         runState.jumpPower += jumpPower;
         // make thought-specific effects

@@ -56,7 +56,6 @@ public class Note : MonoBehaviour
     public void OnMiss(RunState runState)
     {
         runState.ResetCombo();
-        runState.energy = 0;
         MissEffect(runState);
         Destroy(gameObject);
         if (missPrefab)
@@ -68,7 +67,6 @@ public class Note : MonoBehaviour
     public void OnHit(RunState runState)
     {
         runState.IncreaseCombo();
-        runState.energy = runState.rhythmCombo;
         HitEffect(runState);
         Destroy(gameObject);
         Instantiate(hitPrefab, transform.position, Quaternion.identity, transform.parent);

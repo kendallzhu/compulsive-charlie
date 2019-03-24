@@ -51,6 +51,7 @@ public class RunState {
     public void IncreaseCombo()
     {
         rhythmCombo++;
+        energy = rhythmCombo;
         ActivityPlatform ap = CurrentActivityPlatform();
         if (rhythmCombo > ap.bestCombo)
         {
@@ -61,6 +62,7 @@ public class RunState {
     public void ResetCombo()
     {
         rhythmCombo = 0;
+        energy = rhythmCombo;
     }
 
     public Activity CurrentActivity()

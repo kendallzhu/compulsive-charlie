@@ -45,12 +45,12 @@ public class RhythmManager : MonoBehaviour
     {
         lateHitPeriodEnd = 0;
         activity = activity_;
+        runManager.runState.ResetCombo();
     }
 
     public void StopRhythm()
     {
         activity = null;
-        runManager.runState.ResetCombo();
     }
 
     private void LoadMeasure()
