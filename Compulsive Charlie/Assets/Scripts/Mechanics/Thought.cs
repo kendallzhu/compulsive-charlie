@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Thought : MonoBehaviour
 {
     // consts
-    private const float colorBase = 0f;
+    private const float colorBase = 0.05f;
 
     // unique name
     new public string name;
@@ -15,15 +15,18 @@ public abstract class Thought : MonoBehaviour
 
     // changeable parameters
     public bool isUnlocked = false;
-    public int energyCost = 0; // now its just a requirement
+    public int energyLevel = 0; // now its just a requirement
     public int jumpPower = 0;
-    public bool rethink = false;
     // which emotion(s) it hides
     public List<string> invisibleEmotions = new List<string>();
 
     // derives color from the invisible emotions list
     public Color GetColor()
     {
+        if (invisibleEmotions.Count == 0)
+        {
+            return new Color(1, 1, 1);
+        }
         float r = colorBase, g = colorBase, b = colorBase;
         if (invisibleEmotions.Contains("anxiety"))
         {
@@ -42,6 +45,10 @@ public abstract class Thought : MonoBehaviour
     // version of color to tint background after selecting this thought
     public Color BackgroundColor()
     {
+        if (invisibleEmotions.Count == 0)
+        {
+            return new Color(1, 1, 1);
+        }
         Color c = GetColor();
         // for sprite, subtract colors to get desired tint
         return new Color(
@@ -60,7 +67,7 @@ public abstract class Thought : MonoBehaviour
     public int Availability(RunState runState)
     {
         // check if thought is unlocked and there is enough energy to use it
-        if (!isUnlocked || runState.energy < energyCost)
+        if (!isUnlocked || runState.energy < energyLevel)
         {
             return 0;
         }
@@ -68,10 +75,14 @@ public abstract class Thought : MonoBehaviour
     }
 
     // how this thought modifies given state of run when activated
-    public abstract void CustomEffect(RunState runState);
+    public virtual void CustomAcceptEffect(RunState runState)
+    {
+        // default - adds emotion according to the level
+        invisibleEmotions.ForEach((e) => runState.emotions.Add(e, 10 - energyLevel));
+    }
 
-    // common effect (factored out from Effect)
-    public void Effect(RunState runState)
+    // common accept effect
+    public void AcceptEffect(RunState runState)
     {
         // set background tint
         GameObject[] backgrounds = GameObject.FindGameObjectsWithTag("Background");
@@ -79,11 +90,33 @@ public abstract class Thought : MonoBehaviour
         {
             bg.GetComponent<SpriteRenderer>().color = BackgroundColor();
         }
-        // drain energy - (REMOVED: SYNCHRONIZING ENERGY WITH COMBO)
-        // runState.IncreaseEnergy(-energyCost);
         runState.jumpPower += jumpPower;
         // make thought-specific effects
-        CustomEffect(runState);
+        CustomAcceptEffect(runState);
+    }
+
+    // how this thought modifies given state of run when rejected
+    public virtual void CustomRejectEffect(RunState runState)
+    {
+        // default nothing
+        return;
+    }
+
+    // common reject effect
+    public void RejectEffect(RunState runState)
+    {
+        // if we reject a thought with no energy and nowhere left to go, explode emotions
+        if (runState.energy == 0)
+        {
+            const int explosion = 5;
+            runState.emotions.Add("anxiety", explosion);
+            runState.emotions.Add("frustration", explosion);
+            runState.emotions.Add("despair", explosion);
+        }
+        // drain energy
+        runState.IncreaseEnergy(-1);
+        // make thought-specific effects
+        CustomRejectEffect(runState);
     }
 
     // how this thought modifies jump power when active

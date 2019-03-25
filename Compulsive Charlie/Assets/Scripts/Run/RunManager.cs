@@ -47,9 +47,15 @@ public class RunManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey("1") && Input.GetKey("2") && Input.GetKey("2")) // cheatcode to skip to recap
+        // cheatcode to skip to recap
+        if (Input.GetKey("1") && Input.GetKey("2") && Input.GetKey("3"))
         {
             gameManager.EndRun(runState);
+        }
+        // cheatcode to add combo/energy
+        if (Input.GetKeyDown("0"))
+        {
+            runState.IncreaseCombo();
         }
         if (runState.rhythmCombo == 0)
         {
@@ -165,11 +171,11 @@ public class RunManager : MonoBehaviour
             }
         }
 
-        // regenerate energy
-        runState.IncreaseEnergy(gameManager.profile.energyRegen);
+        // regenerate energy - ABORTED DUE TO ENERGY = COMBO
+        // runState.IncreaseEnergy(gameManager.profile.energyRegen);
 
         // cap energy
-        runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
+        // runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
 
         // spawn new set of platforms
         foreach (Activity activity in SelectActivities())
@@ -193,11 +199,11 @@ public class RunManager : MonoBehaviour
     // called from thought menu after selecting a thought
     public void PostThoughtSelect()
     {
-        // refill available platforms in case any were deleted
+        /* refill available platforms in case any were deleted
         foreach (Activity activity in SelectActivities())
         {
             SpawnPlatform(activity);
-        }
+        }*/
         player.Jump();
     }
 

@@ -61,11 +61,14 @@ public class ThoughtMenu : MonoBehaviour
         // freeze time and activate canvas
         Time.timeScale = 0;
         canvas.SetActive(true);
-
+        if (!nameText.activeSelf)
+        {
+            Flip();
+        }
         nameText.GetComponent<TextMeshProUGUI>().color = currentThought.GetColor();
         nameText.GetComponent<TextMeshProUGUI>().text = currentThought.name;
         descriptionText.GetComponent<TextMeshProUGUI>().text = currentThought.descriptionText;
-        energyText.GetComponent<TextMeshProUGUI>().text = currentThought.energyCost.ToString();
+        energyText.GetComponent<TextMeshProUGUI>().text = currentThought.energyLevel.ToString();
         jumpPowerText.GetComponent<TextMeshProUGUI>().text = currentThought.jumpPower.ToString();
         // TODO: create a countdown timer to limit decision time?
     }
@@ -76,9 +79,8 @@ public class ThoughtMenu : MonoBehaviour
         Time.timeScale = 1;
         canvas.SetActive(false);
         RunState runState = runManager.runState;
-        Thought chosenThought = currentThought;
-        runState.thoughtHistory.Add(chosenThought);
-        chosenThought.Effect(runState);
+        runState.thoughtHistory.Add(currentThought);
+        currentThought.AcceptEffect(runState);
         runManager.PostThoughtSelect();
     }
 
@@ -87,13 +89,31 @@ public class ThoughtMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         canvas.SetActive(false);
-        // currentThought.RejectEffect(runState);
-        runManager.PreJump();
+        if (runManager.runState.energy > 0)
+        {
+            currentThought.RejectEffect(runManager.runState);
+            runManager.PreJump();
+        }
+        else
+        {
+            // rejecting when no energy left aborts
+            currentThought.RejectEffect(runManager.runState);
+            runManager.PostThoughtSelect();
+        }
     }
     
     // Toggle info
     public void Flip()
     {
-        
+        if (!nameText.activeSelf)
+        {
+            nameText.SetActive(true);
+            descriptionText.SetActive(false);
+        }
+        else
+        {
+            nameText.SetActive(false);
+            descriptionText.SetActive(true);
+        }
     }
 }

@@ -35,7 +35,7 @@ public class RunState {
     public void IncreaseEnergy(int amount)
     {
         energy += amount;
-        energy = System.Math.Min(energy, energyCap);
+        // energy = System.Math.Min(energy, energyCap);
         energy = System.Math.Max(energy, 0);
     }
 

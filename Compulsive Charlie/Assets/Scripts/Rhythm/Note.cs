@@ -39,7 +39,8 @@ public class Note : MonoBehaviour
         newX = System.Math.Max(hitArea.position.x, newX);
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
         // make invisible - test
-        if (runManager.runState.thoughtHistory.Last().invisibleEmotions.Contains(type))
+        List<Thought> thoughts = runManager.runState.thoughtHistory;
+        if (thoughts.Count > 0 && thoughts.Last().invisibleEmotions.Contains(type))
         {
             transform.localScale = new Vector3(0, 0, 0);
         }
@@ -58,10 +59,7 @@ public class Note : MonoBehaviour
         runState.ResetCombo();
         MissEffect(runState);
         Destroy(gameObject);
-        if (missPrefab)
-        {
-            Instantiate(missPrefab, transform.position, Quaternion.identity, transform.parent);
-        }
+        Instantiate(missPrefab, transform.position, Quaternion.identity, transform.parent);
     }
 
     public void OnHit(RunState runState)

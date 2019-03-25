@@ -7,7 +7,7 @@ public class RhythmManager : MonoBehaviour
 {
     // how forgiving we are for note hits
     public const float hitWindowLate = .1f;
-    public const float hitWindowEarly = .5f;
+    public const float hitWindowEarly = .05f;
     // how far to the right of the hit area are notes spawned
     public const float travelDist = 16f;
     // how long it takes for notes to get to hit area
@@ -107,10 +107,10 @@ public class RhythmManager : MonoBehaviour
         {
             Note nearestNote = notes[0];
             // rhythm miss
-            if (time > nearestNote.arrivalTime + RhythmManager.hitWindowLate)
+            if (time > nearestNote.arrivalTime + hitWindowLate)
             {
-                nearestNote.OnMiss(runManager.runState);
                 notes.Remove(nearestNote);
+                nearestNote.OnMiss(runManager.runState);
                 // update late hit period so late hits do not affect future notes
                 lateHitPeriodEnd = time + lateHitPeriod;
             }
@@ -127,21 +127,21 @@ public class RhythmManager : MonoBehaviour
                     // perfect hit
                     if (nearestNote.type == type)
                     {
-                        nearestNote.OnHit(runManager.runState);
                         notes.Remove(nearestNote);
+                        nearestNote.OnHit(runManager.runState);
                     }
                     // semi-hit (use main button to hit emotions)
-                    else if (yellow)
+                    else if (type == "energy")
                     {
-                        nearestNote.OnSemiHit(runManager.runState);
                         notes.Remove(nearestNote);
+                        nearestNote.OnSemiHit(runManager.runState);
                     }
                 }
                 else if (time > lateHitPeriodEnd)
                 {
                     // meaningful false hits cause miss next note
-                    nearestNote.OnMiss(runManager.runState);
                     notes.Remove(nearestNote);
+                    nearestNote.OnMiss(runManager.runState);
                 }
             }
         }
