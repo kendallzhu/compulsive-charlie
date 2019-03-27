@@ -368,7 +368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 27.480003}
+  m_AnchoredPosition: {x: 0, y: 53.61}
   m_SizeDelta: {x: 200, y: 77.48}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &615563975
@@ -393,13 +393,15 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'By:
 
-    Kendall Zhu
+    Kendall Zhu,
 
-    John Na
+    John Na,
 
-    Memie Osuga
+    Memie Osuga,
 
-    Jeongmin Lee'
+    Jeongmin Lee,
+
+    Sam Markowitz'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 261412b9ebf8bc84bacc945fc6ab320e, type: 2}
   m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
@@ -446,7 +448,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 16
+  m_firstOverflowCharacterIndex: 17
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -469,12 +471,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 10.822693, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 615563975}
-    characterCount: 48
+    characterCount: 66
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 10
+    wordCount: 11
     linkCount: 0
-    lineCount: 5
+    lineCount: 6
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -706,6 +708,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 20493185741913594, guid: ebb962b2202407245abe6c8b3d7aa198,
+        type: 3}
+      propertyPath: orthographic size
+      value: 0.3452587
+      objectReference: {fileID: 0}
     - target: {fileID: 4054003631078304, guid: ebb962b2202407245abe6c8b3d7aa198, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -737,11 +744,6 @@ PrefabInstance:
     - target: {fileID: 4054003631078304, guid: ebb962b2202407245abe6c8b3d7aa198, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20493185741913594, guid: ebb962b2202407245abe6c8b3d7aa198,
-        type: 3}
-      propertyPath: orthographic size
-      value: 0.3452587
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb962b2202407245abe6c8b3d7aa198, type: 3}

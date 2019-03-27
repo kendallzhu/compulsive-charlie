@@ -5,6 +5,7 @@ using UnityEngine;
 public class PauseManager : MonoBehaviour
 {
     public GameObject canvas;
+    public GameObject tutorialCanvas;
     private GameManager gameManager;
     private bool paused = false;
 
@@ -18,7 +19,7 @@ public class PauseManager : MonoBehaviour
     void Update()
     {
         // pause menu
-        if (!paused && (Input.GetButtonDown("start") || Input.GetButtonDown("back")))
+        if (!paused && (Input.GetButtonDown("start") || Input.GetButtonDown("back")) && !tutorialCanvas.activeSelf)
         {
             Pause();
         }

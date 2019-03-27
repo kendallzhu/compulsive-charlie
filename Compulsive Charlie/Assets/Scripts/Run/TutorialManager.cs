@@ -15,6 +15,11 @@ public class TutorialManager : MonoBehaviour
     public List<GameObject> ThoughtTutorial;
     public List<GameObject> RhythmTutorial;
 
+    // tracking if each tutorial has been shown yet in current run
+    public bool shownUITutorial = false;
+    public bool shownThoughtTutorial = false;
+    public bool shownRhythmTutorial = false;
+
     // tracking which tutorial sequence is activated, and its status
     private List<GameObject> activeTutorial = null;
     private int activeIndex = 0;
@@ -59,9 +64,14 @@ public class TutorialManager : MonoBehaviour
             bool yellow = Input.GetButtonDown("yellow");
             bool red = Input.GetButtonDown("red");
             bool start = Input.GetButtonDown("start");
+            bool back = Input.GetButtonDown("back");
             if (yellow || start)
             {
                 Dismiss();
+            }
+            else if (back)
+            {
+                Back();
             }
         }
     }
@@ -70,16 +80,19 @@ public class TutorialManager : MonoBehaviour
     public void ActivateUITutorial()
     {
         activeTutorial = UITutorial;
+        shownUITutorial = true;
     }
 
     public void ActivateThoughtTutorial()
     {
         activeTutorial = ThoughtTutorial;
+        shownThoughtTutorial = true;
     }
 
     public void ActivateRhythmTutorial()
     {
         activeTutorial = RhythmTutorial;
+        shownRhythmTutorial = true;
     }
 
     // Dismisses current element of active tutorial sequence
@@ -92,5 +105,17 @@ public class TutorialManager : MonoBehaviour
         {
             activeTutorial[activeIndex].SetActive(true);
         }
+    }
+
+    // Go back to previous element of active tutorial sequence
+    private void Back()
+    {
+        if (activeIndex == 0)
+        {
+            return;
+        }
+        activeTutorial[activeIndex].SetActive(false);
+        activeIndex--;
+        activeTutorial[activeIndex].SetActive(true);
     }
 }
