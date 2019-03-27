@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ThoughtMenu : MonoBehaviour
 {
     public GameObject canvas;
+    public GameObject tutorialCanvas;
     public GameObject nameText;
     public GameObject descriptionText;
     public GameObject energyText;
@@ -27,8 +28,9 @@ public class ThoughtMenu : MonoBehaviour
     // take button input
     private void Update()
     {
-        if (canvas && canvas.activeSelf)
+        if (canvas && canvas.activeSelf && !tutorialCanvas.activeSelf)
         {
+            Time.timeScale = 0;
             // todo: dpad/joystick selection
             bool blue = Input.GetButtonDown("blue");
             bool green = Input.GetButtonDown("green");
@@ -87,6 +89,11 @@ public class ThoughtMenu : MonoBehaviour
     // Redraw
     public void Reject()
     {
+        // optional - disallow reject when no energy
+        if (runManager.runState.energy == 0)
+        {
+            return;
+        }
         Time.timeScale = 1;
         canvas.SetActive(false);
         if (runManager.runState.energy > 0)
@@ -96,7 +103,7 @@ public class ThoughtMenu : MonoBehaviour
         }
         else
         {
-            // rejecting when no energy left aborts
+            // rejecting when no energy left, with effect
             currentThought.RejectEffect(runManager.runState);
             runManager.PostThoughtSelect();
         }

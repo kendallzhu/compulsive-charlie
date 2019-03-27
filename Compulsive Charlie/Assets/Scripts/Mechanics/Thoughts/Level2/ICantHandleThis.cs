@@ -7,7 +7,7 @@ public class ICantHandleThis : Thought
     void Awake()
     {
         name = "I Can't Handle This";
-        descriptionText = "Comforting to verbalize, but careful not to lead to panic";
+        descriptionText = "Comforting to verbalize, but careful not to lead to panic.";
         isUnlocked = true;
         energyLevel = 2;
         jumpPower = 2;

@@ -7,7 +7,7 @@ public class IHateEverything : Thought
     void Awake()
     {
         name = "I Hate Everything";
-        descriptionText = "Feels honest, but missing the real reason?";
+        descriptionText = "Feels honest, but mostly delusional. +++Frustration";
         isUnlocked = true;
         energyLevel = 0;
         jumpPower = 0;

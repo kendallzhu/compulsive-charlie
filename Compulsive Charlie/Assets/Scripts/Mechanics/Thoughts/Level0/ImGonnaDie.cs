@@ -7,7 +7,7 @@ public class ImGonnaDie : Thought
     void Awake()
     {
         name = "I'm Gonna Die";
-        descriptionText = "Feels honest, but missing the real reason?";
+        descriptionText = "Feels honest, but mostly delusional. +++Anxiety";
         isUnlocked = true;
         energyLevel = 0;
         jumpPower = 0;
