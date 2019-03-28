@@ -10,6 +10,7 @@ public class Drinking : Activity
         descriptionText = "problem and solution";
         emotionNotes = new EmotionState(0, 0, 0);
         emotionEffect = new EmotionState(0, 0, 3);
+        rhythmPattern = new List<int> { 2, 4, 6, 8 };
         isUnlocked = true;
     }
 

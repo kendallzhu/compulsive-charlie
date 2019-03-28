@@ -10,7 +10,6 @@ public class EnergyMiss : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        Debug.Log("Miss");
         startY = transform.position.y;
     }
 

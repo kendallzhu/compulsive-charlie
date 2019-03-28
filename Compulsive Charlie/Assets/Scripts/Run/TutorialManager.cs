@@ -24,14 +24,12 @@ public class TutorialManager : MonoBehaviour
     private List<GameObject> activeTutorial = null;
     private int activeIndex = 0;
 
-    // one-time initialization (used instead of awake because it starts deactivated)
-    public void Initialize()
+    public void Awake()
     {
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();
         gameManager = Object.FindObjectOfType<GameManager>();
-        // get reference to parent canvas
-        canvas = transform.parent.gameObject;
+        canvas.SetActive(false);
     }
 
     // take button input for dismissal

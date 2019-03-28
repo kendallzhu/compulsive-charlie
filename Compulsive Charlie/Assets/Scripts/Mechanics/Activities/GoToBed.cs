@@ -10,6 +10,7 @@ public class GoToBed : Activity
         descriptionText = "it's all over";
         emotionNotes = new EmotionState(1, 1, 0);
         emotionEffect = new EmotionState(0, 0, 0);
+        rhythmPattern = new List<int> { 1, 5, 7 };
         isUnlocked = true;
     }
 

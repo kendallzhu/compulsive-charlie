@@ -40,7 +40,6 @@ public class RunManager : MonoBehaviour
             gameManager.profile.energyCap,
             new EmotionState(gameManager.profile.initialEmotions)
         );
-        thoughtMenu.Initialize();
         Time.timeScale = 1;
     }
 

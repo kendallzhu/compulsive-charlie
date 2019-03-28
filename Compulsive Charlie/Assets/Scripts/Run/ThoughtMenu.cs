@@ -16,13 +16,11 @@ public class ThoughtMenu : MonoBehaviour
     private Thought currentThought;
     private bool flipped;
 
-    // one-time initialization (used instead of awake because it starts deactivated)
-    public void Initialize()
+    public void Awake()
     {
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();
-        // get reference to parent canvas
-        canvas = transform.parent.gameObject;
+        canvas.SetActive(false);
     }
 
     // take button input

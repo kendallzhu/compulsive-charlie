@@ -10,6 +10,7 @@ public class Study : Activity
         descriptionText = "learning and burning";
         emotionNotes = new EmotionState(1, 1, 1);
         emotionEffect = new EmotionState(4, 1, 1);
+        rhythmPattern = new List<int> { 1, 4, 5, 8 };
         isUnlocked = true;
     }
 }
