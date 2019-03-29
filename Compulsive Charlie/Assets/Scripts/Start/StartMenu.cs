@@ -22,7 +22,7 @@ public class StartMenu : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetButtonDown("start"))
+        if (Input.anyKeyDown)
         {
             OnPlay();
         }

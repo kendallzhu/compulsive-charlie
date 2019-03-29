@@ -146,7 +146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 375, y: 196}
+  m_AnchoredPosition: {x: 367, y: 126}
   m_SizeDelta: {x: 278.2, y: 216.29999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &562866155
@@ -1171,7 +1171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -281, y: 148}
+  m_AnchoredPosition: {x: -255, y: 74}
   m_SizeDelta: {x: 331.75, y: 118.73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545381341
@@ -1195,8 +1195,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.38679248, g: 0.38496798, b: 0.38496798, a: 0.7764706}
-    m_PressedColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0.5254902}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0.23137255}
+    m_PressedColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0.5882353}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1389,7 +1389,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 960, y: 640}
+  m_ReferenceResolution: {x: 960, y: 540}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1473,7 +1473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 127, y: 242}
+  m_AnchoredPosition: {x: 132, y: 202}
   m_SizeDelta: {x: 134.6, y: 134.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1972387643

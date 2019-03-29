@@ -105,8 +105,14 @@ public class RhythmManager : MonoBehaviour
         }
         if (notes.Count > 0)
         {
+            // detect rhythm hits/misses on the nearest note
             Note nearestNote = notes[0];
-            // rhythm miss
+            // take inputs
+            bool up = Input.GetButtonDown("up");
+            bool left = Input.GetButtonDown("left");
+            bool down = Input.GetButtonDown("down");
+            bool right = Input.GetButtonDown("right");
+            // rhythm miss - too late
             if (time > nearestNote.arrivalTime + hitWindowLate)
             {
                 notes.Remove(nearestNote);
@@ -114,14 +120,10 @@ public class RhythmManager : MonoBehaviour
                 // update late hit period so late hits do not affect future notes
                 lateHitPeriodEnd = time + lateHitPeriod;
             }
-            // detect rhythm hits
-            bool yellow = Input.GetButtonDown("yellow");
-            bool blue = Input.GetButtonDown("blue");
-            bool green = Input.GetButtonDown("green");
-            bool red = Input.GetButtonDown("red");
-            if (yellow || blue || green || red)
+            // otherwise, possible hit
+            else if (up || left || down || right)
             {
-                string type = yellow ? "energy" : green ? "anxiety" : red ? "frustration" : "despair";
+                string type = up ? "energy" : down ? "anxiety" : right ? "frustration" : "despair";
                 if (time > nearestNote.arrivalTime - hitWindowEarly)
                 {
                     // perfect hit
@@ -145,9 +147,9 @@ public class RhythmManager : MonoBehaviour
                 }
             }
         }
+        // no notes left - then spawn more to repeat the pattern
         else if (activity != null && noteSpawnTimes.Count == 0)
         {
-            // repeat the pattern
             LoadMeasure();
             // abort if the player is almost at the end of the platform
             // (so no notes can spawn that reach player after they reach end)

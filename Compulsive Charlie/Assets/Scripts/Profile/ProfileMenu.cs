@@ -29,13 +29,13 @@ public class ProfileMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("start"))
-        {
-            OnStart();
-        }
         if (Input.GetButtonDown("back"))
         {
             gameManager.LoadSplash();
+        }
+        else if (Input.anyKeyDown)
+        {
+            OnStart();
         }
     }
 

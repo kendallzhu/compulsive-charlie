@@ -57,19 +57,15 @@ public class TutorialManager : MonoBehaviour
         if (activeTutorial != null)
         {
             Time.timeScale = 0;
-            bool blue = Input.GetButtonDown("blue");
-            bool green = Input.GetButtonDown("green");
-            bool yellow = Input.GetButtonDown("yellow");
-            bool red = Input.GetButtonDown("red");
+            bool left = Input.GetButtonDown("left");
+            bool down = Input.GetButtonDown("down");
+            bool up = Input.GetButtonDown("up");
+            bool right = Input.GetButtonDown("right");
             bool start = Input.GetButtonDown("start");
             bool back = Input.GetButtonDown("back");
-            if (yellow || start)
+            if (Input.anyKeyDown)
             {
                 Dismiss();
-            }
-            else if (back)
-            {
-                Back();
             }
         }
     }

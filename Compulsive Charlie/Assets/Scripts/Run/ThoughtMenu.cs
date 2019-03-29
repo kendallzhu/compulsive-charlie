@@ -14,7 +14,6 @@ public class ThoughtMenu : MonoBehaviour
     public GameObject jumpPowerText;
     private RunManager runManager;
     private Thought currentThought;
-    private bool flipped;
 
     public void Awake()
     {
@@ -30,19 +29,19 @@ public class ThoughtMenu : MonoBehaviour
         {
             Time.timeScale = 0;
             // todo: dpad/joystick selection
-            bool blue = Input.GetButtonDown("blue");
-            bool green = Input.GetButtonDown("green");
-            bool yellow = Input.GetButtonDown("yellow");
-            bool red = Input.GetButtonDown("red");
-            if (yellow)
+            bool left = Input.GetButtonDown("left");
+            bool down = Input.GetButtonDown("down");
+            bool up = Input.GetButtonDown("up");
+            bool right = Input.GetButtonDown("right");
+            if (up)
             {
                 Accept();
             }
-            else if (green)
+            else if (down)
             {
                 Reject();
             }
-            else if (blue || red)
+            else if (right || left)
             {
                 Flip();
             }
