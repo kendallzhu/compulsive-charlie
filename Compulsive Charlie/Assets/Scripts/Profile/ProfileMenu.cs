@@ -29,6 +29,11 @@ public class ProfileMenu : MonoBehaviour
 
     private void Update()
     {
+        bool mouseClick = Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2);
+        if (mouseClick)
+        {
+            return;
+        }
         if (Input.GetButtonDown("back"))
         {
             gameManager.LoadSplash();
