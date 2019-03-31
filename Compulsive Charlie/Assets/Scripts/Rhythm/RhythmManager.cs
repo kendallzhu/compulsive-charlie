@@ -32,7 +32,7 @@ public class RhythmManager : MonoBehaviour
     public float lateHitPeriodEnd;
     private Activity activity;
     private List<float> noteSpawnTimes = new List<float>();
-    private List<string> noteSpawnTypes = new List<string>();
+    private List<EmotionType> noteSpawnTypes = new List<EmotionType>();
     private List<Note> notes = new List<Note>(); // active notes (in order)
 
     void Awake()
@@ -71,22 +71,22 @@ public class RhythmManager : MonoBehaviour
             int d = curr.despair;
             int total = a + f + d + 10;
 
-            string type = "energy";
+            EmotionType type = EmotionType.None;
             int r = Random.Range(0, total);
             if (r < a)
             {
-                type = "anxiety";
+                type = EmotionType.anxiety;
             }
             else if (r < a + f)
             {
-                type = "frustration";
+                type = EmotionType.frustration;
             }
             else if (r < a + f + d)
             {
-                type = "despair";
+                type = EmotionType.despair;
             }
             // first note is always energy
-            noteSpawnTypes.Add(i == 0 ? "energy" : type);
+            noteSpawnTypes.Add(i == 0 ? EmotionType.None : type);
         }
     }
 
@@ -124,17 +124,21 @@ public class RhythmManager : MonoBehaviour
             // otherwise, possible hit
             else if (up || left || down || right)
             {
-                string type = up ? "energy" : down ? "anxiety" : right ? "frustration" : "despair";
+                EmotionType hitType = 
+                    up ? EmotionType.None : 
+                    down ? EmotionType.anxiety : 
+                    right ? EmotionType.frustration : 
+                    EmotionType.despair;
                 if (time > nearestNote.arrivalTime - hitWindowEarly)
                 {
                     // perfect hit
-                    if (nearestNote.type == type)
+                    if (nearestNote.type == hitType)
                     {
                         notes.Remove(nearestNote);
                         nearestNote.OnHit(runManager.runState);
                     }
                     // semi-hit (use main button to hit emotions)
-                    else if (type == "energy")
+                    else if (hitType == EmotionType.None)
                     {
                         notes.Remove(nearestNote);
                         nearestNote.OnSemiHit(runManager.runState);
@@ -166,24 +170,24 @@ public class RhythmManager : MonoBehaviour
     }
 
     // create a note with specified type + spawn time
-    void SpawnNote(float spawnTime, string type)
+    void SpawnNote(float spawnTime, EmotionType type)
     {
         Vector3 destPos = hitArea.transform.position;
         Vector3 startingPos = new Vector3(destPos.x + travelDist, destPos.y);
         GameObject note;
-        if (type == "energy")
+        if (type == EmotionType.None)
         {
             note = Instantiate(energyNote, startingPos, Quaternion.identity, transform.parent);
         }
-        else if (type == "anxiety")
+        else if (type == EmotionType.anxiety)
         {
             note = Instantiate(anxietyNote, startingPos, Quaternion.identity, transform.parent);
         }
-        else if (type == "frustration")
+        else if (type == EmotionType.frustration)
         {
             note = Instantiate(frustrationNote, startingPos, Quaternion.identity, transform.parent);
         }
-        else if (type == "despair")
+        else if (type == EmotionType.despair)
         {
             note = Instantiate(despairNote, startingPos, Quaternion.identity, transform.parent);
         }

@@ -17,7 +17,7 @@ public class Binge : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.GetDominantEmotion() == "despair")
+        if (runState.emotions.GetDominantEmotion() == EmotionType.despair)
         {
             return 1;
         }

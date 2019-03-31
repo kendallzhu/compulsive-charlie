@@ -12,7 +12,7 @@ public class LetLoose : Thought
         isUnlocked = true;
         energyLevel = 1;
         jumpPower = 5;
-        invisibleEmotions = new List<string> { "anxiety", "despair" };
+        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety, EmotionType.despair };
     }
 
     // whether this activity is available, given state of run

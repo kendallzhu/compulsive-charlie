@@ -17,7 +17,7 @@ public class VideoGames : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.GetDominantEmotion() == "frustration")
+        if (runState.emotions.GetDominantEmotion() == EmotionType.frustration)
         {
             return 1;
         }
@@ -26,7 +26,7 @@ public class VideoGames : Activity
 
     public override void Effect(RunState runState)
     {
-        runState.emotions.Add("despair", 1);
+        runState.emotions.Add(EmotionType.despair, 1);
         return;
     }
 }

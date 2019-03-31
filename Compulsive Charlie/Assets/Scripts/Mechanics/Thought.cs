@@ -18,7 +18,7 @@ public abstract class Thought : MonoBehaviour
     public int energyLevel = 0; // now its just a requirement
     public int jumpPower = 0;
     // which emotion(s) it hides
-    public List<string> invisibleEmotions = new List<string>();
+    public List<EmotionType> invisibleEmotions = new List<EmotionType>();
 
     // derives color from the invisible emotions list
     public Color GetColor()
@@ -28,15 +28,15 @@ public abstract class Thought : MonoBehaviour
             return new Color(1, 1, 1);
         }
         float r = colorBase, g = colorBase, b = colorBase;
-        if (invisibleEmotions.Contains("anxiety"))
+        if (invisibleEmotions.Contains(EmotionType.anxiety))
         {
             g = 1;
         }
-        if (invisibleEmotions.Contains("frustration"))
+        if (invisibleEmotions.Contains(EmotionType.frustration))
         {
             r = 1;
         }
-        if (invisibleEmotions.Contains("despair"))
+        if (invisibleEmotions.Contains(EmotionType.despair))
         {
             b = 1;
         }
@@ -109,9 +109,9 @@ public abstract class Thought : MonoBehaviour
         if (runState.energy == 0)
         {
             const int explosion = 5;
-            runState.emotions.Add("anxiety", explosion);
-            runState.emotions.Add("frustration", explosion);
-            runState.emotions.Add("despair", explosion);
+            runState.emotions.Add(EmotionType.anxiety, explosion);
+            runState.emotions.Add(EmotionType.frustration, explosion);
+            runState.emotions.Add(EmotionType.despair, explosion);
         }
         // drain energy
         runState.IncreaseEnergy(-1);

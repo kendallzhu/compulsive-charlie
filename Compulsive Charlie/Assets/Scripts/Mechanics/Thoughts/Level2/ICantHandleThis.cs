@@ -11,12 +11,12 @@ public class ICantHandleThis : Thought
         isUnlocked = true;
         energyLevel = 2;
         jumpPower = 2;
-        invisibleEmotions = new List<string> { "anxiety" };
+        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        return runState.emotions.Extremeness("anxiety");
+        return runState.emotions.Extremeness(EmotionType.anxiety);
     }
 }

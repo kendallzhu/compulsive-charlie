@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public enum EmotionType { None, anxiety, frustration, despair }
+
 // class for storing the core emotional axes of a player
 public class EmotionState
 {
@@ -40,47 +42,47 @@ public class EmotionState
     }
 
     // methods for modifying and flooring values
-    public void Add(string type, int val)
+    public void Add(EmotionType type, int val)
     {
-        if (type == "anxiety")
+        if (type == EmotionType.anxiety)
         {
             anxiety = Math.Max(0, anxiety + val);
         }
-        else if (type == "frustration")
+        else if (type == EmotionType.frustration)
         {
             frustration = Math.Max(0, frustration + val);
         }
-        else if (type == "despair")
+        else if (type == EmotionType.despair)
         {
             despair = Math.Max(0, despair + val);
         }
     }
     public void Add(EmotionState other)
     {
-        Add("anxiety", other.anxiety);
-        Add("frustration", other.frustration);
-        Add("despair", other.despair);
+        Add(EmotionType.anxiety, other.anxiety);
+        Add(EmotionType.frustration, other.frustration);
+        Add(EmotionType.despair, other.despair);
     }
 
     // return name of emotion with highest magnitude
-    public string GetDominantEmotion()
+    public EmotionType GetDominantEmotion()
     {
         int maxValue = Math.Max(anxiety, Math.Max(frustration, despair));
         if (maxValue == 0)
         {
-            return "None";
+            return EmotionType.None;
         }
         if (frustration == maxValue)
         {
-            return "frustration";
+            return EmotionType.frustration;
         }
         else if (anxiety == maxValue)
         {
-            return "anxiety";
+            return EmotionType.anxiety;
         }
         else
         {
-            return "despair";
+            return EmotionType.despair;
         }
     }
 
@@ -101,17 +103,17 @@ public class EmotionState
         return Level(maxValue);
     }
 
-    public int Extremeness(string e)
+    public int Extremeness(EmotionType e)
     {
-        if (e == "anxiety")
+        if (e == EmotionType.anxiety)
         {
             return Level(anxiety);
         }
-        else if (e == "frustration")
+        else if (e == EmotionType.frustration)
         {
             return Level(frustration);
         }
-        else if (e == "despair")
+        else if (e == EmotionType.despair)
         {
             return Level(despair);
         }
@@ -122,24 +124,24 @@ public class EmotionState
     // shift all emotion axes towards 0 by given factor (plus one)
     public void Equilibrate(float factor)
     {
-        Equilibrate("anxiety", factor);
-        Equilibrate("frustration", factor);
-        Equilibrate("despair", factor);
+        Equilibrate(EmotionType.anxiety, factor);
+        Equilibrate(EmotionType.frustration, factor);
+        Equilibrate(EmotionType.despair, factor);
     }
 
-    public void Equilibrate(string emotionName, float factor = .2f)
+    public void Equilibrate(EmotionType e, float factor = .2f)
     {
-        if (emotionName == "anxiety")
+        if (e == EmotionType.anxiety)
         {
             int diff = 0 - anxiety;
             anxiety += (int)(diff * factor) + Math.Sign(diff);
         }
-        else if (emotionName == "frustration")
+        else if (e == EmotionType.frustration)
         {
             int diff = 0 - frustration;
             frustration += (int)(diff * factor) + Math.Sign(diff);
         }
-        else if (emotionName == "despair")
+        else if (e == EmotionType.despair)
         {
             int diff = 0 - despair;
             despair += (int)(diff * factor) + Math.Sign(diff);

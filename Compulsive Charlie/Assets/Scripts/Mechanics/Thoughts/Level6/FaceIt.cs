@@ -11,12 +11,12 @@ public class FaceIt : Thought
         isUnlocked = true;
         energyLevel = 6;
         jumpPower = 4;
-        invisibleEmotions = new List<string> { };
+        invisibleEmotions = new List<EmotionType> { };
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        return runState.emotions.Extremeness("anxiety");
+        return runState.emotions.Extremeness(EmotionType.anxiety);
     }
 }

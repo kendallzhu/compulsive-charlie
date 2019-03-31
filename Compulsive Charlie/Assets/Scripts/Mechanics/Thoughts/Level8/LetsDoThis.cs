@@ -11,7 +11,7 @@ public class LetsDoThis : Thought
         isUnlocked = true;
         energyLevel = 8;
         jumpPower = 6;
-        invisibleEmotions = new List<string> { };
+        invisibleEmotions = new List<EmotionType> { };
     }
 
     // whether this activity is available, given state of run

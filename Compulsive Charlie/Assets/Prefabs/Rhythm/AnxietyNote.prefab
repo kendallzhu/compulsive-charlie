@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrivalTime: 0
-  type: anxiety
+  type: 1
   hitPrefab: {fileID: 9064274710088238145, guid: fe984d58a7d9ed348ad296b33ac053d3,
     type: 3}
   missPrefab: {fileID: 9064274710088238145, guid: 870cae38fcc27454d9b6849c9c559941,

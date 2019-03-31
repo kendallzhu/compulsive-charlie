@@ -26,7 +26,7 @@ public class Drinking : Activity
 
     public override void Effect(RunState runState)
     {
-        runState.emotions.Add("despair", 3);
+        runState.emotions.Add(EmotionType.despair, 3);
         return;
     }
 }

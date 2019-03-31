@@ -11,12 +11,12 @@ public class LifeIsWorthless : Thought
         isUnlocked = true;
         energyLevel = 0;
         jumpPower = 0;
-        invisibleEmotions = new List<string> { "despair" };
+        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        return runState.emotions.Extremeness("despair");
+        return runState.emotions.Extremeness(EmotionType.despair);
     }
 }
