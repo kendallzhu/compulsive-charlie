@@ -2392,6 +2392,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370214730}
   m_CullTransparentMesh: 0
+--- !u!1 &373017400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6998250751045920941, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+    type: 3}
+  m_PrefabInstance: {fileID: 4842333853149225471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &376929647
 GameObject:
   m_ObjectHideFlags: 0
@@ -8753,7 +8759,6 @@ GameObject:
   - component: {fileID: 1325963174}
   - component: {fileID: 1325963176}
   - component: {fileID: 1325963175}
-  - component: {fileID: 1325963177}
   m_Layer: 9
   m_Name: Advance Text
   m_TagString: Untagged
@@ -8904,19 +8909,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325963173}
   m_CullTransparentMesh: 0
---- !u!114 &1325963177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325963173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d2d783e937f5f64dba43c96b4254fe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  period: 3
 --- !u!224 &1338509587 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6579902385197013053, guid: 6d70603a238232f468aa6c7fb1376706,
@@ -10038,6 +10030,7 @@ GameObject:
   - component: {fileID: 1652275280}
   - component: {fileID: 1652275282}
   - component: {fileID: 1652275283}
+  - component: {fileID: 1652275284}
   m_Layer: 0
   m_Name: RunManager
   m_TagString: Untagged
@@ -10162,6 +10155,31 @@ MonoBehaviour:
   descriptionText: {fileID: 1905528826}
   energyText: {fileID: 370214730}
   jumpPowerText: {fileID: 1952567946}
+--- !u!114 &1652275284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652275277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880e0732eeac2d8428900e3af688ad8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 155495550}
+  hitArea: {fileID: 373017400}
+  runManager: {fileID: 1652275278}
+  energyNote: {fileID: 9064274710088238145, guid: d8d1e3b14aef4c649b73483045948e05,
+    type: 3}
+  anxietyNote: {fileID: 9064274710088238145, guid: d009b57f73e7ef649b6ffba0af20d0ce,
+    type: 3}
+  frustrationNote: {fileID: 9064274710088238145, guid: 50e66bad03fad594ebba9e5c24b9d6a5,
+    type: 3}
+  despairNote: {fileID: 9064274710088238145, guid: a2077cc6a5a90d942a4b9894a87440e7,
+    type: 3}
+  time: 0
+  lateHitPeriodEnd: 0
 --- !u!1001 &1680804088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13576,6 +13594,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998250751045920941, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_Name
+      value: HitArea
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a8dbc6f1379bb45a0f8970adc86e77, type: 3}

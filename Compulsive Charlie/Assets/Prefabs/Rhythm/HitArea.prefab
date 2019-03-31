@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 402948004226647405}
   m_Layer: 0
-  m_Name: Staff
+  m_Name: HitArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,9 +42,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3896320257938479659}
   - component: {fileID: 846257681725045291}
-  - component: {fileID: 7280251817860954377}
   m_Layer: 0
-  m_Name: HitArea
+  m_Name: GrayCircle
   m_TagString: HitArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,26 +113,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7280251817860954377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3777607590137214327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 880e0732eeac2d8428900e3af688ad8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  runManager: {fileID: 0}
-  energyNote: {fileID: 0}
-  anxietyNote: {fileID: 0}
-  frustrationNote: {fileID: 0}
-  despairNote: {fileID: 0}
-  time: 0
-  lateHitPeriodEnd: 0
 --- !u!1001 &7280251817860954375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,27 +120,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 402948004226647405}
     m_Modifications:
-    - target: {fileID: 5575341814242524480, guid: 29e92c48595e7504fa6c41258b676016,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 77d3e829651e57043b2dc273b6f397cd,
-        type: 3}
-    - target: {fileID: 5575341814242524480, guid: 29e92c48595e7504fa6c41258b676016,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5864922987216292976, guid: 29e92c48595e7504fa6c41258b676016,
-        type: 3}
-      propertyPath: m_Name
-      value: HitArea
-      objectReference: {fileID: 0}
-    - target: {fileID: 5864922987216292976, guid: 29e92c48595e7504fa6c41258b676016,
-        type: 3}
-      propertyPath: m_TagString
-      value: HitArea
-      objectReference: {fileID: 0}
     - target: {fileID: 5988139152853082924, guid: 29e92c48595e7504fa6c41258b676016,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -225,6 +183,27 @@ PrefabInstance:
     - target: {fileID: 5988139152853082924, guid: 29e92c48595e7504fa6c41258b676016,
         type: 3}
       propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864922987216292976, guid: 29e92c48595e7504fa6c41258b676016,
+        type: 3}
+      propertyPath: m_Name
+      value: GrayCircle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864922987216292976, guid: 29e92c48595e7504fa6c41258b676016,
+        type: 3}
+      propertyPath: m_TagString
+      value: HitArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575341814242524480, guid: 29e92c48595e7504fa6c41258b676016,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 77d3e829651e57043b2dc273b6f397cd,
+        type: 3}
+    - target: {fileID: 5575341814242524480, guid: 29e92c48595e7504fa6c41258b676016,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

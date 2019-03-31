@@ -20,6 +20,7 @@ public class RhythmManager : MonoBehaviour
     public const float measureOffset = .4f;
 
     public PlayerController player;
+    public GameObject hitArea;
     public RunManager runManager;
     // note prefabs
     public GameObject energyNote;
@@ -167,8 +168,8 @@ public class RhythmManager : MonoBehaviour
     // create a note with specified type + spawn time
     void SpawnNote(float spawnTime, string type)
     {
-        Vector3 staffPos = transform.parent.position;
-        Vector3 startingPos = new Vector3(staffPos.x + travelDist, staffPos.y);
+        Vector3 destPos = hitArea.transform.position;
+        Vector3 startingPos = new Vector3(destPos.x + travelDist, destPos.y);
         GameObject note;
         if (type == "energy")
         {
