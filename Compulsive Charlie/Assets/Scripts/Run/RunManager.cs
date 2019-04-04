@@ -94,12 +94,6 @@ public class RunManager : MonoBehaviour
                 rhythmManager.StartRhythm(newActivityPlatform.activity);
                 // trigger activity special effect
                 newActivityPlatform.activity.Effect(runState);
-
-                // activate tutorial manager
-                if (gameManager.showTutorial && !tutorialManager.shownRhythmTutorial)
-                {
-                    tutorialManager.ActivateRhythmTutorial();
-                }
             }
 
             // start activity animation

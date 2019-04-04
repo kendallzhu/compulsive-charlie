@@ -22,6 +22,8 @@ public class RhythmManager : MonoBehaviour
     public PlayerController player;
     public GameObject hitArea;
     public RunManager runManager;
+    public GameManager gameManager;
+    public TutorialManager tutorialManager;
     // note prefabs
     public GameObject energyNote;
     public GameObject anxietyNote;
@@ -37,8 +39,10 @@ public class RhythmManager : MonoBehaviour
 
     void Awake()
     {
-        // get reference to runManager + player
+        // get reference to managers + player
         runManager = Object.FindObjectOfType<RunManager>();
+        gameManager = Object.FindObjectOfType<GameManager>();
+        tutorialManager = Object.FindObjectOfType<TutorialManager>();
         player = Object.FindObjectOfType<PlayerController>();
     }
 
@@ -166,6 +170,12 @@ public class RhythmManager : MonoBehaviour
                 noteSpawnTimes.Clear();
                 noteSpawnTypes.Clear();
             }
+        }
+        // activate appropriate tutorials
+        // show rhythm tutorial once some notes appear on screen
+        if (gameManager.showTutorial && !tutorialManager.shownRhythmTutorial && notes.Count > 1)
+        {
+            tutorialManager.ActivateRhythmTutorial();
         }
     }
 
