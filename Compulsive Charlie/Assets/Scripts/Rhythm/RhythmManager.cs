@@ -108,7 +108,7 @@ public class RhythmManager : MonoBehaviour
             noteSpawnTimes.RemoveAt(0);
             noteSpawnTypes.RemoveAt(0);
         }
-        if (notes.Count > 0)
+        if (notes.Count > 0 && !tutorialManager.canvas.activeSelf)
         {
             // detect rhythm hits/misses on the nearest note
             Note nearestNote = notes[0];
