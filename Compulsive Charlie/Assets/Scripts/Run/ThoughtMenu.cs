@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ThoughtMenu : MonoBehaviour
 {
     public GameObject canvas;
+    public GameObject rejectButton;
     public GameObject tutorialCanvas;
     public GameObject nameText;
     public GameObject descriptionText;
@@ -44,6 +45,14 @@ public class ThoughtMenu : MonoBehaviour
             else if (right || left)
             {
                 Flip();
+            }
+            // deactivate reject button when no energy
+            if (runManager.runState.energy == 0)
+            {
+                rejectButton.SetActive(false);
+            } else
+            {
+                rejectButton.SetActive(true);
             }
         }
     }
