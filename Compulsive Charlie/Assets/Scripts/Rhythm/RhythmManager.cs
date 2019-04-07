@@ -14,7 +14,10 @@ public class RhythmManager : MonoBehaviour
     public const float travelTime = 1.5f;
     // time between smallest increments of a rhythm pattern
     public const float tempoIncrement = .2f;
-    // duration after window that is considered a late hit for that note
+    // duration before arrival time that is considered a miss for the incoming note
+    // (if you hit earlier than this, then it won't be punished)
+    public const float earlyHitPeriod = tempoIncrement;
+    // duration after arrival time that is considered a miss for the next note
     public const float lateHitPeriod = hitWindowLate + tempoIncrement / 2;
     // duration between repeating measures of same activity
     public const float measureOffset = .4f;
@@ -29,6 +32,11 @@ public class RhythmManager : MonoBehaviour
     public GameObject anxietyNote;
     public GameObject frustrationNote;
     public GameObject despairNote;
+    // input animation prefabs
+    public GameObject upKey;
+    public GameObject rightKey;
+    public GameObject downKey;
+    public GameObject leftKey;
 
     public float time;
     public float lateHitPeriodEnd;
@@ -96,6 +104,21 @@ public class RhythmManager : MonoBehaviour
 
     void Update()
     {
+        // do nothing if there is a tutorial
+        if (tutorialManager.canvas.activeSelf)
+        {
+            return;
+        }
+        // only show hitarea if there is an ongoing activity
+        if (activity != null)
+        {
+            hitArea.SetActive(true);
+        } else
+        {
+            hitArea.SetActive(false);
+            return;
+        }
+        
         RunState runState = runManager.runState;
         // update time - with current settings goes in increments of about .016
         time += Time.deltaTime;
@@ -108,15 +131,24 @@ public class RhythmManager : MonoBehaviour
             noteSpawnTimes.RemoveAt(0);
             noteSpawnTypes.RemoveAt(0);
         }
-        if (notes.Count > 0 && !tutorialManager.canvas.activeSelf)
+        // take inputs + trigger input animations
+        bool up = Input.GetButtonDown("up");
+        bool left = Input.GetButtonDown("left");
+        bool down = Input.GetButtonDown("down");
+        bool right = Input.GetButtonDown("right");
+        GameObject inputAnimPreb =
+            up ? upKey :
+            down ? downKey :
+            right ? rightKey :
+            left ? leftKey : null;
+        if (inputAnimPreb)
+        {
+            Instantiate(inputAnimPreb, hitArea.transform.position, Quaternion.identity, hitArea.transform);
+        }
+        if (notes.Count > 0)
         {
             // detect rhythm hits/misses on the nearest note
             Note nearestNote = notes[0];
-            // take inputs
-            bool up = Input.GetButtonDown("up");
-            bool left = Input.GetButtonDown("left");
-            bool down = Input.GetButtonDown("down");
-            bool right = Input.GetButtonDown("right");
             // rhythm miss - too late
             if (time > nearestNote.arrivalTime + hitWindowLate)
             {
@@ -148,7 +180,7 @@ public class RhythmManager : MonoBehaviour
                         nearestNote.OnSemiHit(runManager.runState);
                     }
                 }
-                else if (time > lateHitPeriodEnd)
+                else if (time > lateHitPeriodEnd && (time > nearestNote.arrivalTime - earlyHitPeriod))
                 {
                     // meaningful false hits cause miss next note
                     notes.Remove(nearestNote);

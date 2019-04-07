@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 // put onto a text object to make the opacity pulse
-public class Pulse : MonoBehaviour
+public class PulseText : MonoBehaviour
 {
     public float period = 3f;
 

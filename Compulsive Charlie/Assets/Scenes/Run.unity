@@ -4865,7 +4865,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1652275283}
         m_MethodName: Flip
         m_Mode: 1
         m_Arguments:
@@ -9605,6 +9605,11 @@ MonoBehaviour:
     type: 3}
   despairNote: {fileID: 9064274710088238145, guid: a2077cc6a5a90d942a4b9894a87440e7,
     type: 3}
+  upKey: {fileID: 9064274710088238145, guid: 116b214a46c48ae4481bc1d9fa4d53b2, type: 3}
+  rightKey: {fileID: 9064274710088238145, guid: f253dce1dbfcc534bbad30bf6cb5a4a6,
+    type: 3}
+  downKey: {fileID: 9064274710088238145, guid: 751461c3b6948ef4ba817ef947779831, type: 3}
+  leftKey: {fileID: 9064274710088238145, guid: 71c60d5cfefd99d44bfced96e5679e0d, type: 3}
   time: 0
   lateHitPeriodEnd: 0
 --- !u!1001 &1680804088
@@ -11926,7 +11931,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023551931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.15, z: -10}
+  m_LocalPosition: {x: 0.93, y: 2.9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
