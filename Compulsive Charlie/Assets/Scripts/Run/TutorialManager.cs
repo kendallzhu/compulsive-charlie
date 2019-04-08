@@ -14,11 +14,13 @@ public class TutorialManager : MonoBehaviour
     public List<GameObject> UITutorial;
     public List<GameObject> ThoughtTutorial;
     public List<GameObject> RhythmTutorial;
+    public List<GameObject> EmotionNoteTutorial;
 
     // tracking if each tutorial has been shown yet in current run
     public bool shownUITutorial = false;
     public bool shownThoughtTutorial = false;
     public bool shownRhythmTutorial = false;
+    public bool shownEmotionNoteTutorial = false;
 
     // tracking which tutorial sequence is activated, and its status
     private List<GameObject> activeTutorial = null;
@@ -87,6 +89,12 @@ public class TutorialManager : MonoBehaviour
     {
         activeTutorial = RhythmTutorial;
         shownRhythmTutorial = true;
+    }
+
+    public void ActivateEmotionNoteTutorial()
+    {
+        activeTutorial = EmotionNoteTutorial;
+        shownEmotionNoteTutorial = true;
     }
 
     // Dismisses current element of active tutorial sequence

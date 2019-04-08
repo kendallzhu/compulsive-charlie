@@ -98,7 +98,17 @@ public class RhythmManager : MonoBehaviour
                 type = EmotionType.despair;
             }
             // first note is always energy
-            noteSpawnTypes.Add(i == 0 ? EmotionType.None : type);
+            if (i == 0)
+            {
+                type = EmotionType.None;
+            }
+            // also first activity is all energy notes if need to show tutorial
+            if (runManager.runState.activityHistory.Count() <= 2 && 
+                gameManager.showTutorial && !tutorialManager.shownEmotionNoteTutorial)
+            {
+                type = EmotionType.None;
+            }
+            noteSpawnTypes.Add(type);
         }
     }
 
@@ -205,9 +215,17 @@ public class RhythmManager : MonoBehaviour
         }
         // activate appropriate tutorials
         // show rhythm tutorial once some notes appear on screen
-        if (gameManager.showTutorial && !tutorialManager.shownRhythmTutorial && notes.Count > 1)
+        bool noteVisible = notes.Count > 0 && notes[0].transform.position.x < hitArea.transform.position.x + 5;
+        if (gameManager.showTutorial && !tutorialManager.shownRhythmTutorial && noteVisible)
         {
             tutorialManager.ActivateRhythmTutorial();
+        }
+
+        // show emotion note tutorial once some emotion notes appear on screen
+        bool emotionNoteVisible = notes.Count > 0 && notes[0].type != EmotionType.None;
+        if (gameManager.showTutorial && !tutorialManager.shownEmotionNoteTutorial && emotionNoteVisible)
+        {
+            tutorialManager.ActivateEmotionNoteTutorial();
         }
     }
 
