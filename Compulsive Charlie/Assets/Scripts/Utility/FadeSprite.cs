@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// put onto a text object to make the opacity pulse
+// fade then destroy a sprite
 public class FadeSprite : MonoBehaviour
 {
     public float duration = 3f;

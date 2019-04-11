@@ -221,8 +221,9 @@ public class RhythmManager : MonoBehaviour
             tutorialManager.ActivateRhythmTutorial();
         }
 
-        // show emotion note tutorial once some emotion notes appear on screen
+        // show emotion note tutorial once some emotion note seen
         bool emotionNoteVisible = notes.Count > 0 && notes[0].type != EmotionType.None;
+        // bool emotionNoteArrived = emotionNoteVisible && (time > notes[0].arrivalTime - hitWindowEarly);
         if (gameManager.showTutorial && !tutorialManager.shownEmotionNoteTutorial && emotionNoteVisible)
         {
             tutorialManager.ActivateEmotionNoteTutorial();

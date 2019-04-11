@@ -42,7 +42,7 @@ public class Note : MonoBehaviour
         List<Thought> thoughts = runManager.runState.thoughtHistory;
         if (thoughts.Count > 0 && thoughts.Last().invisibleEmotions.Contains(type))
         {
-            transform.localScale = new Vector3(0, 0, 0);
+            // transform.localScale = new Vector3(0, 0, 0);
         }
     }
 

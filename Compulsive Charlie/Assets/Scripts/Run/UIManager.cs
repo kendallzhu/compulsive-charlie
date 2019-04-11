@@ -39,6 +39,15 @@ public class UIManager : MonoBehaviour
         List<GameObject> meters = new List<GameObject> { energyMeter, despairMeter, anxietyMeter, frustrationMeter };
         for (int i = 0; i < meters.Count; i++)
         {
+            // activate generic to show changes
+            Transform changeMarker = meters[i].transform.Find("ChangeMarker");
+            if (changeMarker)
+            {
+                if (meters[i].transform.Find("Text").GetComponent<TextMeshProUGUI>().text != values[i].ToString())
+                {
+                    changeMarker.GetComponent<FadeImage>().Reset();
+                }
+            }
             // set filler image (meters must have a child called "Filler")
             Image fillerImage = meters[i].transform.Find("Filler").GetComponent<Image>();
             fillerImage.type = Image.Type.Filled;

@@ -19,7 +19,7 @@ public class Score : MonoBehaviour
         List<ActivityPlatform> sortedHistory = history.OrderBy(ap => -ap.bestCombo).ToList();
 
         // retrieve name and best combos for each activity
-        List<string> activityNames = history.Select(ap => ap.activity.name).ToList();
+        List<string> activityNames = sortedHistory.Select(ap => ap.activity.name).ToList();
         List<int> bestCombos = sortedHistory.Select(ap => ap.bestCombo).ToList();
         string comboStrings = "";
         for (int i = 0; i < sortedHistory.Count && i < 5; i++)
