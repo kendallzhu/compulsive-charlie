@@ -76,6 +76,11 @@ public class GameManager : MonoBehaviour {
 
     public void StartRun()
     {
+        // do not show tutorial after first run
+        if (profile.allRuns.Count > 0)
+        {
+            showTutorial = false;
+        }
         // go to run scene
         SceneManager.LoadScene(3);
     }

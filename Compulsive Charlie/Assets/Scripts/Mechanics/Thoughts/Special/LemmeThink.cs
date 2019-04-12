@@ -27,7 +27,7 @@ public class LemmeThink : Thought
 
     public override void CustomRejectEffect(RunState runState)
     {
-        runState.emotions.Add(EmotionType.anxiety, 3);
+        // runState.emotions.Add(EmotionType.anxiety, 3);
         return;
     }
 }

@@ -23,8 +23,13 @@ public class FadeImage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetTransparency((duration - (Time.time - startTime)) / duration);
+    }
+
+    // set the image's transparency
+    void SetTransparency(float t)
+    {
         Color c = gameObject.GetComponent<Image>().color;
-        float transparency = (duration - (Time.time - startTime)) / duration;
-        gameObject.GetComponent<Image>().color = new Color(c.r, c.g, c.b, transparency);
+        gameObject.GetComponent<Image>().color = new Color(c.r, c.g, c.b, t);
     }
 }

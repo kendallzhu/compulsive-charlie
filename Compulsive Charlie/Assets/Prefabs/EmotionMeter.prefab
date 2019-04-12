@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1891112284156112914}
   - component: {fileID: 9123501903471596814}
   m_Layer: 5
-  m_Name: ChangeMarker
+  m_Name: IncreaseMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

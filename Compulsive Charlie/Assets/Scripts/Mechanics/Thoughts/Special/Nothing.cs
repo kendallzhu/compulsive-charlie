@@ -18,9 +18,9 @@ public class Nothing : Thought
     {
         if (runState.emotions.Extremeness() <= 0)
         {
-            return 5;
+            return 3;
         }
-        return 2;
+        return 1;
     }
 
     // how this thought modifies run state when thunk
