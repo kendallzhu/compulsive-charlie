@@ -55,13 +55,6 @@ public class RunManager : MonoBehaviour
         {
             runState.IncreaseCombo();
         }
-        if (runState.rhythmCombo == 0)
-        {
-            player.GetComponent<Animator>().SetTrigger("activityFail");
-        } else
-        {
-            player.GetComponent<Animator>().ResetTrigger("activityFail");
-        }
     }
 
     // for when the player arrives on next activity, called via trigger in ActivityPlatform

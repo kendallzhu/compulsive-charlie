@@ -60,6 +60,7 @@ public class Note : MonoBehaviour
         MissEffect(runState);
         Destroy(gameObject);
         Instantiate(missPrefab, transform.position, Quaternion.identity, transform.parent);
+        rhythmManager.player.GetComponent<Animator>().SetTrigger("activityFail");
     }
 
     public void OnHit(RunState runState)
@@ -68,6 +69,7 @@ public class Note : MonoBehaviour
         HitEffect(runState);
         Destroy(gameObject);
         Instantiate(hitPrefab, transform.position, Quaternion.identity, transform.parent);
+        rhythmManager.player.GetComponent<Animator>().ResetTrigger("activityFail");
     }
 
     public virtual void HitEffect(RunState runState)

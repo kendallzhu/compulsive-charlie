@@ -91,6 +91,7 @@ public abstract class Thought : MonoBehaviour
             bg.GetComponent<SpriteRenderer>().color = BackgroundColor();
         }
         runState.jumpPower += jumpPower;
+        runState.IncreaseEnergy(-energyLevel);
         // make thought-specific effects
         CustomAcceptEffect(runState);
     }

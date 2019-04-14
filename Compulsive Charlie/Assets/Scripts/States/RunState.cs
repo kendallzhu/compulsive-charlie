@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 // Class for storing all data relevant to a given run
 public class RunState {
@@ -39,6 +40,12 @@ public class RunState {
         energy = System.Math.Max(energy, 0);
     }
 
+    public void EquilibrateEnergy(float factor = .3f)
+    {
+        int diff = 0 - energy;
+        energy += (int)(diff * factor) + Math.Sign(diff);
+    }
+
     public ActivityPlatform CurrentActivityPlatform()
     {
         if (activityHistory.Count == 0)
@@ -51,7 +58,7 @@ public class RunState {
     public void IncreaseCombo()
     {
         rhythmCombo++;
-        energy = rhythmCombo;
+        energy++;
         ActivityPlatform ap = CurrentActivityPlatform();
         if (rhythmCombo > ap.bestCombo)
         {
@@ -61,8 +68,8 @@ public class RunState {
 
     public void ResetCombo()
     {
+        EquilibrateEnergy();
         rhythmCombo = 0;
-        energy = rhythmCombo;
     }
 
     public Activity CurrentActivity()

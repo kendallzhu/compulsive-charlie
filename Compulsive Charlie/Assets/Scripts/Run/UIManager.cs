@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
             Image fillerImage = meters[i].transform.Find("Filler").GetComponent<Image>();
             fillerImage.type = Image.Type.Filled;
             fillerImage.fillMethod = Image.FillMethod.Horizontal;
-            float newFillAmount = (float)values[i] / (float)caps[i];
+            float newFillAmount = Mathf.Min(1, (float)values[i] / (float)caps[i]);
             // activate change markers
             Transform increaseMarker = meters[i].transform.Find("IncreaseMarker");
             if (increaseMarker)
