@@ -5,7 +5,7 @@ using System.Linq;
 
 // Parent class for activity mechanic in game
 public abstract class Activity : MonoBehaviour {
-    // standardized height diff for default platforms
+    // standardized height diff for default platforms - DEPRECATED
     public const int defaultPlatformHeightDiff = -2;
 
     // unique name
@@ -15,6 +15,7 @@ public abstract class Activity : MonoBehaviour {
     // TODO: animation(s)
 
     // changeable parameters
+    public int heightRating = 0;
     public bool isUnlocked = false;
     public EmotionState emotionNotes = new EmotionState(0, 0, 0);
     public EmotionState emotionEffect = new EmotionState(0, 0, 0);
@@ -44,17 +45,19 @@ public abstract class Activity : MonoBehaviour {
         return CustomAvailability(runState);
     }
 
-    // (specific to activity)
+    // (specific to activity - can customize)
     // raw height change of platform from previous platform given run state
     public virtual int HeightRating(RunState runState)
     {
         // for activites with emotions, difficulty depends on emotions of player
-        float emotionCharge = emotionNotes.DotProduct(runState.emotions) / 5f;
+        // DEPRECATED - move current platform based on emotions instead
+        /*float emotionCharge = emotionNotes.DotProduct(runState.emotions) / 5f;
         if (emotionCharge > 0)
         {
             return (int)emotionCharge;
         }
-        return  defaultPlatformHeightDiff;
+        return  defaultPlatformHeightDiff;*/
+        return heightRating;
     }
 
     // height of associated platform if it comes after given run state

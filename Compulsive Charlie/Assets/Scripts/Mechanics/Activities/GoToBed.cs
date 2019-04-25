@@ -8,6 +8,7 @@ public class GoToBed : Activity
     {
         name = "Go To Bed";
         descriptionText = "it's all over";
+        heightRating = 0;
         emotionNotes = new EmotionState(1, 1, 0);
         emotionEffect = new EmotionState(0, 0, 0);
         rhythmPattern = new List<int> { 1, 5, 7 };

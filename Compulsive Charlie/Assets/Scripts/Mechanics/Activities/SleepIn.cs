@@ -8,6 +8,7 @@ public class SleepIn : Activity
     {
         name = "Sleep In";
         descriptionText = "ugh";
+        heightRating = -2;
         emotionNotes = new EmotionState(0, 0, 0);
         emotionEffect = new EmotionState(0, 0, 1);
         rhythmPattern = new List<int> { 4, 6};

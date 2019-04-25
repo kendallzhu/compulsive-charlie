@@ -8,6 +8,7 @@ public class YouTube : Activity
     {
         name = "YouTube";
         descriptionText = "suggested videos";
+        heightRating = -1;
         emotionNotes = new EmotionState(0, 0, 0);
         emotionEffect = new EmotionState(0, 0, 0);
         rhythmPattern = new List<int> { 1, 4, 6 };

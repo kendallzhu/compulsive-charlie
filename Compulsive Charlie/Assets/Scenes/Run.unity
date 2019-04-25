@@ -337,7 +337,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: (down) - Anxiety
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
     type: 2}
   m_fontSharedMaterials: []
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -1839,7 +1839,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
     type: 2}
   m_fontSharedMaterials: []
@@ -1918,7 +1918,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -2859,7 +2859,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: <
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
     type: 2}
   m_fontSharedMaterials: []
@@ -2938,7 +2938,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -5010,7 +5010,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: ^
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
     type: 2}
   m_fontSharedMaterials: []
@@ -5089,7 +5089,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -6544,7 +6544,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: (up) - Anything
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
     type: 2}
   m_fontSharedMaterials: []
@@ -6623,7 +6623,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -7394,7 +7394,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
     type: 2}
   m_fontSharedMaterials: []
@@ -7473,7 +7473,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -7755,7 +7755,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: v
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
     type: 2}
   m_fontSharedMaterials: []
@@ -7834,7 +7834,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -9883,7 +9883,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: (left) - Despair
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
     type: 2}
   m_fontSharedMaterials: []
@@ -9962,7 +9962,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -12499,7 +12499,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
     type: 2}
   m_fontSharedMaterials: []
@@ -12578,7 +12578,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -13795,6 +13795,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114679623816895726, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691,
+        type: 2}
+    - target: {fileID: 114679623816895726, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
+        type: 2}
     - target: {fileID: 1299305578723604, guid: b9a8dbc6f1379bb45a0f8970adc86e77, type: 3}
       propertyPath: m_IsActive
       value: 1

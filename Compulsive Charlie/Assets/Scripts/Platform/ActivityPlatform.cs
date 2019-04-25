@@ -13,6 +13,7 @@ public class ActivityPlatform : MonoBehaviour {
     private const float platformThickness = .3f;
     private const int standardGapLength = 2;
     private const int platformLength = 24;
+    private const float raiseSmooth = 2;
 
     public int x;
     public int y;
@@ -39,6 +40,13 @@ public class ActivityPlatform : MonoBehaviour {
     {
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();
+    }
+
+    private void Update()
+    {
+        // move towards target height
+        float newY = Mathf.Lerp(transform.position.y, y, Time.deltaTime * raiseSmooth);
+        transform.position = new Vector2(transform.position.x, newY);
     }
 
     // correctly position platform based on current states
@@ -68,5 +76,11 @@ public class ActivityPlatform : MonoBehaviour {
         Transform jumpPad = gameObject.transform.Find("JumpPad");
         jumpPad.position = new Vector2(x + length, y); 
         jumpPad.localScale = new Vector2(jumpPadLength, platformThickness);
+    }
+
+    // shifts platform up a specified amount
+    public void Raise(int height)
+    {
+        y += height;
     }
 }

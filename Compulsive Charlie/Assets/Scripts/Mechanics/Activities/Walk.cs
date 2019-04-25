@@ -8,6 +8,7 @@ public class Walk : Activity
     {
         name = "Walk";
         descriptionText = "go on a walk";
+        heightRating = 0;
         emotionNotes = new EmotionState(1, 1, 0);
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;

@@ -128,6 +128,11 @@ public class RunManager : MonoBehaviour
         // cap energy
         // runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
 
+        // emotions take effect on difficulty of jumping to activities
+        // (by adjusting height of current platform)
+        EmotionState emotions = runState.emotions;
+        activityPlatform.Raise(3 - emotions.GetSum() / 10 - emotions.Extremeness());
+
         // spawn new set of platforms
         foreach (Activity activity in SelectActivities())
         {
@@ -215,9 +220,9 @@ public class RunManager : MonoBehaviour
         }
         // There's got to be at least one default activity
         List<Activity> allActivities = offeredActivities.Concat(runState.spawnedPlatforms.Select(x => x.activity)).ToList();
-        if (allActivities.Where(a => a.HeightRating(runState) == Activity.defaultPlatformHeightDiff).ToList().Count == 0)
+        if (allActivities.Where(a => a.HeightRating(runState) <= Activity.defaultPlatformHeightDiff).ToList().Count == 0)
         {
-            Activity defaultActivity = availableActivities.Find(a => a.HeightRating(runState) == Activity.defaultPlatformHeightDiff);
+            Activity defaultActivity = availableActivities.Find(a => a.HeightRating(runState) <= Activity.defaultPlatformHeightDiff);
             if (defaultActivity != null)
             {
                 offeredActivities.Add(defaultActivity);
