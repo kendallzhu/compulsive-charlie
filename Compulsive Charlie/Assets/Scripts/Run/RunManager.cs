@@ -218,11 +218,14 @@ public class RunManager : MonoBehaviour
                 offeredActivities.Add(available);
             }
         }
-        // There's got to be at least one default activity
+        // There's got to be at least one activity that is low enough to serve as the default
         List<Activity> allActivities = offeredActivities.Concat(runState.spawnedPlatforms.Select(x => x.activity)).ToList();
-        if (allActivities.Where(a => a.HeightRating(runState) <= Activity.defaultPlatformHeightDiff).ToList().Count == 0)
+        int defaultDiff = Activity.defaultPlatformHeightDiff;
+        ActivityPlatform current = runState.CurrentActivityPlatform();
+        int h = current ? current.y : 0;
+        if (allActivities.Where(a => a.PlatformHeight(runState) - h <= defaultDiff).ToList().Count == 0)
         {
-            Activity defaultActivity = availableActivities.Find(a => a.HeightRating(runState) <= Activity.defaultPlatformHeightDiff);
+            Activity defaultActivity = availableActivities.Find(a => a.PlatformHeight(runState) - h <= defaultDiff);
             if (defaultActivity != null)
             {
                 offeredActivities.Add(defaultActivity);
