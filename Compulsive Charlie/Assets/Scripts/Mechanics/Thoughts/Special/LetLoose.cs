@@ -9,7 +9,7 @@ public class LetLoose : Thought
     {
         name = "Let Loose";
         descriptionText = "Forget everything - might lose touch with anxiety and sadness";
-        isUnlocked = true;
+        isUnlocked = false;
         energyLevel = 1;
         jumpPower = 5;
         invisibleEmotions = new List<EmotionType> { EmotionType.anxiety, EmotionType.despair };

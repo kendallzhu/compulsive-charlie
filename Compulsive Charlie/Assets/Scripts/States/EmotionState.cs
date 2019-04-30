@@ -64,10 +64,15 @@ public class EmotionState
         Add(EmotionType.despair, other.despair);
     }
 
+    public int GetMaxValue()
+    {
+        return Math.Max(anxiety, Math.Max(frustration, despair));
+    }
+
     // return name of emotion with highest magnitude
     public EmotionType GetDominantEmotion()
     {
-        int maxValue = Math.Max(anxiety, Math.Max(frustration, despair));
+        int maxValue = GetMaxValue();
         if (maxValue == 0)
         {
             return EmotionType.None;

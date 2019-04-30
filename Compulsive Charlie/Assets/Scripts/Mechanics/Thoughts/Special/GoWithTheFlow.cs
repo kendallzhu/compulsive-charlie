@@ -8,7 +8,7 @@ public class GoWithTheFlow : Thought
     {
         name = "Go With the Flow";
         descriptionText = "Sometimes chilling out is the way to go";
-        isUnlocked = true;
+        isUnlocked = false;
         energyLevel = 5;
         jumpPower = 3;
     }

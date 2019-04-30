@@ -8,7 +8,7 @@ public class LemmeThink : Thought
     {
         name = "Lemme Think";
         descriptionText = "Anxiously consider the worst possible consequences";
-        isUnlocked = true;
+        isUnlocked = false;
         energyLevel = 3;
         jumpPower = 2;
     }

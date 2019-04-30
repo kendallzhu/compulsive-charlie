@@ -56,7 +56,7 @@ public class Note : MonoBehaviour
 
     public void OnMiss(RunState runState)
     {
-        runState.ResetCombo();
+        runState.BreakCombo();
         MissEffect(runState);
         Destroy(gameObject);
         Instantiate(missPrefab, transform.position, Quaternion.identity, transform.parent);
