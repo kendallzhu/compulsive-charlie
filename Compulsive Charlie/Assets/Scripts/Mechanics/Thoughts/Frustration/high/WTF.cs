@@ -10,7 +10,7 @@ public class WTF : Thought
         descriptionText = "Are you kidding me?";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 5;
+        jumpPower = 3;
         invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
     }
 

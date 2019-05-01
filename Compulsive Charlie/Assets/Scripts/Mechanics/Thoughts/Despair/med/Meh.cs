@@ -10,7 +10,7 @@ public class Meh : Thought
         descriptionText = "Don't want to make effort";
         isUnlocked = true;
         energyLevel = 4;
-        jumpPower = 3;
+        jumpPower = 2;
         invisibleEmotions = new List<EmotionType> { EmotionType.despair };
     }
 

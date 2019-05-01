@@ -77,8 +77,7 @@ public abstract class Thought : MonoBehaviour
     // how this thought modifies given state of run when activated
     public virtual void CustomAcceptEffect(RunState runState)
     {
-        // default - adds emotion according to the level
-        // invisibleEmotions.ForEach((e) => runState.emotions.Add(e, 10 - energyLevel));
+        return;
     }
 
     // common accept effect

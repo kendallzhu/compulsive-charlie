@@ -10,7 +10,7 @@ public class ScrewTheHaters : Thought
         descriptionText = "I'll prove them wrong";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 6;
+        jumpPower = 4;
         invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
     }
 

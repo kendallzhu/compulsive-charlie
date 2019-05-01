@@ -10,7 +10,7 @@ public class Relax : Thought
         descriptionText = "Take a deep breath";
         isUnlocked = true;
         energyLevel = 5;
-        jumpPower = 5;
+        jumpPower = 4;
         invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
     }
 

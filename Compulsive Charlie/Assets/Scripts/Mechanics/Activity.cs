@@ -5,8 +5,8 @@ using System.Linq;
 
 // Parent class for activity mechanic in game
 public abstract class Activity : MonoBehaviour {
-    // standardized height diff for default platforms - DEPRECATED
-    public const int defaultPlatformHeightDiff = -2;
+    // standardized height diff for default (lowest) platform
+    public const int defaultPlatformHeightDiff = -6;
 
     // unique name
     new public string name;

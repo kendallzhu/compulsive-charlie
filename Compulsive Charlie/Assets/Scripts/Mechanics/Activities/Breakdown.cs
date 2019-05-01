@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoNothing : Activity
+public class Breakdown : Activity
 {
     void Awake()
     {
-        name = "Do Nothing";
-        descriptionText = "wait - actually nothing?";
+        name = "Breakdown";
+        descriptionText = "emotional meltdown";
         heightRating = 0;
-        emotionNotes = new EmotionState(0, 0, 0);
+        emotionNotes = new EmotionState(2, 2, 2);
         emotionEffect = new EmotionState(0, 0, 0);
+        rhythmPattern = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
         isUnlocked = true;
     }
 

@@ -10,7 +10,7 @@ public class KeepItTogether : Thought
         descriptionText = "Just gotta hold on...";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 6;
+        jumpPower = 4;
         invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
     }
 

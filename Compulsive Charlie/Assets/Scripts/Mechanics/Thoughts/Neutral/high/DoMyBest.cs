@@ -10,7 +10,7 @@ public class DoMyBest : Thought
         descriptionText = "100% = enough";
         isUnlocked = true;
         energyLevel = 6;
-        jumpPower = 6;
+        jumpPower = 5;
         invisibleEmotions = new List<EmotionType> { };
     }
 

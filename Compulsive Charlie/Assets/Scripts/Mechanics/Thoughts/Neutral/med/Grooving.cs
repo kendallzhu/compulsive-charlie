@@ -10,7 +10,7 @@ public class Grooving : Thought
         descriptionText = "in sync with life";
         isUnlocked = true;
         energyLevel = 5;
-        jumpPower = 6;
+        jumpPower = 5;
         invisibleEmotions = new List<EmotionType> { };
     }
 

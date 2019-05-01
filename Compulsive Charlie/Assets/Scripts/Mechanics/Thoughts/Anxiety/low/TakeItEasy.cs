@@ -9,8 +9,8 @@ public class TakeItEasy : Thought
         name = "Take It Easy";
         descriptionText = "No Need to Panic";
         isUnlocked = true;
-        energyLevel = 5;
-        jumpPower = 5;
+        energyLevel = 0;
+        jumpPower = 2;
         invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
     }
 

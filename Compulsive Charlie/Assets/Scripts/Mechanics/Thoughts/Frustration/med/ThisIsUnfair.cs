@@ -10,7 +10,7 @@ public class ThisIsUnfair : Thought
         descriptionText = "I don't deserve this.";
         isUnlocked = true;
         energyLevel = 4;
-        jumpPower = 3;
+        jumpPower = 2;
         invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
     }
 

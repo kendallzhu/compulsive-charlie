@@ -10,7 +10,7 @@ public class Bliss : Thought
         descriptionText = "It comes from within";
         isUnlocked = true;
         energyLevel = 0;
-        jumpPower = 7;
+        jumpPower = 5;
         invisibleEmotions = new List<EmotionType> { };
     }
 

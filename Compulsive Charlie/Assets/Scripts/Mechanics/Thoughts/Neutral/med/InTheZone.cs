@@ -10,7 +10,7 @@ public class InTheZone : Thought
         descriptionText = "No distracting thoughts";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 9;
+        jumpPower = 7;
         invisibleEmotions = new List<EmotionType> { };
     }
 

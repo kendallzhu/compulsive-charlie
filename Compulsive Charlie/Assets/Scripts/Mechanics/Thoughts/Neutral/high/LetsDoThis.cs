@@ -10,7 +10,7 @@ public class LetsDoThis : Thought
         descriptionText = "I'm on fire - what more do I need?";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 8;
+        jumpPower = 6;
         invisibleEmotions = new List<EmotionType> { };
     }
 

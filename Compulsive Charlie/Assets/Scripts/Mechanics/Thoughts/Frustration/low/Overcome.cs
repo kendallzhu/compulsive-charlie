@@ -10,7 +10,7 @@ public class Overcome : Thought
         descriptionText = "Small things ain't stopping me";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 7;
+        jumpPower = 5;
         invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
     }
 

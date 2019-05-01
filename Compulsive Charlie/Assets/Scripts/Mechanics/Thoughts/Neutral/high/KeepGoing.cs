@@ -10,7 +10,7 @@ public class KeepGoing : Thought
         descriptionText = "We goin' places";
         isUnlocked = true;
         energyLevel = 4;
-        jumpPower = 5;
+        jumpPower = 4;
         invisibleEmotions = new List<EmotionType> { };
     }
 

@@ -10,7 +10,7 @@ public class Transcendence : Thought
         descriptionText = "No words to describe";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 12;
+        jumpPower = 9;
         invisibleEmotions = new List<EmotionType> { };
     }
 

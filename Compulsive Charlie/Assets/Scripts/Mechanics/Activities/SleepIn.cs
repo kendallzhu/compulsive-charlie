@@ -10,7 +10,7 @@ public class SleepIn : Activity
         descriptionText = "ugh";
         heightRating = -2;
         emotionNotes = new EmotionState(0, 0, 0);
-        emotionEffect = new EmotionState(0, 0, 1);
+        emotionEffect = new EmotionState(1, 0, 2);
         rhythmPattern = new List<int> { 4, 6};
         isUnlocked = true;
     }

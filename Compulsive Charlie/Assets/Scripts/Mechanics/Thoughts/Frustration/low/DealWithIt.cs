@@ -10,7 +10,7 @@ public class DealWithIt : Thought
         descriptionText = "Suck it up, get over it";
         isUnlocked = true;
         energyLevel = 5;
-        jumpPower = 5;
+        jumpPower = 4;
         invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
     }
 

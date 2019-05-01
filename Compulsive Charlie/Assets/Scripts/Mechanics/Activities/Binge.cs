@@ -9,8 +9,8 @@ public class Binge : Activity
         name = "Binge";
         descriptionText = "fill the hole with food";
         heightRating = -1;
-        emotionNotes = new EmotionState(0, 0, 0);
-        emotionEffect = new EmotionState(0, 0, 2);
+        emotionNotes = new EmotionState(0, 1, 0);
+        emotionEffect = new EmotionState(0, 0, 4);
         rhythmPattern = new List<int> { 2, 4, 6, 8 };
         isUnlocked = true;
     }

@@ -9,8 +9,8 @@ public class ThisCantBeHappening : Thought
         name = "This Can't Be Happening";
         descriptionText = "This is ridiculous!";
         isUnlocked = true;
-        energyLevel = 7;
-        jumpPower = 3;
+        energyLevel = 5;
+        jumpPower = 2;
         invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
     }
 

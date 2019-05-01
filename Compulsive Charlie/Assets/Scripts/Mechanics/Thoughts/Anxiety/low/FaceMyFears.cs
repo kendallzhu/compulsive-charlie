@@ -10,7 +10,7 @@ public class FaceMyFears : Thought
         descriptionText = "What's the worst that could happen anyway?";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 7;
+        jumpPower = 5;
         invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
     }
 

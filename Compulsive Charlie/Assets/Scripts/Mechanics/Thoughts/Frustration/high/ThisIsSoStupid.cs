@@ -7,11 +7,16 @@ public class ThisIsSoStupid : Thought
     void Awake()
     {
         name = "This Is So Stupid";
-        descriptionText = "Disgusting";
+        descriptionText = "Disgusting (+ frustration)";
         isUnlocked = true;
-        energyLevel = 5;
-        jumpPower = 2;
+        energyLevel = 7;
+        jumpPower = 3;
         invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+    }
+
+    public override void CustomAcceptEffect(RunState runState)
+    {
+        runState.emotions.Add(EmotionType.frustration, 3);
     }
 
     // whether this activity is available, given state of run

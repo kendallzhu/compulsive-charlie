@@ -10,7 +10,7 @@ public class ICantHandleThis : Thought
         descriptionText = "It's just too much";
         isUnlocked = true;
         energyLevel = 5;
-        jumpPower = 2;
+        jumpPower = 1;
         invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
     }
 

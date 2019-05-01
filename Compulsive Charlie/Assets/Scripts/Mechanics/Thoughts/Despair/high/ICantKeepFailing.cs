@@ -10,7 +10,7 @@ public class ICantKeepFailing : Thought
         descriptionText = "I'm digging myself into a hole";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 5;
+        jumpPower = 3;
         invisibleEmotions = new List<EmotionType> { EmotionType.despair };
     }
 

@@ -36,6 +36,24 @@ public class EmotionState
         return anxiety + frustration + despair;
     }
 
+    // returns the ith "slot" of this emotion set, interpreting it as a collection of items
+    public EmotionType GetIndex(int i)
+    {
+        if (i < anxiety)
+        {
+            return EmotionType.anxiety;
+        }
+        if (i < anxiety + frustration)
+        {
+            return EmotionType.frustration;
+        }
+        if (i < GetSum())
+        {
+            return EmotionType.despair;
+        }
+        return EmotionType.None;
+    }
+
     public int DotProduct(EmotionState other)
     {
         return anxiety * other.anxiety + frustration * other.frustration + despair * other.despair;
@@ -57,6 +75,7 @@ public class EmotionState
             despair = Math.Max(0, despair + val);
         }
     }
+
     public void Add(EmotionState other)
     {
         Add(EmotionType.anxiety, other.anxiety);
@@ -126,29 +145,34 @@ public class EmotionState
         return 0;
     }
 
-    // shift all emotion axes towards 0 by given factor (plus one)
-    public void Equilibrate(float factor)
+    public int GetRaiseAmount()
     {
-        Equilibrate(EmotionType.anxiety, factor);
-        Equilibrate(EmotionType.frustration, factor);
-        Equilibrate(EmotionType.despair, factor);
+        return 1 - GetSum() / 10 - Extremeness();
     }
 
-    public void Equilibrate(EmotionType e, float factor = .2f)
+    // shift all emotion axes towards 0 by given factor (plus one)
+    public void Equilibrate(float factor = .2f, int value = 0)
+    {
+        Equilibrate(EmotionType.anxiety, factor, value);
+        Equilibrate(EmotionType.frustration, factor, value);
+        Equilibrate(EmotionType.despair, factor, value);
+    }
+
+    public void Equilibrate(EmotionType e, float factor = .2f, int value = 0)
     {
         if (e == EmotionType.anxiety)
         {
-            int diff = 0 - anxiety;
+            int diff = value - anxiety;
             anxiety += (int)(diff * factor) + Math.Sign(diff);
         }
         else if (e == EmotionType.frustration)
         {
-            int diff = 0 - frustration;
+            int diff = value - frustration;
             frustration += (int)(diff * factor) + Math.Sign(diff);
         }
         else if (e == EmotionType.despair)
         {
-            int diff = 0 - despair;
+            int diff = value - despair;
             despair += (int)(diff * factor) + Math.Sign(diff);
         } else
         {

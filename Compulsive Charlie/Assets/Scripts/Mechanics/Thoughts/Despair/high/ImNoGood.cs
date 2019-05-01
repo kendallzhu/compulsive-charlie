@@ -9,8 +9,8 @@ public class ImNoGood : Thought
         name = "I'm No Good";
         descriptionText = "I feel useless";
         isUnlocked = true;
-        energyLevel = 7;
-        jumpPower = 3;
+        energyLevel = 3;
+        jumpPower = 1;
         invisibleEmotions = new List<EmotionType> { EmotionType.despair };
     }
 

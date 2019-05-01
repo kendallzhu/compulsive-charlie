@@ -130,8 +130,7 @@ public class RunManager : MonoBehaviour
 
         // emotions take effect on difficulty of jumping to activities
         // (by adjusting height of current platform)
-        EmotionState emotions = runState.emotions;
-        activityPlatform.Raise(3 - emotions.GetSum() / 10 - emotions.Extremeness());
+        activityPlatform.Raise(runState.emotions.GetRaiseAmount());
 
         // spawn new set of platforms
         foreach (Activity activity in SelectActivities())
@@ -231,8 +230,8 @@ public class RunManager : MonoBehaviour
                 offeredActivities.Add(defaultActivity);
             } else
             {
-                // right now default to "Do Nothing"
-                Activity fallBack = Object.FindObjectOfType<DoNothing>();
+                // right now default to "BreakDown"
+                Activity fallBack = Object.FindObjectOfType<Breakdown>();
                 offeredActivities.Add(fallBack);
             }
         }

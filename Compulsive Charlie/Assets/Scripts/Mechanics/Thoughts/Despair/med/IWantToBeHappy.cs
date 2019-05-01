@@ -10,7 +10,7 @@ public class IWantToBeHappy : Thought
         descriptionText = "Please...";
         isUnlocked = true;
         energyLevel = 6;
-        jumpPower = 4;
+        jumpPower = 3;
         invisibleEmotions = new List<EmotionType> { EmotionType.despair };
     }
 

@@ -10,7 +10,7 @@ public class HangInThere : Thought
         descriptionText = "Stay Strong";
         isUnlocked = true;
         energyLevel = 5;
-        jumpPower = 5;
+        jumpPower = 4;
         invisibleEmotions = new List<EmotionType> { EmotionType.despair };
     }
 

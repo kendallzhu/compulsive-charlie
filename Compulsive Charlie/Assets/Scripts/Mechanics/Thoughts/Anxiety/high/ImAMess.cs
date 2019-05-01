@@ -7,11 +7,16 @@ public class ImAMess : Thought
     void Awake()
     {
         name = "I'm a Mess";
-        descriptionText = "Out of control";
+        descriptionText = "Out of control (+ anxiety)";
         isUnlocked = true;
         energyLevel = 3;
-        jumpPower = 1;
+        jumpPower = 3;
         invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+    }
+
+    public override void CustomAcceptEffect(RunState runState)
+    {
+        runState.emotions.Add(EmotionType.anxiety, 3);
     }
 
     // whether this activity is available, given state of run

@@ -9,8 +9,8 @@ public class Shower : Activity
         name = "Shower";
         descriptionText = "pls";
         heightRating = 0;
-        emotionNotes = new EmotionState(1, 0, 1);
-        emotionEffect = new EmotionState(1, 0, 0);
+        emotionNotes = new EmotionState(0, 1, 0);
+        emotionEffect = new EmotionState(0, 0, 0);
         rhythmPattern = new List<int> { 1, 5, 7 };
         isUnlocked = true;
     }

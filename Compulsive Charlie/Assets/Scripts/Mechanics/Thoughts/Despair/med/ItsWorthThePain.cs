@@ -10,7 +10,7 @@ public class ItsWorthThePain : Thought
         descriptionText = "Pushing through";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 6;
+        jumpPower = 4;
         invisibleEmotions = new List<EmotionType> { EmotionType.despair };
     }
 

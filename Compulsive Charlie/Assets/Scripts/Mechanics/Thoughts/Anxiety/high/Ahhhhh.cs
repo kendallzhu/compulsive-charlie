@@ -10,7 +10,7 @@ public class Ahhhhh : Thought
         descriptionText = "Frantic scramble!!!";
         isUnlocked = true;
         energyLevel = 7;
-        jumpPower = 3;
+        jumpPower = 2;
         invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
     }
 

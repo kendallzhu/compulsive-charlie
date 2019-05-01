@@ -78,12 +78,13 @@ public class RhythmManager : MonoBehaviour
             noteSpawnTimes.Add(pattern[i] * tempoIncrement);
             // choose a note type based on current emotional state
             EmotionState curr = runManager.runState.emotions;
+            EmotionType type = EmotionType.None;
+            /* OLD METHOD - CAN CHOOSE ANY TYPE
             int a = curr.anxiety;
             int f = curr.frustration;
             int d = curr.despair;
             int total = a + f + d + 10;
 
-            EmotionType type = EmotionType.None;
             int r = Random.Range(0, total);
             if (r < a)
             {
@@ -96,11 +97,17 @@ public class RhythmManager : MonoBehaviour
             else if (r < a + f + d)
             {
                 type = EmotionType.despair;
-            }
-            // first note is always energy
-            if (i == 0)
+            }*/
+            // choose either energy, or the dominant emotion
+            int r = Random.Range(0, 30);
+            if (r < curr.GetMaxValue())
             {
-                type = EmotionType.None;
+                type = curr.GetDominantEmotion();
+            }
+            // first notes are according to activity specific emotion notes
+            if (i < activity.emotionNotes.GetSum())
+            {
+                type = activity.emotionNotes.GetIndex(i);
             }
             // also first activity is all energy notes if need to show tutorial
             if (runManager.runState.activityHistory.Count() <= 2 && 

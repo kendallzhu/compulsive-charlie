@@ -10,7 +10,7 @@ public class Peace : Thought
         descriptionText = "I can enjoy most things";
         isUnlocked = true;
         energyLevel = 0;
-        jumpPower = 5;
+        jumpPower = 4;
         invisibleEmotions = new List<EmotionType> { };
     }
 

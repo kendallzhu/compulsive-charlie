@@ -10,7 +10,7 @@ public class VideoGames : Activity
         descriptionText = "...";
         heightRating = -1;
         emotionNotes = new EmotionState(0, 1, 0);
-        emotionEffect = new EmotionState(0, 1, 1);
+        emotionEffect = new EmotionState(0, 4, 0);
         rhythmPattern = new List<int> { 1, 4, 6 };
         isUnlocked = true;
     }

@@ -10,7 +10,7 @@ public class ICanDoThis : Thought
         descriptionText = "Don't let myself get down";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 7;
+        jumpPower = 5;
         invisibleEmotions = new List<EmotionType> { EmotionType.despair };
     }
 

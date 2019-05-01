@@ -10,7 +10,7 @@ public class YouTube : Activity
         descriptionText = "suggested videos";
         heightRating = -1;
         emotionNotes = new EmotionState(0, 0, 0);
-        emotionEffect = new EmotionState(0, 0, 0);
+        emotionEffect = new EmotionState(1, 1, 1);
         rhythmPattern = new List<int> { 1, 4, 6 };
         isUnlocked = true;
     }
