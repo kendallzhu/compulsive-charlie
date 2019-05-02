@@ -110,7 +110,7 @@ public class RhythmManager : MonoBehaviour
                 type = activity.emotionNotes.GetIndex(i);
             }
             // also first activity is all energy notes if need to show tutorial
-            if (runManager.runState.activityHistory.Count() <= 2 && 
+            if (runManager.runState.activityHistory.Count() < 2 && 
                 gameManager.showTutorial && !tutorialManager.shownEmotionNoteTutorial)
             {
                 type = EmotionType.None;
@@ -126,7 +126,7 @@ public class RhythmManager : MonoBehaviour
         {
             return;
         }
-        // only show hitarea if there is an ongoing activity
+        /* only show hitarea if there is an ongoing activity
         if (activity != null)
         {
             hitArea.SetActive(true);
@@ -134,7 +134,7 @@ public class RhythmManager : MonoBehaviour
         {
             hitArea.SetActive(false);
             return;
-        }
+        } */
         
         RunState runState = runManager.runState;
         // update time - with current settings goes in increments of about .016

@@ -83,12 +83,11 @@ public class RunManager : MonoBehaviour
             {
                 // clear out other spawnedPlatforms
                 runState.ClearSpawned(newActivityPlatform);
-                // start new platform spawning rhythm notes - deactivate this
-                rhythmManager.StartRhythm(newActivityPlatform.activity);
                 // trigger activity special effect
                 newActivityPlatform.activity.Effect(runState);
             }
-
+            // start new platform spawning rhythm notes
+            rhythmManager.StartRhythm(newActivityPlatform.activity);
             // start activity animation
             player.GetComponent<Animator>().SetInteger("activityHash", Animator.StringToHash(newActivityPlatform.activity.name));
             player.GetComponent<Animator>().SetTrigger("startActivity");

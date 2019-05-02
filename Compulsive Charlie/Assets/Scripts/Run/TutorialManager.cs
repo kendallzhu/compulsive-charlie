@@ -15,6 +15,7 @@ public class TutorialManager : MonoBehaviour
     public List<GameObject> ThoughtTutorial;
     public List<GameObject> RhythmTutorial;
     public List<GameObject> EmotionNoteTutorial;
+    public GameObject advanceText;
 
     // tracking if each tutorial has been shown yet in current run
     public bool shownUITutorial = false;
@@ -25,6 +26,10 @@ public class TutorialManager : MonoBehaviour
     // tracking which tutorial sequence is activated, and its status
     private List<GameObject> activeTutorial = null;
     private int activeIndex = 0;
+
+    // tracking when this tutorial was activated (for timer)
+    private const float minTimeShow = 1f;
+    private float timeActivated;
 
     public void Awake()
     {
@@ -37,15 +42,20 @@ public class TutorialManager : MonoBehaviour
     // take button input for dismissal
     private void Update()
     {
-        // activate canvas when we've just activated a new tutorial
+        // activate canvas when we've just activated a new tutorial sequence
         if (activeTutorial != null && !canvas.activeSelf)
         {
-            Time.timeScale = 0;
             canvas.SetActive(true);
             if (activeTutorial.Count > 0)
             {
                 activeTutorial[0].SetActive(true);
             }
+            timeActivated = Time.realtimeSinceStartup;
+        }
+        // freeze time when tutorial active
+        if (activeTutorial != null)
+        {
+            Time.timeScale = 0;
         }
         // close canvas when we've reached the end the tutorial
         if (activeTutorial != null && activeIndex >= activeTutorial.Count)
@@ -55,21 +65,25 @@ public class TutorialManager : MonoBehaviour
             canvas.SetActive(false);
             Time.timeScale = 1;
         }
-        // if tutorial is in progress - take user input
-        if (activeTutorial != null)
+        // player advance tutorial
+        if (CanAdvance())
         {
-            Time.timeScale = 0;
-            bool left = Input.GetButtonDown("left");
-            bool down = Input.GetButtonDown("down");
-            bool up = Input.GetButtonDown("up");
-            bool right = Input.GetButtonDown("right");
-            bool start = Input.GetButtonDown("start");
-            bool back = Input.GetButtonDown("back");
+            advanceText.SetActive(true);
             if (Input.anyKeyDown)
             {
                 Dismiss();
+                timeActivated = Time.realtimeSinceStartup;
             }
+        } else
+        {
+            advanceText.SetActive(false);
         }
+    }
+
+    private bool CanAdvance()
+    {
+        // disallow premature dismissals to prevent accidental skipping
+        return activeTutorial != null && Time.realtimeSinceStartup - timeActivated > minTimeShow;
     }
 
     // activation functions (to be called from runManager)

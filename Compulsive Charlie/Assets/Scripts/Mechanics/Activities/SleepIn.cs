@@ -8,7 +8,7 @@ public class SleepIn : Activity
     {
         name = "Sleep In";
         descriptionText = "ugh";
-        heightRating = -2;
+        heightRating = -3;
         emotionNotes = new EmotionState(0, 0, 0);
         emotionEffect = new EmotionState(1, 0, 2);
         rhythmPattern = new List<int> { 4, 6};
@@ -20,7 +20,8 @@ public class SleepIn : Activity
     {
         if (runState.timeSteps <= 1 || runState.TimeSinceLast(this) == 0)
         {
-            return 1;
+            // dominate when available
+            return 10;
         }
         return 0;
     }
