@@ -2455,10 +2455,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 0
+  m_text: '?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2536,7 +2536,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -2622,7 +2622,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2700,7 +2700,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -3092,7 +3092,7 @@ MonoBehaviour:
   m_text: This is how high it makes you jump.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3287,7 +3287,7 @@ MonoBehaviour:
   m_text: This is how much motivation it requires
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3974,7 +3974,7 @@ MonoBehaviour:
   m_text: Thought Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4040,7 +4040,7 @@ MonoBehaviour:
   m_pageToDisplay: 1
   m_margin: {x: 4.9571395, y: -57.631306, z: 5.1140532, w: 3.7211578}
   m_textInfo:
-    textComponent: {fileID: 0}
+    textComponent: {fileID: 621247950}
     characterCount: 12
     spriteCount: 0
     spaceCount: 1
@@ -4636,7 +4636,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 187, y: 53}
-  m_SizeDelta: {x: 400, y: 50}
+  m_SizeDelta: {x: 420, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &722889729
 MonoBehaviour:
@@ -4658,10 +4658,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: This is how far you are into the day.
+  m_text: Make it through the day, one activity at a time!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4704,7 +4704,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 24
+  m_firstOverflowCharacterIndex: 25
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -4728,10 +4728,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: -11.573558}
   m_textInfo:
     textComponent: {fileID: 722889729}
-    characterCount: 37
+    characterCount: 48
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 9
+    wordCount: 10
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -4739,7 +4739,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -5958,7 +5958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 179.8}
+  m_AnchoredPosition: {x: 200, y: 160.78}
   m_SizeDelta: {x: 350, y: 9.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &904466893
@@ -5984,7 +5984,7 @@ MonoBehaviour:
   m_text: This is a thought
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -6062,7 +6062,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -7599,7 +7599,7 @@ MonoBehaviour:
   m_text: Thought Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7665,7 +7665,7 @@ MonoBehaviour:
   m_pageToDisplay: 1
   m_margin: {x: 4.9571395, y: -57.631306, z: 5.1140532, w: 3.7211578}
   m_textInfo:
-    textComponent: {fileID: 0}
+    textComponent: {fileID: 1150967842}
     characterCount: 12
     spriteCount: 0
     spaceCount: 1
@@ -7677,7 +7677,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -8167,10 +8167,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 0
+  m_text: '?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -8248,7 +8248,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -8544,10 +8544,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 0
+  m_text: '?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -8625,7 +8625,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -9087,6 +9087,7 @@ GameObject:
   - component: {fileID: 1325963174}
   - component: {fileID: 1325963176}
   - component: {fileID: 1325963175}
+  - component: {fileID: 1325963177}
   m_Layer: 9
   m_Name: Advance Text
   m_TagString: Untagged
@@ -9234,6 +9235,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325963173}
   m_CullTransparentMesh: 0
+--- !u!114 &1325963177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325963173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2d783e937f5f64dba43c96b4254fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  period: 3
 --- !u!224 &1338509587 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6579902385197013053, guid: 6d70603a238232f468aa6c7fb1376706,
@@ -9492,10 +9506,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 0
+  m_text: '?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -9573,7 +9587,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -10356,6 +10370,7 @@ MonoBehaviour:
   descriptionText: {fileID: 1905528826}
   energyText: {fileID: 370214730}
   jumpPowerText: {fileID: 1952567946}
+  acceptAnimation: {fileID: 0}
 --- !u!114 &1652275284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12856,7 +12871,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12934,7 +12949,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -14158,7 +14173,7 @@ MonoBehaviour:
   m_text: Rethink
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14224,7 +14239,7 @@ MonoBehaviour:
   m_pageToDisplay: 1
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
-    textComponent: {fileID: 0}
+    textComponent: {fileID: 5570272347127248498}
     characterCount: 7
     spriteCount: 0
     spaceCount: 0
@@ -14236,7 +14251,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -14827,7 +14842,7 @@ MonoBehaviour:
   m_text: Accept
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: 21340717761582056, guid: 261412b9ebf8bc84bacc945fc6ab320e,
+  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14893,7 +14908,7 @@ MonoBehaviour:
   m_pageToDisplay: 1
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
-    textComponent: {fileID: 0}
+    textComponent: {fileID: 9129990802935683769}
     characterCount: 6
     spriteCount: 0
     spaceCount: 0
@@ -14905,7 +14920,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}

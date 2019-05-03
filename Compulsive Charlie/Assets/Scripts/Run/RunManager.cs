@@ -50,6 +50,12 @@ public class RunManager : MonoBehaviour
         {
             gameManager.EndRun(runState);
         }
+        // cheatcode to deactivate tutorials
+        if (Input.GetKey("n") && Input.GetKey("o"))
+        {
+            tutorialManager.Skip();
+            gameManager.showTutorial = false;
+        }
         // cheatcode to add combo/energy
         if (Input.GetKeyDown("0"))
         {

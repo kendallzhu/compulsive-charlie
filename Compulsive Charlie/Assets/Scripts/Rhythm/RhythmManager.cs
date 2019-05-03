@@ -158,7 +158,7 @@ public class RhythmManager : MonoBehaviour
             down ? downKey :
             right ? rightKey :
             left ? leftKey : null;
-        if (inputAnimPreb)
+        if (inputAnimPreb && Time.timeScale == 1)
         {
             Instantiate(inputAnimPreb, hitArea.transform.position, Quaternion.identity, hitArea.transform);
         }

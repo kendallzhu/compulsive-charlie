@@ -111,6 +111,15 @@ public class TutorialManager : MonoBehaviour
         shownEmotionNoteTutorial = true;
     }
 
+    // Skip entire tutorial
+    public void Skip()
+    {
+        activeIndex = 0;
+        activeTutorial = null;
+        canvas.SetActive(false);
+        Time.timeScale = 1;
+    }
+
     // Dismisses current element of active tutorial sequence
     // move on to the next element, or end
     private void Dismiss()

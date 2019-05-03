@@ -147,7 +147,7 @@ public class EmotionState
 
     public int GetRaiseAmount()
     {
-        return 1 - GetSum() / 10 - Extremeness();
+        return 3 - Extremeness(EmotionType.anxiety)- Extremeness(EmotionType.despair) - Extremeness(EmotionType.frustration);
     }
 
     // shift all emotion axes towards 0 by given factor (plus one)
