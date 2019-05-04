@@ -20,7 +20,7 @@ public class Ahhhhh : Thought
         int value = runState.emotions.anxiety;
         if (value >= 15)
         {
-            return 1;
+            return runState.emotions.Extremeness(EmotionType.anxiety);
         }
         return 0;
     }
