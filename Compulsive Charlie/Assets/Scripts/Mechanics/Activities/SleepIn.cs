@@ -11,7 +11,7 @@ public class SleepIn : Activity
         heightRating = -3;
         emotionNotes = new EmotionState(0, 0, 0);
         emotionEffect = new EmotionState(1, 0, 2);
-        rhythmPattern = new List<int> { 4, 6};
+        rhythmPattern = new List<int> { 2, 4, 6 };
         isUnlocked = true;
     }
 

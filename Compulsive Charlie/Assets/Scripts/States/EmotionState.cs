@@ -110,14 +110,14 @@ public class EmotionState
         }
     }
 
-    // return discretized "level" (0-3) of emotion value
+    // return discretized "level" (0-5) of emotion value
     public int Level(int value)
     {
         if (value == 0)
         {
             return 0;
         }
-        return Math.Min(value / 10 + 1, 3);
+        return Math.Min(value / 5 + 1, 5);
     }
 
     // return discretized "level" of emotion with highest magnitude

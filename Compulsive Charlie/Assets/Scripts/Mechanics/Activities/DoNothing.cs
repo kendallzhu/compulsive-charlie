@@ -9,8 +9,9 @@ public class DoNothing : Activity
         name = "Do Nothing";
         descriptionText = "wait - actually nothing?";
         heightRating = 0;
-        emotionNotes = new EmotionState(0, 0, 0);
+        emotionNotes = new EmotionState(1, 0, 0);
         emotionEffect = new EmotionState(0, 0, 0);
+        rhythmPattern = new List<int> { 4, 5, 6, 7 };
         isUnlocked = true;
     }
 

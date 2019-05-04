@@ -11,7 +11,7 @@ public class Drinking : Activity
         heightRating = -4;
         emotionNotes = new EmotionState(0, 0, 1);
         emotionEffect = new EmotionState(0, 0, 3);
-        rhythmPattern = new List<int> { 2, 4, 6, 8 };
+        rhythmPattern = new List<int> { 1, 2, 7 };
         isUnlocked = true;
     }
 
