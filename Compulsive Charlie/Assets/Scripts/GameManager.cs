@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
 
         profile.defaultSchedule = new List<Activity>();
         // ambitious schedule
-        profile.defaultSchedule.Add(Object.FindObjectOfType<BalancedMeal>());
+        profile.defaultSchedule.Add(Object.FindObjectOfType<Chores>());
         profile.defaultSchedule.Add(Object.FindObjectOfType<Class>());
         profile.defaultSchedule.Add(Object.FindObjectOfType<BalancedMeal>());
         profile.defaultSchedule.Add(Object.FindObjectOfType<Study>());
