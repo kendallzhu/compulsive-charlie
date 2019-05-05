@@ -80,11 +80,22 @@ public class RunManager : MonoBehaviour
             runState.activityHistory.Add(newActivityPlatform);
             runState.height = newActivityPlatform.y;
 
+            // increase schedule points if applicable
+            if (newActivityPlatform.activity == gameManager.profile.GetSchedule(runState.timeSteps))
+            {
+                runState.schedulePoints++;
+            }
+            Debug.Log(runState.timeSteps);
+            Debug.Log(gameManager.profile.GetSchedule(runState.timeSteps));
+            Debug.Log(newActivityPlatform.activity);
+            Debug.Log(runState.schedulePoints);
+
             // make first activity "sleep in"
             if (newActivityPlatform.activity == null)
             {
                 Debug.Assert(runState.activityHistory.Count == 1);
                 newActivityPlatform.activity = Object.FindObjectOfType<SleepIn>();
+                runState.timeSteps = 0;
             } else
             {
                 // clear out other spawnedPlatforms

@@ -15,6 +15,8 @@ public class RunState {
     public EmotionState emotions;
     public List<ActivityPlatform> activityHistory;
     public List<Thought> thoughtHistory;
+    // records schedule activity completion (and more nuance?)
+    public int schedulePoints = 0;
     // height could have more meaning?
     public int height = 0;
 

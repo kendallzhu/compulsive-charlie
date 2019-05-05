@@ -39,7 +39,7 @@ public class Profile
 
     // get activity scheduled for given timestep
     public Activity GetSchedule(int time)
-    {
+    {        
         if (time > schedule.Count)
         {
             return schedule.Last();

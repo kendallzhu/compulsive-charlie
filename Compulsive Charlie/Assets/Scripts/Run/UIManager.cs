@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject anxietyMeter;
     public GameObject frustrationMeter;
     public GameObject timerWheel;
+    public GameObject scheduleBar;
 
     // display constants
     private const int emotionMeterCap = 20;
@@ -35,7 +36,8 @@ public class UIManager : MonoBehaviour
         EmotionState e = runState.emotions;
         // fill meters
         List<int> values = new List<int> { runState.energy, e.despair, e.anxiety, e.frustration };
-        List<int> caps = new List<int> { gameManager.profile.energyCap, emotionMeterCap, emotionMeterCap, emotionMeterCap };
+        int emoCap = emotionMeterCap;
+        List<int> caps = new List<int> { gameManager.profile.energyCap, emoCap, emoCap, emoCap };
         List<GameObject> meters = new List<GameObject> { energyMeter, despairMeter, anxietyMeter, frustrationMeter };
         for (int i = 0; i < meters.Count; i++)
         {
