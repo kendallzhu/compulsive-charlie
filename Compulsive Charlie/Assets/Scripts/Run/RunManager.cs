@@ -80,16 +80,6 @@ public class RunManager : MonoBehaviour
             runState.activityHistory.Add(newActivityPlatform);
             runState.height = newActivityPlatform.y;
 
-            // increase schedule points if applicable
-            if (newActivityPlatform.activity == gameManager.profile.GetSchedule(runState.timeSteps))
-            {
-                runState.schedulePoints++;
-            }
-            Debug.Log(runState.timeSteps);
-            Debug.Log(gameManager.profile.GetSchedule(runState.timeSteps));
-            Debug.Log(newActivityPlatform.activity);
-            Debug.Log(runState.schedulePoints);
-
             // make first activity "sleep in"
             if (newActivityPlatform.activity == null)
             {
@@ -102,6 +92,11 @@ public class RunManager : MonoBehaviour
                 runState.ClearSpawned(newActivityPlatform);
                 // trigger activity special effect
                 newActivityPlatform.activity.Effect(runState);
+                // increase schedule points if applicable
+                if (newActivityPlatform.activity == gameManager.profile.GetSchedule(runState.timeSteps))
+                {
+                    runState.schedulePoints++;
+                }
             }
             // start new platform spawning rhythm notes
             rhythmManager.StartRhythm(newActivityPlatform.activity);
@@ -208,7 +203,7 @@ public class RunManager : MonoBehaviour
         // Randomly pick activities one at a time
         availableActivities = availableActivities.OrderBy(x => Random.value).ToList();
         // Put scheduled activity at front of list so it is always offered
-        Activity scheduledActivity = gameManager.profile.GetSchedule(runState.timeSteps);
+        Activity scheduledActivity = gameManager.profile.GetSchedule(runState.timeSteps + 1);
         availableActivities.Insert(0, scheduledActivity);
         foreach (Activity available in availableActivities)
         {

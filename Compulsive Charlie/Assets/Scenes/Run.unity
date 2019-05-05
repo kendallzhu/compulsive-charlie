@@ -312,8 +312,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -379.5, y: 34.5}
-  m_SizeDelta: {x: 200, y: 60}
+  m_AnchoredPosition: {x: -363.4, y: 34.5}
+  m_SizeDelta: {x: 195.32, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8871874
 MonoBehaviour:
@@ -9716,8 +9716,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -379.5, y: 34.5}
-  m_SizeDelta: {x: 200, y: 60}
+  m_AnchoredPosition: {x: -363.4, y: 34.5}
+  m_SizeDelta: {x: 195.32, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1401776638
 MonoBehaviour:
@@ -10500,7 +10500,7 @@ MonoBehaviour:
   anxietyMeter: {fileID: 289818013}
   frustrationMeter: {fileID: 711528163}
   timerWheel: {fileID: 791514860}
-  scheduleBar: {fileID: 0}
+  scheduleBar: {fileID: 1915657372}
 --- !u!114 &1652275283
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -35,10 +35,11 @@ public class UIManager : MonoBehaviour
         RunState runState = runManager.runState;
         EmotionState e = runState.emotions;
         // fill meters
-        List<int> values = new List<int> { runState.energy, e.despair, e.anxiety, e.frustration };
+        List<int> values = new List<int> { runState.energy, runState.schedulePoints, e.despair, e.anxiety, e.frustration };
         int emoCap = emotionMeterCap;
-        List<int> caps = new List<int> { gameManager.profile.energyCap, emoCap, emoCap, emoCap };
-        List<GameObject> meters = new List<GameObject> { energyMeter, despairMeter, anxietyMeter, frustrationMeter };
+        int scheduleCap = gameManager.profile.schedule.Count;
+        List<int> caps = new List<int> { gameManager.profile.energyCap, scheduleCap, emoCap, emoCap, emoCap };
+        List<GameObject> meters = new List<GameObject> { energyMeter, scheduleBar, despairMeter, anxietyMeter, frustrationMeter };
         for (int i = 0; i < meters.Count; i++)
         {
             // Find filler image (meters must have a child called "Filler")
@@ -58,7 +59,11 @@ public class UIManager : MonoBehaviour
             // set filler image fill amount
             fillerImage.fillAmount = newFillAmount;
             // set text (meters must have a child called "Text")
-            meters[i].transform.Find("Text").GetComponent<TextMeshProUGUI>().text = values[i].ToString();
+            Transform textObject = meters[i].transform.Find("Text");
+            if (textObject)
+            {
+                textObject.GetComponent<TextMeshProUGUI>().text = values[i].ToString();
+            }
         };
         // rotate timer wheel (must have a child called "Disc")
         Transform disc = timerWheel.transform.Find("Disc");
