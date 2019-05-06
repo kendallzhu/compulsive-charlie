@@ -20,9 +20,9 @@ public class Drinking : Activity
     {
         if (runState.emotions.Extremeness() > 1 || runState.timeSteps > 8)
         {
-            return 1;
+            return 3;
         }
-        return 0;
+        return 1;
     }
 
     public override void Effect(RunState runState)

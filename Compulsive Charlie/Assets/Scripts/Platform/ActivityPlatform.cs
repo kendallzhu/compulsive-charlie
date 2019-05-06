@@ -9,7 +9,7 @@ public class ActivityPlatform : MonoBehaviour {
     public Activity activity;
     // constants - TODO: may these ever depend on activity or runState i.e emotion? if so convert to function
     // universal dimensions of all platforms - (design choice to simplify, don't think variable lengths add much)
-    private const int jumpPadLength = 3;
+    private const int jumpPadLength = 4;
     private const float platformThickness = .3f;
     private const int standardGapLength = 2;
     private const int platformLength = 24;

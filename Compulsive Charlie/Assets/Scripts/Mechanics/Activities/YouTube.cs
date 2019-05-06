@@ -8,7 +8,7 @@ public class YouTube : Activity
     {
         name = "YouTube";
         descriptionText = "suggested videos";
-        heightRating = -1;
+        heightRating = -3;
         emotionNotes = new EmotionState(0, 0, 0);
         emotionEffect = new EmotionState(1, 1, 1);
         rhythmPattern = new List<int> { 1, 2, 3 };
@@ -20,9 +20,9 @@ public class YouTube : Activity
     {
         if (runState.emotions.GetDominantEmotion() == EmotionType.anxiety)
         {
-            return 1;
+            return 3;
         }
-        return 0;
+        return 1;
     }
 
     public override void Effect(RunState runState)
