@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoNothing : Activity
+public class Rage : Activity
 {
     void Awake()
     {
-        name = "Do Nothing";
-        descriptionText = "wait - actually nothing?";
+        name = "Rage";
+        descriptionText = "overwhelming explosion of anger";
         heightRating = 0;
-        emotionNotes = new EmotionState(1, 1, 1);
+        emotionNotes = new EmotionState(0, 6, 0);
         emotionEffect = new EmotionState(0, 0, 0);
-        rhythmPattern = new List<int> { 4, 5, 6, 7 };
+        rhythmPattern = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
         isUnlocked = true;
     }
 
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        // only used if all other default activities are not available (see runManager)
+        EmotionState e = runState.emotions;
+        if (e.GetDominantEmotion() == EmotionType.frustration && e.Extremeness() > 3)
+        {
+            return 1;
+        }
         return 0;
     }
 

@@ -920,6 +920,56 @@ MonoBehaviour:
   isUnlocked: 0
   associatedThoughts: []
   rhythmPattern: 000000000100000002000000030000000500000006000000
+--- !u!1 &378882118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 378882119}
+  - component: {fileID: 378882120}
+  m_Layer: 0
+  m_Name: Rage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &378882119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378882118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 977672113}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &378882120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378882118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f001285c340c2e48811ff3012101d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  descriptionText: 
+  infoText: 
+  heightRating: 0
+  isUnlocked: 0
+  associatedThoughts: []
+  rhythmPattern: 000000000100000002000000030000000500000006000000
 --- !u!1 &385407947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,9 +1890,61 @@ Transform:
   - {fileID: 2130649713}
   - {fileID: 1055576063}
   - {fileID: 355025985}
+  - {fileID: 979035590}
+  - {fileID: 378882119}
   m_Father: {fileID: 725682865}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &979035589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979035590}
+  - component: {fileID: 979035591}
+  m_Layer: 0
+  m_Name: PanicAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &979035590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979035589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 977672113}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &979035591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979035589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047fdf43d479dc44a9770cf622dd4e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  descriptionText: 
+  infoText: 
+  heightRating: 0
+  isUnlocked: 0
+  associatedThoughts: []
+  rhythmPattern: 000000000100000002000000030000000500000006000000
 --- !u!1 &983606166
 GameObject:
   m_ObjectHideFlags: 0

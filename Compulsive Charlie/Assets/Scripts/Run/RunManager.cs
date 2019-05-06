@@ -242,7 +242,7 @@ public class RunManager : MonoBehaviour
             } else
             {
                 // right now default to "BreakDown"
-                Activity fallBack = Object.FindObjectOfType<Breakdown>();
+                Activity fallBack = Object.FindObjectOfType<DoNothing>();
                 offeredActivities.Add(fallBack);
             }
         }
