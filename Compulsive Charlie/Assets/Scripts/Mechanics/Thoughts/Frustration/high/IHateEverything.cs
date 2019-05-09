@@ -10,7 +10,7 @@ public class IHateEverything : Thought
         descriptionText = "I'd burn it all down";
         isUnlocked = true;
         energyLevel = 0;
-        jumpPower = 0;
+        jumpPower = -1;
         invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
     }
 

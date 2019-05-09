@@ -10,7 +10,7 @@ public class ImGonnaDie : Thought
         descriptionText = "****";
         isUnlocked = true;
         energyLevel = 0;
-        jumpPower = 0;
+        jumpPower = -1;
         invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
     }
 

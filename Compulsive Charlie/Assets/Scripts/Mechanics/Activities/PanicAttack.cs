@@ -13,6 +13,7 @@ public class PanicAttack : Activity
         emotionEffect = new EmotionState(0, 0, 0);
         rhythmPattern = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
         isUnlocked = true;
+        isBreakdown = true;
     }
 
     // (weighted) availability of activity, given state of run
@@ -24,12 +25,5 @@ public class PanicAttack : Activity
             return 1;
         }
         return 0;
-    }
-
-    // height of associated platform if it comes after given run state
-    public override int HeightRating(RunState runState)
-    {
-        // special - always be the default when available
-        return runState.emotions.GetRaiseAmount() + defaultPlatformHeightDiff;
     }
 }

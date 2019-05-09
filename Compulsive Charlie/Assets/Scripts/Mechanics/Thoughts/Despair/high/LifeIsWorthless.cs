@@ -10,7 +10,7 @@ public class LifeIsWorthless : Thought
         descriptionText = "I wish I wasn't born";
         isUnlocked = true;
         energyLevel = 0;
-        jumpPower = 0;
+        jumpPower = -1;
         invisibleEmotions = new List<EmotionType> { EmotionType.despair };
     }
 

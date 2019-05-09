@@ -70,7 +70,7 @@ public class RunState {
 
     public void ResetCombo()
     {
-        energy = 0;
+        // energy = 0;
         rhythmCombo = 0;
     }
 
@@ -120,7 +120,7 @@ public class RunState {
         {
             if (activityHistory[i].activity == activity)
             {
-                time = activityHistory.Count - i - 1;
+                time = activityHistory.Count - i;
             }
         }
         return time;

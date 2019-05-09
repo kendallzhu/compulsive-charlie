@@ -100,7 +100,7 @@ public class RhythmManager : MonoBehaviour
             }*/
             // choose either energy, or the dominant emotion
             int r = Random.Range(0, 30);
-            if (r < curr.GetMaxValue())
+            if (r < curr.GetMaxValue() + 3)
             {
                 type = curr.GetDominantEmotion();
             }

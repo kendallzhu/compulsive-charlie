@@ -28,7 +28,12 @@ public class ActivityPlatform : MonoBehaviour {
     // calculate horizontal gap for a given platform
     private int GapSize(int ydiff)
     {
-        // make only default platforms have gap 0
+        // make breakdown platforms have gap 0
+        if (ydiff <= Activity.breakdownPlatformHeightDiff)
+        {
+            return -3;
+        }
+        // make default platforms have gap 0
         if (ydiff <= Activity.defaultPlatformHeightDiff)
         {
             return 0;

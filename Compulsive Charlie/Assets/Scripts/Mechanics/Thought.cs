@@ -16,7 +16,7 @@ public abstract class Thought : MonoBehaviour
     // changeable parameters
     public bool isUnlocked = false;
     public int energyLevel = 0; // now its just a requirement
-    public int jumpPower = 0;
+    public int jumpPower = 0; // should be >= -1
     // which emotion(s) it hides
     public List<EmotionType> invisibleEmotions = new List<EmotionType>();
 
@@ -89,8 +89,8 @@ public abstract class Thought : MonoBehaviour
         {
             bg.GetComponent<SpriteRenderer>().color = BackgroundColor();
         }
-        runState.jumpPower += jumpPower;
-        // runState.IncreaseEnergy(-energyLevel);
+        runState.jumpPower = jumpPower;
+        runState.IncreaseEnergy(-energyLevel);
         // make thought-specific effects
         CustomAcceptEffect(runState);
     }

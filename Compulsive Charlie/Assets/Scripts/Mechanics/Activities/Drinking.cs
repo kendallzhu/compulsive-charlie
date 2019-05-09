@@ -8,7 +8,7 @@ public class Drinking : Activity
     {
         name = "Drinking";
         descriptionText = "problem and solution";
-        heightRating = -4;
+        heightRating = -7;
         emotionNotes = new EmotionState(0, 0, 1);
         emotionEffect = new EmotionState(0, 0, 3);
         rhythmPattern = new List<int> { 1, 2, 7 };

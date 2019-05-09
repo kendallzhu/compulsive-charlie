@@ -10,7 +10,7 @@ public class Transcendence : Thought
         descriptionText = "No words to describe";
         isUnlocked = true;
         energyLevel = 10;
-        jumpPower = 9;
+        jumpPower = -1;
         invisibleEmotions = new List<EmotionType> { };
     }
 
@@ -19,7 +19,7 @@ public class Transcendence : Thought
     {
         if (runState.emotions.GetMaxValue() <= 1)
         {
-            return 1;
+            return 3;
         }
         return 0;
     }

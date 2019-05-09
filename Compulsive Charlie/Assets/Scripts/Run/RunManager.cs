@@ -56,21 +56,20 @@ public class RunManager : MonoBehaviour
             tutorialManager.Skip();
             gameManager.showTutorial = false;
         }
-        // cheatcode to add combo/energy
+        // cheatcodes to add combo/energy and reduce emotion
         if (Input.GetKeyDown("0"))
         {
             runState.IncreaseCombo();
+        }
+        if (Input.GetKeyDown("9"))
+        {
+            runState.emotions.Equilibrate();
         }
     }
 
     // for when the player arrives on next activity, called via trigger in ActivityPlatform
     public void AdvanceTimeStep(ActivityPlatform newActivityPlatform)
     {
-        // activate UI tutorial on first platform of run
-        if (gameManager.showTutorial && !tutorialManager.shownUITutorial)
-        {
-            tutorialManager.ActivateUITutorial();
-        }
         if (newActivityPlatform != null)
         {
             // increment timeSteps
@@ -112,6 +111,11 @@ public class RunManager : MonoBehaviour
     // for when the player enters the jump Pad
     public void EnterJumpPad(ActivityPlatform activityPlatform)
     {
+        // activate UI tutorial on first platform of run
+        if (gameManager.showTutorial && !tutorialManager.shownUITutorial)
+        {
+            tutorialManager.ActivateUITutorial();
+        }
         // if done, end run (and skip the rest of the procedure)
         if (runState.done)
         {
@@ -191,7 +195,7 @@ public class RunManager : MonoBehaviour
     private List<Activity> SelectActivities()
     {      
         List<Activity> offeredActivities = new List<Activity>();
-        // get all available activities
+        // get all available normal activities
         List<Activity> availableActivities = new List<Activity>();
         foreach (Activity activity in gameManager.profile.activities)
         {
@@ -200,7 +204,7 @@ public class RunManager : MonoBehaviour
                 availableActivities.Add(activity);
             }
         }
-        // Randomly pick activities one at a time
+        // Pick which activities to actually offer, one at a time (random order)
         availableActivities = availableActivities.OrderBy(x => Random.value).ToList();
         // Put scheduled activity at front of list so it is always offered
         Activity scheduledActivity = gameManager.profile.GetSchedule(runState.timeSteps + 1);
@@ -218,34 +222,38 @@ public class RunManager : MonoBehaviour
                     crammed = true;
                 }
                 // dont add activities that are above the scheduled one
-                if (h2 - scheduledActivity.HeightRating(runState) > 0)
+                /* if (h2 - scheduledActivity.HeightRating(runState) > 0)
                 {
                     crammed = true;
-                }
+                } */
             }
-            if (!crammed)
+            // also dont add breakdown activities
+            if (!crammed && !available.isBreakdown)
             {
                 offeredActivities.Add(available);
             }
         }
-        // There's got to be at least one activity that is low enough to serve as the default
-        List<Activity> allActivities = offeredActivities.Concat(runState.spawnedPlatforms.Select(x => x.activity)).ToList();
-        int defaultDiff = Activity.defaultPlatformHeightDiff;
-        ActivityPlatform current = runState.CurrentActivityPlatform();
-        int h = current ? current.y : 0;
-        if (allActivities.Where(a => a.PlatformHeight(runState) - h <= defaultDiff).ToList().Count == 0)
+        // There's got to be one default activity
+        List<Activity> allActivities = offeredActivities.Concat(runState.spawnedPlatforms.Select(x => x.activity)).ToList();        
+        if (allActivities.Where(a => a.IsDefault(runState)).ToList().Count == 0)
         {
-            Activity defaultActivity = availableActivities.Find(a => a.PlatformHeight(runState) - h <= defaultDiff);
-            if (defaultActivity != null)
+            Activity defaultActivity = availableActivities.Find(a => a.IsDefault(runState));
+            if (defaultActivity == null)
             {
-                offeredActivities.Add(defaultActivity);
-            } else
-            {
-                // right now default to "BreakDown"
-                Activity fallBack = Object.FindObjectOfType<DoNothing>();
-                offeredActivities.Add(fallBack);
+                defaultActivity = Object.FindObjectOfType<DoNothing>();
             }
+            offeredActivities.Add(defaultActivity);
         }
+        // lastly, add one breakdown activity
+        Debug.Assert(allActivities.Where(a => a.isBreakdown).ToList().Count == 0);
+        Activity breakdownActivity = availableActivities.Find(a => a.isBreakdown);
+        if (breakdownActivity == null)
+        {
+            // right now default to "Meditation"
+            breakdownActivity = Object.FindObjectOfType<Meditation>();
+        }
+        offeredActivities.Add(breakdownActivity);
+
         return offeredActivities;
     }
 

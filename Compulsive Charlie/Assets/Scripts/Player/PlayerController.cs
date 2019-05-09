@@ -76,13 +76,23 @@ public class PlayerController : MonoBehaviour {
         {
             rb2d.velocity = new Vector2(0, 0);
         }
-        // once jump start animation finished, apply force
+        // once jump start animation finished, apply force once
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("charlie_jumping") && runState.jumpPower > 0)
         {
             float upwardJumpForce = runState.CurrentThought().JumpBonus(runState.jumpPower * jumpForcePerEnergy);
             rb2d.AddForce(new Vector2(forwardJumpForce, upwardJumpForce));
             runState.jumpPower = 0;
-            // small translation
+        }
+        // if jump force is negative, fall straight down
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("charlie_jumping") && runState.jumpPower < 0)
+        {
+            if (runState.jumpPower == -1)
+            {
+                // shift Charlie over the ledge once
+                rb2d.position = new Vector2(rb2d.position.x - .7f, rb2d.position.y - 2f);
+            }
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+            runState.jumpPower = -2;
         }
     }
 

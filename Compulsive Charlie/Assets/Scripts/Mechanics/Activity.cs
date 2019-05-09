@@ -5,8 +5,11 @@ using System.Linq;
 
 // Parent class for activity mechanic in game
 public abstract class Activity : MonoBehaviour {
-    // standardized height diff for default (lowest) platform
-    public const int defaultPlatformHeightDiff = -6;
+    // standardized height diff for default (lowest) normal platform
+    public const int defaultPlatformHeightDiff = -5;
+    // hard lower limit for height diff of any platform
+    // used for "breakdown" platforms that can be only got to by negative jump power
+    public const int breakdownPlatformHeightDiff = -8;
 
     // unique name
     new public string name;
@@ -15,6 +18,7 @@ public abstract class Activity : MonoBehaviour {
     // TODO: animation(s)
 
     // changeable parameters
+    public bool isBreakdown = false;
     public int heightRating = 0;
     public bool isUnlocked = false;
     public EmotionState emotionNotes = new EmotionState(0, 0, 0);
@@ -34,6 +38,17 @@ public abstract class Activity : MonoBehaviour {
         return 1;
     }
 
+    // helper function for classifying an activity
+    public bool IsDefault(RunState runState)
+    {
+        // default activities can be normal activities as well - it depends on the runState
+        ActivityPlatform current = runState.CurrentActivityPlatform();
+        int h = current ? current.y : 0;
+        int ydiff = PlatformHeight(runState) - h;
+        // any activity that is below threshold ydiff qualifies
+        return ydiff <= defaultPlatformHeightDiff && !isBreakdown;
+    }
+
     // (weighted) availability of activity, given state of run
     public int Availability(RunState runState)
     {
@@ -42,6 +57,16 @@ public abstract class Activity : MonoBehaviour {
         {
             return 0;
         }
+        // disallow normal activity that would be at or below breakdown height, to avoid weird situations 
+        ActivityPlatform current = runState.CurrentActivityPlatform();
+        int h = current ? current.y : 0;
+        int ydiff = PlatformHeight(runState) - h;
+        if (ydiff <= breakdownPlatformHeightDiff && !isBreakdown)
+        {
+            return 0;
+        }
+
+        // don't allow any activities lower than the breakdown
         return CustomAvailability(runState);
     }
 
@@ -49,14 +74,12 @@ public abstract class Activity : MonoBehaviour {
     // raw height change of platform from previous platform given run state
     public virtual int HeightRating(RunState runState)
     {
-        // for activites with emotions, difficulty depends on emotions of player
-        // DEPRECATED - move current platform based on emotions instead
-        /*float emotionCharge = emotionNotes.DotProduct(runState.emotions) / 5f;
-        if (emotionCharge > 0)
+        // breakdown activities are special! - they always have the same height difference,
+        // regardless of how much the current platform shifts up/down
+        if (isBreakdown)
         {
-            return (int)emotionCharge;
+            return runState.emotions.GetRaiseAmount() + breakdownPlatformHeightDiff;
         }
-        return  defaultPlatformHeightDiff;*/
         return heightRating;
     }
 
