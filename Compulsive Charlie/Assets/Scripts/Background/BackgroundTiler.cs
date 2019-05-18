@@ -3,45 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundTiler : MonoBehaviour
-{
-    // gameobject containing all elements that should be tiled
-    // each child should have a sprite renderer
-    public GameObject backgroundTile;
-
-    private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
+{    
     private Camera mainCamera;
+    // best is a multiple of the width of the screen
+    private float tileSizeX;
+    private float tileSizeY;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
-        foreach (Transform child in backgroundTile.transform)
-        {
-            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
-            sr.drawMode = SpriteDrawMode.Tiled;
-            spriteRenderers.Add(sr);
-        }
-        
+        // works smoothly with tile size as same as sprite size
+        tileSizeX = 4 * 9.6f;
+        tileSizeY = 4 * 5.4f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (SpriteRenderer sr in spriteRenderers)
+        // initialize tile components
+        foreach (Transform child in transform)
         {
-            // extend the dimensions to cover everything!
-            float horzExtent = Camera.main.orthographicSize * Screen.width / Screen.height;
-            float vertExtent = Camera.main.orthographicSize;
-            float x = mainCamera.transform.position.x;
-            float y = mainCamera.transform.position.y;
-            if (x + horzExtent > sr.size.x / 2)
-            {
-                sr.size = new Vector2(sr.size.x * 2, sr.size.y);
-            }
-            if (y + vertExtent > sr.size.y / 2)
-            {
-                sr.size = new Vector2(sr.size.x, sr.size.y * 2);
-            }
+            // make sure the dimensions are a clean multiple of tile size
+            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+            sr.drawMode = SpriteDrawMode.Tiled;
+            sr.size = new Vector2(tileSizeX * 2, tileSizeY * 2);
+        }
+        // move the tile to cover the camera at all times
+        float horzExtent = Camera.main.orthographicSize * Screen.width / Screen.height;
+        float vertExtent = Camera.main.orthographicSize;
+        float x = mainCamera.transform.position.x;
+        float y = mainCamera.transform.position.y;
+        Vector2 pos = transform.position;
+        if (x + horzExtent > pos.x + tileSizeX)
+        {
+            transform.position = new Vector2(pos.x + tileSizeX, pos.y);
+        }
+        if (y + vertExtent > pos.y + tileSizeY)
+        {
+            transform.position = new Vector2(pos.x, pos.y + tileSizeY);
+        }
+        if (y - vertExtent < pos.y - tileSizeY)
+        {
+            transform.position = new Vector2(pos.x, pos.y - tileSizeY);
         }
 
         /* OLD - Instantiate new copies of background sprite when camera view exceeds existing sprites
