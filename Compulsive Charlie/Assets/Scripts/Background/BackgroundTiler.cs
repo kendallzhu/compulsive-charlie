@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Background : MonoBehaviour
+public class BackgroundTiler : MonoBehaviour
 {
     // expect image pos to be in center
-    public GameObject backgroundPrefab;
+    public GameObject backgroundTile;
     public float spriteWidth;
     public float spriteHeight;
     
@@ -19,10 +19,10 @@ public class Background : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-        SpriteRenderer spriteRenderer = backgroundPrefab.GetComponent<SpriteRenderer>();
+        /* SpriteRenderer spriteRenderer = backgroundPrefab.GetComponent<SpriteRenderer>();
         spriteWidth = spriteRenderer.bounds.size.x;
-        spriteHeight = spriteRenderer.bounds.size.y;
-        Instantiate(backgroundPrefab, new Vector3(0, 0, 0), Quaternion.identity, this.transform);
+        spriteHeight = spriteRenderer.bounds.size.y; */
+        // Instantiate(backgroundTile, new Vector3(0, 0, 0), Quaternion.identity, this.transform);
         minX = -spriteWidth / 2;
         maxX = -spriteWidth / 2;
         minY = -spriteHeight / 2;
@@ -41,14 +41,14 @@ public class Background : MonoBehaviour
         float height = spriteHeight * (int)((y - spriteHeight / 2) / spriteHeight);
         if (maxX - x < horzExtent)
         {
-            Instantiate(backgroundPrefab, new Vector3(maxX + spriteWidth / 2, height, 0), Quaternion.identity, this.transform);
+            Instantiate(backgroundTile, new Vector3(maxX + spriteWidth / 2, height, 0), Quaternion.identity, this.transform);
             maxX += spriteWidth;
             minY = height - spriteHeight / 2;
             maxY = height + spriteHeight / 2;
         }
         if (x - minX < horzExtent)
         {
-            Instantiate(backgroundPrefab, new Vector3(minX - spriteWidth / 2, height, 0), Quaternion.identity, this.transform);
+            Instantiate(backgroundTile, new Vector3(minX - spriteWidth / 2, height, 0), Quaternion.identity, this.transform);
             minX -= spriteWidth;
             minY = height - spriteHeight / 2;
             maxY = height + spriteHeight / 2;
@@ -61,7 +61,7 @@ public class Background : MonoBehaviour
             for (float lateral = rightMost; lateral >= leftMost; lateral -= spriteWidth)
             {
                 Vector3 above = new Vector3(lateral, maxY + spriteHeight / 2, 0);
-                Instantiate(backgroundPrefab, above, Quaternion.identity, this.transform);
+                Instantiate(backgroundTile, above, Quaternion.identity, this.transform);
             }
             maxY += spriteHeight;
         }
@@ -70,7 +70,7 @@ public class Background : MonoBehaviour
             for (float lateral = rightMost; lateral >= leftMost; lateral -= spriteWidth)
             {
                 Vector3 below = new Vector3(lateral, minY - spriteHeight / 2, 0);
-                Instantiate(backgroundPrefab, below, Quaternion.identity, this.transform);
+                Instantiate(backgroundTile, below, Quaternion.identity, this.transform);
             }
             minY -= spriteHeight;
         }
