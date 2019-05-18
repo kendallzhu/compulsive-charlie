@@ -4,35 +4,47 @@ using UnityEngine;
 
 public class BackgroundTiler : MonoBehaviour
 {
-    // expect image pos to be in center
+    // gameobject containing all elements that should be tiled
+    // each child should have a sprite renderer
     public GameObject backgroundTile;
-    public float spriteWidth;
-    public float spriteHeight;
-    
-    private float maxX;
-    private float minX;
-    private float minY;
-    private float maxY;
-    public Camera mainCamera;
+
+    private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
+    private Camera mainCamera;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
-        /* SpriteRenderer spriteRenderer = backgroundPrefab.GetComponent<SpriteRenderer>();
-        spriteWidth = spriteRenderer.bounds.size.x;
-        spriteHeight = spriteRenderer.bounds.size.y; */
-        // Instantiate(backgroundTile, new Vector3(0, 0, 0), Quaternion.identity, this.transform);
-        minX = -spriteWidth / 2;
-        maxX = -spriteWidth / 2;
-        minY = -spriteHeight / 2;
-        maxY = spriteHeight / 2;
+        foreach (Transform child in backgroundTile.transform)
+        {
+            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+            sr.drawMode = SpriteDrawMode.Tiled;
+            spriteRenderers.Add(sr);
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Instantiate new copies of background sprite when camera view exceeds existing sprites
+        foreach (SpriteRenderer sr in spriteRenderers)
+        {
+            // extend the dimensions to cover everything!
+            float horzExtent = Camera.main.orthographicSize * Screen.width / Screen.height;
+            float vertExtent = Camera.main.orthographicSize;
+            float x = mainCamera.transform.position.x;
+            float y = mainCamera.transform.position.y;
+            if (x + horzExtent > sr.size.x / 2)
+            {
+                sr.size = new Vector2(sr.size.x * 2, sr.size.y);
+            }
+            if (y + vertExtent > sr.size.y / 2)
+            {
+                sr.size = new Vector2(sr.size.x, sr.size.y * 2);
+            }
+        }
+
+        /* OLD - Instantiate new copies of background sprite when camera view exceeds existing sprites
         float horzExtent = 2 * Camera.main.orthographicSize * Screen.width / Screen.height;
         float vertExtent = 2 * Camera.main.orthographicSize;
         float x = mainCamera.transform.position.x;
@@ -73,6 +85,6 @@ public class BackgroundTiler : MonoBehaviour
                 Instantiate(backgroundTile, below, Quaternion.identity, this.transform);
             }
             minY -= spriteHeight;
-        }
+        } */
     }
 }
