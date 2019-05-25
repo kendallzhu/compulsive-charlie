@@ -15,6 +15,9 @@ public class BackgroundManager : MonoBehaviour
     public GameObject tileRain;
     public GameObject tileLightning;
 
+    // fog sprites
+    public List<Sprite> fogSprites;
+
     private RunManager runManager;
 
     // Start is called before the first frame update
@@ -22,6 +25,7 @@ public class BackgroundManager : MonoBehaviour
     {
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();
+        Debug.Assert(fogSprites.Count > 0 && fogSprites[0] != null);
     }
 
     // Update is called once per frame
@@ -30,10 +34,15 @@ public class BackgroundManager : MonoBehaviour
         RunState runState = runManager.runState;
         EmotionState e = runState.emotions;
         // rain if sad
-        tileRain.SetActive(e.Extremeness(EmotionType.despair) > 1);
+        tileRain.SetActive(e.Extremeness(EmotionType.despair) > 2);
         // lighning if anxious
-        tileLightning.SetActive(e.Extremeness(EmotionType.anxiety) > 1);
-        // send the emotion level into the tile base
-        tileBase.GetComponent<Animator>().SetInteger("emotionTotal", e.GetSum());
+        tileLightning.SetActive(e.Extremeness(EmotionType.anxiety) > 2);
+        // change fogginess based on total level
+        int i = e.GetSum();
+        while (i > fogSprites.Count || fogSprites[i] == null)
+        {
+            i--;
+        }
+        tileBase.GetComponent<SpriteRenderer>().sprite = fogSprites[i];
     }
 }
