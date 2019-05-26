@@ -7906,7 +7906,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1155557003}
   - component: {fileID: 1155557005}
-  - component: {fileID: 1155557006}
   - component: {fileID: 1155557004}
   m_Layer: 0
   m_Name: StaticBackground
@@ -7946,7 +7945,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -7962,7 +7961,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
 --- !u!222 &1155557005
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7971,25 +7970,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155557002}
   m_CullTransparentMesh: 0
---- !u!95 &1155557006
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155557002}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 76c5e64333674ff49b0a3872c28555bc, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1172886321
 GameObject:
   m_ObjectHideFlags: 0
@@ -10713,6 +10693,8 @@ MonoBehaviour:
   bgStatic: {fileID: 746362216}
   staticBase: {fileID: 1155557002}
   staticOverlay: {fileID: 1195051427}
+  cloudy: {fileID: 21300000, guid: c7aa304b51e2a644db0d98734df901d4, type: 3}
+  sunset: {fileID: 21300000, guid: 841d57ec74d1be14e8c6e5b7bb71c9e9, type: 3}
   bgTile: {fileID: 1176975324}
   tileBase: {fileID: 2035241328}
   tileRain: {fileID: 2098352512}
@@ -10720,54 +10702,20 @@ MonoBehaviour:
   fogSprites:
   - {fileID: 21300000, guid: b6df1f110a3748f4a8f2231faba146cd, type: 3}
   - {fileID: 21300000, guid: 8a1da8829c1c32440bdfe1f6cfbf2196, type: 3}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 8bc10e56cfb07844281487a63e7d5796, type: 3}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 55ccb29ea0b84404dadca88402a4a342, type: 3}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 46244fe82705a3a4389e8903273076bb, type: 3}
-  - {fileID: 0}
   - {fileID: 21300000, guid: c5c9ab9634cc3f945aa2f2001dd4201b, type: 3}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 98ead477e6cb7474bb32eb9d9d13eb84, type: 3}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 025f20fdcfbc06a4c990f18e4333fb1c, type: 3}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 1e05f3fb9a3abd040a86b0cbb337bafa, type: 3}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 308bebaeb18b0964bb46f8c91468416e, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 3613f0e3ae18ff24b8dba1eb96d55217, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 7bcd5c0948dfa2a4c85d8c239975a2dd, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 21300000, guid: fb6a47eca15250d4aa35f2ff297a991e, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 6a2b3c99e71346a49ad609b432a1f4ef, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 21300000, guid: e97ac920d400347489e022873f6e236d, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 21300000, guid: 9095dec7bfb30624d9852f6ea9bd00bd, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1680804088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13871,12 +13819,12 @@ SpriteRenderer:
   m_SortingLayerID: 156399657
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 988fe5ad343d3fa4688093e9c0e76ae4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 36.04, y: 20.4}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
