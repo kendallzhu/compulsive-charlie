@@ -23,6 +23,8 @@ public class BackgroundManager : MonoBehaviour
     public List<Sprite> fogSprites;
     // threshold constants for how much fog to display
     private List<int> fogLevels = new List<int> { 5, 6, 7, 8, 9, 10, 11, 12, 13, 16, 18, 20, 23, 26, 29, 32 };
+    // track if there is an ongoing fog transition
+    private bool isFogFading = false;
 
     private RunManager runManager;
 
@@ -45,7 +47,7 @@ public class BackgroundManager : MonoBehaviour
         {
             newStaticBG = sunset;
         }
-        FadeSwap(staticBase, newStaticBG);
+        TransitionStaticBG(staticBase.GetComponent<Image>(), newStaticBG);
         // rain if sad
         tileRain.SetActive(e.despair > 10);
         // lightning if anxious
@@ -57,68 +59,73 @@ public class BackgroundManager : MonoBehaviour
         {
             i--;
         }
-        FadeSwap(tileBase, fogSprites[i]);
+        if (!isFogFading)
+        {
+            TransitionFog(tileBase.GetComponent<SpriteRenderer>(), fogSprites[i]);
+        }
     }
 
-    void FadeSwap(GameObject obj, Sprite newSprite, float duration = 1f)
+    void TransitionStaticBG(Image image, Sprite newSprite, float duration = 1f)
     {
-        Image image = obj.GetComponent<Image>();
-        if (image != null)
+        if (image.sprite != newSprite)
         {
-            if (image.sprite != newSprite)
-            {
-                // spawn a fading out version of the previous image
-                GameObject clone = Instantiate(obj, obj.transform.parent);
-                StartCoroutine(FadeOutAndDestroy(clone.GetComponent<Image>(), duration));
-                // switch to the new sprite in the original gameobject
-                image.sprite = newSprite;
-            }
-        } else
-        {
-            SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
-            if (sr.sprite != newSprite)
-            {
-                // spawn a fading out version of the previous image
-                GameObject clone = Instantiate(obj, obj.transform.parent);
-                StartCoroutine(FadeOutAndDestroy(clone.GetComponent<SpriteRenderer>(), duration));
-                // switch to the new sprite in the original gameobject
-                sr.sprite = newSprite;
-                StartCoroutine(FadeIn(sr, duration));
-            }
+            // spawn a fading out version of the previous image
+            GameObject clone = Instantiate(image.gameObject, image.gameObject.transform.parent);
+            StartCoroutine(FadeOutAndDestroy(clone.GetComponent<Image>(), duration));
+            // switch to the new sprite in the original gameobject
+            image.sprite = newSprite;
         }
+    }
+
+    void TransitionFog(SpriteRenderer sr, Sprite newSprite, float duration = .1f)
+    {
+        if (sr.sprite != newSprite)
+        {
+            // spawn a fading out version of the previous image
+            GameObject clone = Instantiate(sr.gameObject, sr.gameObject.transform.parent);
+            StartCoroutine(FadeOutAndDestroyFog(clone.GetComponent<SpriteRenderer>(), duration));
+            // switch to the new sprite in the original gameobject
+            sr.sprite = newSprite;
+            sr.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0);
+            StartCoroutine(FadeIn(sr, duration));
+        }
+    }
+
+    // used for the static backgrounds
+    IEnumerator FadeOutAndDestroy(Image image, float duration)
+    {
+        const float deltaAlpha = .1f;
+        for (float alpha = 1; alpha > 0; alpha -= deltaAlpha)
+        {
+            image.color = new Color(1f, 1f, 1f, alpha);
+            yield return new WaitForSeconds(duration * deltaAlpha);
+        }
+        Destroy(image.gameObject);
     }
 
     // for some reason fade in only works on sprite renderers. this overall is a shitshow
-    IEnumerator FadeIn(SpriteRenderer image, float duration)
+    IEnumerator FadeIn(SpriteRenderer sr, float duration)
     {
-        const float deltaAlpha = .01f;
+        const float deltaAlpha = .1f;
         for (float alpha = 0; alpha < 1; alpha += deltaAlpha)
         {
-            image.color = new Color(1f, 1f, 1f, alpha);
+            Debug.Log(alpha);
+            sr.color = new Color(1f, 1f, 1f, alpha);
             yield return new WaitForSeconds(duration * deltaAlpha);
         }
     }
 
-    IEnumerator FadeOutAndDestroy(Image image, float duration)
+    IEnumerator FadeOutAndDestroyFog(SpriteRenderer sr, float duration)
     {
-        const float deltaAlpha = .01f;
+        isFogFading = true;
+        const float deltaAlpha = .1f;
         for (float alpha = 1; alpha > 0; alpha -= deltaAlpha)
         {
-            image.color = new Color(1f, 1f, 1f, alpha);
+            sr.color = new Color(1f, 1f, 1f, alpha);
             yield return new WaitForSeconds(duration * deltaAlpha);
         }
-        Destroy(image.gameObject);
-    }
-
-    IEnumerator FadeOutAndDestroy(SpriteRenderer image, float duration)
-    {
-        const float deltaAlpha = .01f;
-        for (float alpha = 1; alpha > 0; alpha -= deltaAlpha)
-        {
-            image.color = new Color(1f, 1f, 1f, alpha);
-            yield return new WaitForSeconds(duration * deltaAlpha);
-        }
-        Destroy(image.gameObject);
+        Destroy(sr.gameObject);
+        isFogFading = false;
     }
 
 }
