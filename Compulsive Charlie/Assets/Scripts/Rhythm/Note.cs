@@ -12,7 +12,7 @@ public class Note : MonoBehaviour
 
     float spawnTime;
     public float arrivalTime;
-    float travelDistance;
+    Vector2 startingOffset;
     public EmotionType type;
     // "animator" prefabs
     public GameObject hitPrefab;
@@ -29,15 +29,17 @@ public class Note : MonoBehaviour
     {
         spawnTime = trueSpawnTime;
         arrivalTime = trueSpawnTime + RhythmManager.travelTime;
-        travelDistance = transform.position.x - hitArea.position.x;
+        startingOffset = transform.position - hitArea.position;
+        Debug.Log(startingOffset);
     }
 
     void Update()
     {
         // move note to proper position
-        float newX = hitArea.position.x + travelDistance * (arrivalTime - rhythmManager.time) / RhythmManager.travelTime;
-        newX = System.Math.Max(hitArea.position.x, newX);
-        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+        float scaleFactor = (arrivalTime - rhythmManager.time) / RhythmManager.travelTime;
+        scaleFactor = Math.Max(0, scaleFactor);
+        Vector3 newPos = (Vector2)hitArea.position + startingOffset * scaleFactor;
+        transform.position = newPos;
         // make invisible - test
         List<Thought> thoughts = runManager.runState.thoughtHistory;
         if (thoughts.Count > 0 && thoughts.Last().invisibleEmotions.Contains(type))

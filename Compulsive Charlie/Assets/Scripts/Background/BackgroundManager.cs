@@ -109,7 +109,6 @@ public class BackgroundManager : MonoBehaviour
         const float deltaAlpha = .1f;
         for (float alpha = 0; alpha < 1; alpha += deltaAlpha)
         {
-            Debug.Log(alpha);
             sr.color = new Color(1f, 1f, 1f, alpha);
             yield return new WaitForSeconds(duration * deltaAlpha);
         }

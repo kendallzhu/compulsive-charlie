@@ -79,25 +79,6 @@ public class RhythmManager : MonoBehaviour
             // choose a note type based on current emotional state
             EmotionState curr = runManager.runState.emotions;
             EmotionType type = EmotionType.None;
-            /* OLD METHOD - CAN CHOOSE ANY TYPE
-            int a = curr.anxiety;
-            int f = curr.frustration;
-            int d = curr.despair;
-            int total = a + f + d + 10;
-
-            int r = Random.Range(0, total);
-            if (r < a)
-            {
-                type = EmotionType.anxiety;
-            }
-            else if (r < a + f)
-            {
-                type = EmotionType.frustration;
-            }
-            else if (r < a + f + d)
-            {
-                type = EmotionType.despair;
-            }*/
             // choose either energy, or the dominant emotion
             int r = Random.Range(0, 30);
             if (r < curr.GetMaxValue() + 3)
@@ -240,8 +221,10 @@ public class RhythmManager : MonoBehaviour
     // create a note with specified type + spawn time
     void SpawnNote(float spawnTime, EmotionType type)
     {
+        int angle = Random.Range(0, 40);
+        Vector3 offset = Quaternion.Euler(0, 0, angle) * new Vector3(travelDist, 0, 0);
         Vector3 destPos = hitArea.transform.position;
-        Vector3 startingPos = new Vector3(destPos.x + travelDist, destPos.y);
+        Vector3 startingPos = destPos + offset;
         GameObject note;
         if (type == EmotionType.None)
         {
