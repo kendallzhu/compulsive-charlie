@@ -27,7 +27,7 @@ public class Note : MonoBehaviour
 
     public void Initialize(float trueSpawnTime)
     {
-        spawnTime = trueSpawnTime;
+        spawnTime = trueSpawnTime;  
         arrivalTime = trueSpawnTime + RhythmManager.travelTime;
         startingOffset = transform.position - hitArea.position;
         Debug.Log(startingOffset);
