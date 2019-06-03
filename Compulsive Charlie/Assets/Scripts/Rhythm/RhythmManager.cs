@@ -221,7 +221,7 @@ public class RhythmManager : MonoBehaviour
     // create a note with specified type + spawn time
     void SpawnNote(float spawnTime, EmotionType type)
     {
-        int angle = Random.Range(0, 40);
+        int angle = Random.Range(0, 20);
         Vector3 offset = Quaternion.Euler(0, 0, angle) * new Vector3(travelDist, 0, 0);
         Vector3 destPos = hitArea.transform.position;
         Vector3 startingPos = destPos + offset;

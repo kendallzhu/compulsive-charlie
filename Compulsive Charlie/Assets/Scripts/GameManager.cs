@@ -12,12 +12,12 @@ public class GameManager : MonoBehaviour {
     // keep track of profile info
     public Profile profile;
 
-    // tracking if the ful tutorial should be shown in next run
+    // tracking if the full tutorial should be shown in next run
     public bool showTutorial = true;
 
     void Start () {
         LoadSplash();
-
+        showTutorial = false;
         // set starting profile of the game
         profile = new Profile();
         // load in all activities, thoughts and upgrades from the gameObjects (see editor)
