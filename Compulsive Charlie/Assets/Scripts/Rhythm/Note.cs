@@ -30,7 +30,7 @@ public class Note : MonoBehaviour
         spawnTime = trueSpawnTime;  
         arrivalTime = trueSpawnTime + RhythmManager.travelTime;
         startingOffset = transform.position - hitArea.position;
-        Debug.Log(startingOffset);
+        // Debug.Log(startingOffset);
     }
 
     void Update()
@@ -69,9 +69,14 @@ public class Note : MonoBehaviour
     {
         runState.IncreaseCombo();
         HitEffect(runState);
-        Destroy(gameObject);
         Instantiate(hitPrefab, transform.position, Quaternion.identity, transform.parent);
         rhythmManager.player.GetComponent<Animator>().ResetTrigger("activityFail");
+        // play audio and destroy when done
+        AudioSource sound = gameObject.GetComponent<AudioSource>();
+        Debug.Log(sound.clip.length);
+        sound.Play();
+        transform.localScale = new Vector3 (0, 0, 0);
+        Destroy(gameObject, sound.clip.length);
     }
 
     public virtual void HitEffect(RunState runState)
