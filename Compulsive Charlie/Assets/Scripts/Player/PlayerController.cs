@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-// Processing player commands, and dynamically change player graphics
+// Processing player physics, and dynamically change player graphics
 // For now, spacebar is only control
 public class PlayerController : MonoBehaviour {
     // gameplay constants

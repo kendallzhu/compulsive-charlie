@@ -24,6 +24,7 @@ public class RhythmManager : MonoBehaviour
 
     public PlayerController player;
     public GameObject hitArea;
+    public GameObject NoteLight;
     public RunManager runManager;
     public GameManager gameManager;
     public TutorialManager tutorialManager;
@@ -102,22 +103,17 @@ public class RhythmManager : MonoBehaviour
 
     void Update()
     {
+        RunState runState = runManager.runState;
         // do nothing if there is a tutorial
         if (tutorialManager.canvas.activeSelf)
         {
             return;
         }
-        /* only show hitarea if there is an ongoing activity
-        if (activity != null)
-        {
-            hitArea.SetActive(true);
-        } else
-        {
-            hitArea.SetActive(false);
-            return;
-        } */
-        
-        RunState runState = runManager.runState;
+
+        // adjust light beam width based on current energy
+        Light light = NoteLight.GetComponent<Light>();
+        light.cookieSize = Mathf.Lerp(light.cookieSize, runState.energy / 2f, .01f);
+
         // update time - with current settings goes in increments of about .016
         time += Time.deltaTime;
         // spawn the next preloaded note if the time has come
