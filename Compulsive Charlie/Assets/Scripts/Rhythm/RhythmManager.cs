@@ -122,7 +122,11 @@ public class RhythmManager : MonoBehaviour
         float middleY = player.transform.position.y;
         foreach (Note note in new List<Note>(notes))
         {
-            if (Mathf.Abs(note.transform.position.y - middleY) > beamWidth / 2)
+            float distanceFromCenter = Mathf.Abs(note.transform.position.y - middleY);
+            bool outsideBeam = distanceFromCenter > beamWidth / 2;
+            const float noteRadius = .5f;
+            bool touchingBeam = distanceFromCenter - beamWidth / 2 <= noteRadius;
+            if (outsideBeam && touchingBeam)
             {
                 Destroy(note.gameObject);
                 notes.Remove(note);
