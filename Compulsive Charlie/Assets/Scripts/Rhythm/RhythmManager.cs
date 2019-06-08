@@ -21,10 +21,13 @@ public class RhythmManager : MonoBehaviour
     public const float lateHitPeriod = hitWindowLate + tempoIncrement / 2;
     // duration between repeating measures of same activity
     public const float measureOffset = .4f;
+    // how to scale light beam width based on energy
+    public const float beamWidthFactor = .5f;
 
     public PlayerController player;
     public GameObject hitArea;
     public GameObject NoteLight;
+    private float beamWidth = 0;
     public RunManager runManager;
     public GameManager gameManager;
     public TutorialManager tutorialManager;
@@ -111,8 +114,20 @@ public class RhythmManager : MonoBehaviour
         }
 
         // adjust light beam width based on current energy
+        float newBeamWidth = runState.energy * beamWidthFactor;
+        beamWidth = Mathf.Lerp(beamWidth, newBeamWidth, .01f);
         Light light = NoteLight.GetComponent<Light>();
-        light.cookieSize = Mathf.Lerp(light.cookieSize, runState.energy / 2f, .01f);
+        light.cookieSize = beamWidth;
+        // destroy all notes fallling outside of the beam
+        float middleY = player.transform.position.y;
+        foreach (Note note in new List<Note>(notes))
+        {
+            if (Mathf.Abs(note.transform.position.y - middleY) > beamWidth / 2)
+            {
+                Destroy(note.gameObject);
+                notes.Remove(note);
+            }
+        }
 
         // update time - with current settings goes in increments of about .016
         time += Time.deltaTime;
@@ -217,7 +232,7 @@ public class RhythmManager : MonoBehaviour
     // create a note with specified type + spawn time
     void SpawnNote(float spawnTime, EmotionType type)
     {
-        int angle = Random.Range(0, 20);
+        int angle = Random.Range(-15, 15);
         Vector3 offset = Quaternion.Euler(0, 0, angle) * new Vector3(travelDist, 0, 0);
         Vector3 destPos = hitArea.transform.position;
         Vector3 startingPos = destPos + offset;

@@ -40,7 +40,8 @@ public class Note : MonoBehaviour
         scaleFactor = Math.Max(0, scaleFactor);
         Vector3 newPos = (Vector2)hitArea.position + startingOffset * scaleFactor;
         transform.position = newPos;
-        // make invisible - test
+
+        // make invisible - Deprecated
         List<Thought> thoughts = runManager.runState.thoughtHistory;
         if (thoughts.Count > 0 && thoughts.Last().invisibleEmotions.Contains(type))
         {
