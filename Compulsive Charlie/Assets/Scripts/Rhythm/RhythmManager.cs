@@ -49,6 +49,9 @@ public class RhythmManager : MonoBehaviour
     private List<EmotionType> noteSpawnTypes = new List<EmotionType>();
     private List<Note> notes = new List<Note>(); // active notes (in order)
 
+    public List<AudioClip> woodBlock;
+    public List<AudioClip> drumKit;
+
     void Awake()
     {
         // get reference to managers + player
@@ -236,7 +239,7 @@ public class RhythmManager : MonoBehaviour
     // create a note with specified type + spawn time
     void SpawnNote(float spawnTime, EmotionType type)
     {
-        int angle = Random.Range(-15, 15);
+        int angle = Random.Range(-10, 10);
         Vector3 offset = Quaternion.Euler(0, 0, angle) * new Vector3(travelDist, 0, 0);
         Vector3 destPos = hitArea.transform.position;
         Vector3 startingPos = destPos + offset;
