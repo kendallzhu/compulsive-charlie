@@ -25,12 +25,13 @@ public class Note : MonoBehaviour
         hitArea = GameObject.FindWithTag("HitArea").transform;
     }
 
-    public void Initialize(float trueSpawnTime)
+    public void Initialize(float trueSpawnTime, AudioClip soundClip)
     {
         spawnTime = trueSpawnTime;  
         arrivalTime = trueSpawnTime + RhythmManager.travelTime;
         startingOffset = transform.position - hitArea.position;
-        // Debug.Log(startingOffset);
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = soundClip;
     }
 
     void Update()
@@ -73,11 +74,11 @@ public class Note : MonoBehaviour
         Instantiate(hitPrefab, transform.position, Quaternion.identity, transform.parent);
         rhythmManager.player.GetComponent<Animator>().ResetTrigger("activityFail");
         // play audio and destroy when done
-        AudioSource sound = gameObject.GetComponent<AudioSource>();
-        Debug.Log(sound.clip.length);
-        sound.Play();
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        Debug.Log(audioSource.clip.length);
+        audioSource.Play();
         transform.localScale = new Vector3 (0, 0, 0);
-        Destroy(gameObject, sound.clip.length);
+        Destroy(gameObject, audioSource.clip.length);
     }
 
     public virtual void HitEffect(RunState runState)

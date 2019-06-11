@@ -10817,7 +10817,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e402368e73833c943bd1c69104a8e0f1, type: 3}
   - {fileID: 8300000, guid: 71750f2f2ed9ac44c92641666f9941b8, type: 3}
   - {fileID: 8300000, guid: 84056b10bf25d5f4ca243c9a587a1c9e, type: 3}
-  drumKit: []
+  drumKit:
+  - {fileID: 8300000, guid: 2bb754da83488914591fc703aa2c09fc, type: 3}
+  - {fileID: 8300000, guid: 88f1c1ae98d04cb4fb6c8e9165063ac2, type: 3}
+  - {fileID: 8300000, guid: e47d26dfaf11b0c46abcfff046e9348d, type: 3}
+  - {fileID: 8300000, guid: 1a9f36208e2dd3945af2f8d9411eb5a7, type: 3}
+  - {fileID: 8300000, guid: 5136f638a6fbd274da738c89d1c576b7, type: 3}
+  - {fileID: 8300000, guid: 5468c810cb8585f4a9bdd66fba94ed90, type: 3}
+  - {fileID: 8300000, guid: 4fb015a36fc1b0c4a90b61758b8dc80f, type: 3}
 --- !u!114 &1652275285
 MonoBehaviour:
   m_ObjectHideFlags: 0

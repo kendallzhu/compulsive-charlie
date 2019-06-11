@@ -143,7 +143,8 @@ public class RhythmManager : MonoBehaviour
         {
             Debug.Assert(noteSpawnTimes.Count == noteSpawnTypes.Count);
             // spawn note, with time adjusted to be exact with intended pattern
-            SpawnNote(noteSpawnTimes[0], noteSpawnTypes[0]);
+            AudioClip audioClip = woodBlock[Random.Range(0, woodBlock.Count)];
+            SpawnNote(noteSpawnTimes[0], noteSpawnTypes[0], audioClip);
             noteSpawnTimes.RemoveAt(0);
             noteSpawnTypes.RemoveAt(0);
         }
@@ -237,7 +238,7 @@ public class RhythmManager : MonoBehaviour
     }
 
     // create a note with specified type + spawn time
-    void SpawnNote(float spawnTime, EmotionType type)
+    void SpawnNote(float spawnTime, EmotionType type, AudioClip sound)
     {
         int angle = Random.Range(-10, 10);
         Vector3 offset = Quaternion.Euler(0, 0, angle) * new Vector3(travelDist, 0, 0);
@@ -265,7 +266,7 @@ public class RhythmManager : MonoBehaviour
             Debug.Log("invalid note type");
             return;
         }
-        note.GetComponent<Note>().Initialize(spawnTime);
+        note.GetComponent<Note>().Initialize(spawnTime, sound);
         notes.Add(note.GetComponent<Note>());
     }
 }
