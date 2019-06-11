@@ -10763,6 +10763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 155495550}
   hitArea: {fileID: 373017400}
+  NoteLight: {fileID: 1961422040}
   runManager: {fileID: 1652275278}
   gameManager: {fileID: 0}
   tutorialManager: {fileID: 0}
@@ -13598,7 +13599,7 @@ Light:
   m_Range: 200
   m_SpotAngle: 22
   m_InnerSpotAngle: 1
-  m_CookieSize: 5.17
+  m_CookieSize: 1
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -15073,6 +15074,12 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 212379976457415568, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c6b2700679d34bb4baa30dc0d9fa0e90,
+        type: 3}
     - target: {fileID: 61350051186962232, guid: b9a8dbc6f1379bb45a0f8970adc86e77,
         type: 3}
       propertyPath: m_Offset.y
