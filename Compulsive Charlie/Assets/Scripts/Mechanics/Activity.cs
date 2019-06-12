@@ -43,10 +43,10 @@ public abstract class Activity : MonoBehaviour {
     // specs for gameplay notes
     public List<NoteSpec> rhythmPattern = new List<NoteSpec> {
         new NoteSpec(1, "C", 0),
-        new NoteSpec(2, "C", 2),
-        new NoteSpec(3, "C", 4),
-        new NoteSpec(4, "C", 6),
-        new NoteSpec(5, "C", 8),
+        new NoteSpec(2, "D", 2),
+        new NoteSpec(3, "E", 4),
+        new NoteSpec(4, "F", 6),
+        new NoteSpec(5, "G", 8),
     };
 
     private void Start()
