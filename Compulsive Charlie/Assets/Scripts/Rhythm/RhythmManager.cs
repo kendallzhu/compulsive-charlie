@@ -180,43 +180,48 @@ public class RhythmManager : MonoBehaviour
         if (notes.Count > 0)
         {
             // detect rhythm hits/misses on the nearest note
-            Note nearestNote = notes[0];
+            float epsilon = .01f;
+            // handle all notes that are coming at the same time
+            List<Note> nearestNotes = notes.Where((n) => n.arrivalTime - notes[0].arrivalTime < epsilon).ToList();
             // rhythm miss - too late
-            if (time > nearestNote.arrivalTime + hitWindowLate)
+            if (time > nearestNotes[0].arrivalTime + hitWindowLate)
             {
-                notes.Remove(nearestNote);
-                nearestNote.OnMiss(runManager.runState);
+                foreach (Note n in nearestNotes)
+                {
+                    notes.Remove(n);
+                    n.OnMiss(runManager.runState);
+                }
                 // update late hit period so late hits do not affect future notes
                 lateHitPeriodEnd = time + lateHitPeriod;
             }
             // otherwise, possible hit
             else if (up || left || down || right)
             {
-                EmotionType hitType = 
-                    up ? EmotionType.None : 
-                    down ? EmotionType.anxiety : 
-                    right ? EmotionType.frustration : 
-                    EmotionType.despair;
-                if (time > nearestNote.arrivalTime - hitWindowEarly)
+                List<EmotionType> hitTypes = new List<EmotionType>();
+                if (up) { hitTypes.Add(EmotionType.None); }
+                if (down) { hitTypes.Add(EmotionType.anxiety); }
+                if (left) { hitTypes.Add(EmotionType.despair); }
+                if (right) { hitTypes.Add(EmotionType.frustration); }
+                if (time > nearestNotes[0].arrivalTime - hitWindowEarly)
                 {
-                    // perfect hit
-                    if (nearestNote.type == hitType)
+                    foreach (Note n in nearestNotes)
                     {
-                        notes.Remove(nearestNote);
-                        nearestNote.OnHit(runManager.runState);
-                    }
-                    // semi-hit (use main button to hit emotions)
-                    else if (hitType == EmotionType.None)
-                    {
-                        notes.Remove(nearestNote);
-                        nearestNote.OnSemiHit(runManager.runState);
+                        // hit as long as the needed key was pressed
+                        if (hitTypes.Contains(n.type))
+                        {
+                            notes.Remove(n);
+                            n.OnHit(runManager.runState);
+                        }
                     }
                 }
-                else if (time > lateHitPeriodEnd && (time > nearestNote.arrivalTime - earlyHitPeriod))
+                else if (time > lateHitPeriodEnd && (time > nearestNotes[0].arrivalTime - earlyHitPeriod))
                 {
                     // meaningful false hits cause miss next note
-                    notes.Remove(nearestNote);
-                    nearestNote.OnMiss(runManager.runState);
+                    foreach (Note n in nearestNotes)
+                    {
+                        notes.Remove(n);
+                        n.OnMiss(runManager.runState);
+                    }
                 }
             }
         }

@@ -42,6 +42,7 @@ public abstract class Activity : MonoBehaviour {
     public List<Thought> associatedThoughts = new List<Thought>();
     // specs for gameplay notes
     public List<NoteSpec> rhythmPattern = new List<NoteSpec> {
+        new NoteSpec(1, "Bass_Drum_1", 10, "drum_kit"),
         new NoteSpec(1, "C", 0),
         new NoteSpec(2, "D", 2),
         new NoteSpec(3, "E", 4),
