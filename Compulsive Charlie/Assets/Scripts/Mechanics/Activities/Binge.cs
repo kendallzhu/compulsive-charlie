@@ -11,7 +11,6 @@ public class Binge : Activity
         heightRating = -1;
         emotionNotes = new EmotionState(0, 1, 0);
         emotionEffect = new EmotionState(0, 0, 4);
-        rhythmPattern = new List<int> { 2, 3, 4, 8 };
         isUnlocked = true;
     }
 

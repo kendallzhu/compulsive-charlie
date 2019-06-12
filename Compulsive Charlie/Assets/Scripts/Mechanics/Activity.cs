@@ -3,6 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+public class NoteSpec
+{
+    public int timing;
+    public string instrument;
+    public string pitch;
+    public int angle;
+
+    public NoteSpec (int timing, string pitch, int angle, string instrument = "wood_block")
+    {
+        this.timing = timing;
+        this.instrument = instrument;
+        this.pitch = pitch;
+        this.angle = angle;
+    }
+}
+
 // Parent class for activity mechanic in game
 public abstract class Activity : MonoBehaviour {
     // standardized height diff for default (lowest) normal platform
@@ -24,7 +40,14 @@ public abstract class Activity : MonoBehaviour {
     public EmotionState emotionNotes = new EmotionState(0, 0, 0);
     public EmotionState emotionEffect = new EmotionState(0, 0, 0);
     public List<Thought> associatedThoughts = new List<Thought>();
-    public List<int> rhythmPattern = new List<int> { 0, 1, 2, 3, 5, 6 };
+    // specs for gameplay notes
+    public List<NoteSpec> rhythmPattern = new List<NoteSpec> {
+        new NoteSpec(1, "C", 0),
+        new NoteSpec(2, "C", 2),
+        new NoteSpec(3, "C", 4),
+        new NoteSpec(4, "C", 6),
+        new NoteSpec(5, "C", 8),
+    };
 
     private void Start()
     {

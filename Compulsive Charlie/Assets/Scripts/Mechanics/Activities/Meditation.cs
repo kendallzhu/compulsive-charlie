@@ -11,11 +11,6 @@ public class Meditation : Activity
         heightRating = 0;
         emotionNotes = new EmotionState(2, 2, 0);
         emotionEffect = new EmotionState(0, 0, 0);
-        rhythmPattern = new List<int> { }; // {1, 2, 3, 4, 5, 6, 7, 8};
-        for (int i = 0; i < 40; i++)
-        {
-            rhythmPattern.Add(i);
-        }
         isBreakdown = true;
     }
 

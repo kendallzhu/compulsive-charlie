@@ -11,7 +11,6 @@ public class GoToBed : Activity
         heightRating = 0;
         emotionNotes = new EmotionState(1, 0, 1);
         emotionEffect = new EmotionState(1, 0, 1);
-        rhythmPattern = new List<int> { 1, 5, 7 };
         isUnlocked = true;
     }
 

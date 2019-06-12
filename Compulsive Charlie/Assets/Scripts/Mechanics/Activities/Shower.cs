@@ -11,7 +11,6 @@ public class Shower : Activity
         heightRating = 0;
         emotionNotes = new EmotionState(0, 1, 0);
         emotionEffect = new EmotionState(0, 0, 0);
-        rhythmPattern = new List<int> { 1, 3, 7 };
         isUnlocked = true;
     }
 

@@ -3,6 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+public class NoteSpawnSpec
+{
+    public float spawnTime;
+    public EmotionType type;
+    public AudioClip clip;
+    public int angle;
+
+    public NoteSpawnSpec(float spawnTime, EmotionType type, AudioClip clip, int angle)
+    {
+        this.spawnTime = spawnTime;
+        this.type = type;
+        this.clip = clip;
+        this.angle = angle;
+    }
+}
+
 public class RhythmManager : MonoBehaviour
 {
     // how forgiving we are for note hits
@@ -45,8 +61,7 @@ public class RhythmManager : MonoBehaviour
     public float time;
     public float lateHitPeriodEnd;
     private Activity activity;
-    private List<float> noteSpawnTimes = new List<float>();
-    private List<EmotionType> noteSpawnTypes = new List<EmotionType>();
+    private List<NoteSpawnSpec> notesToSpawn = new List<NoteSpawnSpec>();
     private List<Note> notes = new List<Note>(); // active notes (in order)
 
     public List<AudioClip> woodBlock;
@@ -79,10 +94,12 @@ public class RhythmManager : MonoBehaviour
         // reset time
         time = -measureOffset;
         // load in notes for this activity
-        List<int> pattern = activity.rhythmPattern;
+        List<NoteSpec> pattern = activity.rhythmPattern;
         for (int i = 0; i < pattern.Count; i++)
         {
-            noteSpawnTimes.Add(pattern[i] * tempoIncrement);
+            NoteSpec n = pattern[i];
+            float spawnTime = n.timing * tempoIncrement;
+            AudioClip clip = Resources.Load<AudioClip>(n.instrument + "/" + n.pitch);
             // choose a note type based on current emotional state
             EmotionState curr = runManager.runState.emotions;
             EmotionType type = EmotionType.None;
@@ -103,7 +120,7 @@ public class RhythmManager : MonoBehaviour
             {
                 type = EmotionType.None;
             }
-            noteSpawnTypes.Add(type);
+            notesToSpawn.Add(new NoteSpawnSpec(spawnTime, type, clip, n.angle));
         }
     }
 
@@ -139,14 +156,12 @@ public class RhythmManager : MonoBehaviour
         // update time - with current settings goes in increments of about .016
         time += Time.deltaTime;
         // spawn the next preloaded note if the time has come
-        if (noteSpawnTimes.Count > 0 && time >= noteSpawnTimes[0])
+        if (notesToSpawn.Count > 0 && time >= notesToSpawn[0].spawnTime)
         {
-            Debug.Assert(noteSpawnTimes.Count == noteSpawnTypes.Count);
             // spawn note, with time adjusted to be exact with intended pattern
             AudioClip audioClip = woodBlock[Random.Range(0, woodBlock.Count)];
-            SpawnNote(noteSpawnTimes[0], noteSpawnTypes[0], audioClip);
-            noteSpawnTimes.RemoveAt(0);
-            noteSpawnTypes.RemoveAt(0);
+            SpawnNote(notesToSpawn[0]);
+            notesToSpawn.RemoveAt(0);
         }
         // take inputs + trigger input animations
         bool up = Input.GetButtonDown("up");
@@ -206,18 +221,18 @@ public class RhythmManager : MonoBehaviour
             }
         }
         // no notes left - then spawn more to repeat the pattern
-        else if (activity != null && noteSpawnTimes.Count == 0)
+        else if (activity != null && notesToSpawn.Count == 0)
         {
             LoadMeasure();
             // abort if the player is almost at the end of the platform
             // (so no notes can spawn that reach player after they reach end)
-            float lastSpawnTime = noteSpawnTimes.Last();
+            float lastSpawnTime = notesToSpawn.Last().spawnTime;
             ActivityPlatform ap = runState.CurrentActivityPlatform();
             float distLeft = ap.x + ap.length - player.transform.position.x;
             if ((lastSpawnTime + travelTime - time) * player.PlatformMinForwardSpeed(runState) > distLeft)
             {
-                noteSpawnTimes.Clear();
-                noteSpawnTypes.Clear();
+                notesToSpawn.Clear();
+                notesToSpawn.Clear();
             }
         }
         // activate appropriate tutorials
@@ -238,26 +253,25 @@ public class RhythmManager : MonoBehaviour
     }
 
     // create a note with specified type + spawn time
-    void SpawnNote(float spawnTime, EmotionType type, AudioClip sound)
+    void SpawnNote(NoteSpawnSpec n)
     {
-        int angle = Random.Range(-10, 10);
-        Vector3 offset = Quaternion.Euler(0, 0, angle) * new Vector3(travelDist, 0, 0);
+        Vector3 offset = Quaternion.Euler(0, 0, n.angle) * new Vector3(travelDist, 0, 0);
         Vector3 destPos = hitArea.transform.position;
         Vector3 startingPos = destPos + offset;
         GameObject note;
-        if (type == EmotionType.None)
+        if (n.type == EmotionType.None)
         {
             note = Instantiate(energyNote, startingPos, Quaternion.identity, transform.parent);
         }
-        else if (type == EmotionType.anxiety)
+        else if (n.type == EmotionType.anxiety)
         {
             note = Instantiate(anxietyNote, startingPos, Quaternion.identity, transform.parent);
         }
-        else if (type == EmotionType.frustration)
+        else if (n.type == EmotionType.frustration)
         {
             note = Instantiate(frustrationNote, startingPos, Quaternion.identity, transform.parent);
         }
-        else if (type == EmotionType.despair)
+        else if (n.type == EmotionType.despair)
         {
             note = Instantiate(despairNote, startingPos, Quaternion.identity, transform.parent);
         }
@@ -266,7 +280,7 @@ public class RhythmManager : MonoBehaviour
             Debug.Log("invalid note type");
             return;
         }
-        note.GetComponent<Note>().Initialize(spawnTime, sound);
+        note.GetComponent<Note>().Initialize(n.spawnTime, n.clip);
         notes.Add(note.GetComponent<Note>());
     }
 }

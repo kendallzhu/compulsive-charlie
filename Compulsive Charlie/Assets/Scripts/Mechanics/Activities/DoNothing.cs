@@ -11,7 +11,6 @@ public class DoNothing : Activity
         heightRating = 0;
         emotionNotes = new EmotionState(1, 1, 1);
         emotionEffect = new EmotionState(0, 0, 0);
-        rhythmPattern = new List<int> { 4, 5, 6, 7 };
         isUnlocked = true;
     }
 

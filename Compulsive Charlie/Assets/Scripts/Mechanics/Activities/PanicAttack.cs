@@ -11,7 +11,6 @@ public class PanicAttack : Activity
         heightRating = 0;
         emotionNotes = new EmotionState(6, 0, 0);
         emotionEffect = new EmotionState(0, 0, 0);
-        rhythmPattern = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
         isUnlocked = true;
         isBreakdown = true;
     }

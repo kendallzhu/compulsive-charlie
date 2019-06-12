@@ -11,7 +11,6 @@ public class Walk : Activity
         heightRating = 0;
         emotionNotes = new EmotionState(0, 0, 0);
         emotionEffect = new EmotionState(0, 0, 0);
-        rhythmPattern = new List<int> { 1, 3, 5, 7 };
         isUnlocked = true;
     }
 }
