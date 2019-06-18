@@ -26,6 +26,11 @@ public class BackgroundManager : MonoBehaviour
     // track if there is an ongoing fog transition
     private bool isFogFading = false;
 
+    // lightning sprites
+    public List<GameObject> lightningPrefabs;
+
+    // fire sprites
+
     private RunManager runManager;
 
     // Start is called before the first frame update
@@ -49,9 +54,14 @@ public class BackgroundManager : MonoBehaviour
         }
         TransitionStaticBG(staticBase.GetComponent<Image>(), newStaticBG);
         // rain if sad
-        tileRain.SetActive(e.despair > 10);
+        tileRain.SetActive(e.despair >= 10);
         // lightning if anxious
-        tileLightning.SetActive(e.anxiety > 10);
+        tileLightning.SetActive(e.anxiety > 100);
+        if (e.anxiety >= 10)
+        {
+            FlashLightning(.5f, Mathf.Max(0, (20f - e.anxiety) / 10f));
+        }
+        // fire
         // change fogginess based on total emotion level
         int s = e.GetSum();
         int i = fogLevels.Count - 1;
@@ -62,6 +72,17 @@ public class BackgroundManager : MonoBehaviour
         if (!isFogFading)
         {
             TransitionFog(tileBase.GetComponent<SpriteRenderer>(), fogSprites[i]);
+        }
+    }
+
+    void FlashLightning(float duration, float wait)
+    {
+        if (staticOverlay.transform.childCount < 1)
+        {
+            Vector3 pos = new Vector3(Random.Range(-300, 300), -100, 0);
+            GameObject bolt = Instantiate(lightningPrefabs[0], pos, Quaternion.identity, staticOverlay.transform);
+            bolt.transform.localPosition = pos;
+            StartCoroutine(FadeOutAndDestroy(bolt.GetComponent<Image>(), duration, wait));
         }
     }
 
@@ -92,7 +113,7 @@ public class BackgroundManager : MonoBehaviour
     }
 
     // used for the static backgrounds
-    IEnumerator FadeOutAndDestroy(Image image, float duration)
+    IEnumerator FadeOutAndDestroy(Image image, float duration, float wait = 0)
     {
         const float deltaAlpha = .1f;
         for (float alpha = 1; alpha > 0; alpha -= deltaAlpha)
@@ -100,6 +121,7 @@ public class BackgroundManager : MonoBehaviour
             image.color = new Color(1f, 1f, 1f, alpha);
             yield return new WaitForSeconds(duration * deltaAlpha);
         }
+        yield return new WaitForSeconds(wait);
         Destroy(image.gameObject);
     }
 

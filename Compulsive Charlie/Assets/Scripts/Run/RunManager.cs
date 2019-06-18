@@ -56,7 +56,7 @@ public class RunManager : MonoBehaviour
             tutorialManager.Skip();
             gameManager.showTutorial = false;
         }
-        // cheatcodes to add combo/energy and reduce emotion
+        // cheatcodes to add combo/energy and change emotion
         if (Input.GetKeyDown("0"))
         {
             runState.IncreaseCombo();
@@ -64,6 +64,18 @@ public class RunManager : MonoBehaviour
         if (Input.GetKeyDown("9"))
         {
             runState.emotions.Equilibrate();
+        }
+        if (Input.GetKeyDown("a"))
+        {
+            runState.emotions.Add(EmotionType.anxiety, 1);
+        }
+        if (Input.GetKeyDown("f"))
+        {
+            runState.emotions.Add(EmotionType.frustration, 1);
+        }
+        if (Input.GetKeyDown("d"))
+        {
+            runState.emotions.Add(EmotionType.despair, 1);
         }
     }
 

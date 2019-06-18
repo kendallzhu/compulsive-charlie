@@ -64,9 +64,6 @@ public class RhythmManager : MonoBehaviour
     private List<NoteSpawnSpec> notesToSpawn = new List<NoteSpawnSpec>();
     private List<Note> notes = new List<Note>(); // active notes (in order)
 
-    public List<AudioClip> woodBlock;
-    public List<AudioClip> drumKit;
-
     void Awake()
     {
         // get reference to managers + player
@@ -143,7 +140,7 @@ public class RhythmManager : MonoBehaviour
         foreach (Note note in new List<Note>(notes))
         {
             float distanceFromCenter = Mathf.Abs(note.transform.position.y - middleY);
-            bool outsideBeam = distanceFromCenter > beamWidth / 2;
+            bool outsideBeam = distanceFromCenter > (beamWidth + .01f) / 2;
             const float noteRadius = .5f;
             bool touchingBeam = distanceFromCenter - beamWidth / 2 <= noteRadius;
             if (outsideBeam && touchingBeam)
@@ -159,7 +156,6 @@ public class RhythmManager : MonoBehaviour
         if (notesToSpawn.Count > 0 && time >= notesToSpawn[0].spawnTime)
         {
             // spawn note, with time adjusted to be exact with intended pattern
-            AudioClip audioClip = woodBlock[Random.Range(0, woodBlock.Count)];
             SpawnNote(notesToSpawn[0]);
             notesToSpawn.RemoveAt(0);
         }
