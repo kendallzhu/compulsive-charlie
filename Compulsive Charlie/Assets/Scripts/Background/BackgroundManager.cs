@@ -27,9 +27,10 @@ public class BackgroundManager : MonoBehaviour
     private bool isFogFading = false;
 
     // lightning sprites
-    public List<GameObject> lightningPrefabs;
+    public List<Sprite> lightningSprites;
 
     // fire sprites
+    public List<Sprite> fireSprites;
 
     private RunManager runManager;
 
@@ -56,12 +57,15 @@ public class BackgroundManager : MonoBehaviour
         // rain if sad
         tileRain.SetActive(e.despair >= 10);
         // lightning if anxious
-        tileLightning.SetActive(e.anxiety > 100);
         if (e.anxiety >= 10)
         {
             FlashLightning(.5f, Mathf.Max(0, (20f - e.anxiety) / 10f));
         }
-        // fire
+        // fire if frustrated
+        if (e.frustration >= 10)
+        {
+            SpawnFire(.5f, Mathf.Max(0, (20f - e.frustration) / 10f));
+        }
         // change fogginess based on total emotion level
         int s = e.GetSum();
         int i = fogLevels.Count - 1;
@@ -79,8 +83,21 @@ public class BackgroundManager : MonoBehaviour
     {
         if (staticOverlay.transform.childCount < 1)
         {
-            Vector3 pos = new Vector3(Random.Range(-300, 300), -100, 0);
-            GameObject bolt = Instantiate(lightningPrefabs[0], pos, Quaternion.identity, staticOverlay.transform);
+            Vector3 pos = new Vector3(Random.Range(0, 700), 0, 0);
+            GameObject bolt = Instantiate(staticOverlay, pos, Quaternion.identity, staticOverlay.transform);
+            bolt.GetComponent<Image>().sprite = lightningSprites[0];
+            bolt.transform.localPosition = pos;
+            StartCoroutine(FadeOutAndDestroy(bolt.GetComponent<Image>(), duration, wait));
+        }
+    }
+
+    void SpawnFire(float duration, float wait)
+    {
+        if (staticOverlay.transform.childCount < 3)
+        {
+            Vector3 pos = new Vector3(Random.Range(0, 500), 100, 0);
+            GameObject bolt = Instantiate(staticOverlay, pos, Quaternion.identity, staticOverlay.transform);
+            bolt.GetComponent<Image>().sprite = fireSprites[0];
             bolt.transform.localPosition = pos;
             StartCoroutine(FadeOutAndDestroy(bolt.GetComponent<Image>(), duration, wait));
         }
@@ -121,6 +138,7 @@ public class BackgroundManager : MonoBehaviour
             image.color = new Color(1f, 1f, 1f, alpha);
             yield return new WaitForSeconds(duration * deltaAlpha);
         }
+        image.color = new Color(1f, 1f, 1f, 0);
         yield return new WaitForSeconds(wait);
         Destroy(image.gameObject);
     }
