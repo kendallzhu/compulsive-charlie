@@ -75,7 +75,6 @@ public class Note : MonoBehaviour
         rhythmManager.player.GetComponent<Animator>().ResetTrigger("activityFail");
         // play audio and destroy when done
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        Debug.Log(audioSource.clip.length);
         audioSource.Play();
         transform.localScale = new Vector3 (0, 0, 0);
         Destroy(gameObject, audioSource.clip.length);

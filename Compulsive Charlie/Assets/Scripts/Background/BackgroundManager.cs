@@ -30,7 +30,8 @@ public class BackgroundManager : MonoBehaviour
     public List<Sprite> lightningSprites;
 
     // fire sprites
-    public List<Sprite> fireSprites;
+    public GameObject firePrefab;
+    private int numFirePlumes;
 
     private RunManager runManager;
 
@@ -59,12 +60,13 @@ public class BackgroundManager : MonoBehaviour
         // lightning if anxious
         if (e.anxiety >= 10)
         {
-            FlashLightning(.5f, Mathf.Max(0, (20f - e.anxiety) / 10f));
+            FlashLightning(.5f, Mathf.Max(0, (20f - e.anxiety) / 5f));
         }
         // fire if frustrated
         if (e.frustration >= 10)
         {
-            SpawnFire(.5f, Mathf.Max(0, (20f - e.frustration) / 10f));
+            int maxPlumes = e.frustration / 4;
+            SpawnFire(runState.CurrentActivityPlatform(), maxPlumes);
         }
         // change fogginess based on total emotion level
         int s = e.GetSum();
@@ -79,6 +81,7 @@ public class BackgroundManager : MonoBehaviour
         }
     }
 
+    // flash lightning in a random X position on screen
     void FlashLightning(float duration, float wait)
     {
         if (staticOverlay.transform.childCount < 1)
@@ -91,15 +94,17 @@ public class BackgroundManager : MonoBehaviour
         }
     }
 
-    void SpawnFire(float duration, float wait)
+    // spawn plumes of fire on the platform
+    void SpawnFire(ActivityPlatform platform, int maxPlumes)
     {
-        if (staticOverlay.transform.childCount < 3)
+        if (numFirePlumes < maxPlumes)
         {
-            Vector3 pos = new Vector3(Random.Range(0, 500), 100, 0);
-            GameObject bolt = Instantiate(staticOverlay, pos, Quaternion.identity, staticOverlay.transform);
-            bolt.GetComponent<Image>().sprite = fireSprites[0];
-            bolt.transform.localPosition = pos;
-            StartCoroutine(FadeOutAndDestroy(bolt.GetComponent<Image>(), duration, wait));
+            numFirePlumes++;
+            Vector3 pos = new Vector3(Random.Range(0, platform.length), 0, 0);
+            GameObject plume = Instantiate(firePrefab, pos, Quaternion.identity, platform.transform);
+            plume.transform.localPosition = pos;
+            plume.name = "FirePlume";
+            StartCoroutine(FadeOutAndDestroyFire(plume.GetComponent<SpriteRenderer>(), Random.Range(1, 3f)));
         }
     }
 
@@ -165,6 +170,18 @@ public class BackgroundManager : MonoBehaviour
         }
         Destroy(sr.gameObject);
         isFogFading = false;
+    }
+
+    IEnumerator FadeOutAndDestroyFire(SpriteRenderer sr, float duration = 1f)
+    {
+        const float deltaAlpha = .1f;
+        for (float alpha = 1; alpha > 0; alpha -= deltaAlpha)
+        {
+            sr.color = new Color(1f, 1f, 1f, alpha);
+            yield return new WaitForSeconds(duration * deltaAlpha);
+        }
+        Destroy(sr.gameObject);
+        numFirePlumes--;
     }
 
 }
