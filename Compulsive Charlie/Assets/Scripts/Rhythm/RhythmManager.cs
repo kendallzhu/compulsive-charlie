@@ -145,7 +145,7 @@ public class RhythmManager : MonoBehaviour
             bool touchingBeam = distanceFromCenter - beamWidth / 2 <= noteRadius;
             if (outsideBeam && touchingBeam)
             {
-                Destroy(note.gameObject);
+                note.OnDeflect();
                 notes.Remove(note);
             }
         }

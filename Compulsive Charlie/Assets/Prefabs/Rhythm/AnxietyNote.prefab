@@ -207,6 +207,8 @@ MonoBehaviour:
     type: 3}
   missPrefab: {fileID: 9064274710088238145, guid: 870cae38fcc27454d9b6849c9c559941,
     type: 3}
+  deflectPrefab: {fileID: 9064274710088238145, guid: 49976535267a9a64da6d7c3c6a398e2e,
+    type: 3}
 --- !u!82 &-4867679984635398385
 AudioSource:
   m_ObjectHideFlags: 0

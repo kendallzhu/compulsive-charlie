@@ -17,6 +17,7 @@ public class Note : MonoBehaviour
     // "animator" prefabs
     public GameObject hitPrefab;
     public GameObject missPrefab;
+    public GameObject deflectPrefab;
 
     void Awake()
     {
@@ -48,6 +49,13 @@ public class Note : MonoBehaviour
         {
             // transform.localScale = new Vector3(0, 0, 0);
         }
+    }
+
+    public void OnDeflect()
+    {
+        Destroy(gameObject);
+        GameObject deflect = Instantiate(deflectPrefab, transform.position, Quaternion.identity, transform.parent);
+        deflect.GetComponent<NoteFadeOut>().SetDirection(new Vector2(-startingOffset.x, startingOffset.y));
     }
 
     // functions for miss/hit effects
