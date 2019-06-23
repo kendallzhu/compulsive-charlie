@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8000805593408062549}
   - component: {fileID: 7900241280005001468}
   m_Layer: 0
-  m_Name: EmotionIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

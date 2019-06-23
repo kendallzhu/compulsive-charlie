@@ -29,6 +29,11 @@ public class NoteFadeOut : MonoBehaviour
         Color tmp = gameObject.GetComponent<SpriteRenderer>().color;
         tmp.a = 1f - distanceTraveled / fadeDist;
         gameObject.GetComponent<SpriteRenderer>().color = tmp;
+        Transform icon = gameObject.transform.Find("Icon");
+        if (icon)
+        {
+            icon.GetComponent<SpriteRenderer>().color = tmp;
+        }
         if (distanceTraveled > fadeDist)
         {
             Destroy(gameObject);

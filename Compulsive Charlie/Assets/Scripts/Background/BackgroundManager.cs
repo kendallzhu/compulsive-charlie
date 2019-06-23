@@ -57,6 +57,8 @@ public class BackgroundManager : MonoBehaviour
         TransitionStaticBG(staticBase.GetComponent<Image>(), newStaticBG);
         // rain if sad
         tileRain.SetActive(e.despair >= 10);
+        Color transparent = new Color(1, 1, 1, (float)e.despair / 20f);
+        tileRain.GetComponent<SpriteRenderer>().color = transparent;
         // lightning if anxious
         if (e.anxiety >= 10)
         {
@@ -94,15 +96,19 @@ public class BackgroundManager : MonoBehaviour
         }
     }
 
-    // spawn plumes of fire on the platform
+    // spawn random plumes of fire on the platform
     void SpawnFire(ActivityPlatform platform, int maxPlumes)
     {
         if (numFirePlumes < maxPlumes)
         {
             numFirePlumes++;
+            // random x position along the platform
             Vector3 pos = new Vector3(Random.Range(0, platform.length), 0, 0);
             GameObject plume = Instantiate(firePrefab, pos, Quaternion.identity, platform.transform);
             plume.transform.localPosition = pos;
+            // random size
+            float sizeFactor = Random.Range(0.5f, 1f);
+            plume.transform.localScale = new Vector3(sizeFactor, sizeFactor, sizeFactor);
             plume.name = "FirePlume";
             StartCoroutine(FadeOutAndDestroyFire(plume.GetComponent<SpriteRenderer>(), Random.Range(1, 3f)));
         }
