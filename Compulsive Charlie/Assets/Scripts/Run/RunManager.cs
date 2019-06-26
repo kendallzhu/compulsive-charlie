@@ -60,6 +60,8 @@ public class RunManager : MonoBehaviour
         if (Input.GetKeyDown("0"))
         {
             runState.IncreaseCombo();
+            runState.IncreaseCombo();
+            runState.IncreaseCombo();
         }
         if (Input.GetKeyDown("9"))
         {
@@ -67,15 +69,15 @@ public class RunManager : MonoBehaviour
         }
         if (Input.GetKeyDown("a"))
         {
-            runState.emotions.Add(EmotionType.anxiety, 1);
+            runState.emotions.Add(EmotionType.anxiety, 3);
         }
         if (Input.GetKeyDown("f"))
         {
-            runState.emotions.Add(EmotionType.frustration, 1);
+            runState.emotions.Add(EmotionType.frustration, 3);
         }
         if (Input.GetKeyDown("d"))
         {
-            runState.emotions.Add(EmotionType.despair, 1);
+            runState.emotions.Add(EmotionType.despair, 3);
         }
     }
 

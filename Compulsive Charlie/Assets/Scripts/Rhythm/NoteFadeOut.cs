@@ -6,7 +6,7 @@ public class NoteFadeOut : MonoBehaviour
     private const float speed = .1f;
     // distance to move while fading
     public const float fadeDist = 3f;
-    private Vector2 direction;
+    public Vector2 direction;
 
     private float distanceTraveled;
     // Use this for initialization

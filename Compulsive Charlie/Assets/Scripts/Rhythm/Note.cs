@@ -71,7 +71,7 @@ public class Note : MonoBehaviour
         runState.BreakCombo();
         MissEffect(runState);
         Destroy(gameObject);
-        Instantiate(missPrefab, transform.position, Quaternion.identity, transform.parent);
+        Instantiate(missPrefab, transform.position, Quaternion.identity, hitArea);
         rhythmManager.player.GetComponent<Animator>().SetTrigger("activityFail");
     }
 
@@ -79,7 +79,7 @@ public class Note : MonoBehaviour
     {
         runState.IncreaseCombo();
         HitEffect(runState);
-        Instantiate(hitPrefab, transform.position, Quaternion.identity, transform.parent);
+        Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
         rhythmManager.player.GetComponent<Animator>().ResetTrigger("activityFail");
         // play audio and destroy when done
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
