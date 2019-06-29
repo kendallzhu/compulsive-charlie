@@ -25,6 +25,6 @@ public class DoNothing : Activity
     public override int HeightRating(RunState runState)
     {
         // special - always be the default when available
-        return runState.emotions.GetRaiseAmount() + defaultPlatformHeightDiff;
+        return runState.GetRaiseAmount() + defaultPlatformHeightDiff;
     }
 }

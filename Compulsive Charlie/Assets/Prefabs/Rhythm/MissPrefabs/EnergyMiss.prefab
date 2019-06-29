@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8000805593408062549}
   - component: {fileID: 7900241280005001468}
   m_Layer: 0
-  m_Name: EnergyIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,4 +200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a144c2405a0c4439ccdd72ac77b57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: -0.3}
+  direction: {x: 0, y: -0.5}

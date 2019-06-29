@@ -102,7 +102,7 @@ public abstract class Activity : MonoBehaviour {
         // regardless of how much the current platform shifts up/down
         if (isBreakdown)
         {
-            return runState.emotions.GetRaiseAmount() + breakdownPlatformHeightDiff;
+            return runState.GetRaiseAmount() + breakdownPlatformHeightDiff;
         }
         return heightRating;
     }

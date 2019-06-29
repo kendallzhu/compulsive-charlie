@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8000805593408062549}
   - component: {fileID: 7900241280005001468}
   m_Layer: 0
-  m_Name: EmotionIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 5736870833501046347}
   - component: {fileID: 2555263256862566791}
   - component: {fileID: 6709132305370413335}
-  - component: {fileID: 7156872876718340424}
+  - component: {fileID: 5098274792584431453}
   m_Layer: 0
   m_Name: DespairMiss
   m_TagString: Untagged
@@ -188,7 +188,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9064274710088238145}
   m_CullTransparentMesh: 0
---- !u!114 &7156872876718340424
+--- !u!114 &5098274792584431453
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,8 +197,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9064274710088238145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76178c56e781c934590d1f20c4319dd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 80a144c2405a0c4439ccdd72ac77b57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
-  relativeMovement: {x: -1, y: 5, z: 0}
+  direction: {x: 0, y: -0.5}

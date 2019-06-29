@@ -159,7 +159,7 @@ public class RunManager : MonoBehaviour
 
         // emotions take effect on difficulty of jumping to activities
         // (by adjusting height of current platform)
-        activityPlatform.Raise(runState.emotions.GetRaiseAmount());
+        activityPlatform.Raise(runState.GetRaiseAmount());
 
         // spawn new set of platforms
         foreach (Activity activity in SelectActivities())

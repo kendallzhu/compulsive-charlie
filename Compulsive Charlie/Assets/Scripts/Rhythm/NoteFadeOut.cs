@@ -3,9 +3,10 @@ using System.Collections;
 
 public class NoteFadeOut : MonoBehaviour
 {
-    private const float speed = .1f;
+    public float fadeDist = 2.4f;
+    public float baseSpeed = .1f;
+    public float slowDownFactor = 2f;
     // distance to move while fading
-    public const float fadeDist = 3f;
     public Vector2 direction;
 
     private float distanceTraveled;
@@ -18,22 +19,17 @@ public class NoteFadeOut : MonoBehaviour
     public void SetDirection(Vector2 dir)
     {
         direction = dir;
-        direction.Normalize();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(direction * speed);
-        distanceTraveled += speed;
+        float step = baseSpeed / Mathf.Min(Mathf.Max(distanceTraveled, 1f), slowDownFactor);
+        transform.Translate(direction.normalized * step);
+        distanceTraveled += step;
         Color tmp = gameObject.GetComponent<SpriteRenderer>().color;
         tmp.a = 1f - distanceTraveled / fadeDist;
         gameObject.GetComponent<SpriteRenderer>().color = tmp;
-        Transform icon = gameObject.transform.Find("Icon");
-        if (icon)
-        {
-            icon.GetComponent<SpriteRenderer>().color = tmp;
-        }
         if (distanceTraveled > fadeDist)
         {
             Destroy(gameObject);

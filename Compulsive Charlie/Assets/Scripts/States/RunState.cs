@@ -68,6 +68,11 @@ public class RunState {
         }
     }
 
+    public int GetRaiseAmount()
+    {
+        return (int)Mathf.Sqrt(energy) - emotions.Extremeness();
+    }
+
     public void ResetCombo()
     {
         // energy = 0;
