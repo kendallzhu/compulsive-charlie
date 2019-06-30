@@ -76,7 +76,7 @@ public class ThoughtMenu : MonoBehaviour
         nameText.GetComponent<TextMeshProUGUI>().color = currentThought.GetColor();
         nameText.GetComponent<TextMeshProUGUI>().text = currentThought.name;
         descriptionText.GetComponent<TextMeshProUGUI>().text = currentThought.descriptionText;
-        energyText.GetComponent<TextMeshProUGUI>().text = currentThought.energyLevel.ToString();
+        energyText.GetComponent<TextMeshProUGUI>().text = currentThought.energyCost.ToString();
         jumpPowerText.GetComponent<TextMeshProUGUI>().text = currentThought.jumpPower.ToString();
         // TODO: create a countdown timer to limit decision time?
     }

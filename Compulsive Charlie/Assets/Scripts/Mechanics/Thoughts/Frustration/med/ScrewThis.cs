@@ -9,9 +9,9 @@ public class ScrewThis : Thought
         name = "Screw This";
         descriptionText = "hmph.";
         isUnlocked = true;
-        energyLevel = 0;
+        energyCost = 0;
         jumpPower = 1;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        emotionType = EmotionType.frustration;
     }
 
     // whether this activity is available, given state of run

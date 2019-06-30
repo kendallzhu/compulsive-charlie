@@ -9,9 +9,9 @@ public class ThisCantBeHappening : Thought
         name = "This Can't Be Happening";
         descriptionText = "This is ridiculous!";
         isUnlocked = true;
-        energyLevel = 5;
+        energyCost = 5;
         jumpPower = 2;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        emotionType = EmotionType.frustration;
     }
 
     // whether this activity is available, given state of run

@@ -9,9 +9,9 @@ public class ICanDoThis : Thought
         name = "I Can Do This";
         descriptionText = "Don't let myself get down";
         isUnlocked = true;
-        energyLevel = 10;
+        energyCost = 10;
         jumpPower = 5;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

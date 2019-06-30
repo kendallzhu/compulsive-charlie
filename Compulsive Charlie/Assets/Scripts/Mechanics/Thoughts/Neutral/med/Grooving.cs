@@ -9,9 +9,9 @@ public class Grooving : Thought
         name = "Grooving";
         descriptionText = "in sync with life";
         isUnlocked = true;
-        energyLevel = 5;
+        energyCost = 5;
         jumpPower = 5;
-        invisibleEmotions = new List<EmotionType> { };
+        emotionType = EmotionType.None;
     }
 
     // whether this activity is available, given state of run

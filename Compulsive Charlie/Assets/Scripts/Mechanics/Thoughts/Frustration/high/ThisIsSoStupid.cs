@@ -9,9 +9,9 @@ public class ThisIsSoStupid : Thought
         name = "This Is So Stupid";
         descriptionText = "Disgusting (+ frustration)";
         isUnlocked = true;
-        energyLevel = 7;
+        energyCost = 7;
         jumpPower = 3;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        emotionType = EmotionType.frustration;
     }
 
     public override void CustomAcceptEffect(RunState runState)

@@ -9,9 +9,9 @@ public class KeepGoing : Thought
         name = "Keep Going";
         descriptionText = "We goin' places";
         isUnlocked = true;
-        energyLevel = 4;
+        energyCost = 4;
         jumpPower = 4;
-        invisibleEmotions = new List<EmotionType> { };
+        emotionType = EmotionType.None;
     }
 
     // whether this activity is available, given state of run

@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NothingCanGoWrong : Thought
+public class ThisIsGoingWell : Thought
 {
     void Awake()
     {
-        name = "Nothing Can Go Wrong";
-        descriptionText = "Empowering, but might lose touch with feelings of danger";
+        name = "This Is Going Well";
+        descriptionText = "Exciting, but may mask fears of failure";
         isUnlocked = false;
-        energyLevel = 8;
-        jumpPower = 8;
-        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+        energyCost = 6;
+        jumpPower = 6;
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run

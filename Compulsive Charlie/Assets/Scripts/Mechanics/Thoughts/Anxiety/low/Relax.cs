@@ -9,9 +9,9 @@ public class Relax : Thought
         name = "Relax";
         descriptionText = "Take a deep breath";
         isUnlocked = true;
-        energyLevel = 5;
+        energyCost = 5;
         jumpPower = 4;
-        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run

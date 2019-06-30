@@ -9,9 +9,9 @@ public class LetsDoThis : Thought
         name = "Let's Do This";
         descriptionText = "I'm on fire - what more do I need?";
         isUnlocked = true;
-        energyLevel = 10;
+        energyCost = 10;
         jumpPower = 6;
-        invisibleEmotions = new List<EmotionType> { };
+        emotionType = EmotionType.None;
     }
 
     // whether this activity is available, given state of run

@@ -9,9 +9,9 @@ public class Bliss : Thought
         name = "Bliss";
         descriptionText = "It comes from within";
         isUnlocked = true;
-        energyLevel = 0;
+        energyCost = 0;
         jumpPower = 5;
-        invisibleEmotions = new List<EmotionType> { };
+        emotionType = EmotionType.None;
     }
 
     // whether this activity is available, given state of run

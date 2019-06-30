@@ -9,9 +9,9 @@ public class KeepItTogether : Thought
         name = "Keep It Together";
         descriptionText = "Just gotta hold on...";
         isUnlocked = true;
-        energyLevel = 10;
+        energyCost = 10;
         jumpPower = 4;
-        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run

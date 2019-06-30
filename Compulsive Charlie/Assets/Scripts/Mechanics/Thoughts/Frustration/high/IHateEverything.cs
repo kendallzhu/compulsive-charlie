@@ -9,9 +9,9 @@ public class IHateEverything : Thought
         name = "I Hate Everything";
         descriptionText = "I'd burn it all down";
         isUnlocked = true;
-        energyLevel = 0;
+        energyCost = 0;
         jumpPower = -1;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        emotionType = EmotionType.frustration;
     }
 
     // whether this activity is available, given state of run

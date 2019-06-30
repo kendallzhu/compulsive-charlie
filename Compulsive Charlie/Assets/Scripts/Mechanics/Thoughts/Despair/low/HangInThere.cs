@@ -9,9 +9,9 @@ public class HangInThere : Thought
         name = "Hang In There";
         descriptionText = "Stay Strong";
         isUnlocked = true;
-        energyLevel = 5;
+        energyCost = 5;
         jumpPower = 4;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

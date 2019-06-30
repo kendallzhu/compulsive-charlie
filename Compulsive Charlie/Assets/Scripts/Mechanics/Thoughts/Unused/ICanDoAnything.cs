@@ -9,9 +9,9 @@ public class ICanDoAnything : Thought
         name = "I Can Do Anything...";
         descriptionText = "Empowering, but might lose touch with feelings of vulnerability";
         isUnlocked = false;
-        energyLevel = 8;
+        energyCost = 8;
         jumpPower = 8;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

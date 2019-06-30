@@ -9,9 +9,9 @@ public class FaceMyFears : Thought
         name = "Face My Fears";
         descriptionText = "What's the worst that could happen anyway?";
         isUnlocked = true;
-        energyLevel = 10;
+        energyCost = 10;
         jumpPower = 5;
-        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run

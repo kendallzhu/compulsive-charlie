@@ -9,9 +9,9 @@ public class Peace : Thought
         name = "Peace";
         descriptionText = "I can enjoy most things";
         isUnlocked = true;
-        energyLevel = 0;
+        energyCost = 0;
         jumpPower = 4;
-        invisibleEmotions = new List<EmotionType> { };
+        emotionType = EmotionType.None;
     }
 
     // whether this activity is available, given state of run

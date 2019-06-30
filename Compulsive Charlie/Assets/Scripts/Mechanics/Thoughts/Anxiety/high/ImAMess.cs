@@ -9,9 +9,9 @@ public class ImAMess : Thought
         name = "I'm a Mess";
         descriptionText = "Out of control (+ anxiety)";
         isUnlocked = true;
-        energyLevel = 3;
+        energyCost = 3;
         jumpPower = 3;
-        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+        emotionType = EmotionType.anxiety;
     }
 
     public override void CustomAcceptEffect(RunState runState)

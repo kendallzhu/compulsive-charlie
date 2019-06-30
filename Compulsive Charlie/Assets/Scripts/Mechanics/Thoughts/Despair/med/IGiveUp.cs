@@ -9,9 +9,9 @@ public class IGiveUp : Thought
         name = "I Give Up";
         descriptionText = "taking the L";
         isUnlocked = true;
-        energyLevel = 0;
+        energyCost = 0;
         jumpPower = 1;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

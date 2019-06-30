@@ -9,9 +9,9 @@ public class IWantToBeHappy : Thought
         name = "I Want To Be Happy";
         descriptionText = "Please...";
         isUnlocked = true;
-        energyLevel = 6;
+        energyCost = 6;
         jumpPower = 3;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

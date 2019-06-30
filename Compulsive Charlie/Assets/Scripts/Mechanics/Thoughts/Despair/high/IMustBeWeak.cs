@@ -9,9 +9,9 @@ public class IMustBeWeak : Thought
         name = "I Must Be Weak";
         descriptionText = "Otherwise, how would I have ended up like this?";
         isUnlocked = true;
-        energyLevel = 5;
+        energyCost = 5;
         jumpPower = 2;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

@@ -9,9 +9,9 @@ public class ThisIsUnfair : Thought
         name = "This is Unfair";
         descriptionText = "I don't deserve this.";
         isUnlocked = true;
-        energyLevel = 4;
+        energyCost = 4;
         jumpPower = 2;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        emotionType = EmotionType.frustration;
     }
 
     // whether this activity is available, given state of run

@@ -9,9 +9,9 @@ public class WantToBeDone : Thought
         name = "Want To Be Done";
         descriptionText = "Please get this over with...";
         isUnlocked = true;
-        energyLevel = 6;
+        energyCost = 6;
         jumpPower = 3;
-        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run

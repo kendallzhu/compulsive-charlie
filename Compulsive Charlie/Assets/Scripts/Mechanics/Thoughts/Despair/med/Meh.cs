@@ -9,9 +9,9 @@ public class Meh : Thought
         name = "Meh";
         descriptionText = "Don't want to make effort";
         isUnlocked = true;
-        energyLevel = 4;
+        energyCost = 4;
         jumpPower = 2;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

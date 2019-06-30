@@ -9,9 +9,9 @@ public class TakeItEasy : Thought
         name = "Take It Easy";
         descriptionText = "No Need to Panic";
         isUnlocked = true;
-        energyLevel = 0;
+        energyCost = 0;
         jumpPower = 2;
-        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run

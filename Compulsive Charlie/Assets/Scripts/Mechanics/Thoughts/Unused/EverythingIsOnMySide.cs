@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NothingCanStopMe : Thought
+public class EverythingIsOnMySide : Thought
 {
     void Awake()
     {
-        name = "Nothing Can Stop Me";
-        descriptionText = "Exciting, but may mask feelings of irritation";
+        name = "Everything Is On My Side";
+        descriptionText = "Empowering, but might lose touch with negative feelings";
         isUnlocked = false;
-        energyLevel = 6;
-        jumpPower = 6;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        energyCost = 8;
+        jumpPower = 8;
+        emotionType = EmotionType.frustration;
     }
 
     // whether this activity is available, given state of run

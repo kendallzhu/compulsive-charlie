@@ -9,9 +9,9 @@ public class InTheZone : Thought
         name = "In The Zone";
         descriptionText = "No distracting thoughts";
         isUnlocked = true;
-        energyLevel = 10;
+        energyCost = 10;
         jumpPower = 7;
-        invisibleEmotions = new List<EmotionType> { };
+        emotionType = EmotionType.None;
     }
 
     // whether this activity is available, given state of run

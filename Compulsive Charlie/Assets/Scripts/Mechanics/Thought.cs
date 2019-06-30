@@ -15,48 +15,32 @@ public abstract class Thought : MonoBehaviour
 
     // changeable parameters
     public bool isUnlocked = false;
-    public int energyLevel = 0; // now its just a requirement
+    public int energyCost = 0; // now its just a requirement
     public int jumpPower = 0; // should be >= -1
     // which emotion(s) it hides
-    public List<EmotionType> invisibleEmotions = new List<EmotionType>();
+    public EmotionType emotionType = EmotionType.None;
 
     // derives color from the invisible emotions list
     public Color GetColor()
     {
-        if (invisibleEmotions.Count == 0)
+        if (emotionType == EmotionType.None)
         {
             return new Color(1, 1, 1);
         }
         float r = colorBase, g = colorBase, b = colorBase;
-        if (invisibleEmotions.Contains(EmotionType.anxiety))
+        if (emotionType == EmotionType.anxiety)
         {
             g = 1;
         }
-        if (invisibleEmotions.Contains(EmotionType.frustration))
+        if (emotionType == EmotionType.frustration)
         {
             r = 1;
         }
-        if (invisibleEmotions.Contains(EmotionType.despair))
+        if (emotionType == EmotionType.despair)
         {
             b = 1;
         }
         return new Color(r, g, b, 1f);
-    }
-    // version of color to tint background after selecting this thought
-    public Color BackgroundColor()
-    {
-        if (invisibleEmotions.Count == 0)
-        {
-            return new Color(1, 1, 1);
-        }
-        Color c = GetColor();
-        // for sprite, subtract colors to get desired tint
-        return new Color(
-            1 - (c.g + c.b) / 5,
-            1 - (c.r + c.b) / 5, 
-            1 - (c.r + c.g) / 5, 
-            1
-        );
     }
 
     // non-emotion thought-specific availability conditions 
@@ -67,7 +51,7 @@ public abstract class Thought : MonoBehaviour
     public int Availability(RunState runState)
     {
         // check if thought is unlocked and there is enough energy to use it
-        if (!isUnlocked || runState.energy < energyLevel)
+        if (!isUnlocked || runState.energy < energyCost)
         {
             return 0;
         }
@@ -83,14 +67,8 @@ public abstract class Thought : MonoBehaviour
     // common accept effect
     public void AcceptEffect(RunState runState)
     {
-        // set background tint
-        GameObject[] backgrounds = GameObject.FindGameObjectsWithTag("Background");
-        foreach (GameObject bg in backgrounds)
-        {
-            bg.GetComponent<SpriteRenderer>().color = BackgroundColor();
-        }
         runState.jumpPower = jumpPower;
-        runState.IncreaseEnergy(-energyLevel);
+        runState.IncreaseEnergy(-energyCost);
         // make thought-specific effects
         CustomAcceptEffect(runState);
     }

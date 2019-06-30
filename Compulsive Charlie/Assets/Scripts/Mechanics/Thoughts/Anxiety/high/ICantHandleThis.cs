@@ -9,9 +9,9 @@ public class ICantHandleThis : Thought
         name = "I Can't Handle This";
         descriptionText = "It's just too much";
         isUnlocked = true;
-        energyLevel = 5;
+        energyCost = 5;
         jumpPower = 1;
-        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run

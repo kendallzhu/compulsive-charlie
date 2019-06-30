@@ -9,9 +9,9 @@ public class TheWorldsAgainstMe : Thought
         name = "The World's Against Me";
         descriptionText = "I can tell everyone hates me";
         isUnlocked = true;
-        energyLevel = 3;
+        energyCost = 3;
         jumpPower = 1;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        emotionType = EmotionType.frustration;
     }
 
     // whether this activity is available, given state of run

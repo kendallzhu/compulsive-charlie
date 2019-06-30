@@ -9,9 +9,9 @@ public class ThisIsAnnoying : Thought
         name = "This Is Annoying";
         descriptionText = "Cringe...";
         isUnlocked = true;
-        energyLevel = 6;
+        energyCost = 6;
         jumpPower = 3;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        emotionType = EmotionType.frustration;
     }
 
     // whether this activity is available, given state of run

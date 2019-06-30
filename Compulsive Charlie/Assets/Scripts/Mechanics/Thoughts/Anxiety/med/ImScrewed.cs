@@ -9,9 +9,9 @@ public class ImScrewed : Thought
         name = "I'm Screwed";
         descriptionText = "It's falling apart";
         isUnlocked = true;
-        energyLevel = 0;
+        energyCost = 0;
         jumpPower = 1;
-        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run

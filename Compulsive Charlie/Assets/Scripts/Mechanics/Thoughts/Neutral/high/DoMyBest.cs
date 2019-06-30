@@ -9,9 +9,9 @@ public class DoMyBest : Thought
         name = "Do My Best";
         descriptionText = "100% = enough";
         isUnlocked = true;
-        energyLevel = 6;
+        energyCost = 6;
         jumpPower = 5;
-        invisibleEmotions = new List<EmotionType> { };
+        emotionType = EmotionType.None;
     }
 
     public override int CustomAvailability(RunState runState)

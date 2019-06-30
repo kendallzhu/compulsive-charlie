@@ -9,9 +9,9 @@ public class Transcendence : Thought
         name = "Transcendence";
         descriptionText = "No words to describe";
         isUnlocked = true;
-        energyLevel = 10;
-        jumpPower = -1;
-        invisibleEmotions = new List<EmotionType> { };
+        energyCost = 10;
+        jumpPower = 4;
+        emotionType = EmotionType.None;
     }
 
     // whether this activity is available, given state of run

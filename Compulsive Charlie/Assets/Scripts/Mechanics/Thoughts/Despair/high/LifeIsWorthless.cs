@@ -9,9 +9,9 @@ public class LifeIsWorthless : Thought
         name = "Life is Worthless";
         descriptionText = "I wish I wasn't born";
         isUnlocked = true;
-        energyLevel = 0;
+        energyCost = 0;
         jumpPower = -1;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

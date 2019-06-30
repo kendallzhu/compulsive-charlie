@@ -9,9 +9,9 @@ public class ImNoGood : Thought
         name = "I'm No Good";
         descriptionText = "I feel useless";
         isUnlocked = true;
-        energyLevel = 3;
+        energyCost = 3;
         jumpPower = 1;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

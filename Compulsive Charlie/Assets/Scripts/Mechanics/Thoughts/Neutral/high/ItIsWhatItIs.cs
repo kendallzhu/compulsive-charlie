@@ -9,9 +9,9 @@ public class ItIsWhatItIs : Thought
         name = "It is what it is";
         descriptionText = "Accepting reality";
         isUnlocked = true;
-        energyLevel = 0;
+        energyCost = 0;
         jumpPower = 3;
-        invisibleEmotions = new List<EmotionType> { };
+        emotionType = EmotionType.None;
     }
 
     // whether this activity is available, given state of run

@@ -9,9 +9,9 @@ public class ScrewTheHaters : Thought
         name = "Screw The Haters";
         descriptionText = "I'll prove them wrong";
         isUnlocked = true;
-        energyLevel = 10;
+        energyCost = 10;
         jumpPower = 4;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        emotionType = EmotionType.frustration;
     }
 
     // whether this activity is available, given state of run

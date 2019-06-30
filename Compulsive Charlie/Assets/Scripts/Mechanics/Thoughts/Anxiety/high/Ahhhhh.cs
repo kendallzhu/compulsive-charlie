@@ -9,9 +9,9 @@ public class Ahhhhh : Thought
         name = "Ahhhhh";
         descriptionText = "Frantic scramble!!!";
         isUnlocked = true;
-        energyLevel = 7;
+        energyCost = 7;
         jumpPower = 2;
-        invisibleEmotions = new List<EmotionType> { EmotionType.anxiety };
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run

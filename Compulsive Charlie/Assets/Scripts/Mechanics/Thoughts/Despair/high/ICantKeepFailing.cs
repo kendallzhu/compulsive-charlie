@@ -9,9 +9,9 @@ public class ICantKeepFailing : Thought
         name = "I Can't Keep Failing";
         descriptionText = "I'm digging myself into a hole";
         isUnlocked = true;
-        energyLevel = 10;
+        energyCost = 10;
         jumpPower = 3;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

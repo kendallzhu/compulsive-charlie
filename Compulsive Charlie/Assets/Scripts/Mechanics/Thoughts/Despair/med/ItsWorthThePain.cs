@@ -9,9 +9,9 @@ public class ItsWorthThePain : Thought
         name = "Its Worth The Pain";
         descriptionText = "Pushing through";
         isUnlocked = true;
-        energyLevel = 10;
+        energyCost = 10;
         jumpPower = 4;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     // whether this activity is available, given state of run

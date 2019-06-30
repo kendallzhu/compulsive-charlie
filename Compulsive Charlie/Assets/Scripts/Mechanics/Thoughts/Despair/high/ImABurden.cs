@@ -9,9 +9,9 @@ public class ImABurden : Thought
         name = "I'm a Burden";
         descriptionText = "People probably wish I was gone (+ despair)";
         isUnlocked = true;
-        energyLevel = 7;
+        energyCost = 7;
         jumpPower = 3;
-        invisibleEmotions = new List<EmotionType> { EmotionType.despair };
+        emotionType = EmotionType.despair;
     }
 
     public override void CustomAcceptEffect(RunState runState)

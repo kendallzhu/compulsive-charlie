@@ -9,9 +9,9 @@ public class DealWithIt : Thought
         name = "Deal With It";
         descriptionText = "Suck it up, get over it";
         isUnlocked = true;
-        energyLevel = 5;
+        energyCost = 5;
         jumpPower = 4;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        emotionType = EmotionType.frustration;
     }
 
     // whether this activity is available, given state of run

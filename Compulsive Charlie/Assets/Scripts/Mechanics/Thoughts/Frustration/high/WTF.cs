@@ -9,9 +9,9 @@ public class WTF : Thought
         name = "WTF?!";
         descriptionText = "Are you kidding me?";
         isUnlocked = true;
-        energyLevel = 10;
+        energyCost = 10;
         jumpPower = 3;
-        invisibleEmotions = new List<EmotionType> { EmotionType.frustration };
+        emotionType = EmotionType.frustration;
     }
 
     // whether this activity is available, given state of run

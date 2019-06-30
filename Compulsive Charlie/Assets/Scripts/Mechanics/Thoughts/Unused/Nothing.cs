@@ -9,7 +9,7 @@ public class Nothing : Thought
         name = "Nothing";
         descriptionText = "";
         isUnlocked = false;
-        energyLevel = 10;
+        energyCost = 10;
         jumpPower = 9;
     }
 
