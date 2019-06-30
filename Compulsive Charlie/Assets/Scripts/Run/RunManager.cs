@@ -157,9 +157,10 @@ public class RunManager : MonoBehaviour
         // cap energy
         // runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);
 
+        // DEPRECATED  - now thru thought costs/ visibility + randomized heights
         // emotions take effect on difficulty of jumping to activities
         // (by adjusting height of current platform)
-        activityPlatform.Raise(runState.GetRaiseAmount());
+        // activityPlatform.Raise(runState.GetRaiseAmount());
 
         // spawn new set of platforms
         foreach (Activity activity in SelectActivities())

@@ -42,7 +42,7 @@ public class RunState {
         energy = System.Math.Max(energy, 0);
     }
 
-    public void EquilibrateEnergy(float factor = .4f)
+    public void EquilibrateEnergy(float factor = .3f)
     {
         int diff = 0 - energy;
         energy += (int)(diff * factor) + Math.Sign(diff);
@@ -57,10 +57,14 @@ public class RunState {
         return activityHistory.Last();
     }
 
+    public int GetRaiseAmount()
+    {
+        return (int)Mathf.Sqrt(energy) - emotions.Extremeness();
+    }
+
     public void IncreaseCombo()
     {
         rhythmCombo++;
-        energy++;
         ActivityPlatform ap = CurrentActivityPlatform();
         if (rhythmCombo > ap.bestCombo)
         {
@@ -68,20 +72,13 @@ public class RunState {
         }
     }
 
-    public int GetRaiseAmount()
-    {
-        return (int)Mathf.Sqrt(energy) - emotions.Extremeness();
-    }
-
     public void ResetCombo()
     {
-        // energy = 0;
         rhythmCombo = 0;
     }
 
     public void BreakCombo()
     {
-        EquilibrateEnergy();
         rhythmCombo = 0;
     }
 
