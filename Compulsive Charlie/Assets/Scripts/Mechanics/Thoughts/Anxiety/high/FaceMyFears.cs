@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TheWorldsAgainstMe : Thought
+public class FaceMyFears : Thought
 {
     void Awake()
     {
-        name = "The World's Against Me";
-        descriptionText = "I don't deserve this.";
+        name = "Face My Fears";
+        descriptionText = "What's the worst that could happen anyway?";
         isUnlocked = true;
-        energyCost = 4;
-        jumpPower = 1;
-        emotionType = EmotionType.frustration;
+        energyCost = 12;
+        jumpPower = 3;
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        int value = runState.emotions.frustration;
+        int value = runState.emotions.anxiety;
         if (value >= 10)
         {
             return 1;

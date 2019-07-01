@@ -7,7 +7,7 @@ using System.Linq;
 // For now, spacebar is only control
 public class PlayerController : MonoBehaviour {
     // gameplay constants
-    public const float jumpForcePerEnergy = 80f;
+    public const float jumpForcePerEnergy = 210f;
     public const float forwardJumpForce = 40f;
     public const float fallingMinForwardSpeed = .5f;
 

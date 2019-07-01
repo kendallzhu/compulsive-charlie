@@ -7,10 +7,10 @@ public class LetsDoThis : Thought
     void Awake()
     {
         name = "Let's Do This";
-        descriptionText = "I'm on fire - what more do I need?";
+        descriptionText = "Making it happen";
         isUnlocked = true;
-        energyCost = 10;
-        jumpPower = 6;
+        energyCost = 4;
+        jumpPower = 2;
         emotionType = EmotionType.None;
     }
 

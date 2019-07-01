@@ -9,8 +9,8 @@ public class Ahhhhh : Thought
         name = "Ahhhhh";
         descriptionText = "Frantic scramble!!!";
         isUnlocked = true;
-        energyCost = 7;
-        jumpPower = 2;
+        energyCost = 4;
+        jumpPower = 1;
         emotionType = EmotionType.anxiety;
     }
 
@@ -18,7 +18,7 @@ public class Ahhhhh : Thought
     public override int CustomAvailability(RunState runState)
     {
         int value = runState.emotions.anxiety;
-        if (value >= 15)
+        if (value >= 10)
         {
             return runState.emotions.Extremeness(EmotionType.anxiety);
         }

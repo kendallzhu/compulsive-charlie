@@ -9,8 +9,8 @@ public class Relax : Thought
         name = "Relax";
         descriptionText = "Take a deep breath";
         isUnlocked = true;
-        energyCost = 5;
-        jumpPower = 4;
+        energyCost = 6;
+        jumpPower = 2;
         emotionType = EmotionType.anxiety;
     }
 

@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transcendence : Thought
+public class Stillness : Thought
 {
     void Awake()
     {
-        name = "Transcendence";
-        descriptionText = "No limits";
+        name = "Stillness";
+        descriptionText = "-";
         isUnlocked = true;
         energyCost = 0;
-        jumpPower = 4;
+        jumpPower = -1;
         emotionType = EmotionType.None;
     }
 
@@ -19,7 +19,7 @@ public class Transcendence : Thought
     {
         if (runState.emotions.GetMaxValue() <= 1)
         {
-            return 3;
+            return 1;
         }
         return 0;
     }

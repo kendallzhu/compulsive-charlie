@@ -18,7 +18,7 @@ public class ImGonnaDie : Thought
     public override int CustomAvailability(RunState runState)
     {
         int value = runState.emotions.anxiety;
-        if (value >= 15)
+        if (value >= 10)
         {
             return 1;
         }

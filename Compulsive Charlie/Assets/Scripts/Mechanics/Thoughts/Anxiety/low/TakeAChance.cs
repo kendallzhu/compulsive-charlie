@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HangInThere : Thought
+public class TakeAChance : Thought
 {
     void Awake()
     {
-        name = "Hang In There";
-        descriptionText = "Stay Strong";
+        name = "Take A Chance";
+        descriptionText = "What's the worst that can happen";
         isUnlocked = true;
-        energyCost = 6;
-        jumpPower = 2;
-        emotionType = EmotionType.despair;
+        energyCost = 9;
+        jumpPower = 3;
+        emotionType = EmotionType.anxiety;
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        int value = runState.emotions.despair;
+        int value = runState.emotions.anxiety;
         if (value >= 5 && value <= 15)
         {
-            return 1;
+            return runState.emotions.Extremeness(EmotionType.anxiety);
         }
         return 0;
     }

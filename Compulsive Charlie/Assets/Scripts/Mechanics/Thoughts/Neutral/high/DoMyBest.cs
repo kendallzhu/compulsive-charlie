@@ -7,10 +7,10 @@ public class DoMyBest : Thought
     void Awake()
     {
         name = "Do My Best";
-        descriptionText = "100% = enough";
+        descriptionText = "100% effort";
         isUnlocked = true;
         energyCost = 6;
-        jumpPower = 5;
+        jumpPower = 3;
         emotionType = EmotionType.None;
     }
 

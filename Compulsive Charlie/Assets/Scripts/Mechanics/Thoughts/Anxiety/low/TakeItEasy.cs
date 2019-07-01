@@ -9,8 +9,8 @@ public class TakeItEasy : Thought
         name = "Take It Easy";
         descriptionText = "No Need to Panic";
         isUnlocked = true;
-        energyCost = 0;
-        jumpPower = 2;
+        energyCost = 3;
+        jumpPower = 1;
         emotionType = EmotionType.anxiety;
     }
 

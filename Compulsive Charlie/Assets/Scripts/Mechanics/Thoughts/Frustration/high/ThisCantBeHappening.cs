@@ -9,8 +9,8 @@ public class ThisCantBeHappening : Thought
         name = "This Can't Be Happening";
         descriptionText = "This is ridiculous!";
         isUnlocked = true;
-        energyCost = 5;
-        jumpPower = 2;
+        energyCost = 0;
+        jumpPower = -1;
         emotionType = EmotionType.frustration;
     }
 
@@ -18,7 +18,7 @@ public class ThisCantBeHappening : Thought
     public override int CustomAvailability(RunState runState)
     {
         int value = runState.emotions.frustration;
-        if (value >= 15)
+        if (value >= 10)
         {
             return 1;
         }

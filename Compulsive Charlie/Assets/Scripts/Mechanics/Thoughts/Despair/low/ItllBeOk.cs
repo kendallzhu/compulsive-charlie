@@ -9,8 +9,8 @@ public class ItllBeOk : Thought
         name = "It'll Be Ok";
         descriptionText = "Don't despair";
         isUnlocked = true;
-        energyCost = 0;
-        jumpPower = 2;
+        energyCost = 3;
+        jumpPower = 1;
         emotionType = EmotionType.despair;
     }
 

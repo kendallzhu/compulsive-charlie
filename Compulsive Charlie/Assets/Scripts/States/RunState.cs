@@ -42,7 +42,7 @@ public class RunState {
         energy = System.Math.Max(energy, 0);
     }
 
-    public void EquilibrateEnergy(float factor = .3f)
+    public void EquilibrateEnergy(float factor = .4f)
     {
         int diff = 0 - energy;
         energy += (int)(diff * factor) + Math.Sign(diff);

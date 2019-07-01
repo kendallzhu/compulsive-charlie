@@ -9,8 +9,8 @@ public class DealWithIt : Thought
         name = "Deal With It";
         descriptionText = "Suck it up, get over it";
         isUnlocked = true;
-        energyCost = 5;
-        jumpPower = 4;
+        energyCost = 6;
+        jumpPower = 2;
         emotionType = EmotionType.frustration;
     }
 

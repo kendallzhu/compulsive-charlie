@@ -7,10 +7,10 @@ public class InTheZone : Thought
     void Awake()
     {
         name = "In The Zone";
-        descriptionText = "No distracting thoughts";
+        descriptionText = "Pure focus";
         isUnlocked = true;
-        energyCost = 10;
-        jumpPower = 7;
+        energyCost = 3;
+        jumpPower = 3;
         emotionType = EmotionType.None;
     }
 

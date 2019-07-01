@@ -11,6 +11,6 @@ public class EnergyNote : Note
 
     public override void HitEffect(RunState runState)
     {
-        runState.IncreaseEnergy(2);
+        runState.IncreaseEnergy(1);
     }
 }

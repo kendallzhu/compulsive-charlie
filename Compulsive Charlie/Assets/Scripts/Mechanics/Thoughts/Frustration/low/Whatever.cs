@@ -9,8 +9,8 @@ public class Whatever : Thought
         name = "Whatever";
         descriptionText = "Not gonna let it get to me";
         isUnlocked = true;
-        energyCost = 0;
-        jumpPower = 2;
+        energyCost = 3;
+        jumpPower = 1;
         emotionType = EmotionType.frustration;
     }
 

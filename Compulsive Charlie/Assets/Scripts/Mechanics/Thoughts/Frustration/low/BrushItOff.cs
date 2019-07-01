@@ -2,28 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThisIsSoStupid : Thought
+public class BrushItOff : Thought
 {
     void Awake()
     {
-        name = "This Is So Stupid";
-        descriptionText = "Disgusting (+ frustration)";
+        name = "Brush It Off";
+        descriptionText = "Can't let this hold me back";
         isUnlocked = true;
-        energyCost = 8;
-        jumpPower = 2;
+        energyCost = 9;
+        jumpPower = 3;
         emotionType = EmotionType.frustration;
-    }
-
-    public override void CustomAcceptEffect(RunState runState)
-    {
-        runState.emotions.Add(EmotionType.frustration, 3);
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
         int value = runState.emotions.frustration;
-        if (value >= 10)
+        if (value >= 5 && value <= 15)
         {
             return 1;
         }

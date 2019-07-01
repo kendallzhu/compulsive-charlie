@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transcendence : Thought
+public class AtPeace : Thought
 {
     void Awake()
     {
-        name = "Transcendence";
-        descriptionText = "No limits";
+        name = "At Peace";
+        descriptionText = "I can enjoy most things";
         isUnlocked = true;
-        energyCost = 0;
-        jumpPower = 4;
+        energyCost = 1;
+        jumpPower = 1;
         emotionType = EmotionType.None;
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.GetMaxValue() <= 1)
+        if (runState.emotions.GetMaxValue() <= 5)
         {
-            return 3;
+            return 1;
         }
         return 0;
     }
