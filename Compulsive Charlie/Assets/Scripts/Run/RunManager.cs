@@ -163,7 +163,12 @@ public class RunManager : MonoBehaviour
         // activityPlatform.Raise(runState.GetRaiseAmount());
 
         // spawn new set of platforms
-        foreach (Activity activity in SelectActivities())
+        List<Activity> activities = SelectActivities();
+        for (int i = 0; i < activities.Count(); i++)
+        {
+            SpawnPlatform(activities[i], true, i * 3);
+        }
+        foreach (Activity activity in SelectSpecialActivities())
         {
             SpawnPlatform(activity);
         }
@@ -198,19 +203,22 @@ public class RunManager : MonoBehaviour
     }
 
     // instantiate a new activity platform
-    private void SpawnPlatform(Activity activity)
+    private void SpawnPlatform(Activity activity, bool isHeightOverride = false, int diff = 0)
     {
         GameObject platform = Instantiate(platformPrefab);
         platform.GetComponent<ActivityPlatform>().Initialize(activity);
+        if (isHeightOverride)
+        {
+            Vector2 pos = platform.transform.position;
+            platform.GetComponent<ActivityPlatform>().y = runState.height + diff;
+        }
         // add it to list of prospective platforms in runState
         runState.spawnedPlatforms.Add(platform.GetComponent<ActivityPlatform>());
     }
 
-    // select activities from pool of available
-    private List<Activity> SelectActivities()
-    {      
-        List<Activity> offeredActivities = new List<Activity>();
-        // get all available normal activities
+    private List<Activity> AvailableActivities()
+    {
+        // get all available normal activities, random order
         List<Activity> availableActivities = new List<Activity>();
         foreach (Activity activity in gameManager.profile.activities)
         {
@@ -220,55 +228,45 @@ public class RunManager : MonoBehaviour
             }
         }
         // Pick which activities to actually offer, one at a time (random order)
-        availableActivities = availableActivities.OrderBy(x => Random.value).ToList();
+        return availableActivities.OrderBy(x => Random.value).ToList();
+    }
+
+    // select normal activities from pool of available
+    private List<Activity> SelectActivities()
+    {
+        List<Activity> offeredActivities = new List<Activity>();
+        List<Activity> availableActivities = AvailableActivities();
         // Put scheduled activity at front of list so it is always offered
         Activity scheduledActivity = gameManager.profile.GetSchedule(runState.timeSteps + 1);
-        availableActivities.Insert(0, scheduledActivity);
-        foreach (Activity available in availableActivities)
+        availableActivities.Insert(Random.Range(0, 3), scheduledActivity);
+        for (int i = 0; i < 3; i += 1)
         {
-            // don't offer activities that are too crammed together
-            bool crammed = false;
-            foreach (Activity offered in offeredActivities.Concat(runState.spawnedPlatforms.Select(x => x.activity)))
-            {
-                int h1 = offered.HeightRating(runState);
-                int h2 = available.HeightRating(runState);
-                if (System.Math.Abs(h1 - h2) < minPlatformHeightDiff)
-                {
-                    crammed = true;
-                }
-                // dont add activities that are above the scheduled one
-                /* if (h2 - scheduledActivity.HeightRating(runState) > 0)
-                {
-                    crammed = true;
-                } */
-            }
-            // also dont add breakdown activities
-            if (!crammed && !available.isBreakdown)
-            {
-                offeredActivities.Add(available);
-            }
+            offeredActivities.Add(availableActivities[i]);
         }
-        // There's got to be one default activity
-        List<Activity> allActivities = offeredActivities.Concat(runState.spawnedPlatforms.Select(x => x.activity)).ToList();        
-        if (allActivities.Where(a => a.IsDefault(runState)).ToList().Count == 0)
+        return offeredActivities;
+    }
+
+    // select special (default, breakdown) from pool of available
+    private List<Activity> SelectSpecialActivities()
+    {
+        List<Activity> offeredActivities = new List<Activity>();
+        List<Activity> availableActivities = AvailableActivities();
+        // one default activity
+        List<Activity> defaultActivities = availableActivities.Where(a => a.IsDefault(runState)).ToList();
+        Activity defaultActivity = Object.FindObjectOfType<DoNothing>(); 
+        if (defaultActivities.Count() == 0)
         {
-            Activity defaultActivity = availableActivities.Find(a => a.IsDefault(runState));
-            if (defaultActivity == null)
-            {
-                defaultActivity = Object.FindObjectOfType<DoNothing>();
-            }
-            offeredActivities.Add(defaultActivity);
+            defaultActivity = defaultActivities.OrderBy(x => Random.value).ToList()[0];
         }
+        offeredActivities.Add(defaultActivity);
         // lastly, add one breakdown activity
-        Debug.Assert(allActivities.Where(a => a.isBreakdown).ToList().Count == 0);
-        Activity breakdownActivity = availableActivities.Find(a => a.isBreakdown);
-        if (breakdownActivity == null)
+        List<Activity> breakdownActivities = availableActivities.Where(a => a.IsDefault(runState)).ToList();
+        Activity breakdownActivity = Object.FindObjectOfType<DoNothing>();
+        if (breakdownActivities.Count() > 0)
         {
-            // right now default to "Meditation"
-            breakdownActivity = Object.FindObjectOfType<Meditation>();
+            breakdownActivity = breakdownActivities.OrderBy(x => Random.value).ToList()[0];
         }
         offeredActivities.Add(breakdownActivity);
-
         return offeredActivities;
     }
 
