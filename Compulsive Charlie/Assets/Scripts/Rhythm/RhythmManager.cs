@@ -90,8 +90,9 @@ public class RhythmManager : MonoBehaviour
         // Debug.Log("load measure");
         // reset time
         time = -measureOffset;
-        // load in notes for this activity
-        List<NoteSpec> pattern = activity.rhythmPattern;
+        // load in notes for this activity, sort by timing
+        List<NoteSpec> pattern = activity.rhythmPattern.OrderBy(n => n.timing).ToList();
+        NoteSpec easiestNote = activity.rhythmPattern.OrderBy(n => n.angle).OrderBy(n => n.timing).ToList()[0];
         for (int i = 0; i < pattern.Count; i++)
         {
             NoteSpec n = pattern[i];
@@ -99,17 +100,15 @@ public class RhythmManager : MonoBehaviour
             AudioClip clip = Resources.Load<AudioClip>(n.instrument + "/" + n.pitch);
             // choose a note type based on current emotional state
             EmotionState curr = runManager.runState.emotions;
-            EmotionType type = EmotionType.None;
-            // choose either energy, or the dominant emotion
-            int r = Random.Range(0, 30);
-            if (r < curr.GetMaxValue() + 3)
+            EmotionType type = n.type;
+            // if specified, do that, else choose either energy, or the dominant emotion
+            if (n != easiestNote && n.type == EmotionType.None)
             {
-                type = curr.GetDominantEmotion();
-            }
-            // first notes are according to activity specific emotion notes
-            if (i < activity.emotionNotes.GetSum())
-            {
-                type = activity.emotionNotes.GetIndex(i);
+                int r = Random.Range(0, 30);
+                if (r < curr.GetMaxValue() + 3)
+                {
+                    type = curr.GetDominantEmotion();
+                }
             }
             // also first activity is all energy notes if need to show tutorial
             if (runManager.runState.activityHistory.Count() < 2 && 

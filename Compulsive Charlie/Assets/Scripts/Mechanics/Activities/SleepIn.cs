@@ -9,7 +9,6 @@ public class SleepIn : Activity
         name = "Sleep In";
         descriptionText = "ugh";
         heightRating = -3;
-        emotionNotes = new EmotionState(0, 0, 0);
         emotionEffect = new EmotionState(1, 0, 2);
         isUnlocked = true;
     }

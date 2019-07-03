@@ -9,7 +9,6 @@ public class Meditation : Activity
         name = "Meditation";
         descriptionText = "exploring the inside";
         heightRating = 0;
-        emotionNotes = new EmotionState(2, 2, 0);
         emotionEffect = new EmotionState(0, 0, 0);
         isBreakdown = true;
     }

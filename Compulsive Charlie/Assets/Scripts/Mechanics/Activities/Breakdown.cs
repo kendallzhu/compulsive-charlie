@@ -9,7 +9,6 @@ public class Breakdown : Activity
         name = "Breakdown";
         descriptionText = "overwhelming meltdown of hopelessness";
         heightRating = 0;
-        emotionNotes = new EmotionState(0, 0, 6);
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
         isBreakdown = true;

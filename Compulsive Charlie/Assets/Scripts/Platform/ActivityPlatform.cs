@@ -7,14 +7,13 @@ using System.Linq;
 public class ActivityPlatform : MonoBehaviour {
     public RunManager runManager;
     public Activity activity;
-    // constants - TODO: may these ever depend on activity or runState i.e emotion? if so convert to function
-    // universal dimensions of all platforms - (design choice to simplify, don't think variable lengths add much)
+    // constants
     private const int jumpPadLength = 4;
     private const float platformThickness = .3f;
     private const int standardGapLength = 2;
     private const int platformLength = 24;
     private const float raiseSmooth = 2;
-
+    // set location of the bottom left of the platform
     public int x;
     public int y;
     public int length;
@@ -28,7 +27,7 @@ public class ActivityPlatform : MonoBehaviour {
     // calculate horizontal gap for a given platform
     private int GapSize(int ydiff)
     {
-        // make breakdown platforms have gap 0
+        // make breakdown platforms have gap -3
         if (ydiff <= Activity.breakdownPlatformHeightDiff)
         {
             return -3;
@@ -55,15 +54,15 @@ public class ActivityPlatform : MonoBehaviour {
     }
 
     // correctly position platform based on current states
-    public void Initialize(Activity _activity)
+    public void Initialize(Activity _activity, int heightDiff)
     {
         activity = _activity;
         RunState runState = runManager.runState;
         // set the platform at the proper position
         // height specified by activity
-        y = activity.PlatformHeight(runState);
+        y = runState.height + heightDiff;
         // x to the right of current platform, if there is one
-        x = GapSize(y);
+        x = GapSize(heightDiff);
         length = platformLength;
         ActivityPlatform current = runState.CurrentActivityPlatform();
         if (current != null)
@@ -71,7 +70,7 @@ public class ActivityPlatform : MonoBehaviour {
             int endX = current.x + current.length;
             x = endX + GapSize(y - current.y) + jumpPadLength;
         }
-        gameObject.transform.position = new Vector2(x, y);
+        gameObject.transform.position = new Vector2(x, runState.height);
 
         // scale the transform of the physical platform child to the proper length
         // (this will work as long as prefab is a unit cube with default scale)
@@ -79,7 +78,7 @@ public class ActivityPlatform : MonoBehaviour {
         ground.localScale = new Vector2(length, platformThickness);
         // scale the fixed length jump pad at the end of the platform
         Transform jumpPad = gameObject.transform.Find("JumpPad");
-        jumpPad.position = new Vector2(x + length, y); 
+        jumpPad.localPosition = new Vector2(length, 0); 
         jumpPad.localScale = new Vector2(jumpPadLength, platformThickness);
     }
 

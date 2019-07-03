@@ -9,12 +9,14 @@ public class NoteSpec
     public string instrument;
     public string pitch;
     public int angle;
+    public EmotionType type;
 
-    public NoteSpec (int timing, string pitch, int angle, string instrument = "wood_block")
+    public NoteSpec (int timing, string pitch, int angle, EmotionType type = EmotionType.None, string instrument = "wood_block")
     {
         this.timing = timing;
         this.instrument = instrument;
         this.pitch = pitch;
+        this.type = type;
         this.angle = angle;
     }
 }
@@ -37,17 +39,16 @@ public abstract class Activity : MonoBehaviour {
     public bool isBreakdown = false;
     public int heightRating = 0;
     public bool isUnlocked = false;
-    public EmotionState emotionNotes = new EmotionState(0, 0, 0);
     public EmotionState emotionEffect = new EmotionState(0, 0, 0);
     public List<Thought> associatedThoughts = new List<Thought>();
     // specs for gameplay notes
     public List<NoteSpec> rhythmPattern = new List<NoteSpec> {
-        new NoteSpec(1, "Bass_Drum_1", 10, "drum_kit"),
         new NoteSpec(1, "C", 0),
         new NoteSpec(2, "D", 2),
         new NoteSpec(3, "E", 4),
         new NoteSpec(4, "F", 6),
         new NoteSpec(5, "G", 8),
+        new NoteSpec(1, "Bass_Drum_1", 10, EmotionType.None, "drum_kit"),
     };
 
     private void Start()

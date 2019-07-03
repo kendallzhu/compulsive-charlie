@@ -9,7 +9,6 @@ public class Shower : Activity
         name = "Shower";
         descriptionText = "pls";
         heightRating = 0;
-        emotionNotes = new EmotionState(0, 1, 0);
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
     }

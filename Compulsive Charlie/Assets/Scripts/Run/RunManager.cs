@@ -164,14 +164,13 @@ public class RunManager : MonoBehaviour
 
         // spawn new set of platforms
         List<Activity> activities = SelectActivities();
+        Debug.Assert(activities.Count() < 5);
         for (int i = 0; i < activities.Count(); i++)
         {
-            SpawnPlatform(activities[i], true, i * 3);
+            SpawnPlatform(activities[i], i * 3);
         }
-        foreach (Activity activity in SelectSpecialActivities())
-        {
-            SpawnPlatform(activity);
-        }
+        SpawnPlatform(SelectDefaultActivity(), Activity.defaultPlatformHeightDiff);
+        SpawnPlatform(SelectBreakdownActivity(), Activity.breakdownPlatformHeightDiff);
         // clear out all other animation triggers
         player.GetComponent<Animator>().ResetTrigger("startJump");
         player.GetComponent<Animator>().ResetTrigger("activityFail");
@@ -194,24 +193,14 @@ public class RunManager : MonoBehaviour
     // called from thought menu after selecting a thought
     public void PostThoughtSelect()
     {
-        /* refill available platforms in case any were deleted
-        foreach (Activity activity in SelectActivities())
-        {
-            SpawnPlatform(activity);
-        }*/
         player.Jump();
     }
 
     // instantiate a new activity platform
-    private void SpawnPlatform(Activity activity, bool isHeightOverride = false, int diff = 0)
+    private void SpawnPlatform(Activity activity, int heightDiff)
     {
         GameObject platform = Instantiate(platformPrefab);
-        platform.GetComponent<ActivityPlatform>().Initialize(activity);
-        if (isHeightOverride)
-        {
-            Vector2 pos = platform.transform.position;
-            platform.GetComponent<ActivityPlatform>().y = runState.height + diff;
-        }
+        platform.GetComponent<ActivityPlatform>().Initialize(activity, heightDiff);
         // add it to list of prospective platforms in runState
         runState.spawnedPlatforms.Add(platform.GetComponent<ActivityPlatform>());
     }
@@ -247,27 +236,29 @@ public class RunManager : MonoBehaviour
     }
 
     // select special (default, breakdown) from pool of available
-    private List<Activity> SelectSpecialActivities()
+    private Activity SelectDefaultActivity()
     {
-        List<Activity> offeredActivities = new List<Activity>();
         List<Activity> availableActivities = AvailableActivities();
         // one default activity
         List<Activity> defaultActivities = availableActivities.Where(a => a.IsDefault(runState)).ToList();
-        Activity defaultActivity = Object.FindObjectOfType<DoNothing>(); 
-        if (defaultActivities.Count() == 0)
+        Activity defaultActivity = Object.FindObjectOfType<DoNothing>();
+        if (defaultActivities.Count() > 0)
         {
             defaultActivity = defaultActivities.OrderBy(x => Random.value).ToList()[0];
         }
-        offeredActivities.Add(defaultActivity);
+        return defaultActivity;
+    }
+    private Activity SelectBreakdownActivity()
+    {
+        List<Activity> availableActivities = AvailableActivities();
         // lastly, add one breakdown activity
-        List<Activity> breakdownActivities = availableActivities.Where(a => a.IsDefault(runState)).ToList();
+        List<Activity> breakdownActivities = availableActivities.Where(a => a.isBreakdown).ToList();
         Activity breakdownActivity = Object.FindObjectOfType<DoNothing>();
         if (breakdownActivities.Count() > 0)
         {
             breakdownActivity = breakdownActivities.OrderBy(x => Random.value).ToList()[0];
         }
-        offeredActivities.Add(breakdownActivity);
-        return offeredActivities;
+        return breakdownActivity;
     }
 
     // select thoughts from pool of available

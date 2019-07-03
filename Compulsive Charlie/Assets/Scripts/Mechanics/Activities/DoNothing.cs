@@ -9,7 +9,6 @@ public class DoNothing : Activity
         name = "Do Nothing";
         descriptionText = "wait - actually nothing?";
         heightRating = 0;
-        emotionNotes = new EmotionState(1, 1, 1);
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
     }

@@ -9,7 +9,6 @@ public class PanicAttack : Activity
         name = "Panic Attack";
         descriptionText = "overwhelming suffocating anxiety";
         heightRating = 0;
-        emotionNotes = new EmotionState(6, 0, 0);
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
         isBreakdown = true;

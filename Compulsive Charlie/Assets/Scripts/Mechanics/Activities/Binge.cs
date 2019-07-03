@@ -9,7 +9,6 @@ public class Binge : Activity
         name = "Binge";
         descriptionText = "fill the hole with food";
         heightRating = -1;
-        emotionNotes = new EmotionState(0, 1, 0);
         emotionEffect = new EmotionState(0, 0, 4);
         isUnlocked = true;
     }

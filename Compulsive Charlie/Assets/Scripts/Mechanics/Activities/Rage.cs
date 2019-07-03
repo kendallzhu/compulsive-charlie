@@ -9,7 +9,6 @@ public class Rage : Activity
         name = "Rage";
         descriptionText = "overwhelming explosion of anger";
         heightRating = 0;
-        emotionNotes = new EmotionState(0, 6, 0);
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
         isBreakdown = true;
