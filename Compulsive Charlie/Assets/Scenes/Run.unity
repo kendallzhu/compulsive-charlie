@@ -9162,6 +9162,16 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114585283511678434, guid: 93c3919dbea88a14bb499be23dcd4b40,
+        type: 3}
+      propertyPath: m_margin.w
+      value: -0.054823637
+      objectReference: {fileID: 0}
+    - target: {fileID: 114585283511678434, guid: 93c3919dbea88a14bb499be23dcd4b40,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 114207988170010834, guid: 93c3919dbea88a14bb499be23dcd4b40,
         type: 3}
       propertyPath: ap
@@ -9182,6 +9192,16 @@ PrefabInstance:
     - target: {fileID: 4003504462217654, guid: 93c3919dbea88a14bb499be23dcd4b40, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224874843593193436, guid: 93c3919dbea88a14bb499be23dcd4b40,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 224874843593193436, guid: 93c3919dbea88a14bb499be23dcd4b40,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1.507
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93c3919dbea88a14bb499be23dcd4b40, type: 3}
@@ -10755,6 +10775,7 @@ MonoBehaviour:
   player: {fileID: 155495550}
   hitArea: {fileID: 373017400}
   NoteLight: {fileID: 1961422040}
+  beamWidth: 0
   runManager: {fileID: 1652275278}
   gameManager: {fileID: 0}
   tutorialManager: {fileID: 0}

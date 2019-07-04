@@ -43,7 +43,7 @@ public class RhythmManager : MonoBehaviour
     public PlayerController player;
     public GameObject hitArea;
     public GameObject NoteLight;
-    private float beamWidth = 0;
+    public float beamWidth = 0;
     public RunManager runManager;
     public GameManager gameManager;
     public TutorialManager tutorialManager;

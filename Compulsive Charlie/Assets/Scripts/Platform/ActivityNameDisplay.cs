@@ -31,4 +31,20 @@ public class ActivityNameDisplay : MonoBehaviour
             }
         }
     }
+
+    private void Update()
+    {
+        // make names less visible if they are outside of beam of light
+        float beamY = runManager.rhythmManager.hitArea.transform.position.y;
+        float beamWidth = runManager.rhythmManager.beamWidth;
+        float yDiff = Mathf.Abs(transform.position.y - beamY) + .01f;
+        float distFromBeam = yDiff - beamWidth / 2;
+        float alpha = 1 - distFromBeam / 1.5f;
+        // but always show the one you are on, for less confusion
+        if (ap == runManager.runState.CurrentActivityPlatform())
+        {
+            alpha = Mathf.Max(alpha, .25f);
+        }
+        gameObject.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, alpha);
+    }
 }
