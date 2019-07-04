@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrushItOff : Thought
+public class BrushItOff : LowEmotionThought
 {
     void Awake()
     {
@@ -12,16 +12,5 @@ public class BrushItOff : Thought
         energyCost = 9;
         jumpPower = 3;
         emotionType = EmotionType.frustration;
-    }
-
-    // whether this activity is available, given state of run
-    public override int CustomAvailability(RunState runState)
-    {
-        int value = runState.emotions.frustration;
-        if (runState.emotions.GetDominantEmotion() == emotionType && value >= 5 && value <= 15)
-        {
-            return 1;
-        }
-        return 0;
     }
 }

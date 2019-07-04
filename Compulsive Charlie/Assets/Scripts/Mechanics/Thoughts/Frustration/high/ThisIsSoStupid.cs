@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThisIsSoStupid : Thought
+public class ThisIsSoStupid : HighEmotionThought
 {
     void Awake()
     {
@@ -12,21 +12,5 @@ public class ThisIsSoStupid : Thought
         energyCost = 8;
         jumpPower = 2;
         emotionType = EmotionType.frustration;
-    }
-
-    public override void CustomAcceptEffect(RunState runState)
-    {
-        runState.emotions.Add(EmotionType.frustration, 3);
-    }
-
-    // whether this activity is available, given state of run
-    public override int CustomAvailability(RunState runState)
-    {
-        int value = runState.emotions.frustration;
-        if (runState.emotions.GetDominantEmotion() == emotionType && value >= 10)
-        {
-            return 1;
-        }
-        return 0;
     }
 }

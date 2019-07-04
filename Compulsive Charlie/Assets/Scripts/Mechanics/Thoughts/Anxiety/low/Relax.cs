@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Relax : Thought
+public class Relax : LowEmotionThought
 {
     void Awake()
     {
@@ -12,16 +12,5 @@ public class Relax : Thought
         energyCost = 6;
         jumpPower = 2;
         emotionType = EmotionType.anxiety;
-    }
-
-    // whether this activity is available, given state of run
-    public override int CustomAvailability(RunState runState)
-    {
-        int value = runState.emotions.anxiety;
-        if (runState.emotions.GetDominantEmotion() == emotionType && value >= 5 && value <= 15)
-        {
-            return 1;
-        }
-        return 0;
     }
 }
