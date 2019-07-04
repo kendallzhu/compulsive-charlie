@@ -59,9 +59,7 @@ public class RunManager : MonoBehaviour
         // cheatcodes to add combo/energy and change emotion
         if (Input.GetKeyDown("0"))
         {
-            runState.IncreaseCombo();
-            runState.IncreaseCombo();
-            runState.IncreaseCombo();
+            runState.IncreaseEnergy(3);
         }
         if (Input.GetKeyDown("9"))
         {
@@ -290,6 +288,7 @@ public class RunManager : MonoBehaviour
         {
             // right now it's called "Nothing"
             Thought fallBack = Object.FindObjectOfType<Nothing>();
+            Debug.Assert(fallBack);
             return new List<Thought> { fallBack };
         }
         // select <=3 randomly (without repeat)

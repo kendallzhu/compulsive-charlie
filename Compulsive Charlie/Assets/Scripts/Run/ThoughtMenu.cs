@@ -111,7 +111,6 @@ public class ThoughtMenu : MonoBehaviour
         {
             // rejecting when no energy left, with effect
             currentThought.RejectEffect(runManager.runState);
-            runManager.PostThoughtSelect();
         }
     }
     

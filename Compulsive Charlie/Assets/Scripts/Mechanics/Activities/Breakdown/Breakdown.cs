@@ -18,7 +18,7 @@ public class Breakdown : Activity
     public override int CustomAvailability(RunState runState)
     {
         EmotionState e = runState.emotions;
-        if (e.GetDominantEmotion() == EmotionType.despair && e.Extremeness() > 3)
+        if (e.GetDominantEmotion() == EmotionType.despair && e.despair >= 10)
         {
             return 1;
         }

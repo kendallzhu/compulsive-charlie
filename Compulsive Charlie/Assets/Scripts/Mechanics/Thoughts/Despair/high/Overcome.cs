@@ -18,7 +18,7 @@ public class Overcome : Thought
     public override int CustomAvailability(RunState runState)
     {
         int value = runState.emotions.despair;
-        if (value >= 10)
+        if (runState.emotions.GetDominantEmotion() == emotionType && value >= 10)
         {
             return 1;
         }

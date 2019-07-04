@@ -24,10 +24,10 @@ public class NoteSpec
 // Parent class for activity mechanic in game
 public abstract class Activity : MonoBehaviour {
     // standardized height diff for default (lowest) normal platform
-    public const int defaultPlatformHeightDiff = -5;
+    public const int defaultPlatformHeightDiff = -3;
     // hard lower limit for height diff of any platform
     // used for "breakdown" platforms that can be only got to by negative jump power
-    public const int breakdownPlatformHeightDiff = -8;
+    public const int breakdownPlatformHeightDiff = -6;
 
     // unique name
     new public string name;

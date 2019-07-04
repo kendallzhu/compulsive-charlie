@@ -18,7 +18,7 @@ public class PanicAttack : Activity
     public override int CustomAvailability(RunState runState)
     {
         EmotionState e = runState.emotions;
-        if (e.GetDominantEmotion() == EmotionType.anxiety && e.Extremeness() > 3)
+        if (e.GetDominantEmotion() == EmotionType.anxiety && e.anxiety >= 10)
         {
             return 1;
         }

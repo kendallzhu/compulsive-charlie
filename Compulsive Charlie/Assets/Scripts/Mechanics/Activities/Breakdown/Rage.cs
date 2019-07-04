@@ -18,7 +18,7 @@ public class Rage : Activity
     public override int CustomAvailability(RunState runState)
     {
         EmotionState e = runState.emotions;
-        if (e.GetDominantEmotion() == EmotionType.frustration && e.Extremeness() > 3)
+        if (e.GetDominantEmotion() == EmotionType.frustration && e.frustration >= 10)
         {
             return 1;
         }

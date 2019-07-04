@@ -18,7 +18,7 @@ public class Whatever : Thought
     public override int CustomAvailability(RunState runState)
     {
         int value = runState.emotions.frustration;
-        if (value >= 5 && value <= 15)
+        if (runState.emotions.GetDominantEmotion() == emotionType && value >= 5 && value <= 15)
         {
             return 1;
         }

@@ -18,7 +18,7 @@ public class TakeAChance : Thought
     public override int CustomAvailability(RunState runState)
     {
         int value = runState.emotions.anxiety;
-        if (value >= 5 && value <= 15)
+        if (runState.emotions.GetDominantEmotion() == emotionType && value >= 5 && value <= 15)
         {
             return runState.emotions.Extremeness(EmotionType.anxiety);
         }

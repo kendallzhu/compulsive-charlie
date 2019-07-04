@@ -9,23 +9,13 @@ public class Nothing : Thought
         name = "Nothing";
         descriptionText = "";
         isUnlocked = false;
-        energyCost = 10;
-        jumpPower = 9;
+        energyCost = 0;
+        jumpPower = 1;
     }
 
     // whether this activity is available, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.Extremeness() <= 0)
-        {
-            return 3;
-        }
-        return 1;
-    }
-
-    // how this thought modifies run state when thunk
-    public override void CustomAcceptEffect(RunState runState)
-    {
-        runState.emotions.Equilibrate(.2f);
+        return 0;
     }
 }
