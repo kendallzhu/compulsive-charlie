@@ -36,7 +36,7 @@ public class RhythmManager : MonoBehaviour
     // duration after arrival time that is considered a miss for the next note
     public const float lateHitPeriod = hitWindowLate + tempoIncrement / 2;
     // duration between repeating measures of same activity
-    public const float measureOffset = .4f;
+    public const float measureOffset = 0f;
     // how to scale light beam width based on energy
     public const float beamWidthFactor = .5f;
 

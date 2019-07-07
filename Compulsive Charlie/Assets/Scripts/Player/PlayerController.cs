@@ -106,6 +106,6 @@ public class PlayerController : MonoBehaviour {
     // functions for gameplay parameters that depend on runState (emotions, etc.)
     public float PlatformMinForwardSpeed(RunState runState)
     {
-        return 2f;
+        return 1.5f;
     }
 }
