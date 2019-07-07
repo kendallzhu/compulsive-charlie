@@ -8,7 +8,7 @@ public class ActivityPlatform : MonoBehaviour {
     public RunManager runManager;
     public Activity activity;
     // constants
-    private const int jumpPadLength = 4;
+    private const int jumpPadLength = 2;
     private const float platformThickness = .3f;
     private const int standardGapLength = 2;
     private const int platformLength = 24;

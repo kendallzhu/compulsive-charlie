@@ -54,9 +54,9 @@ public abstract class Activity : MonoBehaviour {
         new NoteSpec(16, "Closed_High_Hat", 6, EmotionType.None, "drum_kit"),
         new NoteSpec(4, "A", 8),
         new NoteSpec(7, "A", 8),
-        new NoteSpec(2, "F", 10),
-        new NoteSpec(5, "A#", 12),
-        new NoteSpec(6, "C_high", 12),
+        new NoteSpec(2, "F", 12),
+        new NoteSpec(5, "A#", 14),
+        new NoteSpec(6, "C_high", 14),
     };
 
     private void Start()

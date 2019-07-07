@@ -50,6 +50,13 @@ public class RunManager : MonoBehaviour
         {
             gameManager.EndRun(runState);
         }
+        // cheatcode to move forward
+        if (Input.GetKey("g") && Input.GetKey("o"))
+        {
+            ActivityPlatform ap = runState.CurrentActivityPlatform();
+            float xDiff = ap.x + ap.length - player.transform.position.x;
+            player.transform.Translate(new Vector3(xDiff, 0, 0));
+        }
         // cheatcode to deactivate tutorials
         if (Input.GetKey("n") && Input.GetKey("o"))
         {
