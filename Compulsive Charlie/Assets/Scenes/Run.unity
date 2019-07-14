@@ -10809,8 +10809,10 @@ MonoBehaviour:
   bgStatic: {fileID: 746362216}
   staticBase: {fileID: 1155557002}
   staticOverlay: {fileID: 348525134}
-  cloudy: {fileID: 21300000, guid: c7aa304b51e2a644db0d98734df901d4, type: 3}
+  morning: {fileID: 21300000, guid: c7aa304b51e2a644db0d98734df901d4, type: 3}
+  midday: {fileID: 21300000, guid: b6bea4d2835ae1a45af151975dc45eab, type: 3}
   sunset: {fileID: 21300000, guid: 841d57ec74d1be14e8c6e5b7bb71c9e9, type: 3}
+  night: {fileID: 21300000, guid: cf13a3a76a036524d8e3e6d65e7cd2bb, type: 3}
   bgTile: {fileID: 1176975324}
   tileBase: {fileID: 2035241328}
   tileRain: {fileID: 2098352512}

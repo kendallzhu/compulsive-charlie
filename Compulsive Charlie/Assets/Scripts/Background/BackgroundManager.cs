@@ -10,8 +10,10 @@ public class BackgroundManager : MonoBehaviour
     public GameObject staticBase;
     public GameObject staticOverlay;
 
-    public Sprite cloudy;
+    public Sprite morning;
+    public Sprite midday;
     public Sprite sunset;
+    public Sprite night;
 
     // tiled background components
     public GameObject bgTile;
@@ -49,10 +51,18 @@ public class BackgroundManager : MonoBehaviour
         RunState runState = runManager.runState;
         EmotionState e = runState.emotions;
         // change the static background based on the time of day
-        Sprite newStaticBG = cloudy;
-        if (runState.timeSteps > 0)
+        Sprite newStaticBG = morning;
+        if (runState.timeSteps > 3)
+        {
+            newStaticBG = midday;
+        }
+        if (runState.timeSteps > 6)
         {
             newStaticBG = sunset;
+        }
+        if (runState.timeSteps > 8)
+        {
+            newStaticBG = night;
         }
         TransitionStaticBG(staticBase.GetComponent<Image>(), newStaticBG);
         // rain if sad
