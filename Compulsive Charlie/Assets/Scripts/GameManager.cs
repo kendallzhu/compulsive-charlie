@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour {
 
     void Start () {
         LoadSplash();
-        showTutorial = false;
         // set starting profile of the game
         profile = new Profile();
         // load in all activities, thoughts and upgrades from the gameObjects (see editor)

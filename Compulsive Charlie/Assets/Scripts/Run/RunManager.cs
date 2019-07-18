@@ -91,6 +91,12 @@ public class RunManager : MonoBehaviour
     {
         if (newActivityPlatform != null)
         {
+            // activate UI tutorial on first platform of run
+            if (gameManager.showTutorial && !tutorialManager.shownUITutorial)
+            {
+                tutorialManager.ActivateUITutorial();
+            }
+
             // increment timeSteps
             runState.timeSteps += 1;
 
@@ -130,11 +136,6 @@ public class RunManager : MonoBehaviour
     // for when the player enters the jump Pad
     public void EnterJumpPad(ActivityPlatform activityPlatform)
     {
-        // activate UI tutorial on first platform of run
-        if (gameManager.showTutorial && !tutorialManager.shownUITutorial)
-        {
-            tutorialManager.ActivateUITutorial();
-        }
         // if done, end run (and skip the rest of the procedure)
         if (runState.done)
         {

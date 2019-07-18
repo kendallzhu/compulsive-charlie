@@ -120,6 +120,22 @@ public class RhythmManager : MonoBehaviour
         }
     }
 
+    bool IsInsideBeam(Note note)
+    {
+        float middleY = player.transform.position.y;
+        float distanceFromCenter = Mathf.Abs(note.transform.position.y - middleY);
+        bool outsideBeam = distanceFromCenter > (beamWidth + .01f) / 2;
+        return !outsideBeam;
+    }
+
+    bool IsTouchingBeam(Note note)
+    {
+        float middleY = player.transform.position.y;
+        float distanceFromCenter = Mathf.Abs(note.transform.position.y - middleY);
+        const float noteRadius = .5f;
+        return distanceFromCenter - beamWidth / 2 <= noteRadius;
+    }
+
     void Update()
     {
         RunState runState = runManager.runState;
@@ -135,14 +151,9 @@ public class RhythmManager : MonoBehaviour
         Light light = NoteLight.GetComponent<Light>();
         light.cookieSize = beamWidth;
         // destroy all notes fallling outside of the beam
-        float middleY = player.transform.position.y;
         foreach (Note note in new List<Note>(notes))
         {
-            float distanceFromCenter = Mathf.Abs(note.transform.position.y - middleY);
-            bool outsideBeam = distanceFromCenter > (beamWidth + .01f) / 2;
-            const float noteRadius = .5f;
-            bool touchingBeam = distanceFromCenter - beamWidth / 2 <= noteRadius;
-            if (outsideBeam && touchingBeam)
+            if (!IsInsideBeam(note) && IsTouchingBeam(note))
             {
                 note.OnDeflect();
                 notes.Remove(note);
@@ -244,7 +255,7 @@ public class RhythmManager : MonoBehaviour
         }
 
         // show emotion note tutorial once some emotion note seen
-        bool emotionNoteVisible = notes.Count > 0 && notes[0].type != EmotionType.None;
+        bool emotionNoteVisible = notes.Count > 0 && notes[0].type != EmotionType.None && IsInsideBeam(notes[0]);
         // bool emotionNoteArrived = emotionNoteVisible && (time > notes[0].arrivalTime - hitWindowEarly);
         if (gameManager.showTutorial && !tutorialManager.shownEmotionNoteTutorial && emotionNoteVisible)
         {

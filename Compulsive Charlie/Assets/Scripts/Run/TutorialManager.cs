@@ -64,6 +64,11 @@ public class TutorialManager : MonoBehaviour
             activeIndex = 0;
             canvas.SetActive(false);
             Time.timeScale = 1;
+            // By default turn off tutorials for subsequent runs once all are complete
+            if (shownEmotionNoteTutorial && shownRhythmTutorial && shownThoughtTutorial && shownUITutorial)
+            {
+                gameManager.showTutorial = false;
+            }
         }
         // player advance tutorial
         if (CanAdvance())

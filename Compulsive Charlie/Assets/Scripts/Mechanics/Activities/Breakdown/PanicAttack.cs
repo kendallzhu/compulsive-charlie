@@ -12,6 +12,12 @@ public class PanicAttack : Activity
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
         isBreakdown = true;
+        rhythmPattern = new List<NoteSpec> {
+            new NoteSpec(0, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
+            new NoteSpec(1, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
+            new NoteSpec(5, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
+            new NoteSpec(6, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
+        };
     }
 
     // (weighted) availability of activity, given state of run
