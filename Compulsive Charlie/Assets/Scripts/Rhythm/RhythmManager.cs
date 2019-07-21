@@ -39,11 +39,12 @@ public class RhythmManager : MonoBehaviour
     public const float measureOffset = 0f;
     // how to scale light beam width based on energy
     public const float beamWidthFactor = .5f;
+    public const float minBeamWidth = 1f;
 
     public PlayerController player;
     public GameObject hitArea;
     public GameObject NoteLight;
-    public float beamWidth = 0;
+    public float beamWidth;
     public RunManager runManager;
     public GameManager gameManager;
     public TutorialManager tutorialManager;
@@ -71,6 +72,7 @@ public class RhythmManager : MonoBehaviour
         gameManager = Object.FindObjectOfType<GameManager>();
         tutorialManager = Object.FindObjectOfType<TutorialManager>();
         player = Object.FindObjectOfType<PlayerController>();
+        beamWidth = minBeamWidth;
     }
 
     public void StartRhythm(Activity activity_)
@@ -146,7 +148,7 @@ public class RhythmManager : MonoBehaviour
         }
 
         // adjust light beam width based on current energy
-        float newBeamWidth = runState.energy * beamWidthFactor;
+        float newBeamWidth = Mathf.Max(runState.energy * beamWidthFactor, minBeamWidth);
         beamWidth = Mathf.Lerp(beamWidth, newBeamWidth, .01f);
         Light light = NoteLight.GetComponent<Light>();
         light.cookieSize = beamWidth;

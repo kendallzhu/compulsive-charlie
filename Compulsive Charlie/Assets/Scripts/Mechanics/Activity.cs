@@ -43,6 +43,19 @@ public abstract class Activity : MonoBehaviour {
     public List<Thought> associatedThoughts = new List<Thought>();
     // specs for gameplay notes
     public List<NoteSpec> rhythmPattern = new List<NoteSpec> {
+        new NoteSpec(3, "A#_high", 0),
+        new NoteSpec(6, "A#_high", 0),
+        new NoteSpec(9, "D#_high", 2),
+        new NoteSpec(12, "D#_high", 2),
+        new NoteSpec(15, "C#_high", 4),
+        new NoteSpec(13, "Bass_Drum_1", 8, EmotionType.None, "drum_kit"),
+        new NoteSpec(5, "Bass_Drum_1", 10, EmotionType.None, "drum_kit"),
+        new NoteSpec(3, "Closed_High_Hat", 14, EmotionType.None, "drum_kit"),
+        new NoteSpec(7, "Closed_High_Hat", 14, EmotionType.None, "drum_kit"),
+        new NoteSpec(11, "Closed_High_Hat", 14, EmotionType.None, "drum_kit"),
+        new NoteSpec(15, "Closed_High_Hat", 14, EmotionType.None, "drum_kit"),
+    };
+    /* public List<NoteSpec> rhythmPattern = new List<NoteSpec> {
         new NoteSpec(4, "E", 0),
         new NoteSpec(10, "E", 0),
         new NoteSpec(15, "E", 0),
@@ -57,7 +70,7 @@ public abstract class Activity : MonoBehaviour {
         new NoteSpec(2, "F", 12),
         new NoteSpec(5, "A#", 14),
         new NoteSpec(6, "C_high", 14),
-    };
+    }; */
 
     private void Start()
     {

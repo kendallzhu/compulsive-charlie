@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
         };
         // rotate timer wheel (must have a child called "Disc")
         Transform disc = timerWheel.transform.Find("Disc");
-        float targetRotation = 345 - ((float)runState.timeSteps / 20f * 360f) % 360;
+        float targetRotation = 345 - ((float)runState.timeSteps / 15f * 360f) % 360;
         if (System.Math.Abs(disc.localRotation.eulerAngles.z - targetRotation) > System.Math.Abs(timeRotationStep))
         {
             disc.Rotate(new Vector3(0, 0, timeRotationStep));
