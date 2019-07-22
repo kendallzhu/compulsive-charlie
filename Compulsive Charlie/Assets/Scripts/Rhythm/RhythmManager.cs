@@ -29,7 +29,7 @@ public class RhythmManager : MonoBehaviour
     // how long it takes for notes to get to hit area
     public const float travelTime = 1.5f;
     // time between smallest increments of a rhythm pattern
-    public const float tempoIncrement = .2f;
+    public const float tempoIncrement = .1f;
     // duration before arrival time that is considered a miss for the incoming note
     // (if you hit earlier than this, then it won't be punished)
     public const float earlyHitPeriod = tempoIncrement;
