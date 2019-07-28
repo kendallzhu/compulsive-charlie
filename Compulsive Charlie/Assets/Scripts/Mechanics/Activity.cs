@@ -3,24 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class NoteSpec
-{
-    public int timing;
-    public string instrument;
-    public string pitch;
-    public int angle;
-    public EmotionType type;
-
-    public NoteSpec (int timing, string pitch, int angle, EmotionType type = EmotionType.None, string instrument = "wood_block")
-    {
-        this.timing = timing;
-        this.instrument = instrument;
-        this.pitch = pitch;
-        this.type = type;
-        this.angle = angle;
-    }
-}
-
 // Parent class for activity mechanic in game
 public abstract class Activity : MonoBehaviour {
     // standardized height diff for default (lowest) normal platform
@@ -42,35 +24,45 @@ public abstract class Activity : MonoBehaviour {
     public EmotionState emotionEffect = new EmotionState(0, 0, 0);
     public List<Thought> associatedThoughts = new List<Thought>();
     // specs for gameplay notes
-    public List<NoteSpec> rhythmPattern = new List<NoteSpec> {
+    // DEFAULT - copied from "Hero" Ping Pong the animation OST
+    static MeasureSpec melody = new MeasureSpec(new List<NoteSpec> {
+        new NoteSpec(0, "A#_high", 0),
         new NoteSpec(3, "A#_high", 0),
-        new NoteSpec(6, "A#_high", 0),
+        new NoteSpec(6, "D#_high", 2),
         new NoteSpec(9, "D#_high", 2),
-        new NoteSpec(12, "D#_high", 2),
-        new NoteSpec(15, "C#_high", 4),
-        new NoteSpec(13, "Snare_Drum_2", 8, EmotionType.None, "drum_kit"),
-        new NoteSpec(5, "Snare_Drum_2", 10, EmotionType.None, "drum_kit"),
-        new NoteSpec(3, "Closed_High_Hat", 14, EmotionType.None, "drum_kit"),
-        new NoteSpec(7, "Closed_High_Hat", 14, EmotionType.None, "drum_kit"),
-        new NoteSpec(11, "Closed_High_Hat", 14, EmotionType.None, "drum_kit"),
-        new NoteSpec(15, "Closed_High_Hat", 14, EmotionType.None, "drum_kit"),
-    };
-    /* public List<NoteSpec> rhythmPattern = new List<NoteSpec> {
-        new NoteSpec(4, "E", 0),
-        new NoteSpec(10, "E", 0),
-        new NoteSpec(15, "E", 0),
-        new NoteSpec(7, "E", 2),
-        new NoteSpec(12, "D", 2),
-        new NoteSpec(4, "Bass_Drum_1", 4, EmotionType.None, "drum_kit"),
-        new NoteSpec(12, "Bass_Drum_1", 4, EmotionType.None, "drum_kit"),
-        new NoteSpec(8, "Closed_High_Hat", 6, EmotionType.None, "drum_kit"),
-        new NoteSpec(16, "Closed_High_Hat", 6, EmotionType.None, "drum_kit"),
-        new NoteSpec(4, "A", 8),
-        new NoteSpec(7, "A", 8),
-        new NoteSpec(2, "F", 12),
-        new NoteSpec(5, "A#", 14),
-        new NoteSpec(6, "C_high", 14),
-    }; */
+        new NoteSpec(12, "C#_high", 4),
+    });
+    static MeasureSpec beats = new MeasureSpec(new List<NoteSpec> {
+        new NoteSpec(0, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
+        new NoteSpec(2, "Snare_Drum_2", 20, EmotionType.None, "drum_kit"),
+        new NoteSpec(4, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
+        new NoteSpec(8, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
+        new NoteSpec(10, "Snare_Drum_2", 20, EmotionType.None, "drum_kit"),
+        new NoteSpec(12, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
+    });
+    static MeasureSpec base0 = new MeasureSpec(new List<NoteSpec> {
+        new NoteSpec(0, "F#", 10),
+        new NoteSpec(3, "F#", 11),
+        new NoteSpec(6, "F#", 12),
+        new NoteSpec(9, "F#", 13),
+        new NoteSpec(12, "F#", 14),
+    });
+    static MeasureSpec base1 = base0.ReplaceAllPitches("G#");
+    static MeasureSpec base2 = base0.ReplaceAllPitches("D#");
+    public Song song = new Song(new List<(MeasureSpec, int)> {
+        (melody, 0),
+        (beats, 0),
+        (base0, 0),
+        (melody, 1),
+        (beats, 1),
+        (base1, 1),
+        (melody, 2),
+        (beats, 2),
+        (base2, 2),
+        (melody, 3),
+        (beats, 3),
+        (base2, 3)
+    });
 
     private void Start()
     {

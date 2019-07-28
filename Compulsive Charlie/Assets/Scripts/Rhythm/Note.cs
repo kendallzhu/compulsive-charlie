@@ -68,8 +68,11 @@ public class Note : MonoBehaviour
         rhythmManager.player.GetComponent<Animator>().SetTrigger("activityFail");
     }
 
-    public void OnHit(RunState runState)
+    // (Delay so that sound occurs when note would have arrived)
+    public IEnumerator HitAfterDelay(float delay, RunState runState)
     {
+        transform.localScale = new Vector3(0, 0, 0);
+        yield return new WaitForSeconds(delay);
         runState.IncreaseCombo();
         HitEffect(runState);
         Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
@@ -77,8 +80,18 @@ public class Note : MonoBehaviour
         // play audio and destroy when done
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.Play();
-        transform.localScale = new Vector3 (0, 0, 0);
         Destroy(gameObject, audioSource.clip.length);
+    }
+
+    public void OnHit(float time, RunState runState)
+    {
+        StartCoroutine(HitAfterDelay(arrivalTime - time, runState));
+    }
+
+    public void OnAutoHit(float time, RunState runState)
+    {
+        // seperate AutoHitAfterDelay function with less effects?
+        StartCoroutine(HitAfterDelay(arrivalTime - time, runState));
     }
 
     public virtual void HitEffect(RunState runState)

@@ -3,6 +3,104 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+public class NoteSpec
+{
+    public int timing;
+    public string instrument;
+    public string pitch;
+    public int angle;
+    public EmotionType type;
+
+    public NoteSpec(int timing, string pitch, int angle, EmotionType type = EmotionType.None, string instrument = "wood_block")
+    {
+        this.timing = timing;
+        this.instrument = instrument;
+        this.pitch = pitch;
+        this.type = type;
+        this.angle = angle;
+    }
+}
+
+// class to help store + manipulate measures of notes
+public class MeasureSpec
+{
+    public List<NoteSpec> notes;
+
+    public MeasureSpec()
+    {
+        this.notes = new List<NoteSpec> { };
+    }
+
+    public MeasureSpec(List<NoteSpec> notes)
+    {
+        this.notes = notes;
+    }
+
+    // adds all notes from another measure
+    public void AddMeasure(MeasureSpec measure)
+    {
+        this.notes.AddRange(measure.notes);
+    }
+
+    public MeasureSpec Copy()
+    {
+        MeasureSpec newMeasure = new MeasureSpec();
+        newMeasure.AddMeasure(this);
+        return newMeasure;
+    }
+
+    public MeasureSpec ReplaceAllPitches(string newPitch)
+    {
+        return new MeasureSpec(notes.Select(note => new NoteSpec(
+            note.timing,
+            newPitch,
+            note.angle,
+            note.type,
+            note.instrument
+        )).ToList());
+    }
+}
+
+// class to put together a bunch of measures into a list of notes
+public class Song
+{
+    public const int measureSize = 16;
+    public List<NoteSpec> notes;
+
+    public Song()
+    {
+        this.notes = new List<NoteSpec>();
+    }
+
+    public Song(List<NoteSpec> notes)
+    {
+        this.notes = notes;
+    }
+
+    public Song(List<(MeasureSpec, int)> measures)
+    {
+        this.notes = new List<NoteSpec>();
+        measures.ForEach(data => this.AddMeasure(data.Item1, data.Item2));
+    }
+
+    public void AddMeasure(MeasureSpec measure, int measureNumber)
+    {
+        measure.notes.ForEach(note => notes.Add(new NoteSpec(
+            note.timing + measureNumber * measureSize,
+            note.pitch,
+            note.angle,
+            note.type,
+            note.instrument
+        )));
+    }
+
+    public int Length()
+    {
+        return notes.Max(note => note.timing);
+    }
+}
+
+// class for spawning stuff
 public class NoteSpawnSpec
 {
     public float spawnTime;
@@ -29,7 +127,7 @@ public class RhythmManager : MonoBehaviour
     // how long it takes for notes to get to hit area
     public const float travelTime = 1.5f;
     // time between smallest increments of a rhythm pattern
-    public const float tempoIncrement = .1f;
+    public const float tempoIncrement = .2f;
     // duration before arrival time that is considered a miss for the incoming note
     // (if you hit earlier than this, then it won't be punished)
     public const float earlyHitPeriod = tempoIncrement;
@@ -39,7 +137,12 @@ public class RhythmManager : MonoBehaviour
     public const float measureOffset = 0f;
     // how to scale light beam width based on energy
     public const float beamWidthFactor = .5f;
+    // beam limits and how fast to level up/down when hitting those limits
     public const float minBeamWidth = 1f;
+    public const float maxBeamWidth = 5f;
+    public const float levelUpRate = 5f;
+    public const float levelDownRate = .5f;
+    // decay rate - if we use accumulation?
 
     public PlayerController player;
     public GameObject hitArea;
@@ -64,6 +167,7 @@ public class RhythmManager : MonoBehaviour
     private Activity activity;
     private List<NoteSpawnSpec> notesToSpawn = new List<NoteSpawnSpec>();
     private List<Note> notes = new List<Note>(); // active notes (in order)
+    private float angleOffset; // used for going up and down levels
 
     void Awake()
     {
@@ -73,13 +177,16 @@ public class RhythmManager : MonoBehaviour
         tutorialManager = Object.FindObjectOfType<TutorialManager>();
         player = Object.FindObjectOfType<PlayerController>();
         beamWidth = minBeamWidth;
+        angleOffset = 0;
     }
 
     public void StartRhythm(Activity activity_)
     {
         lateHitPeriodEnd = 0;
+        angleOffset = 0;
         activity = activity_;
         runManager.runState.ResetCombo();
+        LoadSong();
     }
 
     public void StopRhythm()
@@ -87,14 +194,23 @@ public class RhythmManager : MonoBehaviour
         activity = null;
     }
 
-    private void LoadMeasure()
+    private void LoadSong()
     {
         // Debug.Log("load measure");
         // reset time
         time = -measureOffset;
         // load in notes for this activity, sort by timing
-        List<NoteSpec> pattern = activity.rhythmPattern.OrderBy(n => n.timing).ToList();
-        NoteSpec easiestNote = activity.rhythmPattern.OrderBy(n => n.angle).OrderBy(n => n.timing).ToList()[0];
+        List<NoteSpec> pattern = activity.song.notes.OrderBy(n => n.timing).ToList();
+        if (runManager.runState.timeSteps == 0)
+        {
+            // dummy song for first
+            pattern = new List<NoteSpec>
+            {
+                new NoteSpec(0, "C", 0),
+                new NoteSpec(3, "C", 0),
+            };
+        }
+        NoteSpec easiestNote = activity.song.notes.OrderBy(n => n.angle).OrderBy(n => n.timing).ToList()[0];
         for (int i = 0; i < pattern.Count; i++)
         {
             NoteSpec n = pattern[i];
@@ -148,7 +264,20 @@ public class RhythmManager : MonoBehaviour
         }
 
         // adjust light beam width based on current energy
-        float newBeamWidth = Mathf.Max(runState.energy * beamWidthFactor, minBeamWidth);
+        float newBeamWidth = runState.energy * beamWidthFactor;
+        // adjust angle offset to build up/down if the player is doing very well or poor
+        if (newBeamWidth < minBeamWidth)
+        {
+            angleOffset -= levelDownRate * Time.deltaTime;
+            angleOffset = Mathf.Max(angleOffset, 0);
+            newBeamWidth = minBeamWidth;
+        }
+        if (newBeamWidth > maxBeamWidth)
+        {
+            angleOffset += levelUpRate * Time.deltaTime;
+            angleOffset = Mathf.Min(angleOffset, 20);
+            newBeamWidth = maxBeamWidth;
+        }
         beamWidth = Mathf.Lerp(beamWidth, newBeamWidth, .01f);
         Light light = NoteLight.GetComponent<Light>();
         light.cookieSize = beamWidth;
@@ -157,7 +286,14 @@ public class RhythmManager : MonoBehaviour
         {
             if (!IsInsideBeam(note) && IsTouchingBeam(note))
             {
-                note.OnDeflect();
+                // notes coming from below get auto-hit! (play sound and count for combo)
+                if (note.transform.position.y < hitArea.transform.position.y)
+                {
+                    note.OnAutoHit(time, runState);
+                } else
+                {
+                    note.OnDeflect();
+                }
                 notes.Remove(note);
             }
         }
@@ -218,7 +354,7 @@ public class RhythmManager : MonoBehaviour
                         if (hitTypes.Contains(n.type))
                         {
                             notes.Remove(n);
-                            n.OnHit(runManager.runState);
+                            n.OnHit(time, runManager.runState);
                         }
                     }
                 }
@@ -234,9 +370,10 @@ public class RhythmManager : MonoBehaviour
             }
         }
         // no notes left - then spawn more to repeat the pattern
-        else if (activity != null && notesToSpawn.Count == 0)
+        // NOW WHOLE SONGS
+        /* else if (activity != null && notesToSpawn.Count == 0)
         {
-            LoadMeasure();
+            LoadSong();
             // abort if the player is almost at the end of the platform
             // (so no notes can spawn that reach player after they reach end)
             float lastSpawnTime = notesToSpawn.Last().spawnTime;
@@ -247,7 +384,7 @@ public class RhythmManager : MonoBehaviour
                 notesToSpawn.Clear();
                 notesToSpawn.Clear();
             }
-        }
+        } */
         // activate appropriate tutorials
         // show rhythm tutorial once some notes appear on screen
         bool noteVisible = notes.Count > 0 && notes[0].transform.position.x < hitArea.transform.position.x + 5;
@@ -268,7 +405,7 @@ public class RhythmManager : MonoBehaviour
     // create a note with specified type + spawn time
     void SpawnNote(NoteSpawnSpec n)
     {
-        Vector3 offset = Quaternion.Euler(0, 0, n.angle) * new Vector3(travelDist, 0, 0);
+        Vector3 offset = Quaternion.Euler(0, 0, n.angle - angleOffset) * new Vector3(travelDist, 0, 0);
         Vector3 destPos = hitArea.transform.position;
         Vector3 startingPos = destPos + offset;
         GameObject note;

@@ -12,4 +12,11 @@ public class Class : Activity
         emotionEffect = new EmotionState(3, 1, 3);
         isUnlocked = true;
     }
+
+    // (weighted) availability of activity, given state of run
+    public override int CustomAvailability(RunState runState)
+    {
+        // for now, only when scheduled
+        return 0;
+    }
 }
