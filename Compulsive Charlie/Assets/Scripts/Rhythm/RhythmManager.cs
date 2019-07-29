@@ -137,15 +137,17 @@ public class RhythmManager : MonoBehaviour
     public const float measureOffset = 0f;
     // how to scale light beam width based on energy
     public const float beamWidthFactor = .5f;
-    // beam limits and how fast to level up/down when hitting those limits
+    // beam constants and how fast to level up/down when around them
     public const float minBeamWidth = 1f;
-    public const float maxBeamWidth = 5f;
-    public const float levelUpRate = 5f;
-    public const float levelDownRate = .5f;
+    // level up when above equilibrium, and down when below, proportional to difference
+    public const float equilibriumBeamWidth = 4f;
+    public const float levelUpRate = .5f;
+    public const float levelDownRate = 1f;
     // decay rate - if we use accumulation?
 
     public PlayerController player;
     public GameObject hitArea;
+    public GameObject angleMarker;
     public GameObject NoteLight;
     public float beamWidth;
     public RunManager runManager;
@@ -219,13 +221,26 @@ public class RhythmManager : MonoBehaviour
             // choose a note type based on current emotional state
             EmotionState curr = runManager.runState.emotions;
             EmotionType type = n.type;
-            // if specified, do that, else choose either energy, or the dominant emotion
+            // if specified, do that, else choose either energy, or an emotion (w/ weighted probability)
             if (n != easiestNote && n.type == EmotionType.None)
             {
-                int r = Random.Range(0, 30);
-                if (r < curr.GetMaxValue() + 3)
+                // double chance for the dominant emotion
+                if (Random.Range(0, 60) < curr.GetMaxValue())
                 {
                     type = curr.GetDominantEmotion();
+                }
+                // else just proportional to emotion value / 60
+                else if (Random.Range(0, 60) < curr.anxiety)
+                {
+                    type = EmotionType.anxiety;
+                }
+                else if (Random.Range(0, 60) < curr.anxiety)
+                {
+                    type = EmotionType.anxiety;
+                }
+                else if (Random.Range(0, 60) < curr.anxiety)
+                {
+                    type = EmotionType.anxiety;
                 }
             }
             // also first activity is all energy notes if need to show tutorial
@@ -266,18 +281,20 @@ public class RhythmManager : MonoBehaviour
         // adjust light beam width based on current energy
         float newBeamWidth = runState.energy * beamWidthFactor;
         // adjust angle offset to build up/down if the player is doing very well or poor
-        if (newBeamWidth < minBeamWidth)
+        if (newBeamWidth < equilibriumBeamWidth)
         {
-            angleOffset -= levelDownRate * Time.deltaTime;
+            float delta = equilibriumBeamWidth - newBeamWidth;
+            angleOffset -= delta * levelDownRate * Time.deltaTime;
             angleOffset = Mathf.Max(angleOffset, 0);
-            newBeamWidth = minBeamWidth;
+            newBeamWidth = Mathf.Max(newBeamWidth, minBeamWidth);
         }
-        if (newBeamWidth > maxBeamWidth)
+        if (newBeamWidth > equilibriumBeamWidth)
         {
-            angleOffset += levelUpRate * Time.deltaTime;
+            float delta = newBeamWidth - equilibriumBeamWidth;
+            angleOffset += delta * levelUpRate * Time.deltaTime;
             angleOffset = Mathf.Min(angleOffset, 20);
-            newBeamWidth = maxBeamWidth;
         }
+        angleMarker.transform.eulerAngles = new Vector3(0, 0, angleOffset);
         beamWidth = Mathf.Lerp(beamWidth, newBeamWidth, .01f);
         Light light = NoteLight.GetComponent<Light>();
         light.cookieSize = beamWidth;

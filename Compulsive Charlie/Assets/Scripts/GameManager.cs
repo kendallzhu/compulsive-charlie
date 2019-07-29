@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
 
         profile.defaultInitialEmotions = new EmotionState(4, 4, 4);
         profile.defaultInitialEnergy = 2;
-        profile.defaultEnergyCap = 10;
+        profile.defaultEnergyCap = 20;
         profile.defaultEnergyRegen = 0;
 
         profile.defaultSchedule = new List<Activity>();
