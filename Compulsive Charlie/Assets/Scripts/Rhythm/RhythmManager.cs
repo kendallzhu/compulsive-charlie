@@ -3,103 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class NoteSpec
-{
-    public int timing;
-    public string instrument;
-    public string pitch;
-    public int angle;
-    public EmotionType type;
-
-    public NoteSpec(int timing, string pitch, int angle, EmotionType type = EmotionType.None, string instrument = "wood_block")
-    {
-        this.timing = timing;
-        this.instrument = instrument;
-        this.pitch = pitch;
-        this.type = type;
-        this.angle = angle;
-    }
-}
-
-// class to help store + manipulate measures of notes
-public class MeasureSpec
-{
-    public List<NoteSpec> notes;
-
-    public MeasureSpec()
-    {
-        this.notes = new List<NoteSpec> { };
-    }
-
-    public MeasureSpec(List<NoteSpec> notes)
-    {
-        this.notes = notes;
-    }
-
-    // adds all notes from another measure
-    public void AddMeasure(MeasureSpec measure)
-    {
-        this.notes.AddRange(measure.notes);
-    }
-
-    public MeasureSpec Copy()
-    {
-        MeasureSpec newMeasure = new MeasureSpec();
-        newMeasure.AddMeasure(this);
-        return newMeasure;
-    }
-
-    public MeasureSpec ReplaceAllPitches(string newPitch)
-    {
-        return new MeasureSpec(notes.Select(note => new NoteSpec(
-            note.timing,
-            newPitch,
-            note.angle,
-            note.type,
-            note.instrument
-        )).ToList());
-    }
-}
-
-// class to put together a bunch of measures into a list of notes
-public class Song
-{
-    public const int measureSize = 16;
-    public List<NoteSpec> notes;
-
-    public Song()
-    {
-        this.notes = new List<NoteSpec>();
-    }
-
-    public Song(List<NoteSpec> notes)
-    {
-        this.notes = notes;
-    }
-
-    public Song(List<(MeasureSpec, int)> measures)
-    {
-        this.notes = new List<NoteSpec>();
-        measures.ForEach(data => this.AddMeasure(data.Item1, data.Item2));
-    }
-
-    public void AddMeasure(MeasureSpec measure, int measureNumber)
-    {
-        measure.notes.ForEach(note => notes.Add(new NoteSpec(
-            note.timing + measureNumber * measureSize,
-            note.pitch,
-            note.angle,
-            note.type,
-            note.instrument
-        )));
-    }
-
-    public int Length()
-    {
-        return notes.Max(note => note.timing);
-    }
-}
-
 // class for spawning stuff
 public class NoteSpawnSpec
 {
@@ -133,17 +36,14 @@ public class RhythmManager : MonoBehaviour
     public const float earlyHitPeriod = tempoIncrement;
     // duration after arrival time that is considered a miss for the next note
     public const float lateHitPeriod = hitWindowLate + tempoIncrement / 2;
-    // duration between repeating measures of same activity
-    public const float measureOffset = 0f;
     // how to scale light beam width based on energy
     public const float beamWidthFactor = .5f;
     // beam constants and how fast to level up/down when around them
     public const float minBeamWidth = 1f;
-    // level up when above equilibrium, and down when below, proportional to difference
-    public const float equilibriumBeamWidth = 4f;
-    public const float levelUpRate = .5f;
-    public const float levelDownRate = 1f;
-    // decay rate - if we use accumulation?
+    // pull angleOffset towards current energy level, rate per second proportional to difference
+    public const float angleChangeRate = .2f;
+    // how low do notes have to be to get auto hit?
+    public const float autoHitDiffThreshold = 1f;
 
     public PlayerController player;
     public GameObject hitArea;
@@ -198,9 +98,8 @@ public class RhythmManager : MonoBehaviour
 
     private void LoadSong()
     {
-        // Debug.Log("load measure");
         // reset time
-        time = -measureOffset;
+        time = 0;
         // load in notes for this activity, sort by timing
         List<NoteSpec> pattern = activity.song.notes.OrderBy(n => n.timing).ToList();
         if (runManager.runState.timeSteps == 0)
@@ -280,37 +179,30 @@ public class RhythmManager : MonoBehaviour
 
         // adjust light beam width based on current energy
         float newBeamWidth = runState.energy * beamWidthFactor;
-        // adjust angle offset to build up/down if the player is doing very well or poor
-        if (newBeamWidth < equilibriumBeamWidth)
-        {
-            float delta = equilibriumBeamWidth - newBeamWidth;
-            angleOffset -= delta * levelDownRate * Time.deltaTime;
-            angleOffset = Mathf.Max(angleOffset, 0);
-            newBeamWidth = Mathf.Max(newBeamWidth, minBeamWidth);
-        }
-        if (newBeamWidth > equilibriumBeamWidth)
-        {
-            float delta = newBeamWidth - equilibriumBeamWidth;
-            angleOffset += delta * levelUpRate * Time.deltaTime;
-            angleOffset = Mathf.Min(angleOffset, 20);
-        }
-        angleMarker.transform.eulerAngles = new Vector3(0, 0, angleOffset);
+        newBeamWidth = Mathf.Max(newBeamWidth, minBeamWidth);
         beamWidth = Mathf.Lerp(beamWidth, newBeamWidth, .01f);
         Light light = NoteLight.GetComponent<Light>();
         light.cookieSize = beamWidth;
+
+        // adjust angle offset to build up/down if the player is doing very well or poor
+        // (pull towards current energy level, at rate proportional to delta)
+        float changeRate = (runState.energy - angleOffset) * angleChangeRate * Time.deltaTime;
+        angleOffset += changeRate;
+        Debug.Log(angleOffset);
+        angleMarker.transform.eulerAngles = new Vector3(0, 0, angleOffset);
+
         // destroy all notes fallling outside of the beam
         foreach (Note note in new List<Note>(notes))
         {
-            if (!IsInsideBeam(note) && IsTouchingBeam(note))
+            // notes coming from far enough below get auto-hit! (play sound and count for combo)
+            if (hitArea.transform.position.y - note.transform.position.y > autoHitDiffThreshold)
             {
-                // notes coming from below get auto-hit! (play sound and count for combo)
-                if (note.transform.position.y < hitArea.transform.position.y)
-                {
-                    note.OnAutoHit(time, runState);
-                } else
-                {
-                    note.OnDeflect();
-                }
+                note.OnAutoHit(time, runState);
+                notes.Remove(note);
+            }
+            else if (!IsInsideBeam(note) && IsTouchingBeam(note))
+            {
+                note.OnDeflect();
                 notes.Remove(note);
             }
         }

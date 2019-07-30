@@ -8,6 +8,7 @@ using System.Linq;
 public class PlayerController : MonoBehaviour {
     // gameplay constants
     public const float jumpForcePerEnergy = 220f;
+    public const float jumpStartForwardVelocity = 1.5f;
     public const float forwardJumpForce = 40f;
     public const float fallingMinForwardSpeed = .5f;
 
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour {
         // once jump start animation finished, apply force once
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("charlie_jumping") && runState.jumpPower > 0)
         {
+            rb2d.velocity = new Vector2(jumpStartForwardVelocity, rb2d.velocity.y);
             float upwardJumpForce = runState.CurrentThought().JumpBonus(runState.jumpPower * jumpForcePerEnergy);
             rb2d.AddForce(new Vector2(forwardJumpForce, upwardJumpForce));
             runState.jumpPower = 0;
@@ -111,7 +113,7 @@ public class PlayerController : MonoBehaviour {
             return 1.5f;
         }
         // set the forward speed slow enough to allow finishing the song
-        float songDuration = ((float)runState.CurrentActivity().song.Length() * RhythmManager.tempoIncrement) + 5;
+        float songDuration = ((float)runState.CurrentActivity().song.Length() * RhythmManager.tempoIncrement) + 2;
         return (float)runState.CurrentActivityPlatform().length / songDuration;
     }
 }

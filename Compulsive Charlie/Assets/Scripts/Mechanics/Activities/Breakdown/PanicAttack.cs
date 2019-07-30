@@ -17,7 +17,11 @@ public class PanicAttack : Activity
             new NoteSpec(1, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
             new NoteSpec(5, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
             new NoteSpec(6, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
-        });
+            new NoteSpec(9, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
+            new NoteSpec(10, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
+            new NoteSpec(13, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
+            new NoteSpec(14, "Bass_Drum_1", 0, EmotionType.anxiety, "drum_kit"),
+        }).Repeated(4);
     }
 
     // (weighted) availability of activity, given state of run

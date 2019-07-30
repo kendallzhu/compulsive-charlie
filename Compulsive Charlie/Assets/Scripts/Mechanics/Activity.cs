@@ -49,7 +49,7 @@ public abstract class Activity : MonoBehaviour {
     });
     static MeasureSpec base1 = base0.ReplaceAllPitches("G#");
     static MeasureSpec base2 = base0.ReplaceAllPitches("D#");
-    public Song song = new Song(new List<(MeasureSpec, int)> {
+    static Song songOnce = new Song(new List<(MeasureSpec, int)> {
         (melody, 0),
         (beats, 0),
         (base0, 0),
@@ -63,6 +63,7 @@ public abstract class Activity : MonoBehaviour {
         (beats, 3),
         (base2, 3)
     });
+    public Song song = songOnce.Repeated(2);
 
     private void Start()
     {

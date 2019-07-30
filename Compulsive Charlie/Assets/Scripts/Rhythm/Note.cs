@@ -88,10 +88,24 @@ public class Note : MonoBehaviour
         StartCoroutine(HitAfterDelay(arrivalTime - time, runState));
     }
 
+    public IEnumerator AutoHitAfterDelay(float delay, RunState runState)
+    {
+        // dark out note and move it back
+        transform.localScale = new Vector3(.5f, .5f, 0);
+        transform.Translate(new Vector3(0, 0, -1f));
+        yield return new WaitForSeconds(delay);
+        runState.IncreaseCombo();
+        Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
+        // play audio and destroy when done
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.Play();
+        Destroy(gameObject, audioSource.clip.length);
+    }
+
     public void OnAutoHit(float time, RunState runState)
     {
         // seperate AutoHitAfterDelay function with less effects?
-        StartCoroutine(HitAfterDelay(arrivalTime - time, runState));
+        StartCoroutine(AutoHitAfterDelay(arrivalTime - time, runState));
     }
 
     public virtual void HitEffect(RunState runState)
