@@ -48,7 +48,7 @@ public class Note : MonoBehaviour
     {
         Destroy(gameObject);
         GameObject deflect = Instantiate(deflectPrefab, transform.position, Quaternion.identity, transform.parent);
-        deflect.GetComponent<NoteFadeOut>().SetDirection(new Vector2(-startingOffset.x, startingOffset.y));
+        deflect.GetComponent<MoveFadeOut>().SetDirection(new Vector2(-startingOffset.x, startingOffset.y));
     }
 
     // functions for miss/hit effects
@@ -85,7 +85,7 @@ public class Note : MonoBehaviour
 
     public void OnHit(float time, RunState runState)
     {
-        StartCoroutine(HitAfterDelay(arrivalTime - time, runState));
+        StartCoroutine(HitAfterDelay(arrivalTime - time + RhythmManager.hitWindowLate, runState));
     }
 
     public IEnumerator AutoHitAfterDelay(float delay, RunState runState)
@@ -94,8 +94,8 @@ public class Note : MonoBehaviour
         transform.localScale = new Vector3(.5f, .5f, 0);
         transform.Translate(new Vector3(0, 0, -1f));
         yield return new WaitForSeconds(delay);
-        runState.IncreaseCombo();
-        Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
+        transform.localScale = new Vector3(0f, 0f, 0);
+        // Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
         // play audio and destroy when done
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.Play();
@@ -105,7 +105,7 @@ public class Note : MonoBehaviour
     public void OnAutoHit(float time, RunState runState)
     {
         // seperate AutoHitAfterDelay function with less effects?
-        StartCoroutine(AutoHitAfterDelay(arrivalTime - time, runState));
+        StartCoroutine(AutoHitAfterDelay(arrivalTime - time + RhythmManager.hitWindowLate, runState));
     }
 
     public virtual void HitEffect(RunState runState)

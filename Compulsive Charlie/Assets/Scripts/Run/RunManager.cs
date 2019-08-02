@@ -54,7 +54,7 @@ public class RunManager : MonoBehaviour
         if (Input.GetKey("g") && Input.GetKey("o"))
         {
             ActivityPlatform ap = runState.CurrentActivityPlatform();
-            float xDiff = ap.x + ap.length - player.transform.position.x;
+            float xDiff = ap.x + ap.length - player.transform.position.x - 1;
             player.transform.Translate(new Vector3(xDiff, 0, 0));
         }
         // cheatcode to deactivate tutorials
@@ -116,11 +116,6 @@ public class RunManager : MonoBehaviour
                 runState.ClearSpawned(newActivityPlatform);
                 // trigger activity special effect
                 newActivityPlatform.activity.Effect(runState);
-                // increase schedule points if applicable
-                if (newActivityPlatform.activity == gameManager.profile.GetSchedule(runState.timeSteps))
-                {
-                    runState.schedulePoints++;
-                }
             }
             // start new platform spawning rhythm notes
             rhythmManager.StartRhythm(newActivityPlatform.activity);
@@ -234,6 +229,7 @@ public class RunManager : MonoBehaviour
         // Put scheduled activity at front of list so it is always offered
         Activity scheduledActivity = gameManager.profile.GetSchedule(runState.timeSteps + 1);
         availableActivities.Insert(Random.Range(0, 3), scheduledActivity);
+        // allow multiple of the same
         for (int i = 0; i < 3; i += 1)
         {
             offeredActivities.Add(availableActivities[i]);

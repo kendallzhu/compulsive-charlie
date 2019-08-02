@@ -23,8 +23,8 @@ public class NoteSpawnSpec
 public class RhythmManager : MonoBehaviour
 {
     // how forgiving we are for note hits
-    public const float hitWindowLate = .1f;
-    public const float hitWindowEarly = .05f;
+    public const float hitWindowLate = .07f;
+    public const float hitWindowEarly = .07f;
     // how far to the right of the hit area are notes spawned
     public const float travelDist = 16f;
     // how long it takes for notes to get to hit area
@@ -188,7 +188,6 @@ public class RhythmManager : MonoBehaviour
         // (pull towards current energy level, at rate proportional to delta)
         float changeRate = (runState.energy - angleOffset) * angleChangeRate * Time.deltaTime;
         angleOffset += changeRate;
-        Debug.Log(angleOffset);
         angleMarker.transform.eulerAngles = new Vector3(0, 0, angleOffset);
 
         // destroy all notes fallling outside of the beam

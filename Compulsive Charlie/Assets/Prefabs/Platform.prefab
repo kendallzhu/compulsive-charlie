@@ -394,6 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ap: {fileID: 0}
+  ScheduleCollectablePrefab: {fileID: 156797893078155474, guid: 36789dde4d3c5f14aae1d113333c1fd9,
+    type: 3}
 --- !u!1 &1743287043617584
 GameObject:
   m_ObjectHideFlags: 0

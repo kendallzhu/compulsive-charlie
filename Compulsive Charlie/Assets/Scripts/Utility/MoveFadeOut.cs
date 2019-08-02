@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NoteFadeOut : MonoBehaviour
+public class MoveFadeOut : MonoBehaviour
 {
+    public float fadeToAlpha = 0f;
     public float fadeDist = 2.4f;
     public float baseSpeed = .1f;
     public float slowDownFactor = 2f;
@@ -21,6 +22,17 @@ public class NoteFadeOut : MonoBehaviour
         direction = dir;
     }
 
+    public void SetMovement(Vector2 move)
+    {
+        fadeDist = move.magnitude;
+        direction = move;
+    }
+
+    public void SetFadeToAlpha(float alpha)
+    {
+        fadeToAlpha = alpha;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -28,7 +40,7 @@ public class NoteFadeOut : MonoBehaviour
         transform.Translate(direction.normalized * step);
         distanceTraveled += step;
         Color tmp = gameObject.GetComponent<SpriteRenderer>().color;
-        tmp.a = 1f - distanceTraveled / fadeDist;
+        tmp.a = 1f + (fadeToAlpha - 1f) * distanceTraveled / fadeDist;
         gameObject.GetComponent<SpriteRenderer>().color = tmp;
         if (distanceTraveled > fadeDist)
         {
