@@ -31,7 +31,7 @@ public class GoToBed : Activity
     // make it easier to go to bed the later it is
     public override int HeightRating(RunState runState)
     {
-        int lateness = System.Math.Max(0, runState.timeSteps - 10);
+        int lateness = System.Math.Max(0, runState.timeSteps - runState.bedTime);
         return base.HeightRating(runState) - lateness;
     }
 }

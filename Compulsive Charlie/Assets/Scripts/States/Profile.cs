@@ -14,16 +14,18 @@ public class Profile
 
     // parameters
     public EmotionState emotionEquilibriums = new EmotionState(0, 0, 0);
-    public EmotionState defaultInitialEmotions;
+    public EmotionState defaultInitialEmotions = new EmotionState(4, 4, 4);
     public EmotionState initialEmotions;
     public List<Activity> defaultSchedule;
     public List<Activity> schedule;
-    public int defaultInitialEnergy;
+    public const int defaultInitialEnergy = 2;
     public int initialEnergy;
-    public int defaultEnergyRegen;
+    public const int defaultEnergyRegen = 0;
     public int energyRegen;
-    public int defaultEnergyCap;
+    public const int defaultEnergyCap = 20;
     public int energyCap;
+    public const int defaultBedTime = 10;
+    public int bedTime;
     // run history
     public List<RunState> allRuns;
 
@@ -55,6 +57,7 @@ public class Profile
         energyRegen = defaultEnergyRegen;
         energyCap = defaultEnergyCap;
         schedule = new List<Activity>(defaultSchedule);
+        bedTime = defaultBedTime;
     }
 }
 

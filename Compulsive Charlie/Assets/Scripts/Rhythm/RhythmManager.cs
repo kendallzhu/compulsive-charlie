@@ -93,6 +93,8 @@ public class RhythmManager : MonoBehaviour
 
     public void StopRhythm()
     {
+        notes.ForEach(note => Destroy(note));
+        notes.Clear();
         activity = null;
     }
 

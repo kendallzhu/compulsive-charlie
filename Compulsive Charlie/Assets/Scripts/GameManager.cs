@@ -33,11 +33,6 @@ public class GameManager : MonoBehaviour {
             profile.upgrades.Add(child.gameObject.GetComponent<Upgrade>());
         }
 
-        profile.defaultInitialEmotions = new EmotionState(4, 4, 4);
-        profile.defaultInitialEnergy = 2;
-        profile.defaultEnergyCap = 20;
-        profile.defaultEnergyRegen = 0;
-
         profile.defaultSchedule = new List<Activity>();
         // ambitious schedule
         profile.defaultSchedule.Add(Object.FindObjectOfType<Chores>());

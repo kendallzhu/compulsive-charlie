@@ -746,9 +746,8 @@ GameObject:
   - component: {fileID: 570606909}
   - component: {fileID: 570606912}
   - component: {fileID: 570606911}
-  - component: {fileID: 570606910}
   m_Layer: 5
-  m_Name: ScheduleCompletionText
+  m_Name: ScheduleCompletion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -773,19 +772,6 @@ RectTransform:
   m_AnchoredPosition: {x: 220.08, y: -147}
   m_SizeDelta: {x: 464.9, y: 56.1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &570606910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570606908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c08062441a76704da994ff6e6e0648e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!114 &570606911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1481,6 +1467,9 @@ MonoBehaviour:
   upgradesPanel: {fileID: 0}
   upgradesButton: {fileID: 0}
   profileButton: {fileID: 0}
+  score: {fileID: 2013665297}
+  activityCombos: {fileID: 1889063173}
+  scheduleCompletion: {fileID: 570606908}
 --- !u!114 &1535930619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,9 +1889,8 @@ GameObject:
   - component: {fileID: 1889063174}
   - component: {fileID: 1889063176}
   - component: {fileID: 1889063175}
-  - component: {fileID: 1889063177}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: ActivityCombos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2049,19 +2037,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889063173}
   m_CullTransparentMesh: 0
---- !u!114 &1889063177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889063173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757e1e452c0a63440a82d4ca83031922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!1 &2013665297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,7 +2049,7 @@ GameObject:
   - component: {fileID: 2013665301}
   - component: {fileID: 2013665300}
   m_Layer: 5
-  m_Name: Heading
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

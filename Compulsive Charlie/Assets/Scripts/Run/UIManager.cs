@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject anxietyMeter;
     public GameObject frustrationMeter;
     public GameObject timerWheel;
-    public GameObject scheduleBar;
+    public GameObject scoreDisplay;
 
     // display constants
     private const int emotionMeterCap = 20;
@@ -35,11 +35,10 @@ public class UIManager : MonoBehaviour
         RunState runState = runManager.runState;
         EmotionState e = runState.emotions;
         // fill meters
-        List<int> values = new List<int> { runState.energy, runState.schedulePoints, e.despair, e.anxiety, e.frustration };
+        List<int> values = new List<int> { runState.energy, e.despair, e.anxiety, e.frustration };
         int emoCap = emotionMeterCap;
-        int scheduleCap = gameManager.profile.schedule.Count;
-        List<int> caps = new List<int> { gameManager.profile.energyCap, scheduleCap, emoCap, emoCap, emoCap };
-        List<GameObject> meters = new List<GameObject> { energyMeter, scheduleBar, despairMeter, anxietyMeter, frustrationMeter };
+        List<int> caps = new List<int> { gameManager.profile.energyCap, emoCap, emoCap, emoCap };
+        List<GameObject> meters = new List<GameObject> { energyMeter, despairMeter, anxietyMeter, frustrationMeter };
         for (int i = 0; i < meters.Count; i++)
         {
             // Find filler image (meters must have a child called "Filler")
@@ -71,6 +70,27 @@ public class UIManager : MonoBehaviour
         if (System.Math.Abs(disc.localRotation.eulerAngles.z - targetRotation) > System.Math.Abs(timeRotationStep))
         {
             disc.Rotate(new Vector3(0, 0, timeRotationStep));
+        }
+        // update the score display
+        Transform scoreText = scoreDisplay.transform.Find("Text");
+        if (scoreText)
+        {
+            scoreText.GetComponent<TextMeshProUGUI>().text = runState.score.ToString();
+        }
+        Transform scoreMultiplierText = scoreDisplay.transform.Find("MultiplierText");
+        if (scoreMultiplierText)
+        {
+            string multiplierString = runState.scoreMultiplier.ToString() + "x";
+            scoreMultiplierText.GetComponent<TextMeshProUGUI>().text = multiplierString;
+            scoreMultiplierText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0);
+            if (runState.scoreMultiplier < 1)
+            {
+                scoreMultiplierText.GetComponent<TextMeshProUGUI>().color = new Color(255, 0, 0);
+            }
+            if (runState.scoreMultiplier > 1)
+            {
+                scoreMultiplierText.GetComponent<TextMeshProUGUI>().color = new Color(0, 255, 0);
+            }
         }
     }
 }

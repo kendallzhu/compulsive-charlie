@@ -7,16 +7,19 @@ using System;
 // Class for storing all data relevant to a given run
 public class RunState {
     public int timeSteps;
+    public int bedTime;
     public bool done;
     public int energy;
     public int energyCap;
     public int jumpPower;
     public int rhythmCombo;
+    public int rhythmBreakCount;
     public EmotionState emotions;
     public List<ActivityPlatform> activityHistory;
     public List<Thought> thoughtHistory;
-    // records schedule activity completion (and more nuance?)
-    public int schedulePoints = 0;
+    // overall scoring
+    public int scoreMultiplier = 1;
+    public int score = 0;
     // height could have more meaning?
     public int height = 0;
 
@@ -24,9 +27,10 @@ public class RunState {
     public List<ActivityPlatform> spawnedPlatforms = new List<ActivityPlatform>();
 
     // basic constructor
-    public RunState(int initialEnergy, int energyCap, EmotionState initialEmotions)
+    public RunState(int initialEnergy, int energyCap, EmotionState initialEmotions, int bedTime)
     {
         this.timeSteps = 0;
+        this.bedTime = bedTime;
         this.energy = initialEnergy;
         this.energyCap = energyCap;
         this.emotions = initialEmotions;
@@ -70,15 +74,25 @@ public class RunState {
         {
             ap.bestCombo = rhythmCombo;
         }
+        // increase overall score
+        score += Mathf.Max(1, rhythmCombo * scoreMultiplier);
     }
 
     public void ResetCombo()
     {
         rhythmCombo = 0;
+        rhythmBreakCount = 0;
+        scoreMultiplier = 1;
+        // score multiplier takes a hit when going past bed time
+        // (can go negative, which means misses decrease score)
+        scoreMultiplier -= Mathf.Max(0, timeSteps - bedTime);
     }
 
     public void BreakCombo()
     {
+        rhythmBreakCount++;
+        // decrease score if score multiplier is negative
+        score += Mathf.Min(0, rhythmBreakCount * scoreMultiplier);
         rhythmCombo = 0;
     }
 

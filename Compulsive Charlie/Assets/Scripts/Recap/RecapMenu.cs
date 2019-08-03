@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using TMPro;
 
 // Script for handling the menu after the cutScene
 // (All non-ui functions called through gameManager, so it can keep track of stuff)
@@ -12,6 +13,9 @@ public class RecapMenu : MonoBehaviour
     public GameObject upgradesPanel;
     public GameObject upgradesButton;
     public GameObject profileButton;
+    public GameObject score;
+    public GameObject activityCombos;
+    public GameObject scheduleCompletion;
 
     // Use this for initialization
     void Awake()
@@ -28,8 +32,47 @@ public class RecapMenu : MonoBehaviour
         upgradesPanel = transform.Find("UpgradesPanel").gameObject;
         upgradesButton = transform.Find("UpgradesButton").gameObject;
         profileButton = transform.Find("ProfileButton").gameObject;
+
+        RunState lastRun = gameManager.profile.allRuns.Last();
+
+        // populate score
+        score.GetComponent<TextMeshProUGUI>().text = "Score: " + lastRun.score.ToString();
+
+        // Populate activity combos
+        // sort activities by best combo
+        List<ActivityPlatform> history = gameManager.profile.allRuns.Last().activityHistory;
+        List<ActivityPlatform> sortedHistory = history.OrderBy(ap => -ap.bestCombo).ToList();
+
+        // retrieve name and best combos for each activity
+        List<string> activityNames = sortedHistory.Select(ap => ap.activity.name).ToList();
+        List<int> bestCombos = sortedHistory.Select(ap => ap.bestCombo).ToList();
+        string comboStrings = "";
+        for (int i = 0; i < sortedHistory.Count && i < 5; i++)
+        {
+            comboStrings += activityNames[i] + ": " + bestCombos[i].ToString() + "\n";
+        }
+
+        // load everything into the text box
+        activityCombos.GetComponent<TextMeshProUGUI>().text = comboStrings;
+
+        // Populate schedule completion
+        // calculate schedule completion
+        List<Activity> schedule = gameManager.profile.schedule;
+        List<Activity> reality = lastRun.activityHistory.Select(ap => ap.activity).ToList();
+        int numCompleted = 0;
+        for (int i = 0; i < schedule.Count; i++)
+        {
+            if (i + 1 < reality.Count && schedule[i] == reality[i + 1])
+            {
+                numCompleted++;
+            }
+        }
+        string completion = numCompleted.ToString() + "/" + schedule.Count.ToString();
+        // load everything into the text box
+        scheduleCompletion.GetComponent<TextMeshProUGUI>().text = "Schedule Completion: " + completion;
+
         // reset the profile after every run
-        gameManager.profile.Reset();
+        // gameManager.profile.Reset();
     }
 
     private void Update()

@@ -38,7 +38,8 @@ public class RunManager : MonoBehaviour
         runState = new RunState(
             gameManager.profile.initialEnergy,
             gameManager.profile.energyCap,
-            new EmotionState(gameManager.profile.initialEmotions)
+            new EmotionState(gameManager.profile.initialEmotions),
+            gameManager.profile.bedTime
         );
         Time.timeScale = 1;
     }

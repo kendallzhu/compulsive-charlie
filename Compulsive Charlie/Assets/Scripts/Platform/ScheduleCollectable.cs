@@ -19,7 +19,7 @@ public class ScheduleCollectable : MonoBehaviour
     {
         if (other.name == "Charlie")
         {
-            runManager.runState.schedulePoints += 1;
+            runManager.runState.scoreMultiplier += 1;
             gameObject.AddComponent<MoveFadeOut>();
             gameObject.GetComponent<MoveFadeOut>().SetMovement(new Vector2(0, 2f));
         }

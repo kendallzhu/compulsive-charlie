@@ -14,13 +14,9 @@ public class Rage : Activity
         isBreakdown = true;
         song = new Song(new List<NoteSpec> {
             new NoteSpec(0, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit"),
-            new NoteSpec(1, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit"),
-            new NoteSpec(5, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit"),
-            new NoteSpec(6, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit"),
-            new NoteSpec(9, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit"),
-            new NoteSpec(10, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit"),
-            new NoteSpec(13, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit"),
-            new NoteSpec(14, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit"),
+            new NoteSpec(2, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit"),
+            new NoteSpec(8, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit"),
+            new NoteSpec(10, "Bass_Drum_1", 0, EmotionType.frustration, "drum_kit")
         }).Repeated(4);
     }
 
