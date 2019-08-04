@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject frustrationMeter;
     public GameObject timerWheel;
     public GameObject scoreDisplay;
+    public GameObject comboCounter;
 
     // display constants
     private const int emotionMeterCap = 20;
@@ -91,6 +92,16 @@ public class UIManager : MonoBehaviour
             {
                 scoreMultiplierText.GetComponent<TextMeshProUGUI>().color = new Color(0, 255, 0);
             }
+        }
+        Transform comboText = comboCounter.transform.Find("Text");
+        if (comboText)
+        {
+            string comboString = "x" + runState.rhythmCombo.ToString();
+            if (comboString != comboText.GetComponent<TextMeshProUGUI>().text)
+            {
+                comboText.GetComponent<FadeTMPro>().Reset();
+            }
+            comboText.GetComponent<TextMeshProUGUI>().text = comboString;
         }
     }
 }

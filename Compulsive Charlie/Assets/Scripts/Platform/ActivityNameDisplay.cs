@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-// script for marking activities (should some of this logic be elsewhere?)
+// script for marking activities and doing stuff related to if they have bonuses
+// (should schedule colletable logic be elsewhere?)
 public class ActivityNameDisplay : MonoBehaviour
 {
     private GameManager gameManager;

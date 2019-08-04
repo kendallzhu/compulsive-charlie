@@ -44,7 +44,11 @@ public class Profile
     {        
         if (time > schedule.Count)
         {
-            return schedule.Last();
+            if (time > bedTime)
+            {
+                return Object.FindObjectOfType<GoToBed>();
+            }
+            return Object.FindObjectOfType<GoToBed>();
         }
         return schedule[time - 1];
     }
