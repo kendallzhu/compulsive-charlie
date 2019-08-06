@@ -15,7 +15,7 @@ public class AmassEnergy : Upgrade
     // comb through lists of activities and thoughts and modify them to make upgrade
     public override void Activate(Profile profile)
     {
-        profile.energyCap = 25;
+        return;
     }
 
     // criteria for upgrade to be available after a run

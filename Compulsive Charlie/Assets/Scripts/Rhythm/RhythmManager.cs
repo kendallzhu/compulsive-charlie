@@ -30,7 +30,7 @@ public class RhythmManager : MonoBehaviour
     // how long it takes for notes to get to hit area
     public const float travelTime = 1.5f;
     // time between smallest increments of a rhythm pattern
-    public const float tempoIncrement = .2f;
+    public const float tempoIncrement = .19f;
     // duration before arrival time that is considered a miss for the incoming note
     // (if you hit earlier than this, then it won't be punished)
     public const float earlyHitPeriod = tempoIncrement;
@@ -182,15 +182,24 @@ public class RhythmManager : MonoBehaviour
         // adjust light beam width based on current energy
         float newBeamWidth = runState.energy * beamWidthFactor;
         newBeamWidth = Mathf.Max(newBeamWidth, minBeamWidth);
+        if (activity != null)
+        {
+            // apply activity-specific energy cap
+            newBeamWidth = Mathf.Min(newBeamWidth, activity.energyCap / 2f);
+        }
         beamWidth = Mathf.Lerp(beamWidth, newBeamWidth, .01f);
         Light light = NoteLight.GetComponent<Light>();
         light.cookieSize = beamWidth;
 
         // adjust angle offset to build up/down if the player is doing very well or poor
         // (pull towards current energy level, at rate proportional to delta)
-        float changeRate = (runState.energy - angleOffset) * angleChangeRate * Time.deltaTime;
+        float changeRate = (beamWidth - angleOffset) * angleChangeRate * Time.deltaTime;
         angleOffset += changeRate;
         angleMarker.transform.eulerAngles = new Vector3(0, 0, angleOffset);
+
+        Debug.Log(beamWidth);
+
+        Debug.Log(angleOffset);
 
         // destroy all notes fallling outside of the beam
         foreach (Note note in new List<Note>(notes))

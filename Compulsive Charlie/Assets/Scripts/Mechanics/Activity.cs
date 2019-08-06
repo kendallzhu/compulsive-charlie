@@ -23,7 +23,8 @@ public abstract class Activity : MonoBehaviour {
     public bool isUnlocked = false;
     public EmotionState emotionEffect = new EmotionState(0, 0, 0);
     public List<Thought> associatedThoughts = new List<Thought>();
-    // specs for gameplay notes
+    // specs for rhythm gameplay
+    public int energyCap = 10;
     // DEFAULT - copied from "Hero" Ping Pong the animation OST
     static MeasureSpec melody = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "A#_high", 0),

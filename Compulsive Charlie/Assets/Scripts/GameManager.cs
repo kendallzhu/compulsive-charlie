@@ -32,20 +32,6 @@ public class GameManager : MonoBehaviour {
         {
             profile.upgrades.Add(child.gameObject.GetComponent<Upgrade>());
         }
-
-        profile.defaultSchedule = new List<Activity>();
-        // ambitious schedule
-        profile.defaultSchedule.Add(Object.FindObjectOfType<Chores>());
-        profile.defaultSchedule.Add(Object.FindObjectOfType<Class>());
-        profile.defaultSchedule.Add(Object.FindObjectOfType<BalancedMeal>());
-        profile.defaultSchedule.Add(Object.FindObjectOfType<Study>());
-        profile.defaultSchedule.Add(Object.FindObjectOfType<Walk>());
-        profile.defaultSchedule.Add(Object.FindObjectOfType<BalancedMeal>());
-        profile.defaultSchedule.Add(Object.FindObjectOfType<Study>());
-        profile.defaultSchedule.Add(Object.FindObjectOfType<Study>());
-        profile.defaultSchedule.Add(Object.FindObjectOfType<Shower>());
-        profile.defaultSchedule.Add(Object.FindObjectOfType<GoToBed>());
-
         profile.Reset();
     }
 

@@ -6,11 +6,12 @@ using System.Linq;
 // Processing player physics, and dynamically change player graphics
 // For now, spacebar is only control
 public class PlayerController : MonoBehaviour {
-    // gameplay constants
-    public const float jumpForcePerEnergy = 220f;
-    public const float jumpStartForwardVelocity = 1.5f;
-    public const float forwardJumpForce = 40f;
-    public const float fallingMinForwardSpeed = .5f;
+    // motion constants
+    private const float jumpForcePerEnergy = 220f;
+    private const float jumpStartForwardVelocity = 1.5f;
+    private const float defaultForwardJumpForce = 40f;
+    private List<float> forwardJumpForces = new List<float> { 40f, 40f, 35f, 30f };
+    private const float fallingMinForwardSpeed = .5f;
 
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
@@ -82,6 +83,11 @@ public class PlayerController : MonoBehaviour {
         {
             rb2d.velocity = new Vector2(jumpStartForwardVelocity, rb2d.velocity.y);
             float upwardJumpForce = runState.CurrentThought().JumpBonus(runState.jumpPower * jumpForcePerEnergy);
+            float forwardJumpForce = defaultForwardJumpForce;
+            if (runState.jumpPower >= 0 && runState.jumpPower <= forwardJumpForces.Count())
+            {
+                forwardJumpForce = forwardJumpForces[runState.jumpPower];
+            }
             rb2d.AddForce(new Vector2(forwardJumpForce, upwardJumpForce));
             runState.jumpPower = 0;
         }

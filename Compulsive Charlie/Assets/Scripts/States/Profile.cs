@@ -16,7 +16,17 @@ public class Profile
     public EmotionState emotionEquilibriums = new EmotionState(0, 0, 0);
     public EmotionState defaultInitialEmotions = new EmotionState(4, 4, 4);
     public EmotionState initialEmotions;
-    public List<Activity> defaultSchedule;
+    public List<Activity> defaultSchedule = new List<Activity> {
+        Object.FindObjectOfType<Chores>(),
+        Object.FindObjectOfType<Class>(),
+        Object.FindObjectOfType<BalancedMeal>(),
+        Object.FindObjectOfType<Study>(),
+        Object.FindObjectOfType<Walk>(),
+        Object.FindObjectOfType<BalancedMeal>(),
+        Object.FindObjectOfType<Study>(),
+        Object.FindObjectOfType<Shower>(),
+        Object.FindObjectOfType<GoToBed>()
+    };
     public List<Activity> schedule;
     public const int defaultInitialEnergy = 2;
     public int initialEnergy;
@@ -24,7 +34,7 @@ public class Profile
     public int energyRegen;
     public const int defaultEnergyCap = 20;
     public int energyCap;
-    public const int defaultBedTime = 10;
+    public const int defaultBedTime = 9;
     public int bedTime;
     // run history
     public List<RunState> allRuns;
