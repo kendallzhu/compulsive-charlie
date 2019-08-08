@@ -24,14 +24,21 @@ public abstract class Activity : MonoBehaviour {
     public EmotionState emotionEffect = new EmotionState(0, 0, 0);
     public List<Thought> associatedThoughts = new List<Thought>();
     // specs for rhythm gameplay
-    public int energyCap = 10;
+    public int energyCap = 20;
     // DEFAULT - copied from "Hero" Ping Pong the animation OST
     static MeasureSpec melody = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "A#_high", 0),
         new NoteSpec(3, "A#_high", 0),
         new NoteSpec(6, "D#_high", 2),
         new NoteSpec(9, "D#_high", 2),
-        new NoteSpec(12, "C#_high", 4),
+        new NoteSpec(12, "C#_high", 10),
+    });
+    static MeasureSpec base0 = new MeasureSpec(new List<NoteSpec> {
+        new NoteSpec(0, "F#", 10),
+        new NoteSpec(3, "F#", 11),
+        new NoteSpec(6, "F#", 12),
+        new NoteSpec(9, "F#", 13),
+        new NoteSpec(12, "F#", 14),
     });
     static MeasureSpec beats = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
@@ -40,13 +47,6 @@ public abstract class Activity : MonoBehaviour {
         new NoteSpec(8, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
         new NoteSpec(10, "Snare_Drum_2", 20, EmotionType.None, "drum_kit"),
         new NoteSpec(12, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
-    });
-    static MeasureSpec base0 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "F#", 10),
-        new NoteSpec(3, "F#", 11),
-        new NoteSpec(6, "F#", 12),
-        new NoteSpec(9, "F#", 13),
-        new NoteSpec(12, "F#", 14),
     });
     static MeasureSpec base1 = base0.ReplaceAllPitches("G#");
     static MeasureSpec base2 = base0.ReplaceAllPitches("D#");

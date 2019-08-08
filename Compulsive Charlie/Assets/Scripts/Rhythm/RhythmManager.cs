@@ -42,8 +42,9 @@ public class RhythmManager : MonoBehaviour
     public const float minBeamWidth = 1f;
     // pull angleOffset towards current energy level, rate per second proportional to difference
     public const float angleChangeRate = .2f;
-    // how low do notes have to be to get auto hit?
-    public const float autoHitDiffThreshold = 1f;
+    // Notes spawned below this angle get auto hit - this is so as player moves up lowest notes don't clutter gameplay
+    // Hopefully there will be more notes overall in the higher levels, though, so it's worth it.
+    public const int autoHitAngle = -10;
 
     public PlayerController player;
     public GameObject hitArea;
@@ -193,24 +194,19 @@ public class RhythmManager : MonoBehaviour
 
         // adjust angle offset to build up/down if the player is doing very well or poor
         // (pull towards current energy level, at rate proportional to delta)
-        float changeRate = (beamWidth - angleOffset) * angleChangeRate * Time.deltaTime;
+        float targetAngle = runState.energy;
+        if (activity)
+        {
+            targetAngle = Mathf.Min(runState.energy, activity.energyCap);
+        }
+        float changeRate = (targetAngle - angleOffset) * angleChangeRate * Time.deltaTime;
         angleOffset += changeRate;
         angleMarker.transform.eulerAngles = new Vector3(0, 0, angleOffset);
 
-        Debug.Log(beamWidth);
-
-        Debug.Log(angleOffset);
-
-        // destroy all notes fallling outside of the beam
+        // destroy all notes falling outside of the beam
         foreach (Note note in new List<Note>(notes))
         {
-            // notes coming from far enough below get auto-hit! (play sound and count for combo)
-            if (hitArea.transform.position.y - note.transform.position.y > autoHitDiffThreshold)
-            {
-                note.OnAutoHit(time, runState);
-                notes.Remove(note);
-            }
-            else if (!IsInsideBeam(note) && IsTouchingBeam(note))
+            if (!IsInsideBeam(note) && IsTouchingBeam(note))
             {
                 note.OnDeflect();
                 notes.Remove(note);
@@ -324,7 +320,8 @@ public class RhythmManager : MonoBehaviour
     // create a note with specified type + spawn time
     void SpawnNote(NoteSpawnSpec n)
     {
-        Vector3 offset = Quaternion.Euler(0, 0, n.angle - angleOffset) * new Vector3(travelDist, 0, 0);
+        float spawnAngle = n.angle - angleOffset;
+        Vector3 offset = Quaternion.Euler(0, 0, spawnAngle) * new Vector3(travelDist, 0, 0);
         Vector3 destPos = hitArea.transform.position;
         Vector3 startingPos = destPos + offset;
         GameObject note;
@@ -350,6 +347,14 @@ public class RhythmManager : MonoBehaviour
             return;
         }
         note.GetComponent<Note>().Initialize(n.spawnTime, n.clip);
-        notes.Add(note.GetComponent<Note>());
+
+        // notes coming from far enough below get auto-hit!
+        if (spawnAngle < autoHitAngle)
+        {
+            note.GetComponent<Note>().OnAutoHit(time);
+        } else
+        {
+            notes.Add(note.GetComponent<Note>());
+        }
     }
 }

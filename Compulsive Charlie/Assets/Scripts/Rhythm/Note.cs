@@ -88,7 +88,7 @@ public class Note : MonoBehaviour
         StartCoroutine(HitAfterDelay(arrivalTime - time + RhythmManager.hitWindowLate, runState));
     }
 
-    public IEnumerator AutoHitAfterDelay(float delay, RunState runState)
+    public IEnumerator AutoHitAfterDelay(float delay)
     {
         // dark out note and move it back
         transform.localScale = new Vector3(.5f, .5f, 0);
@@ -102,10 +102,10 @@ public class Note : MonoBehaviour
         Destroy(gameObject, audioSource.clip.length);
     }
 
-    public void OnAutoHit(float time, RunState runState)
+    public void OnAutoHit(float time)
     {
         // seperate AutoHitAfterDelay function with less effects?
-        StartCoroutine(AutoHitAfterDelay(arrivalTime - time + RhythmManager.hitWindowLate, runState));
+        StartCoroutine(AutoHitAfterDelay(arrivalTime - time + RhythmManager.hitWindowLate));
     }
 
     public virtual void HitEffect(RunState runState)
