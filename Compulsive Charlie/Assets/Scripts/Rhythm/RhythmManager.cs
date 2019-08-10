@@ -48,7 +48,6 @@ public class RhythmManager : MonoBehaviour
 
     public PlayerController player;
     public GameObject hitArea;
-    public GameObject angleMarker;
     public GameObject NoteLight;
     public float beamWidth;
     public RunManager runManager;
@@ -201,7 +200,6 @@ public class RhythmManager : MonoBehaviour
         }
         float changeRate = (targetAngle - angleOffset) * angleChangeRate * Time.deltaTime;
         angleOffset += changeRate;
-        angleMarker.transform.eulerAngles = new Vector3(0, 0, angleOffset);
 
         // destroy all notes falling outside of the beam
         foreach (Note note in new List<Note>(notes))
