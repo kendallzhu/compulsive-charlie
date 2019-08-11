@@ -169,10 +169,10 @@ public class RunManager : MonoBehaviour
         Debug.Assert(activities.Count() < 5);
         for (int i = 0; i < activities.Count(); i++)
         {
-            SpawnPlatform(activities[i], i * 3);
+            SpawnPlatform(activities[i], i * 3, i + 1);
         }
-        SpawnPlatform(SelectDefaultActivity(), Activity.defaultPlatformHeightDiff);
-        SpawnPlatform(SelectBreakdownActivity(), Activity.breakdownPlatformHeightDiff);
+        SpawnPlatform(SelectDefaultActivity(), Activity.defaultPlatformHeightDiff, 0);
+        SpawnPlatform(SelectBreakdownActivity(), Activity.breakdownPlatformHeightDiff, -1);
         // clear out all other animation triggers
         player.GetComponent<Animator>().ResetTrigger("startJump");
         player.GetComponent<Animator>().ResetTrigger("activityFail");
@@ -199,10 +199,10 @@ public class RunManager : MonoBehaviour
     }
 
     // instantiate a new activity platform
-    private void SpawnPlatform(Activity activity, int heightDiff)
+    private void SpawnPlatform(Activity activity, int heightDiff, int jumpNumber)
     {
         GameObject platform = Instantiate(platformPrefab);
-        platform.GetComponent<ActivityPlatform>().Initialize(activity, heightDiff);
+        platform.GetComponent<ActivityPlatform>().Initialize(activity, heightDiff, jumpNumber);
         // add it to list of prospective platforms in runState
         runState.spawnedPlatforms.Add(platform.GetComponent<ActivityPlatform>());
     }

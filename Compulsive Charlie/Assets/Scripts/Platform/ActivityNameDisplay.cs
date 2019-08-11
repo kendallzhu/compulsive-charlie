@@ -28,11 +28,12 @@ public class ActivityNameDisplay : MonoBehaviour
         scheduleCollectableOffset = new Vector2(1.3f, .9f);
         if (ap.activity != null)
         {
-            gameObject.GetComponent<TextMeshProUGUI>().text = ap.activity.name.ToString();
+            string prefix = ap.jumpNumber.ToString() + ") ";
+            gameObject.GetComponent<TextMeshProUGUI>().text = prefix + ap.activity.name.ToString();
             // spawn collectible for scheduled activities
             if (gameManager.profile.GetSchedule(runManager.runState.timeSteps + 1) == ap.activity)
             {
-                gameObject.GetComponent<TextMeshProUGUI>().text = "*" + gameObject.GetComponent<TextMeshProUGUI>().text;
+                gameObject.GetComponent<TextMeshProUGUI>().text = gameObject.GetComponent<TextMeshProUGUI>().text;
                 scheduleCollectable = Instantiate(ScheduleCollectablePrefab, ap.transform);
                 scheduleCollectable.transform.localPosition = scheduleCollectableOffset;
 

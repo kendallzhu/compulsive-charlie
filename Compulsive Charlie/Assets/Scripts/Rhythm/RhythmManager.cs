@@ -189,7 +189,7 @@ public class RhythmManager : MonoBehaviour
         }
         beamWidth = Mathf.Lerp(beamWidth, newBeamWidth, .01f);
         Light light = NoteLight.GetComponent<Light>();
-        light.cookieSize = beamWidth;
+        light.cookieSize = beamWidth + .015f; // this is to avoid small slivers of black initially
 
         // adjust angle offset to build up/down if the player is doing very well or poor
         // (pull towards current energy level, at rate proportional to delta)
@@ -208,6 +208,15 @@ public class RhythmManager : MonoBehaviour
             {
                 note.OnDeflect();
                 notes.Remove(note);
+            }
+            // only show arrows for notes inside the beam (active ones)
+            GameObject arrow = note.transform.Find("Arrow").gameObject;
+            if (arrow)
+            {
+                arrow.SetActive(IsInsideBeam(note));
+            } else
+            {
+                Debug.Log("Expected note to have arrow child gameobject!");
             }
         }
 

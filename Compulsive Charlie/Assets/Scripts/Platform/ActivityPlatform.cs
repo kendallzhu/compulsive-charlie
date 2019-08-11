@@ -20,6 +20,7 @@ public class ActivityPlatform : MonoBehaviour {
     public bool explored = false;
     public bool jumpPadExplored = false;
     public int bestCombo = 0;
+    public int jumpNumber;
 
     // other prefabs
     public GameObject rhythmNotePrefab;
@@ -54,10 +55,11 @@ public class ActivityPlatform : MonoBehaviour {
     }
 
     // correctly position platform based on current states
-    public void Initialize(Activity _activity, int heightDiff)
+    public void Initialize(Activity _activity, int heightDiff, int jumpNumber)
     {
         activity = _activity;
         RunState runState = runManager.runState;
+        this.jumpNumber = jumpNumber;
         // set the platform at the proper position
         // height specified by activity
         y = runState.height + heightDiff;
