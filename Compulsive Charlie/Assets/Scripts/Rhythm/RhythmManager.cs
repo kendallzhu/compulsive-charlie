@@ -69,6 +69,7 @@ public class RhythmManager : MonoBehaviour
     private Activity activity;
     private List<NoteSpawnSpec> notesToSpawn = new List<NoteSpawnSpec>();
     private List<Note> notes = new List<Note>(); // active notes (in order)
+    List<Note> nearestNotes = new List<Note>(); // notes from the active group arriving at the same time
     private float angleOffset; // used for going up and down levels
 
     void Awake()
@@ -209,11 +210,11 @@ public class RhythmManager : MonoBehaviour
                 note.OnDeflect();
                 notes.Remove(note);
             }
-            // only show arrows for notes inside the beam (active ones)
+            // only show arrows for active notes inside the beam
             GameObject arrow = note.transform.Find("Arrow").gameObject;
             if (arrow)
             {
-                arrow.SetActive(IsInsideBeam(note));
+                arrow.SetActive(IsInsideBeam(note) && !note.isResolved);
             } else
             {
                 Debug.Log("Expected note to have arrow child gameobject!");
@@ -247,12 +248,17 @@ public class RhythmManager : MonoBehaviour
         {
             // detect rhythm hits/misses on the nearest note
             float epsilon = .01f;
-            // handle all notes that are coming at the same time
-            List<Note> nearestNotes = notes.Where((n) => n.arrivalTime - notes[0].arrivalTime < epsilon).ToList();
+            // contains all notes that are coming at the same time (only reset once all those notes have been resolved)
+            if (nearestNotes.Count() == 0 || nearestNotes.All(n => n.isResolved))
+            {
+                nearestNotes = notes.Where((n) => n.arrivalTime - notes[0].arrivalTime < epsilon).ToList();
+            }
+            // this list has all the notes of the current group that are still active
+            List<Note> unResolvedNearestNotes = nearestNotes.Where(n => !n.isResolved).ToList();
             // rhythm miss - too late
             if (time > nearestNotes[0].arrivalTime + hitWindowLate)
             {
-                foreach (Note n in nearestNotes)
+                foreach (Note n in unResolvedNearestNotes)
                 {
                     notes.Remove(n);
                     n.OnMiss(runManager.runState);
@@ -270,9 +276,19 @@ public class RhythmManager : MonoBehaviour
                 if (right) { hitTypes.Add(EmotionType.frustration); }
                 if (time > nearestNotes[0].arrivalTime - hitWindowEarly)
                 {
-                    foreach (Note n in nearestNotes)
+                    List<EmotionType> noteTypes = nearestNotes.Select(note => note.type).ToList();
+                    // if an erroneous key was pressed, miss all these notes
+                    if (!hitTypes.All(noteTypes.Contains))
                     {
-                        // hit as long as the needed key was pressed
+                        foreach (Note n in unResolvedNearestNotes)
+                        {
+                            notes.Remove(n);
+                            n.OnMiss(runManager.runState);
+                        }
+                    }
+                    // hit the notes for which the key is pressed
+                    foreach (Note n in unResolvedNearestNotes)
+                    {
                         if (hitTypes.Contains(n.type))
                         {
                             notes.Remove(n);
@@ -283,7 +299,7 @@ public class RhythmManager : MonoBehaviour
                 else if (time > lateHitPeriodEnd && (time > nearestNotes[0].arrivalTime - earlyHitPeriod))
                 {
                     // meaningful false hits cause miss next note
-                    foreach (Note n in nearestNotes)
+                    foreach (Note n in unResolvedNearestNotes)
                     {
                         notes.Remove(n);
                         n.OnMiss(runManager.runState);

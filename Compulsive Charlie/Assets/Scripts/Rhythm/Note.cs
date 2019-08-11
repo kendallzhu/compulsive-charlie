@@ -10,6 +10,7 @@ public class Note : MonoBehaviour
     RhythmManager rhythmManager;
     Transform hitArea;
 
+    public bool isResolved = false;
     float spawnTime;
     public float arrivalTime;
     Vector2 startingOffset;
@@ -46,21 +47,16 @@ public class Note : MonoBehaviour
 
     public void OnDeflect()
     {
+        isResolved = true;
         Destroy(gameObject);
         GameObject deflect = Instantiate(deflectPrefab, transform.position, Quaternion.identity, transform.parent);
         deflect.GetComponent<MoveFadeOut>().SetDirection(new Vector2(-startingOffset.x, startingOffset.y));
     }
 
     // functions for miss/hit effects
-    public void OnSemiHit(RunState runState)
-    {
-        runState.IncreaseCombo();
-        Destroy(gameObject);
-        Instantiate(hitPrefab, transform.position, Quaternion.identity, transform.parent);
-    }
-
     public void OnMiss(RunState runState)
     {
+        isResolved = true;
         runState.BreakCombo();
         MissEffect(runState);
         Destroy(gameObject);
@@ -71,6 +67,7 @@ public class Note : MonoBehaviour
     // (Delay so that sound occurs when note would have arrived)
     public IEnumerator HitAfterDelay(float delay, RunState runState)
     {
+        isResolved = true;
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(delay);
         runState.IncreaseCombo();
@@ -90,6 +87,7 @@ public class Note : MonoBehaviour
 
     public IEnumerator AutoHitAfterDelay(float delay)
     {
+        isResolved = true;
         // dark out note and move it back
         transform.localScale = new Vector3(.5f, .5f, 0);
         transform.Translate(new Vector3(0, 0, -1f));
