@@ -36,13 +36,30 @@ public class Note : MonoBehaviour
         audioSource.clip = soundClip;
     }
 
+    private float GetZPosition(EmotionType type)
+    {
+        if (type == EmotionType.frustration)
+        {
+            return 0;
+        } else if (type == EmotionType.anxiety)
+        {
+            return 0.01f;
+        } else if (type == EmotionType.despair)
+        {
+            return 0.02f;
+        }
+        Debug.Assert(type == EmotionType.None);
+        return 0.03f;
+    }
+
     void Update()
     {
         // move note to proper position
         float scaleFactor = (arrivalTime - rhythmManager.time) / RhythmManager.travelTime;
         scaleFactor = Math.Max(0, scaleFactor);
         Vector3 newPos = (Vector2)hitArea.position + startingOffset * scaleFactor;
-        transform.position = newPos;
+        // use z position for ordering to make overlap colors more normal
+        transform.position = new Vector3(newPos.x, newPos.y, GetZPosition(type));
     }
 
     public void OnDeflect()

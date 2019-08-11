@@ -25,7 +25,7 @@ public class ActivityNameDisplay : MonoBehaviour
         // set activity platform label (todo: make nicer!)
         GameObject platform = this.transform.parent.transform.parent.gameObject;
         ap = platform.GetComponent<ActivityPlatform>();
-        scheduleCollectableOffset = new Vector2(1.3f, .9f);
+        scheduleCollectableOffset = new Vector2(1.3f, .8f);
         if (ap.activity != null)
         {
             string prefix = ap.jumpNumber.ToString() + ") ";
