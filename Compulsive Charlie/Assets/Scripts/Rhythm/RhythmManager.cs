@@ -159,7 +159,7 @@ public class RhythmManager : MonoBehaviour
     {
         float middleY = player.transform.position.y;
         float distanceFromCenter = Mathf.Abs(note.transform.position.y - middleY);
-        bool outsideBeam = distanceFromCenter > (beamWidth + .01f) / 2;
+        bool outsideBeam = distanceFromCenter > (beamWidth + .015f) / 2;
         return !outsideBeam;
     }
 
@@ -244,16 +244,18 @@ public class RhythmManager : MonoBehaviour
         {
             Instantiate(inputAnimPreb, hitArea.transform.position, Quaternion.identity, hitArea.transform);
         }
-        if (notes.Count > 0)
+        // detect rhythm hits/misses on the incoming group of notes
+        if (notes.Count() > 0)
         {
-            // detect rhythm hits/misses on the nearest note
             float epsilon = .01f;
+            bool isAboutToSpawnNearest = (notesToSpawn.Count() > 0 &&
+                Mathf.Abs(notes[0].arrivalTime - (notesToSpawn[0].spawnTime + travelTime)) < epsilon);
             // contains all notes that are coming at the same time (only reset once all those notes have been resolved)
-            if (nearestNotes.Count() == 0 || nearestNotes.All(n => n.isResolved))
+            if ((nearestNotes.Count() == 0 || nearestNotes.All(n => n.isResolved)) && !isAboutToSpawnNearest)
             {
-                nearestNotes = notes.Where((n) => n.arrivalTime - notes[0].arrivalTime < epsilon).ToList();
+                nearestNotes = notes.Where((n) => Mathf.Abs(n.arrivalTime - notes[0].arrivalTime) < epsilon).ToList();
             }
-            // this list has all the notes of the current group that are still active
+            // unresolved list has all the notes of the current group that are still active
             List<Note> unResolvedNearestNotes = nearestNotes.Where(n => !n.isResolved).ToList();
             // rhythm miss - too late
             if (time > nearestNotes[0].arrivalTime + hitWindowLate)
@@ -286,13 +288,16 @@ public class RhythmManager : MonoBehaviour
                             n.OnMiss(runManager.runState);
                         }
                     }
-                    // hit the notes for which the key is pressed
-                    foreach (Note n in unResolvedNearestNotes)
+                    else
                     {
-                        if (hitTypes.Contains(n.type))
+                        // hit the notes for which the key is pressed
+                        foreach (Note n in unResolvedNearestNotes)
                         {
-                            notes.Remove(n);
-                            n.OnHit(time, runManager.runState);
+                            if (hitTypes.Contains(n.type))
+                            {
+                                notes.Remove(n);
+                                n.OnHit(time, runManager.runState);
+                            }
                         }
                     }
                 }

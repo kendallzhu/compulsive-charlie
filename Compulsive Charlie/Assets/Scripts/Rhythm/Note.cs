@@ -34,22 +34,29 @@ public class Note : MonoBehaviour
         startingOffset = transform.position - hitArea.position;
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.clip = soundClip;
+        GameObject arrow = transform.Find("Arrow").gameObject;
+        if (arrow)
+        {
+            arrow.SetActive(false);
+        }
     }
 
+    // hack to generate unique float for each note in a group, so their colors don't blend weirdly when they overlap
     private float GetZPosition(EmotionType type)
     {
+        float offset = startingOffset.y * .0001f;
         if (type == EmotionType.frustration)
         {
-            return 0;
+            return 0.01f + offset;
         } else if (type == EmotionType.anxiety)
         {
-            return 0.01f;
+            return 0.01f + offset;
         } else if (type == EmotionType.despair)
         {
-            return 0.02f;
+            return 0.02f + offset;
         }
         Debug.Assert(type == EmotionType.None);
-        return 0.03f;
+        return 0.03f + offset;
     }
 
     void Update()
