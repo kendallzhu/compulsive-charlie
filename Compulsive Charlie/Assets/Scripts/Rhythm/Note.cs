@@ -29,7 +29,7 @@ public class Note : MonoBehaviour
 
     public void Initialize(float trueSpawnTime, AudioClip soundClip)
     {
-        spawnTime = trueSpawnTime;  
+        spawnTime = trueSpawnTime;
         arrivalTime = trueSpawnTime + RhythmManager.travelTime;
         startingOffset = transform.position - hitArea.position;
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();

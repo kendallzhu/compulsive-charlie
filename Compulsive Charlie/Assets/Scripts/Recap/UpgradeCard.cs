@@ -23,12 +23,14 @@ public class UpgradeCard : MonoBehaviour
         recapMenu = transform.parent.parent.GetComponent<RecapMenu>();
     }
 
-    // set the display of hte card
-    public void Initialize(Upgrade _upgrade)
+    // set the display of the card
+    public void Initialize(Upgrade upgrade)
     {
-        upgrade = _upgrade;
+        this.upgrade = upgrade;
         GameObject nameText = transform.Find("NameText").gameObject;
         nameText.GetComponent<TextMeshProUGUI>().text = upgrade.name;
+        GameObject descriptionText = transform.Find("DescriptionText").gameObject;
+        descriptionText.GetComponent<TextMeshProUGUI>().text = upgrade.descriptionText;
         energyIcon.SetActive(false);
         emotionIcon.SetActive(false);
         thoughtIcon.SetActive(false);

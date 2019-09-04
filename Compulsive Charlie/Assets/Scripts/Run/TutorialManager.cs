@@ -28,7 +28,7 @@ public class TutorialManager : MonoBehaviour
     private int activeIndex = 0;
 
     // tracking when this tutorial was activated (for timer)
-    private const float minTimeShow = 1f;
+    private const float minTimeShow = .5f;
     private float timeActivated;
 
     public void Awake()

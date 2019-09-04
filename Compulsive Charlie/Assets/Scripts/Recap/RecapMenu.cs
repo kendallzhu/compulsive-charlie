@@ -95,6 +95,7 @@ public class RecapMenu : MonoBehaviour
     public void CloseUpgrades()
     {
         upgradesPanel.SetActive(false);
+        gameManager.LoadProfile();
     }
 
     public void UpgradesPanel()

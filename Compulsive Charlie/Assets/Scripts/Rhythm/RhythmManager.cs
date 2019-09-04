@@ -23,7 +23,7 @@ public class NoteSpawnSpec
 public class RhythmManager : MonoBehaviour
 {
     // how forgiving we are for note hits
-    public const float hitWindowLate = .07f;
+    public const float hitWindowLate = .09f;
     public const float hitWindowEarly = .07f;
     // how far to the right of the hit area are notes spawned
     public const float travelDist = 16f;
@@ -88,7 +88,6 @@ public class RhythmManager : MonoBehaviour
         lateHitPeriodEnd = 0;
         angleOffset = 0;
         activity = activity_;
-        runManager.runState.ResetCombo();
         LoadSong();
     }
 
@@ -97,6 +96,7 @@ public class RhythmManager : MonoBehaviour
         notes.ForEach(note => Destroy(note));
         notes.Clear();
         activity = null;
+        runManager.runState.ResetCombo();
     }
 
     private void LoadSong()

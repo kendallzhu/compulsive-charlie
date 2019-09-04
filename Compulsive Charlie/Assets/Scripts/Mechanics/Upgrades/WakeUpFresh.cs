@@ -8,7 +8,7 @@ public class WakeUpFresh : Upgrade
     void Awake()
     {
         name = "Wake Up Fresh";
-        descriptionText = "Went to bed on time! Start tomorrow with more energy.";
+        descriptionText = "Start the day with more energy";
         category = "action";
     }
 

@@ -72,7 +72,7 @@ public class ActivityPlatform : MonoBehaviour {
             int endX = current.x + current.length;
             x = endX + GapSize(y - current.y) + jumpPadLength;
         }
-        gameObject.transform.position = new Vector2(x, runState.height);
+        gameObject.transform.position = new Vector2(x, y);
 
         // scale the transform of the physical platform child to the proper length
         // (this will work as long as prefab is a unit cube with default scale)
