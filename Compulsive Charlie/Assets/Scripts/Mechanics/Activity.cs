@@ -136,4 +136,10 @@ public abstract class Activity : MonoBehaviour {
         runState.emotions.Add(emotionEffect);
         return;
     }
+
+    // increases energy cap to allow more notes
+    public void IncreaseEnergyCap()
+    {
+        energyCap = 20;
+    }
 }

@@ -105,6 +105,7 @@ public class RecapMenu : MonoBehaviour
         RunState lastRunState = p.allRuns.Last();
         List<Upgrade> allUpgrades = p.upgrades;
         List<Upgrade> availableUpgrades = allUpgrades.Where(u => u.IsAvailable(p)).ToList();
+        availableUpgrades = availableUpgrades.OrderBy(x => Random.value).ToList();
         // populate the upgrade cards
         List<Transform> cards = new List<Transform> {
             upgradesPanel.transform.Find("UpgradeCard1"),
