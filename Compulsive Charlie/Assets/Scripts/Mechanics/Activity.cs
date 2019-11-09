@@ -70,6 +70,7 @@ public abstract class Activity : MonoBehaviour {
     {
         // for debugging/checks
         Debug.Log(name + " hash: " + Animator.StringToHash(name));
+        song = Object.FindObjectOfType<GoToBed>().song;
     }
 
     // (weighted) availability specific to activity, given state of run

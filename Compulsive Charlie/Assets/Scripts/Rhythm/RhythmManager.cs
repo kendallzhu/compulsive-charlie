@@ -30,7 +30,7 @@ public class RhythmManager : MonoBehaviour
     // how long it takes for notes to get to hit area
     public const float travelTime = 1.5f;
     // time between smallest increments of a rhythm pattern
-    public const float tempoIncrement = .19f;
+    public const float tempoIncrement = .15f;
     // duration before arrival time that is considered a miss for the incoming note
     // (if you hit earlier than this, then it won't be punished)
     public const float earlyHitPeriod = tempoIncrement;
@@ -156,12 +156,12 @@ public class RhythmManager : MonoBehaviour
         }
     }
 
-    bool IsInsideBeam(Note note)
+    // returns whether note is above beam and thus should be excluded
+    bool IsAboveBeam(Note note)
     {
         float middleY = player.transform.position.y;
-        float distanceFromCenter = Mathf.Abs(note.transform.position.y - middleY);
-        bool outsideBeam = distanceFromCenter > (beamWidth + .015f) / 2;
-        return !outsideBeam;
+        float distanceAboveCenter = note.transform.position.y - middleY;
+        return distanceAboveCenter > (beamWidth + .015f) / 2;
     }
 
     bool IsTouchingBeam(Note note)
@@ -203,10 +203,10 @@ public class RhythmManager : MonoBehaviour
         float changeRate = (targetAngle - angleOffset) * angleChangeRate * Time.deltaTime;
         angleOffset += changeRate;
 
-        // destroy all notes falling outside of the beam
+        // destroy all notes falling above of the beam
         foreach (Note note in new List<Note>(notes))
         {
-            if (!IsInsideBeam(note) && IsTouchingBeam(note))
+            if (IsAboveBeam(note) && IsTouchingBeam(note))
             {
                 note.OnDeflect();
                 notes.Remove(note);
@@ -215,7 +215,7 @@ public class RhythmManager : MonoBehaviour
             GameObject arrow = note.transform.Find("Arrow").gameObject;
             if (arrow)
             {
-                arrow.SetActive(IsInsideBeam(note) && !note.isResolved);
+                arrow.SetActive(!IsAboveBeam(note) && !note.isResolved);
             } else
             {
                 Debug.Log("Expected note to have arrow child gameobject!");
@@ -338,7 +338,7 @@ public class RhythmManager : MonoBehaviour
         }
 
         // show emotion note tutorial once some emotion note seen
-        bool emotionNoteVisible = notes.Count > 0 && notes[0].type != EmotionType.None && IsInsideBeam(notes[0]);
+        bool emotionNoteVisible = notes.Count > 0 && notes[0].type != EmotionType.None && !IsAboveBeam(notes[0]);
         // bool emotionNoteArrived = emotionNoteVisible && (time > notes[0].arrivalTime - hitWindowEarly);
         if (gameManager.showTutorial && !tutorialManager.shownEmotionNoteTutorial && emotionNoteVisible)
         {
@@ -395,5 +395,6 @@ public class RhythmManager : MonoBehaviour
         }
         notesToSpawn.Clear();
         notes.Clear();
+        nearestNotes.Clear();
     }
 }
