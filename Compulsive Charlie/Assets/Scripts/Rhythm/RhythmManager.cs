@@ -30,7 +30,7 @@ public class RhythmManager : MonoBehaviour
     // how long it takes for notes to get to hit area
     public const float travelTime = 1.5f;
     // time between smallest increments of a rhythm pattern
-    public const float tempoIncrement = .15f;
+    public const float tempoIncrement = .16f;
     // duration before arrival time that is considered a miss for the incoming note
     // (if you hit earlier than this, then it won't be punished)
     public const float earlyHitPeriod = tempoIncrement;
@@ -198,6 +198,7 @@ public class RhythmManager : MonoBehaviour
         float targetAngle = runState.energy;
         if (activity)
         {
+            // print(activity.energyCap);
             targetAngle = Mathf.Min(runState.energy, activity.energyCap);
         }
         float changeRate = (targetAngle - angleOffset) * angleChangeRate * Time.deltaTime;
@@ -259,7 +260,7 @@ public class RhythmManager : MonoBehaviour
             // unresolved list has all the notes of the current group that are still active
             List<Note> unResolvedNearestNotes = nearestNotes.Where(n => !n.isResolved).ToList();
             // rhythm miss - too late
-            if (time > nearestNotes[0].arrivalTime + hitWindowLate)
+            if (nearestNotes.Count() > 0 && time > nearestNotes[0].arrivalTime + hitWindowLate)
             {
                 foreach (Note n in unResolvedNearestNotes)
                 {

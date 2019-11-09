@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     private const float jumpForcePerEnergy = 220f;
     private const float jumpStartForwardVelocity = 1.5f;
     private const float defaultForwardJumpForce = 40f;
-    private List<float> forwardJumpForces = new List<float> { 40f, 40f, 35f, 30f };
+    private List<float> forwardJumpForces = new List<float> { 40f, 40f, 35f, 30f, 27f };
     private const float fallingMinForwardSpeed = .5f;
 
     public Transform groundCheckLeft;

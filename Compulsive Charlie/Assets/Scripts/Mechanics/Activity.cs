@@ -24,54 +24,19 @@ public abstract class Activity : MonoBehaviour {
     public EmotionState emotionEffect = new EmotionState(0, 0, 0);
     public List<Thought> associatedThoughts = new List<Thought>();
     // specs for rhythm gameplay
-    public int energyCap = 10;
-    // DEFAULT - copied from "Hero" Ping Pong the animation OST
-    static MeasureSpec melody = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "A#_high", 0),
-        new NoteSpec(3, "A#_high", 0),
-        new NoteSpec(6, "D#_high", 2),
-        new NoteSpec(9, "D#_high", 2),
-        new NoteSpec(12, "C#_high", 10),
-    });
-    static MeasureSpec base0 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "F#", 10),
-        new NoteSpec(3, "F#", 11),
-        new NoteSpec(6, "F#", 12),
-        new NoteSpec(9, "F#", 13),
-        new NoteSpec(12, "F#", 14),
-    });
-    static MeasureSpec beats = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
-        new NoteSpec(2, "Snare_Drum_2", 20, EmotionType.None, "drum_kit"),
-        new NoteSpec(4, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
-        new NoteSpec(8, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
-        new NoteSpec(10, "Snare_Drum_2", 20, EmotionType.None, "drum_kit"),
-        new NoteSpec(12, "Closed_High_Hat", 22, EmotionType.None, "drum_kit"),
-    });
-    static MeasureSpec base1 = base0.ReplaceAllPitches("G#");
-    static MeasureSpec base2 = base0.ReplaceAllPitches("D#");
-    static Song songOnce = new Song(new List<(MeasureSpec, int)> {
-        (melody, 0),
-        (beats, 0),
-        (base0, 0),
-        (melody, 1),
-        (beats, 1),
-        (base1, 1),
-        (melody, 2),
-        (beats, 2),
-        (base2, 2),
-        (melody, 3),
-        (beats, 3),
-        (base2, 3)
-    });
-    public Song song = songOnce.Repeated(2);
+    // per activity energycap limits how big the beam can grow with energy
+    public int energyCap;
+    
+    // (default song)
+    public Song song = Hero.song;
 
     private void Start()
     {
         // for debugging/checks
         Debug.Log(name + " hash: " + Animator.StringToHash(name));
-        song = Object.FindObjectOfType<GoToBed>().song;
-    }
+        // song = Object.FindObjectOfType<GoToBed>().song;
+        energyCap = 10;
+}
 
     // (weighted) availability specific to activity, given state of run
     public virtual int CustomAvailability(RunState runState)
