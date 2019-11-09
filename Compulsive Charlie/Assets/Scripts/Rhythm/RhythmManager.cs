@@ -93,14 +93,15 @@ public class RhythmManager : MonoBehaviour
 
     public void StopRhythm()
     {
-        notes.ForEach(note => Destroy(note));
-        notes.Clear();
+        ClearAllNotes();
         activity = null;
         runManager.runState.ResetCombo();
     }
 
     private void LoadSong()
     {
+        // clear out old notes, (should be none, but just in case)
+        ClearAllNotes();
         // reset time
         time = 0;
         // load in notes for this activity, sort by timing
@@ -384,5 +385,15 @@ public class RhythmManager : MonoBehaviour
         {
             notes.Add(note.GetComponent<Note>());
         }
+    }
+
+    void ClearAllNotes()
+    {
+        foreach (Note note in Object.FindObjectsOfType<Note>())
+        {
+            Destroy(note.gameObject);
+        }
+        notesToSpawn.Clear();
+        notes.Clear();
     }
 }
