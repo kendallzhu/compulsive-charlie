@@ -29,13 +29,13 @@ public class RhythmManager : MonoBehaviour
     public const float travelDist = 16f;
     // how long it takes for notes to get to hit area
     public const float travelTime = 1.5f;
-    // time between smallest increments of a rhythm pattern
-    public const float tempoIncrement = .16f;
+    // time between smallest increments of a rhythm pattern (changes per activity)
+    public float tempoIncrement;
     // duration before arrival time that is considered a miss for the incoming note
     // (if you hit earlier than this, then it won't be punished)
-    public const float earlyHitPeriod = tempoIncrement;
+    public float earlyHitPeriod;
     // duration after arrival time that is considered a miss for the next note
-    public const float lateHitPeriod = hitWindowLate + tempoIncrement / 2;
+    public float lateHitPeriod;
     // how to scale light beam width based on energy
     public const float beamWidthFactor = .5f;
     // beam constants and how fast to level up/down when around them
@@ -44,7 +44,7 @@ public class RhythmManager : MonoBehaviour
     public const float angleChangeRate = .2f;
     // Notes spawned below this angle get auto hit - this is so as player moves up lowest notes don't clutter gameplay
     // Hopefully there will be more notes overall in the higher levels, though, so it's worth it.
-    public const int autoHitAngle = -10;
+    public const int autoHitAngle = -5;
 
     public PlayerController player;
     public GameObject hitArea;
@@ -100,6 +100,13 @@ public class RhythmManager : MonoBehaviour
 
     private void LoadSong()
     {
+        // time between smallest increments of a rhythm pattern
+        tempoIncrement = activity.tempoIncrement;
+        // duration before arrival time that is considered a miss for the incoming note
+        // (if you hit earlier than this, then it won't be punished)
+        earlyHitPeriod = tempoIncrement;
+        // duration after arrival time that is considered a miss for the next note
+        lateHitPeriod = hitWindowLate + tempoIncrement / 2;
         // clear out old notes, (should be none, but just in case)
         ClearAllNotes();
         // reset time

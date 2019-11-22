@@ -12,6 +12,7 @@ public class SleepIn : Activity
         emotionEffect = new EmotionState(1, 0, 2);
         isUnlocked = true;
         song = Luma.song;
+        tempoIncrement = .1f;
     }
 
     // (weighted) availability of activity, given state of run

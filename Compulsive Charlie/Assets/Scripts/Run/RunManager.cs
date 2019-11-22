@@ -67,7 +67,7 @@ public class RunManager : MonoBehaviour
         // cheatcodes to add combo/energy and change emotion
         if (Input.GetKeyDown("0"))
         {
-            runState.IncreaseEnergy(3);
+            runState.IncreaseEnergy(10);
         }
         if (Input.GetKeyDown("9"))
         {
@@ -84,6 +84,11 @@ public class RunManager : MonoBehaviour
         if (Input.GetKeyDown("d"))
         {
             runState.emotions.Add(EmotionType.despair, 3);
+        }
+        // cheatcode to upgrade activity (hard mode)
+        if (Input.GetKeyDown("u") && Input.GetKeyDown("p"))
+        {
+            runState.CurrentActivity().energyCap = 20;
         }
     }
 

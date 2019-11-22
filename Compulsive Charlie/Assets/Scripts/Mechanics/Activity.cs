@@ -26,6 +26,8 @@ public abstract class Activity : MonoBehaviour {
     // specs for rhythm gameplay
     // per activity energycap limits how big the beam can grow with energy
     public int energyCap;
+    // tempo (amount of time between notes in the song)
+    public float tempoIncrement = .16f;
     
     // (default song)
     public Song song = Hero.song;

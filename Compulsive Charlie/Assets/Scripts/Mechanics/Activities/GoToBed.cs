@@ -12,6 +12,7 @@ public class GoToBed : Activity
         emotionEffect = new EmotionState(1, 0, 1);
         isUnlocked = true;
         song = Luma.song;
+        tempoIncrement = .1f;
     }
 
     public override void Effect(RunState runState)

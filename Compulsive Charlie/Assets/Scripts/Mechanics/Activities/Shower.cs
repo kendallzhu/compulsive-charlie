@@ -12,6 +12,7 @@ public class Shower : Activity
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
         song = Luma.song;
+        tempoIncrement = .1f;
     }
 
     // (weighted) availability of activity, given state of run
