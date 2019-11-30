@@ -12,12 +12,7 @@ public class Breakdown : Activity
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
         isBreakdown = true;
-        song = new Song(new List<NoteSpec> {
-            new NoteSpec(0, "Bass_Drum_1", 0, EmotionType.despair, "drum_kit"),
-            new NoteSpec(2, "Bass_Drum_1", 0, EmotionType.despair, "drum_kit"),
-            new NoteSpec(8, "Bass_Drum_1", 0, EmotionType.despair, "drum_kit"),
-            new NoteSpec(10, "Bass_Drum_1", 0, EmotionType.despair, "drum_kit"),
-        }).Repeated(4);
+        song = new Heartbeat(EmotionType.despair).song;
     }
 
     // (weighted) availability of activity, given state of run

@@ -61,6 +61,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -154,6 +155,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -243,6 +245,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -286,8 +289,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63eb2ddeea813314e9bc268a91ce3334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isResolved: 0
   arrivalTime: 0
-  type: 2
+  emotionType: 2
   hitPrefab: {fileID: 9064274710088238145, guid: 7ed4d2aab5044f74a878033638a84ae7,
     type: 3}
   missPrefab: {fileID: 9064274710088238145, guid: 36bf72a0f14abc548a81a811f5322467,

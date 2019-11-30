@@ -3,21 +3,59 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+public enum Instrument { woodBlock, piano, violin, drumkit }
+
 public class NoteSpec
 {
     public int timing;
-    public string instrument;
     public string pitch;
     public int angle;
-    public EmotionType type;
+    public EmotionType emotionType;
+    public Instrument instrument;
 
-    public NoteSpec(int timing, string pitch, int angle, EmotionType type = EmotionType.None, string instrument = "wood_block")
+    public NoteSpec(
+        int timing, 
+        string pitch, 
+        int angle, 
+        EmotionType type = EmotionType.None,
+        Instrument instrument = Instrument.woodBlock
+    )
     {
         this.timing = timing;
-        this.instrument = instrument;
         this.pitch = pitch;
-        this.type = type;
+        this.emotionType = type;
         this.angle = angle;
+        this.instrument = instrument;
+    }
+
+    // copy constructor
+    public NoteSpec(NoteSpec n)
+    {
+        this.timing = n.timing;
+        this.pitch = n.pitch;
+        this.emotionType = n.emotionType;
+        this.angle = n.angle;
+        this.instrument = n.instrument;
+    }
+
+    public string GetAudioFilePath()
+    {
+        switch (this.instrument)
+        {
+            case Instrument.woodBlock:
+                return "wood_block/" + pitch;
+            case Instrument.drumkit:
+                return "drum_kit/" + pitch;
+            case Instrument.piano:
+                // TODO: add instruments for different volumes?
+                return "piano/Piano.mf." + pitch;
+            case Instrument.violin:
+                // TODO: Missing notes! Import fortissimo from philharmonic samples?
+                return "violin/violin_" + pitch + "_05_mezzo-forte_arco-normal";
+            default:
+                Debug.Log("invalid instrument?");
+                return "";
+        }
     }
 }
 
@@ -36,10 +74,19 @@ public class MeasureSpec
         this.notes = notes;
     }
 
+    public MeasureSpec(List<NoteSpec> notes, Instrument instrument)
+    {
+        this.notes = notes;
+        foreach (NoteSpec n in this.notes)
+        {
+            n.instrument = instrument;
+        }
+    }
+
     // adds all notes from another measure
     public void AddMeasure(MeasureSpec measure)
     {
-        this.notes.AddRange(measure.notes);
+        measure.notes.ForEach(n => this.notes.Add(new NoteSpec(n)));
     }
 
     public MeasureSpec Copy()
@@ -51,13 +98,12 @@ public class MeasureSpec
 
     public MeasureSpec ReplaceAllPitches(string newPitch)
     {
-        return new MeasureSpec(notes.Select(note => new NoteSpec(
-            note.timing,
-            newPitch,
-            note.angle,
-            note.type,
-            note.instrument
-        )).ToList());
+        MeasureSpec copy = this.Copy();
+        foreach (NoteSpec n in copy.notes)
+        {
+            n.pitch = newPitch;
+        }
+        return copy;
     }
 }
 
@@ -85,13 +131,10 @@ public class Song
 
     public void AddMeasure(MeasureSpec measure, int measureNumber)
     {
-        measure.notes.ForEach(note => notes.Add(new NoteSpec(
-            note.timing + measureNumber * measureSize,
-            note.pitch,
-            note.angle,
-            note.type,
-            note.instrument
-        )));
+        // adjust timings and compile into a list
+        MeasureSpec adjustedMeasure = measure.Copy();
+        adjustedMeasure.notes.ForEach(note => note.timing = note.timing + measureNumber * measureSize);
+        adjustedMeasure.notes.ForEach(note => this.notes.Add(note));
     }
 
     public int Length()

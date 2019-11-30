@@ -7,14 +7,14 @@ using System.Linq;
 public class NoteSpawnSpec
 {
     public float spawnTime;
-    public EmotionType type;
+    public EmotionType emotionType;
     public AudioClip clip;
     public int angle;
 
     public NoteSpawnSpec(float spawnTime, EmotionType type, AudioClip clip, int angle)
     {
         this.spawnTime = spawnTime;
-        this.type = type;
+        this.emotionType = type;
         this.clip = clip;
         this.angle = angle;
     }
@@ -118,21 +118,26 @@ public class RhythmManager : MonoBehaviour
             // dummy song for first
             pattern = new List<NoteSpec>
             {
-                new NoteSpec(0, "C", 0),
-                new NoteSpec(3, "C", 0),
+                new NoteSpec(0, "C4", 0),
+                new NoteSpec(4, "C4", 0),
             };
         }
+        Debug.Assert(activity.song.Length() > 0);
         NoteSpec easiestNote = activity.song.notes.OrderBy(n => n.angle).OrderBy(n => n.timing).ToList()[0];
         for (int i = 0; i < pattern.Count; i++)
         {
             NoteSpec n = pattern[i];
             float spawnTime = n.timing * tempoIncrement;
-            AudioClip clip = Resources.Load<AudioClip>(n.instrument + "/" + n.pitch);
+            AudioClip clip = Resources.Load<AudioClip>(n.GetAudioFilePath());
+            if (clip == null)
+            {
+                Debug.Log("Could not find clip: " + n.GetAudioFilePath());
+            }
             // choose a note type based on current emotional state
             EmotionState curr = runManager.runState.emotions;
-            EmotionType type = n.type;
+            EmotionType type = n.emotionType;
             // if specified, do that, else choose either energy, or an emotion (w/ weighted probability)
-            if (n != easiestNote && n.type == EmotionType.None)
+            if (n != easiestNote && n.emotionType == EmotionType.None)
             {
                 // double chance for the dominant emotion
                 if (Random.Range(0, 60) < curr.GetMaxValue())
@@ -287,7 +292,7 @@ public class RhythmManager : MonoBehaviour
                 if (right) { hitTypes.Add(EmotionType.frustration); }
                 if (time > nearestNotes[0].arrivalTime - hitWindowEarly)
                 {
-                    List<EmotionType> noteTypes = nearestNotes.Select(note => note.type).ToList();
+                    List<EmotionType> noteTypes = nearestNotes.Select(note => note.emotionType).ToList();
                     // if an erroneous key was pressed, miss all these notes
                     if (!hitTypes.All(noteTypes.Contains))
                     {
@@ -302,7 +307,7 @@ public class RhythmManager : MonoBehaviour
                         // hit the notes for which the key is pressed
                         foreach (Note n in unResolvedNearestNotes)
                         {
-                            if (hitTypes.Contains(n.type))
+                            if (hitTypes.Contains(n.emotionType))
                             {
                                 notes.Remove(n);
                                 n.OnHit(time, runManager.runState);
@@ -346,7 +351,7 @@ public class RhythmManager : MonoBehaviour
         }
 
         // show emotion note tutorial once some emotion note seen
-        bool emotionNoteVisible = notes.Count > 0 && notes[0].type != EmotionType.None && !IsAboveBeam(notes[0]);
+        bool emotionNoteVisible = notes.Count > 0 && notes[0].emotionType != EmotionType.None && !IsAboveBeam(notes[0]);
         // bool emotionNoteArrived = emotionNoteVisible && (time > notes[0].arrivalTime - hitWindowEarly);
         if (gameManager.showTutorial && !tutorialManager.shownEmotionNoteTutorial && emotionNoteVisible)
         {
@@ -362,19 +367,19 @@ public class RhythmManager : MonoBehaviour
         Vector3 destPos = hitArea.transform.position;
         Vector3 startingPos = destPos + offset;
         GameObject note;
-        if (n.type == EmotionType.None)
+        if (n.emotionType == EmotionType.None)
         {
             note = Instantiate(energyNote, startingPos, Quaternion.identity, transform.parent);
         }
-        else if (n.type == EmotionType.anxiety)
+        else if (n.emotionType == EmotionType.anxiety)
         {
             note = Instantiate(anxietyNote, startingPos, Quaternion.identity, transform.parent);
         }
-        else if (n.type == EmotionType.frustration)
+        else if (n.emotionType == EmotionType.frustration)
         {
             note = Instantiate(frustrationNote, startingPos, Quaternion.identity, transform.parent);
         }
-        else if (n.type == EmotionType.despair)
+        else if (n.emotionType == EmotionType.despair)
         {
             note = Instantiate(despairNote, startingPos, Quaternion.identity, transform.parent);
         }

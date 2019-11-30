@@ -7,13 +7,13 @@ public class EmotionNote : Note
     public override void MissEffect(RunState runState)
     {
         // increase more if lower
-        runState.emotions.Equilibrate(type, .2f, 20);
-        runState.emotions.Add(type, 1);
+        runState.emotions.Equilibrate(emotionType, .2f, 20);
+        runState.emotions.Add(emotionType, 1);
     }
 
     public override void HitEffect(RunState runState)
     {
         // Debug.Log(type);
-        runState.emotions.Equilibrate(type);
+        runState.emotions.Equilibrate(emotionType);
     }
 }

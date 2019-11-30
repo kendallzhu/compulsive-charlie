@@ -14,7 +14,7 @@ public class Note : MonoBehaviour
     float spawnTime;
     public float arrivalTime;
     Vector2 startingOffset;
-    public EmotionType type;
+    public EmotionType emotionType;
     // "animator" prefabs
     public GameObject hitPrefab;
     public GameObject missPrefab;
@@ -66,7 +66,7 @@ public class Note : MonoBehaviour
         scaleFactor = Math.Max(0, scaleFactor);
         Vector3 newPos = (Vector2)hitArea.position + startingOffset * scaleFactor;
         // use z position for ordering to make overlap colors more normal
-        transform.position = new Vector3(newPos.x, newPos.y, GetZPosition(type));
+        transform.position = new Vector3(newPos.x, newPos.y, GetZPosition(emotionType));
     }
 
     public void OnDeflect()
