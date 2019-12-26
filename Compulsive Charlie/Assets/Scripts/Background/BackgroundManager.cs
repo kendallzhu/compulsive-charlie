@@ -25,6 +25,10 @@ public class BackgroundManager : MonoBehaviour
     public AudioSource rainAudio;
     public AudioSource thunderAudio;
     public AudioSource fireAudio;
+    private const float fadeInDuration = 1f;
+    private const float fadeOutDuration = 3f;
+    // volume is capped by constant * emotion level
+    private const float maxVolumeFactor = .4f / 20;
 
     // fog sprites
     public List<Sprite> fogSprites;
@@ -75,41 +79,35 @@ public class BackgroundManager : MonoBehaviour
         if (e.despair >= 10)
         {
             tileRain.SetActive(true);
-            if (!rainAudio.isPlaying)
-            {
-                rainAudio.Play();
-            }
+            rainAudio.volume += Time.deltaTime / fadeOutDuration;
+            rainAudio.volume = Mathf.Min(rainAudio.volume, maxVolumeFactor * e.despair);
         } else
         {
             tileRain.SetActive(false);
-            rainAudio.Stop();
+            rainAudio.volume -= Time.deltaTime / fadeOutDuration;
         }
         Color transparent = new Color(1, 1, 1, (float)e.despair / 20f);
         tileRain.GetComponent<SpriteRenderer>().color = transparent;
         // lightning if anxious
         if (e.anxiety >= 10)
         {
-            FlashLightning(.5f, Mathf.Max(0, (20f - e.anxiety) / 5f));
-            if (!thunderAudio.isPlaying)
-            {
-                thunderAudio.Play();
-            }
+            FlashLightning(.5f, Mathf.Min(0, (20f - e.anxiety) / 5f));
+            thunderAudio.volume += Time.deltaTime / fadeInDuration;
+            thunderAudio.volume = Mathf.Min(thunderAudio.volume, maxVolumeFactor * e.anxiety);
         } else
         {
-            thunderAudio.Stop();
+            thunderAudio.volume -= Time.deltaTime / fadeOutDuration;
         }
         // fire if frustrated
         if (e.frustration >= 10)
         {
             int maxPlumes = e.frustration / 4;
             SpawnFire(runState.CurrentActivityPlatform(), maxPlumes);
-            if (!fireAudio.isPlaying)
-            {
-                fireAudio.Play();
-            }
+            fireAudio.volume += Time.deltaTime / fadeInDuration;
+            fireAudio.volume = Mathf.Min(fireAudio.volume, maxVolumeFactor * e.frustration);
         } else
         {
-            fireAudio.Stop();
+            fireAudio.volume -= Time.deltaTime / fadeOutDuration;
         }
         // change fogginess based on total emotion level
         int s = e.GetSum();
