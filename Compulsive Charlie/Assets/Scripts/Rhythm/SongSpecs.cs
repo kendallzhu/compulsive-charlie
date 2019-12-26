@@ -3,7 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum Instrument { woodBlock, piano, violin, drumkit }
+// kind of djanky, but we can justa dd as we go
+public enum Instrument {
+    woodBlock,
+    piano,
+    violin, violinShort, violinVeryShort,
+    cello, celloShort, celloVeryShort,
+    drumkit }
 
 public class NoteSpec
 {
@@ -38,6 +44,30 @@ public class NoteSpec
         this.instrument = n.instrument;
     }
 
+    private string StringsFilePath(string instrumentString, string length)
+    {
+        // Helper function to fetch the format of the philharmonic orchestra files
+        string prefix = instrumentString + "/" + instrumentString + "_";
+        string suffix = "_arco-normal";
+
+        List<string> volumes = new List<string> { "mezzo-forte", "forte", "fortissimo" };
+        foreach (string volume in volumes) {
+            // supplement with harsher fortes if note is missing 8(
+            string path = prefix + pitch + "_" + length + "_" + volume + suffix;
+            if (Resources.Load<AudioClip>(path)) return path;
+        }
+        // use viola if we have to >8)
+        foreach (string volume in volumes)
+        {
+            prefix = "viola/viola_";
+            // supplement with harsher fortes if note is missing 8(
+            string path = prefix + pitch + "_" + length + "_" + volume + suffix;
+            if (Resources.Load<AudioClip>(path)) return path;
+        }
+        Debug.Log("Could not find clip: " + instrumentString + ", length: " + length);
+        return "";
+    }
+
     public string GetAudioFilePath()
     {
         switch (this.instrument)
@@ -50,8 +80,17 @@ public class NoteSpec
                 // TODO: add instruments for different volumes?
                 return "piano/Piano.mf." + pitch;
             case Instrument.violin:
-                // TODO: Missing notes! Import fortissimo from philharmonic samples?
-                return "violin/violin_" + pitch + "_05_mezzo-forte_arco-normal";
+                return StringsFilePath("violin", "1");
+            case Instrument.violinShort:
+                return StringsFilePath("violin", "05");
+            case Instrument.violinVeryShort:
+                return StringsFilePath("violin", "025");
+            case Instrument.cello:
+                return StringsFilePath("cello", "1");
+            case Instrument.celloShort:
+                return StringsFilePath("cello", "05");
+            case Instrument.celloVeryShort:
+                return StringsFilePath("cello", "025");
             default:
                 Debug.Log("invalid instrument?");
                 return "";

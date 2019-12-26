@@ -21,6 +21,11 @@ public class BackgroundManager : MonoBehaviour
     public GameObject tileRain;
     public GameObject tileLightning;
 
+    // background music sources
+    public AudioSource rainAudio;
+    public AudioSource thunderAudio;
+    public AudioSource fireAudio;
+
     // fog sprites
     public List<Sprite> fogSprites;
     // threshold constants for how much fog to display
@@ -65,20 +70,46 @@ public class BackgroundManager : MonoBehaviour
             newStaticBG = night;
         }
         TransitionStaticBG(staticBase.GetComponent<Image>(), newStaticBG);
+        
         // rain if sad
-        tileRain.SetActive(e.despair >= 10);
+        if (e.despair >= 10)
+        {
+            tileRain.SetActive(true);
+            if (!rainAudio.isPlaying)
+            {
+                rainAudio.Play();
+            }
+        } else
+        {
+            tileRain.SetActive(false);
+            rainAudio.Stop();
+        }
         Color transparent = new Color(1, 1, 1, (float)e.despair / 20f);
         tileRain.GetComponent<SpriteRenderer>().color = transparent;
         // lightning if anxious
         if (e.anxiety >= 10)
         {
             FlashLightning(.5f, Mathf.Max(0, (20f - e.anxiety) / 5f));
+            if (!thunderAudio.isPlaying)
+            {
+                thunderAudio.Play();
+            }
+        } else
+        {
+            thunderAudio.Stop();
         }
         // fire if frustrated
         if (e.frustration >= 10)
         {
             int maxPlumes = e.frustration / 4;
             SpawnFire(runState.CurrentActivityPlatform(), maxPlumes);
+            if (!fireAudio.isPlaying)
+            {
+                fireAudio.Play();
+            }
+        } else
+        {
+            fireAudio.Stop();
         }
         // change fogginess based on total emotion level
         int s = e.GetSum();

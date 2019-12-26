@@ -7,8 +7,8 @@ public class Luma : Song
 {
     // Luma - Super Mario Galaxy: https://www.youtube.com/watch?v=c3jvWynR_Dc
     static Instrument melodyInstrument = Instrument.piano;
-    static Instrument baseInstrument = Instrument.woodBlock;
-    static Instrument accessoryInstrument = Instrument.woodBlock;
+    static Instrument baseInstrument = Instrument.piano;
+    static Instrument accessoryInstrument = Instrument.piano;
     static MeasureSpec melody1 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "G4", 6),
         new NoteSpec(4, "E5", 8),
