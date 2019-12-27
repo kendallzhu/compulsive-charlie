@@ -111,6 +111,11 @@ public class RhythmManager : MonoBehaviour
         ClearAllNotes();
         // reset time
         time = 0;
+
+        // for testing new songs
+        activity.song = MumenRider.song;
+        activity.tempoIncrement = .2f;
+
         // load in notes for this activity, sort by timing
         List<NoteSpec> pattern = activity.song.notes.OrderBy(n => n.timing).ToList();
         if (runManager.runState.timeSteps == 0)
