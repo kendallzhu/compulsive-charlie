@@ -100,6 +100,10 @@ public class RhythmManager : MonoBehaviour
 
     private void LoadSong()
     {
+        // for testing new songs
+        activity.song = MumenRider.song;
+        activity.tempoIncrement = .2f;
+
         // time between smallest increments of a rhythm pattern
         tempoIncrement = activity.tempoIncrement;
         // duration before arrival time that is considered a miss for the incoming note
@@ -111,10 +115,6 @@ public class RhythmManager : MonoBehaviour
         ClearAllNotes();
         // reset time
         time = 0;
-
-        // for testing new songs
-        activity.song = MumenRider.song;
-        activity.tempoIncrement = .2f;
 
         // load in notes for this activity, sort by timing
         List<NoteSpec> pattern = activity.song.notes.OrderBy(n => n.timing).ToList();

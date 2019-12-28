@@ -51,20 +51,27 @@ public class NoteSpec
         string suffix = "_arco-normal";
 
         List<string> volumes = new List<string> { "mezzo-forte", "forte", "fortissimo" };
-        foreach (string volume in volumes) {
-            // supplement with harsher fortes if note is missing 8(
-            string path = prefix + pitch + "_" + length + "_" + volume + suffix;
-            if (Resources.Load<AudioClip>(path)) return path;
+        List<string> lengths = new List<string> { length, "1", "05", "025" };
+        // supplement with other lengths and volumes if note is missing 8(
+        foreach (string len in lengths) {
+            foreach (string volume in volumes)
+            {
+                string path = prefix + pitch + "_" + len + "_" + volume + suffix;
+                if (Resources.Load<AudioClip>(path)) return path;
+            }
         }
         // use viola if we have to >8)
-        foreach (string volume in volumes)
+        foreach (string len in lengths)
         {
-            prefix = "viola/viola_";
-            // supplement with harsher fortes if note is missing 8(
-            string path = prefix + pitch + "_" + length + "_" + volume + suffix;
-            if (Resources.Load<AudioClip>(path)) return path;
+            foreach (string volume in volumes)
+            {
+                prefix = "viola/viola_";
+                // supplement with other lengths and volumes if note is missing 8(
+                string path = prefix + pitch + "_" + len + "_" + volume + suffix;
+                if (Resources.Load<AudioClip>(path)) return path;
+            }
         }
-        Debug.Log("Could not find clip: " + instrumentString + ", length: " + length);
+        Debug.Log("Could not find clip: " + instrumentString + ", pitch: " + pitch + "length: " + length);
         return "";
     }
 
