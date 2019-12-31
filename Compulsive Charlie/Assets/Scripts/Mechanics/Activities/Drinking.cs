@@ -12,6 +12,7 @@ public class Drinking : Activity
         song = MumenRider.song;
         tempoIncrement = .2f;
         emotionEffect = new EmotionState(0, 0, 6);
+        suppressedEmotions.Add(EmotionType.despair);
         isUnlocked = true;
     }
 

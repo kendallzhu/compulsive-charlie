@@ -10,6 +10,7 @@ public class VideoGames : Activity
         descriptionText = "...";
         heightRating = -1;
         emotionEffect = new EmotionState(0, 8, 0);
+        suppressedEmotions.Add(EmotionType.anxiety);
         isUnlocked = true;
     }
 

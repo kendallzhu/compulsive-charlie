@@ -10,6 +10,7 @@ public class YouTube : Activity
         descriptionText = "suggested videos";
         heightRating = -3;
         emotionEffect = new EmotionState(2, 2, 2);
+        suppressedEmotions.Add(EmotionType.frustration);
         isUnlocked = true;
     }
 

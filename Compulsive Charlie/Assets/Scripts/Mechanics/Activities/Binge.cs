@@ -12,6 +12,7 @@ public class Binge : Activity
         song = MumenRider.song;
         tempoIncrement = .2f;
         emotionEffect = new EmotionState(0, 0, 8);
+        suppressedEmotions.Add(EmotionType.despair);
         isUnlocked = true;
     }
 

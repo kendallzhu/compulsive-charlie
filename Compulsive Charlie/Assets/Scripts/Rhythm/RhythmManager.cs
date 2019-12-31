@@ -140,25 +140,33 @@ public class RhythmManager : MonoBehaviour
             }
             // choose a note type based on current emotional state
             EmotionState curr = runManager.runState.emotions;
+            int exposedAnxiety = activity.suppressedEmotions.Contains(EmotionType.anxiety) ? 0 : curr.anxiety;
+            int exposedFrustration = activity.suppressedEmotions.Contains(EmotionType.frustration) ? 0 : curr.frustration;
+            int exposedDespair = activity.suppressedEmotions.Contains(EmotionType.despair) ? 0 : curr.despair;
             EmotionType type = n.emotionType;
             // if specified, do that, else choose either energy, or an emotion (w/ weighted probability)
+            // (ignore supressed emotions)
             if (n != easiestNote && n.emotionType == EmotionType.None)
             {
-                // double chance for the dominant emotion
+                // extra chance for the dominant emotion
                 if (Random.Range(0, 80) < curr.GetMaxValue())
                 {
-                    type = curr.GetDominantEmotion();
+                    EmotionType dominantEmotion = curr.GetDominantEmotion();
+                    if (!activity.suppressedEmotions.Contains(dominantEmotion))
+                    {
+                        type = dominantEmotion;
+                    }
                 }
                 // else just proportional to emotion value
-                else if (Random.Range(0, 80) < curr.anxiety)
+                else if (Random.Range(0, 80) < exposedAnxiety)
                 {
                     type = EmotionType.anxiety;
                 }
-                else if (Random.Range(0, 80) < curr.frustration + curr.anxiety)
+                else if (Random.Range(0, 80) < exposedAnxiety + exposedFrustration)
                 {
                     type = EmotionType.frustration;
                 }
-                else if (Random.Range(0, 80) < curr.despair + curr.anxiety + curr.frustration)
+                else if (Random.Range(0, 80) < exposedAnxiety + exposedFrustration + exposedFrustration)
                 {
                     type = EmotionType.despair;
                 }

@@ -736,6 +736,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1902358815}
     m_Modifications:
+    - target: {fileID: 4329171387035770805, guid: 6d70603a238232f468aa6c7fb1376706,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000005722046
+      objectReference: {fileID: 0}
     - target: {fileID: 6579902385197013052, guid: 6d70603a238232f468aa6c7fb1376706,
         type: 3}
       propertyPath: m_Name
@@ -4495,6 +4500,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.07450981
       objectReference: {fileID: 0}
+    - target: {fileID: 4329171387035770805, guid: 6d70603a238232f468aa6c7fb1376706,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000005722046
+      objectReference: {fileID: 0}
     - target: {fileID: 6384532419818350449, guid: 6d70603a238232f468aa6c7fb1376706,
         type: 3}
       propertyPath: m_IsActive
@@ -5234,7 +5244,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Make it through the day, one activity at a time!
+  m_text: Experience the day, one activity at a time!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -11411,6 +11421,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1902358815}
     m_Modifications:
+    - target: {fileID: 4329171387035770805, guid: 6d70603a238232f468aa6c7fb1376706,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000005722046
+      objectReference: {fileID: 0}
     - target: {fileID: 6579902385197013052, guid: 6d70603a238232f468aa6c7fb1376706,
         type: 3}
       propertyPath: m_Name
@@ -12319,6 +12334,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.5529412
       objectReference: {fileID: 0}
+    - target: {fileID: 4329171387035770805, guid: 6d70603a238232f468aa6c7fb1376706,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000005722046
+      objectReference: {fileID: 0}
     - target: {fileID: 6384532419818350449, guid: 6d70603a238232f468aa6c7fb1376706,
         type: 3}
       propertyPath: m_IsActive
@@ -12688,6 +12708,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1902358815}
     m_Modifications:
+    - target: {fileID: 4329171387035770805, guid: 6d70603a238232f468aa6c7fb1376706,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000005722046
+      objectReference: {fileID: 0}
     - target: {fileID: 6579902385197013052, guid: 6d70603a238232f468aa6c7fb1376706,
         type: 3}
       propertyPath: m_Name
@@ -16136,6 +16161,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 580611075}
     m_Modifications:
+    - target: {fileID: 4329171387035770805, guid: 6d70603a238232f468aa6c7fb1376706,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000005722046
+      objectReference: {fileID: 0}
     - target: {fileID: 6384532419818350449, guid: 6d70603a238232f468aa6c7fb1376706,
         type: 3}
       propertyPath: m_IsActive

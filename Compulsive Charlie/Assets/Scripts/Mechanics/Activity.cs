@@ -23,6 +23,7 @@ public abstract class Activity : MonoBehaviour {
     public bool isUnlocked = false;
     public EmotionState emotionEffect = new EmotionState(0, 0, 0);
     public List<Thought> associatedThoughts = new List<Thought>();
+    public List<EmotionType> suppressedEmotions = new List<EmotionType>();
     // specs for rhythm gameplay
     // per activity energycap limits how big the beam can grow with energy
     public int energyCap;
@@ -38,7 +39,9 @@ public abstract class Activity : MonoBehaviour {
         Debug.Log(name + " hash: " + Animator.StringToHash(name));
         // song = Object.FindObjectOfType<GoToBed>().song;
         energyCap = 10;
-}
+        // for testing
+        // suppressedEmotions.Add(EmotionType.anxiety);
+    }
 
     // (weighted) availability specific to activity, given state of run
     public virtual int CustomAvailability(RunState runState)

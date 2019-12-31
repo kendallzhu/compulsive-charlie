@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     // display constants
     private const int emotionMeterCap = 20;
     private const float timeRotationStep = -0.1f;
+    private Dictionary<EmotionType, Color> emotionFillColors;
 
     // Initialization
     void Awake()
@@ -29,6 +30,11 @@ public class UIManager : MonoBehaviour
         runManager = Object.FindObjectOfType<RunManager>();
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
+        // record emotion fill colors
+        emotionFillColors = new Dictionary<EmotionType, Color>();
+        emotionFillColors.Add(EmotionType.anxiety, anxietyMeter.transform.Find("Filler").GetComponent<Image>().color);
+        emotionFillColors.Add(EmotionType.frustration, frustrationMeter.transform.Find("Filler").GetComponent<Image>().color);
+        emotionFillColors.Add(EmotionType.despair, despairMeter.transform.Find("Filler").GetComponent<Image>().color);
     }
 
     void Update()
@@ -58,6 +64,24 @@ public class UIManager : MonoBehaviour
             }
             // set filler image fill amount
             fillerImage.fillAmount = newFillAmount;
+
+            // color gray and draw X if being suppressed
+            EmotionType emotionType = EmotionType.None;
+            if (meters[i] == anxietyMeter) emotionType = EmotionType.anxiety;
+            if (meters[i] == frustrationMeter) emotionType = EmotionType.frustration;
+            if (meters[i] == despairMeter) emotionType = EmotionType.despair;
+            Activity activity = runState.CurrentActivity();
+            if (activity && activity.suppressedEmotions.Contains(emotionType)) {
+                fillerImage.color = new Color(.3f, .3f, .3f);
+                Image XMark = meters[i].transform.Find("XMark").GetComponent<Image>();
+                XMark.color = emotionFillColors[emotionType];
+                XMark.enabled = true;
+            } else if (emotionType != EmotionType.None)
+            {
+                fillerImage.color = emotionFillColors[emotionType];
+                Image XMark = meters[i].transform.Find("XMark").GetComponent<Image>();
+                XMark.enabled = false;
+            }
             // set text (meters must have a child called "Text")
             Transform textObject = meters[i].transform.Find("Text");
             if (textObject)
