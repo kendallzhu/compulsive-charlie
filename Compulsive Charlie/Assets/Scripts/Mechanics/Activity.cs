@@ -28,7 +28,7 @@ public abstract class Activity : MonoBehaviour {
     public int energyCap;
     // tempo (amount of time between notes in the song)
     public float tempoIncrement = .16f;
-    
+        
     // (default song)
     public Song song = Hero.song;
 

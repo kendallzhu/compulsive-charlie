@@ -21,6 +21,7 @@ public class ActivityPlatform : MonoBehaviour {
     public bool jumpPadExplored = false;
     public int bestCombo = 0;
     public int jumpNumber;
+    public bool isSongDone = false;
 
     // other prefabs
     public GameObject rhythmNotePrefab;
@@ -45,6 +46,7 @@ public class ActivityPlatform : MonoBehaviour {
     {
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();
+        isSongDone = false;
     }
 
     private void Update()

@@ -7,8 +7,10 @@ public class Drinking : Activity
     void Awake()
     {
         name = "Drinking";
-        descriptionText = "problem and solution";
-        heightRating = -7;
+        descriptionText = "the problem or solution?";
+        heightRating = -3;
+        song = MumenRider.song;
+        tempoIncrement = .2f;
         emotionEffect = new EmotionState(0, 0, 3);
         isUnlocked = true;
     }

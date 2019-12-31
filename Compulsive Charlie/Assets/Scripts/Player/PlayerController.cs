@@ -114,12 +114,12 @@ public class PlayerController : MonoBehaviour {
     // functions for gameplay parameters that depend on runState (emotions, etc.)
     public float PlatformMinForwardSpeed(RunState runState)
     {
-        if (runState.timeSteps == 0)
+        Activity activity = runState.CurrentActivity();
+        if (runState.timeSteps == 0 || runState.CurrentActivityPlatform().isSongDone)
         {
             return 1.5f;
         }
         // set the forward speed slow enough to allow finishing the song
-        Activity activity = runState.CurrentActivity();
         float songDuration = ((float)activity.song.Length() * activity.tempoIncrement) + 2;
         return (float)runState.CurrentActivityPlatform().length / songDuration;
     }

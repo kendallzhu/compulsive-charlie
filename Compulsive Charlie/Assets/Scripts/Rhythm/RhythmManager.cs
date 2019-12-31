@@ -101,8 +101,8 @@ public class RhythmManager : MonoBehaviour
     private void LoadSong()
     {
         // for testing new songs
-        activity.song = MumenRider.song;
-        activity.tempoIncrement = .2f;
+        // activity.song = MumenRider.song;
+        // activity.tempoIncrement = .2f;
 
         // time between smallest increments of a rhythm pattern
         tempoIncrement = activity.tempoIncrement;
@@ -248,6 +248,10 @@ public class RhythmManager : MonoBehaviour
             // spawn note, with time adjusted to be exact with intended pattern
             SpawnNote(notesToSpawn[0]);
             notesToSpawn.RemoveAt(0);
+            if (notesToSpawn.Count == 0)
+            {
+                runState.CurrentActivityPlatform().isSongDone = true;
+            }
         }
         // take inputs + trigger input animations
         bool up = Input.GetButtonDown("up");

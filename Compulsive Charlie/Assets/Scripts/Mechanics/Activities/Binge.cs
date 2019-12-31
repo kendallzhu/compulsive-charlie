@@ -9,6 +9,8 @@ public class Binge : Activity
         name = "Binge";
         descriptionText = "fill the hole with food";
         heightRating = -1;
+        song = MumenRider.song;
+        tempoIncrement = .2f;
         emotionEffect = new EmotionState(0, 0, 4);
         isUnlocked = true;
     }
