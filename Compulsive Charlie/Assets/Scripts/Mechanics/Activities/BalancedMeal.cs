@@ -9,7 +9,7 @@ public class BalancedMeal : Activity
         name = "Balanced Meal";
         descriptionText = "fruits and veggies";
         heightRating = 3;
-        emotionEffect = new EmotionState(3, 3, 0);
+        emotionEffect = new EmotionState(6, 6, 0);
         isUnlocked = true;
     }
 

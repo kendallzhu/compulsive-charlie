@@ -9,7 +9,7 @@ public class GoToBed : Activity
         name = "Go To Bed";
         descriptionText = "it's all over";
         heightRating = 0;
-        emotionEffect = new EmotionState(1, 0, 1);
+        emotionEffect = new EmotionState(2, 0, 2);
         isUnlocked = true;
         song = Luma.song;
         tempoIncrement = .1f;

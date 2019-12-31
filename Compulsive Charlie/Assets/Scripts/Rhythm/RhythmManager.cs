@@ -145,22 +145,22 @@ public class RhythmManager : MonoBehaviour
             if (n != easiestNote && n.emotionType == EmotionType.None)
             {
                 // double chance for the dominant emotion
-                if (Random.Range(0, 60) < curr.GetMaxValue())
+                if (Random.Range(0, 80) < curr.GetMaxValue())
                 {
                     type = curr.GetDominantEmotion();
                 }
-                // else just proportional to emotion value / 60
-                else if (Random.Range(0, 60) < curr.anxiety)
+                // else just proportional to emotion value
+                else if (Random.Range(0, 80) < curr.anxiety)
                 {
                     type = EmotionType.anxiety;
                 }
-                else if (Random.Range(0, 60) < curr.anxiety)
+                else if (Random.Range(0, 80) < curr.frustration + curr.anxiety)
                 {
-                    type = EmotionType.anxiety;
+                    type = EmotionType.frustration;
                 }
-                else if (Random.Range(0, 60) < curr.anxiety)
+                else if (Random.Range(0, 80) < curr.despair + curr.anxiety + curr.frustration)
                 {
-                    type = EmotionType.anxiety;
+                    type = EmotionType.despair;
                 }
             }
             // also first activity is all energy notes if need to show tutorial

@@ -9,7 +9,7 @@ public class Study : Activity
         name = "Study";
         descriptionText = "learning and burning";
         heightRating = 3;
-        emotionEffect = new EmotionState(4, 4, 0);
+        emotionEffect = new EmotionState(8, 8, 0);
         isUnlocked = true;
     }
 }

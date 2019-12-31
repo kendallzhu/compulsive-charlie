@@ -9,7 +9,7 @@ public class SleepIn : Activity
         name = "Sleep In";
         descriptionText = "ugh";
         heightRating = -3;
-        emotionEffect = new EmotionState(1, 0, 2);
+        emotionEffect = new EmotionState(2, 0, 4);
         isUnlocked = true;
         song = Luma.song;
         tempoIncrement = .1f;

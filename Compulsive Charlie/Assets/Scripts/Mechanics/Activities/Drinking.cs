@@ -11,7 +11,7 @@ public class Drinking : Activity
         heightRating = -3;
         song = MumenRider.song;
         tempoIncrement = .2f;
-        emotionEffect = new EmotionState(0, 0, 3);
+        emotionEffect = new EmotionState(0, 0, 6);
         isUnlocked = true;
     }
 

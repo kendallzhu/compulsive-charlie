@@ -9,7 +9,7 @@ public class YouTube : Activity
         name = "YouTube";
         descriptionText = "suggested videos";
         heightRating = -3;
-        emotionEffect = new EmotionState(1, 1, 1);
+        emotionEffect = new EmotionState(2, 2, 2);
         isUnlocked = true;
     }
 

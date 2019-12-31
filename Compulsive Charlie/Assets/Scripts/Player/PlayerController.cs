@@ -121,6 +121,6 @@ public class PlayerController : MonoBehaviour {
         }
         // set the forward speed slow enough to allow finishing the song
         float songDuration = ((float)activity.song.Length() * activity.tempoIncrement) + 2;
-        return (float)runState.CurrentActivityPlatform().length / songDuration;
+        return (float)(runState.CurrentActivityPlatform().length - 2) / songDuration;
     }
 }

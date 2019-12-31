@@ -11,7 +11,7 @@ public class Binge : Activity
         heightRating = -1;
         song = MumenRider.song;
         tempoIncrement = .2f;
-        emotionEffect = new EmotionState(0, 0, 4);
+        emotionEffect = new EmotionState(0, 0, 8);
         isUnlocked = true;
     }
 

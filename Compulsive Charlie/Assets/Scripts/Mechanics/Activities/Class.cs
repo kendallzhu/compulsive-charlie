@@ -9,7 +9,7 @@ public class Class : Activity
         name = "Class";
         descriptionText = "I'm in school?";
         heightRating = 1;
-        emotionEffect = new EmotionState(3, 1, 3);
+        emotionEffect = new EmotionState(6, 2, 6);
         isUnlocked = true;
     }
 

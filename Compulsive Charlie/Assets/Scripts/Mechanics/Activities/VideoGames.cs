@@ -9,7 +9,7 @@ public class VideoGames : Activity
         name = "Video Games";
         descriptionText = "...";
         heightRating = -1;
-        emotionEffect = new EmotionState(0, 4, 0);
+        emotionEffect = new EmotionState(0, 8, 0);
         isUnlocked = true;
     }
 
