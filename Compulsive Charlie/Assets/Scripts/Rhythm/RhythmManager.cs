@@ -101,8 +101,8 @@ public class RhythmManager : MonoBehaviour
     private void LoadSong()
     {
         // for testing new songs
-        // activity.song = MumenRider.song;
-        // activity.tempoIncrement = .2f;
+        activity.song = WakeUpGetOutThere.song;
+        activity.tempoIncrement = .18f;
 
         // time between smallest increments of a rhythm pattern
         tempoIncrement = activity.tempoIncrement;
