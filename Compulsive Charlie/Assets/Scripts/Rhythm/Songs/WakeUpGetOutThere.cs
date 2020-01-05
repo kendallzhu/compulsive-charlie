@@ -65,11 +65,11 @@ public class WakeUpGetOutThere : Song
         new NoteSpec(3, "As1", 6),
         new NoteSpec(6, "C2", 6),
         new NoteSpec(6, "C3", 6),
-        new NoteSpec(10, "F3", 16),
+        new NoteSpec(10, "F3", 14),
         new NoteSpec(11, "G3", 18),
-        new NoteSpec(12, "G2", 16),
+        new NoteSpec(12, "G2", 14),
         new NoteSpec(13, "C2", 18),
-        new NoteSpec(14, "D2", 16),
+        new NoteSpec(14, "D2", 14),
         new NoteSpec(15, "C2", 18),
     }, baseInstrument);
     static MeasureSpec melody3 = new MeasureSpec(new List<NoteSpec> {
@@ -80,9 +80,9 @@ public class WakeUpGetOutThere : Song
     }, melodyInstrument);
     static MeasureSpec base3 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "C2", 2),
-        new NoteSpec(12, "G2", 16),
-        new NoteSpec(14, "F2", 16),
-        new NoteSpec(15, "G2", 16),
+        new NoteSpec(12, "G2", 14),
+        new NoteSpec(14, "F2", 14),
+        new NoteSpec(15, "G2", 14),
     }, baseInstrument);
     static MeasureSpec melody4 = melody0;
     static MeasureSpec base4 = base0;
@@ -120,11 +120,11 @@ public class WakeUpGetOutThere : Song
     static MeasureSpec base8 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "As1", 2),
         new NoteSpec(2, "As2", 6),
-        new NoteSpec(3, "As1", 16),
+        new NoteSpec(3, "As1", 14),
         new NoteSpec(6, "C2", 2),
-        new NoteSpec(6, "C3", 16),
+        new NoteSpec(6, "C3", 14),
         new NoteSpec(12, "C2", 2),
-        new NoteSpec(12, "C3", 16),
+        new NoteSpec(12, "C3", 14),
     }, baseInstrument);
     static MeasureSpec melody9 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(5, "F4", 0),
@@ -138,10 +138,10 @@ public class WakeUpGetOutThere : Song
     static MeasureSpec base9 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "Cs2", 2),
         new NoteSpec(2, "Cs3", 6),
-        new NoteSpec(3, "D2", 16),
+        new NoteSpec(3, "D2", 14),
         new NoteSpec(6, "G1", 6),
         new NoteSpec(6, "G2", 2),
-        new NoteSpec(10, "G1", 16),
+        new NoteSpec(10, "G1", 14),
         new NoteSpec(10, "G2", 2),
     }, baseInstrument);
     static MeasureSpec melody10 = new MeasureSpec(new List<NoteSpec> {
