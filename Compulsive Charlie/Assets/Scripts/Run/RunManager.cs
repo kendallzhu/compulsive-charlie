@@ -55,6 +55,7 @@ public class RunManager : MonoBehaviour
         if (Input.GetKey("g") && Input.GetKey("o"))
         {
             ActivityPlatform ap = runState.CurrentActivityPlatform();
+            ap.isSongDone = true;
             float xDiff = ap.x + ap.length - player.transform.position.x - 1;
             player.transform.Translate(new Vector3(xDiff, 0, 0));
         }

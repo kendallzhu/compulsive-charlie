@@ -28,7 +28,7 @@ public class RhythmManager : MonoBehaviour
     // how far to the right of the hit area are notes spawned
     public const float travelDist = 16f;
     // how long it takes for notes to get to hit area
-    public const float travelTime = 1.5f;
+    public const float travelTime = 2f;
     // time between smallest increments of a rhythm pattern (changes per activity)
     public float tempoIncrement;
     // duration before arrival time that is considered a miss for the incoming note
@@ -162,11 +162,11 @@ public class RhythmManager : MonoBehaviour
                 {
                     type = EmotionType.anxiety;
                 }
-                else if (Random.Range(0, 80) < exposedAnxiety + exposedFrustration)
+                else if (Random.Range(0, 80) < exposedFrustration)
                 {
                     type = EmotionType.frustration;
                 }
-                else if (Random.Range(0, 80) < exposedAnxiety + exposedFrustration + exposedFrustration)
+                else if (Random.Range(0, 80) < exposedDespair)
                 {
                     type = EmotionType.despair;
                 }

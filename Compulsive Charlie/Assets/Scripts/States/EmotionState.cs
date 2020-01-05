@@ -171,7 +171,7 @@ public class EmotionState
             despair += (int)(diff * factor) + Math.Sign(diff);
         } else
         {
-            Debug.Log("Extremeness called with invalid emotion Name");
+            Debug.Log("Equilibrate called with invalid emotion Name");
         }
     }
 

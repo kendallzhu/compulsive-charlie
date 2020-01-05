@@ -13,7 +13,7 @@ public class EmotionNote : Note
 
     public override void HitEffect(RunState runState)
     {
-        // Debug.Log(type);
+        // Debug.Log(emotionType);
         runState.emotions.Equilibrate(emotionType);
     }
 }
