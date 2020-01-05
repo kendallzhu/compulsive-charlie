@@ -7,6 +7,8 @@ using System.Linq;
 public enum Instrument {
     woodBlock,
     piano,
+    piano1s,
+    piano25s,
     violin, violinShort, violinVeryShort,
     cello, celloShort, celloVeryShort,
     drumkit }
@@ -83,6 +85,10 @@ public class NoteSpec
                 return "wood_block/" + pitch;
             case Instrument.drumkit:
                 return "drum_kit/" + pitch;
+            case Instrument.piano1s:
+                return "piano1s/Piano.mf." + pitch;
+            case Instrument.piano25s:
+                return "piano.25s/Piano.mf." + pitch;
             case Instrument.piano:
                 // TODO: add instruments for different volumes?
                 return "piano/Piano.mf." + pitch;
