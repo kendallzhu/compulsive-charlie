@@ -6,6 +6,7 @@ using System.Linq;
 // kind of djanky, but we can justa dd as we go
 public enum Instrument {
     woodBlock,
+    glocken,
     piano,
     piano1s,
     piano25s,
@@ -17,14 +18,14 @@ public class NoteSpec
 {
     public int timing;
     public string pitch;
-    public int angle;
+    public int elevation;
     public EmotionType emotionType;
     public Instrument instrument;
 
     public NoteSpec(
         int timing, 
         string pitch, 
-        int angle, 
+        int elevation, 
         EmotionType type = EmotionType.None,
         Instrument instrument = Instrument.woodBlock
     )
@@ -32,7 +33,7 @@ public class NoteSpec
         this.timing = timing;
         this.pitch = pitch;
         this.emotionType = type;
-        this.angle = angle;
+        this.elevation = elevation;
         this.instrument = instrument;
     }
 
@@ -42,7 +43,7 @@ public class NoteSpec
         this.timing = n.timing;
         this.pitch = n.pitch;
         this.emotionType = n.emotionType;
-        this.angle = n.angle;
+        this.elevation = n.elevation;
         this.instrument = n.instrument;
     }
 
@@ -83,6 +84,8 @@ public class NoteSpec
         {
             case Instrument.woodBlock:
                 return "wood_block/" + pitch;
+            case Instrument.glocken:
+                return "glocken/" + pitch;
             case Instrument.drumkit:
                 return "drum_kit/" + pitch;
             case Instrument.piano1s:

@@ -9,19 +9,20 @@ public class NoteSpawnSpec
     public float spawnTime;
     public EmotionType emotionType;
     public AudioClip clip;
-    public int angle;
+    public int elevation;
 
-    public NoteSpawnSpec(float spawnTime, EmotionType type, AudioClip clip, int angle)
+    public NoteSpawnSpec(float spawnTime, EmotionType type, AudioClip clip, int elevation)
     {
         this.spawnTime = spawnTime;
         this.emotionType = type;
         this.clip = clip;
-        this.angle = angle;
+        this.elevation = elevation;
     }
 }
 
 public class RhythmManager : MonoBehaviour
 {
+
     // how forgiving we are for note hits
     public const float hitWindowLate = .15f;
     public const float hitWindowEarly = .12f;
@@ -36,16 +37,7 @@ public class RhythmManager : MonoBehaviour
     public float earlyHitPeriod;
     // duration after arrival time that is considered a miss for the next note
     public float lateHitPeriod;
-    /*// how to scale light beam width based on energy
-    public const float beamWidthFactor = .5f; */
-    // beam constants and how fast to level up/down when around them
-    public const float minBeamWidth = 1f;
-    // pull angleOffset towards current energy level, rate per second proportional to difference
-    public const float angleChangeRate = .5f;
-    // Notes spawned below this angle get auto hit - this is so as player moves up lowest notes don't clutter gameplay
-    // Hopefully there will be more notes overall in the higher levels, though, so it's worth it.
-    public const int autoHitAngle = 0;
-
+    
     public PlayerController player;
     public GameObject hitArea;
     public GameObject NoteLight;
@@ -70,7 +62,6 @@ public class RhythmManager : MonoBehaviour
     private List<NoteSpawnSpec> notesToSpawn = new List<NoteSpawnSpec>();
     private List<Note> notes = new List<Note>(); // active notes (in order)
     List<Note> nearestNotes = new List<Note>(); // notes from the active group arriving at the same time
-    private float angleOffset; // used for going up and down levels
 
     void Awake()
     {
@@ -79,14 +70,12 @@ public class RhythmManager : MonoBehaviour
         gameManager = Object.FindObjectOfType<GameManager>();
         tutorialManager = Object.FindObjectOfType<TutorialManager>();
         player = Object.FindObjectOfType<PlayerController>();
-        beamWidth = minBeamWidth;
-        angleOffset = 0;
+        beamWidth = 0;
     }
 
     public void StartRhythm(Activity activity_)
     {
         lateHitPeriodEnd = 0;
-        angleOffset = 0;
         activity = activity_;
         LoadSong();
     }
@@ -109,28 +98,26 @@ public class RhythmManager : MonoBehaviour
         return energy;
     }
 
-    // which angle notes will be spawned in the middle of the beam 
-    private float BeamCenterAngle()
+    // which notes will be spawned in the middle of the beam 
+    private float BeamCenterElevation()
     {
         return EffectiveEnergy() * 3f / 4f;
     }
 
     private float BeamWidth()
     {
-        // calculate so it lets in all notes with angles from energy/2 to energy
-        // (when centered at 3/4 energy via BeamCenterAngle)
-        float angleDegrees = EffectiveEnergy() / 2;
-        float angle = angleDegrees / 180 * Mathf.PI;
-        float x = travelDist;
-        float newBeamWidth = Mathf.Tan(angle) * x * 2;
-        return newBeamWidth;
+        // calculate so it lets in all notes with from elevations energy/2 to energy
+        // (when centered at 3/4 energy)
+        return Mathf.Max(EffectiveEnergy() / 2.0f, 1);
     }
 
     private void LoadSong()
     {
         // for testing new songs
-        activity.song = WakeUpGetOutThere.song;
-        activity.tempoIncrement = .18f;
+        activity.song = new Heartbeat(EmotionType.anxiety).song;
+        activity.tempoIncrement = .2f;
+        // activity.song = WakeUpGetOutThere.song;
+        // activity.tempoIncrement = .18f;
         // activity.song = Luma.song;
         // activity.tempoIncrement = .1f;
         // activity.song = MumenRider.song;
@@ -155,12 +142,12 @@ public class RhythmManager : MonoBehaviour
             // dummy song for first
             pattern = new List<NoteSpec>
             {
-                new NoteSpec(0, "C4", 0),
-                new NoteSpec(4, "C4", 0),
+                new NoteSpec(0, "C4", (int)BeamCenterElevation()),
+                new NoteSpec(4, "C4", (int)BeamCenterElevation()),
             };
         }
         Debug.Assert(activity.song.Length() > 0);
-        NoteSpec easiestNote = activity.song.notes.OrderBy(n => n.angle).OrderBy(n => n.timing).ToList()[0];
+        NoteSpec easiestNote = activity.song.notes.OrderBy(n => n.elevation).OrderBy(n => n.timing).ToList()[0];
         for (int i = 0; i < pattern.Count; i++)
         {
             NoteSpec n = pattern[i];
@@ -209,21 +196,21 @@ public class RhythmManager : MonoBehaviour
             {
                 type = EmotionType.None;
             }
-            notesToSpawn.Add(new NoteSpawnSpec(spawnTime, type, clip, n.angle));
+            notesToSpawn.Add(new NoteSpawnSpec(spawnTime, type, clip, n.elevation));
         }
     }
 
     // returns whether note is above beam and thus should be excluded
     bool IsAboveBeam(Note note)
     {
-        float middleY = player.transform.position.y;
+        float middleY = hitArea.transform.position.y;
         float distanceAboveCenter = note.transform.position.y - middleY;
-        return distanceAboveCenter > (beamWidth + .015f) / 2;
+        return distanceAboveCenter > (BeamWidth() + .015f) / 2;
     }
 
     bool IsTouchingBeam(Note note)
     {
-        float middleY = player.transform.position.y;
+        float middleY = hitArea.transform.position.y;
         float distanceFromCenter = Mathf.Abs(note.transform.position.y - middleY);
         const float noteRadius = .5f;
         return distanceFromCenter - beamWidth / 2 <= noteRadius;
@@ -239,16 +226,16 @@ public class RhythmManager : MonoBehaviour
         }
 
         // adjust light beam width based on current energy
-        float targetDisplayBeamWidth = Mathf.Max(BeamWidth(), minBeamWidth);
-        beamWidth = Mathf.Lerp(beamWidth, targetDisplayBeamWidth, .01f);
+        float targetDisplayBeamWidth = BeamWidth();
+        beamWidth = Mathf.Lerp(beamWidth, targetDisplayBeamWidth, .02f);
+        if (Mathf.Abs(beamWidth - targetDisplayBeamWidth) < .5f)
+        {
+            // extra adjustment so it coverges faster
+            beamWidth = Mathf.Lerp(beamWidth, targetDisplayBeamWidth, .0f);
+        }
         Light light = NoteLight.GetComponent<Light>();
         light.cookieSize = beamWidth + .015f; // this is to avoid small slivers of black initially
-
-        // adjust angle offset to build up/down if the player is doing very well or poor
-        // (pull towards current energy level, at rate proportional to delta)
-        float changeRate = (BeamCenterAngle() - angleOffset) * angleChangeRate * Time.deltaTime;
-        angleOffset += changeRate;
-
+        
         // destroy all notes falling above of the beam
         foreach (Note note in new List<Note>(notes))
         {
@@ -405,8 +392,8 @@ public class RhythmManager : MonoBehaviour
     // create a note with specified type + spawn time
     void SpawnNote(NoteSpawnSpec n)
     {
-        float spawnAngle = n.angle - angleOffset;
-        Vector3 offset = Quaternion.Euler(0, 0, spawnAngle) * new Vector3(travelDist, 0, 0);
+        float spawnElevation = n.elevation - BeamCenterElevation();
+        Vector3 offset = new Vector3(travelDist, spawnElevation, 0);
         Vector3 destPos = hitArea.transform.position;
         Vector3 startingPos = destPos + offset;
         GameObject note;
@@ -434,7 +421,8 @@ public class RhythmManager : MonoBehaviour
         note.GetComponent<Note>().Initialize(n.spawnTime, n.clip);
 
         // notes coming from far enough below get auto-hit!
-        if (offset.y < -beamWidth / 2)
+        // round so we keep notes alive that are off by fraction (i.e. 0 notes when elevation = 1)
+        if (offset.y < -(int)(BeamWidth() / 2 + .5f))
         {
             note.GetComponent<Note>().OnAutoHit(time);
         } else
