@@ -40,9 +40,9 @@ public class MumenRider: Song
         new NoteSpec(8, "B3", 12),
     }, baseInstrument);
     static MeasureSpec melody3 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "Fs4", 17),
+        new NoteSpec(0, "Fs4", 16),
         new NoteSpec(0, "D5", 0),
-        new NoteSpec(8, "A5", 0),
+        new NoteSpec(8, "A5", 2),
     }, melodyInstrument);
     static MeasureSpec base3 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "D3", 6),
@@ -52,12 +52,12 @@ public class MumenRider: Song
     }, baseInstrument);
     static MeasureSpec melody4 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "E4", 14),
-        new NoteSpec(0, "A5", 17),
+        new NoteSpec(0, "A5", 16),
         new NoteSpec(0, "E5", 0),
         new NoteSpec(6, "A4", 14),
-        new NoteSpec(8, "Fs5", 0),
-        new NoteSpec(10, "G5", 2),
-        new NoteSpec(12, "E5", 4),
+        new NoteSpec(8, "Fs5", 2),
+        new NoteSpec(10, "G5", 4),
+        new NoteSpec(12, "E5", 6),
         new NoteSpec(14, "Fs5", 2),
     }, melodyInstrument);
     static MeasureSpec base4 = new MeasureSpec(new List<NoteSpec> {
@@ -79,7 +79,7 @@ public class MumenRider: Song
         new NoteSpec(8, "D4", 12),
     }, baseInstrument);
     static MeasureSpec melody6 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "D5", 14),
+        new NoteSpec(0, "D5", 12),
         new NoteSpec(0, "Fs5", 0),
         new NoteSpec(4, "D6", 0),
         new NoteSpec(8, "Cs6", 2),
@@ -140,7 +140,7 @@ public class MumenRider: Song
         new NoteSpec(12, "Fs3", 8),
     }, baseInstrument);
     static MeasureSpec melody11 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(12, "E5", 0),
+        new NoteSpec(12, "E5", 2),
     }, melodyInstrument);
     static MeasureSpec base11 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "G2", 6),
@@ -193,9 +193,9 @@ public class MumenRider: Song
         new NoteSpec(12, "D4", 6),
     }, baseInstrument); 
     static MeasureSpec melody15 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "G4", 14),
+        new NoteSpec(0, "G4", 4),
         new NoteSpec(0, "D5", 0),
-        new NoteSpec(12, "E5", 17),
+        new NoteSpec(12, "E5", 14),
     }, melodyInstrument);
     static MeasureSpec base15 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "G2", 6),
@@ -206,7 +206,7 @@ public class MumenRider: Song
         new NoteSpec(12, "D3", 8),
     }, baseInstrument);
     static MeasureSpec melody16 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "A4", 14),
+        new NoteSpec(0, "A4", 6),
         new NoteSpec(0, "Fs5", 0),
         new NoteSpec(6, "D5", 2),
         new NoteSpec(12, "G5", 4),
@@ -236,7 +236,7 @@ public class MumenRider: Song
         new NoteSpec(0, "Bass_Drum_1", 22),
         new NoteSpec(2, "Bass_Drum_1", 24),
         new NoteSpec(3, "Closed_High_Hat", 22),
-        new NoteSpec(6, "Bass_Drum_1", 26),
+        new NoteSpec(6, "Bass_Drum_1", 24),
         new NoteSpec(10, "Bass_Drum_1", 22),
         new NoteSpec(12, "Closed_High_Hat", 24),
     }, Instrument.drumkit);

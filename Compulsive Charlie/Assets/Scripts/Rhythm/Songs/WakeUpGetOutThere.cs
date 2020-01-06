@@ -58,6 +58,7 @@ public class WakeUpGetOutThere : Song
         new NoteSpec(14, "A3", 20),
         new NoteSpec(14, "As3", 12),
         new NoteSpec(14, "D4", 0),
+        new NoteSpec(15, "C2", 18),
     }, melodyInstrument);
     static MeasureSpec base2 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "As1", 2),
@@ -70,7 +71,6 @@ public class WakeUpGetOutThere : Song
         new NoteSpec(12, "G2", 14),
         new NoteSpec(13, "C2", 18),
         new NoteSpec(14, "D2", 14),
-        new NoteSpec(15, "C2", 18),
     }, baseInstrument);
     static MeasureSpec melody3 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "A3", 20),
@@ -79,7 +79,6 @@ public class WakeUpGetOutThere : Song
         new NoteSpec(8, "F4", 16),
     }, melodyInstrument);
     static MeasureSpec base3 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "C2", 2),
         new NoteSpec(12, "G2", 14),
         new NoteSpec(14, "F2", 14),
         new NoteSpec(15, "G2", 14),
@@ -198,6 +197,7 @@ public class WakeUpGetOutThere : Song
         new NoteSpec(14, "A3", 20),
         new NoteSpec(14, "As3", 12),
         new NoteSpec(14, "D4", 0),
+        new NoteSpec(15, "C2", 16),
     }, melodyInstrument);
     static MeasureSpec base14 = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "As1", 2),
@@ -209,7 +209,7 @@ public class WakeUpGetOutThere : Song
         new NoteSpec(12, "G2", 6),
         new NoteSpec(13, "C2", 16),
         new NoteSpec(14, "D2", 18),
-        new NoteSpec(15, "C2", 16),
+        
     }, baseInstrument);
     // delete 15?
     static MeasureSpec melody15 = new MeasureSpec(new List<NoteSpec> {
@@ -218,7 +218,7 @@ public class WakeUpGetOutThere : Song
         new NoteSpec(0, "D4", 0),
     }, melodyInstrument);
     static MeasureSpec base15 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "C2", 0),
+        
     }, baseInstrument);
     static MeasureSpec beats = new MeasureSpec(new List<NoteSpec> {
         new NoteSpec(0, "Bass_Drum_1", 22),
@@ -276,7 +276,6 @@ public class WakeUpGetOutThere : Song
         (beats, 12),
         (beats, 13),
         (beats, 14),
-        (beats, 15),
     });
     public static Song song = songOnce;
 }

@@ -23,10 +23,10 @@ public class NoteSpawnSpec
 public class RhythmManager : MonoBehaviour
 {
     // how forgiving we are for note hits
-    public const float hitWindowLate = .09f;
-    public const float hitWindowEarly = .07f;
+    public const float hitWindowLate = .15f;
+    public const float hitWindowEarly = .12f;
     // how far to the right of the hit area are notes spawned
-    public const float travelDist = 16f;
+    public const float travelDist = 15f;
     // how long it takes for notes to get to hit area
     public const float travelTime = 2f;
     // time between smallest increments of a rhythm pattern (changes per activity)
@@ -36,15 +36,15 @@ public class RhythmManager : MonoBehaviour
     public float earlyHitPeriod;
     // duration after arrival time that is considered a miss for the next note
     public float lateHitPeriod;
-    // how to scale light beam width based on energy
-    public const float beamWidthFactor = .5f;
+    /*// how to scale light beam width based on energy
+    public const float beamWidthFactor = .5f; */
     // beam constants and how fast to level up/down when around them
     public const float minBeamWidth = 1f;
     // pull angleOffset towards current energy level, rate per second proportional to difference
-    public const float angleChangeRate = .2f;
+    public const float angleChangeRate = .5f;
     // Notes spawned below this angle get auto hit - this is so as player moves up lowest notes don't clutter gameplay
     // Hopefully there will be more notes overall in the higher levels, though, so it's worth it.
-    public const int autoHitAngle = -5;
+    public const int autoHitAngle = 0;
 
     public PlayerController player;
     public GameObject hitArea;
@@ -98,12 +98,44 @@ public class RhythmManager : MonoBehaviour
         runManager.runState.ResetCombo();
     }
 
+    private int EffectiveEnergy()
+    {
+        RunState runState = runManager.runState;
+        int energy = runState.energy;
+        if (activity != null)
+        {
+            energy = Mathf.Min(runState.energy, activity.energyCap);
+        }
+        return energy;
+    }
+
+    // which angle notes will be spawned in the middle of the beam 
+    private float BeamCenterAngle()
+    {
+        return EffectiveEnergy() * 3f / 4f;
+    }
+
+    private float BeamWidth()
+    {
+        // calculate so it lets in all notes with angles from energy/2 to energy
+        // (when centered at 3/4 energy via BeamCenterAngle)
+        float angleDegrees = EffectiveEnergy() / 2;
+        float angle = angleDegrees / 180 * Mathf.PI;
+        float x = travelDist;
+        float newBeamWidth = Mathf.Tan(angle) * x * 2;
+        return newBeamWidth;
+    }
+
     private void LoadSong()
     {
         // for testing new songs
         activity.song = WakeUpGetOutThere.song;
         activity.tempoIncrement = .18f;
-
+        // activity.song = Luma.song;
+        // activity.tempoIncrement = .1f;
+        // activity.song = MumenRider.song;
+        // activity.tempoIncrement = .2f;
+        
         // time between smallest increments of a rhythm pattern
         tempoIncrement = activity.tempoIncrement;
         // duration before arrival time that is considered a miss for the incoming note
@@ -207,26 +239,14 @@ public class RhythmManager : MonoBehaviour
         }
 
         // adjust light beam width based on current energy
-        float newBeamWidth = runState.energy * beamWidthFactor;
-        newBeamWidth = Mathf.Max(newBeamWidth, minBeamWidth);
-        if (activity != null)
-        {
-            // apply activity-specific energy cap
-            newBeamWidth = Mathf.Min(newBeamWidth, activity.energyCap / 2f);
-        }
-        beamWidth = Mathf.Lerp(beamWidth, newBeamWidth, .01f);
+        float targetDisplayBeamWidth = Mathf.Max(BeamWidth(), minBeamWidth);
+        beamWidth = Mathf.Lerp(beamWidth, targetDisplayBeamWidth, .01f);
         Light light = NoteLight.GetComponent<Light>();
         light.cookieSize = beamWidth + .015f; // this is to avoid small slivers of black initially
 
         // adjust angle offset to build up/down if the player is doing very well or poor
         // (pull towards current energy level, at rate proportional to delta)
-        float targetAngle = runState.energy;
-        if (activity)
-        {
-            // print(activity.energyCap);
-            targetAngle = Mathf.Min(runState.energy, activity.energyCap);
-        }
-        float changeRate = (targetAngle - angleOffset) * angleChangeRate * Time.deltaTime;
+        float changeRate = (BeamCenterAngle() - angleOffset) * angleChangeRate * Time.deltaTime;
         angleOffset += changeRate;
 
         // destroy all notes falling above of the beam
@@ -291,10 +311,16 @@ public class RhythmManager : MonoBehaviour
             // rhythm miss - too late
             if (nearestNotes.Count() > 0 && time > nearestNotes[0].arrivalTime + hitWindowLate)
             {
+                // only trigger one miss of each type, to avoid drastic swings if song
+                List<EmotionType> missTypes = new List<EmotionType>();
                 foreach (Note n in unResolvedNearestNotes)
                 {
                     notes.Remove(n);
-                    n.OnMiss(runManager.runState);
+                    if (!missTypes.Contains(n.emotionType))
+                    {
+                        missTypes.Add(n.emotionType);
+                        n.OnMiss(runManager.runState);
+                    }
                 }
                 // update late hit period so late hits do not affect future notes
                 lateHitPeriodEnd = time + lateHitPeriod;
@@ -408,7 +434,7 @@ public class RhythmManager : MonoBehaviour
         note.GetComponent<Note>().Initialize(n.spawnTime, n.clip);
 
         // notes coming from far enough below get auto-hit!
-        if (spawnAngle < autoHitAngle)
+        if (offset.y < -beamWidth / 2)
         {
             note.GetComponent<Note>().OnAutoHit(time);
         } else
