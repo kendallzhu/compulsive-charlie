@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     // zooming variables
     public float zoom = 4.8f;
     float zoomedOut = 9f;
-    float zoomedNormal = 4.7f;
+    float zoomedNormal = 5.5f; //  4.7f;
     private float smooth = 5;
 
     // Use this for initialization

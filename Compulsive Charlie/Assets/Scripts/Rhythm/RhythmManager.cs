@@ -111,15 +111,52 @@ public class RhythmManager : MonoBehaviour
         return Mathf.Max(EffectiveEnergy() / 2.0f, 1);
     }
 
+    private EmotionType ChooseEmotionType()
+    {
+        // choose a note type based on current emotional state
+        EmotionState curr = runManager.runState.emotions;
+        int exposedAnxiety = activity.suppressedEmotions.Contains(EmotionType.anxiety) ? 0 : curr.anxiety;
+        int exposedFrustration = activity.suppressedEmotions.Contains(EmotionType.frustration) ? 0 : curr.frustration;
+        int exposedDespair = activity.suppressedEmotions.Contains(EmotionType.despair) ? 0 : curr.despair;
+        EmotionType type = EmotionType.None;
+        // if specified, do that, else choose either energy, or an emotion (w/ weighted probability)
+        // (ignore supressed emotions)
+        // extra chance for the dominant emotion
+        if (Random.Range(0, 80) < curr.GetMaxValue())
+        {
+            EmotionType dominantEmotion = curr.GetDominantEmotion();
+            if (!activity.suppressedEmotions.Contains(dominantEmotion))
+            {
+                type = dominantEmotion;
+            }
+        }
+        // else just proportional to emotion value
+        else if (Random.Range(0, 80) < exposedAnxiety)
+        {
+            type = EmotionType.anxiety;
+        }
+        else if (Random.Range(0, 80) < exposedFrustration)
+        {
+            type = EmotionType.frustration;
+        }
+        else if (Random.Range(0, 80) < exposedDespair)
+        {
+            type = EmotionType.despair;
+        }
+        return type;
+    }
+
     private void LoadSong()
     {
         // for testing new songs
-        activity.song = new Heartbeat(EmotionType.anxiety).song;
-        activity.tempoIncrement = .2f;
+        // activity.song = new Heartbeat(EmotionType.anxiety).song;
+        // activity.tempoIncrement = .2f;
+        // activity.song = Hero.song;
+        // activity.tempoIncrement = .16f;
         // activity.song = WakeUpGetOutThere.song;
-        // activity.tempoIncrement = .18f;
+        // activity.tempoIncrement = .2f;
         // activity.song = Luma.song;
-        // activity.tempoIncrement = .1f;
+        // activity.tempoIncrement = .2f;
         // activity.song = MumenRider.song;
         // activity.tempoIncrement = .2f;
         
@@ -157,38 +194,10 @@ public class RhythmManager : MonoBehaviour
             {
                 Debug.Log("Could not find clip: " + n.GetAudioFilePath());
             }
-            // choose a note type based on current emotional state
-            EmotionState curr = runManager.runState.emotions;
-            int exposedAnxiety = activity.suppressedEmotions.Contains(EmotionType.anxiety) ? 0 : curr.anxiety;
-            int exposedFrustration = activity.suppressedEmotions.Contains(EmotionType.frustration) ? 0 : curr.frustration;
-            int exposedDespair = activity.suppressedEmotions.Contains(EmotionType.despair) ? 0 : curr.despair;
-            EmotionType type = n.emotionType;
-            // if specified, do that, else choose either energy, or an emotion (w/ weighted probability)
-            // (ignore supressed emotions)
+            EmotionType type = EmotionType.None;
             if (n != easiestNote && n.emotionType == EmotionType.None)
             {
-                // extra chance for the dominant emotion
-                if (Random.Range(0, 80) < curr.GetMaxValue())
-                {
-                    EmotionType dominantEmotion = curr.GetDominantEmotion();
-                    if (!activity.suppressedEmotions.Contains(dominantEmotion))
-                    {
-                        type = dominantEmotion;
-                    }
-                }
-                // else just proportional to emotion value
-                else if (Random.Range(0, 80) < exposedAnxiety)
-                {
-                    type = EmotionType.anxiety;
-                }
-                else if (Random.Range(0, 80) < exposedFrustration)
-                {
-                    type = EmotionType.frustration;
-                }
-                else if (Random.Range(0, 80) < exposedDespair)
-                {
-                    type = EmotionType.despair;
-                }
+                type = ChooseEmotionType();
             }
             // also first activity is all energy notes if need to show tutorial
             if (runManager.runState.activityHistory.Count() < 2 && 
@@ -205,7 +214,7 @@ public class RhythmManager : MonoBehaviour
     {
         float middleY = hitArea.transform.position.y;
         float distanceAboveCenter = note.transform.position.y - middleY;
-        return distanceAboveCenter > (BeamWidth() + .015f) / 2;
+        return distanceAboveCenter > (beamWidth + .015f) / 2;
     }
 
     bool IsTouchingBeam(Note note)
@@ -397,6 +406,8 @@ public class RhythmManager : MonoBehaviour
         Vector3 destPos = hitArea.transform.position;
         Vector3 startingPos = destPos + offset;
         GameObject note;
+        // choose emotion type on spawn to make things more responsive
+        n.emotionType = ChooseEmotionType();
         if (n.emotionType == EmotionType.None)
         {
             note = Instantiate(energyNote, startingPos, Quaternion.identity, transform.parent);

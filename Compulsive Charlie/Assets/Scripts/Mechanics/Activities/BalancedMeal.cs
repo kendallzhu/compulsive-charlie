@@ -11,6 +11,8 @@ public class BalancedMeal : Activity
         heightRating = 3;
         emotionEffect = new EmotionState(6, 6, 0);
         isUnlocked = true;
+        song = WakeUpGetOutThere.song;
+        tempoIncrement = .2f;
     }
 
     // (weighted) availability of activity, given state of run

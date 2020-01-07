@@ -13,22 +13,22 @@ public class Hero : Song
         new NoteSpec(3, "As5", 0),
         new NoteSpec(6, "Ds5", 2),
         new NoteSpec(9, "Ds5", 2),
-        new NoteSpec(12, "Cs5", 10),
+        new NoteSpec(12, "Cs5", 5),
     }, melodyInstrument);
     static MeasureSpec base0 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "Fs4", 10),
-        new NoteSpec(3, "Fs4", 11),
-        new NoteSpec(6, "Fs4", 12),
-        new NoteSpec(9, "Fs4", 13),
-        new NoteSpec(12, "Fs4", 14),
+        new NoteSpec(0, "Fs4", 5),
+        new NoteSpec(3, "Fs4", 5),
+        new NoteSpec(6, "Fs4", 5),
+        new NoteSpec(9, "Fs4", 10),
+        new NoteSpec(12, "Fs4", 10),
     }, baseInstrument);
     static MeasureSpec beats = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "Closed_High_Hat", 22),
+        new NoteSpec(0, "Closed_High_Hat", 16),
         new NoteSpec(2, "Snare_Drum_2", 20),
-        new NoteSpec(4, "Closed_High_Hat", 22),
-        new NoteSpec(8, "Closed_High_Hat", 22),
+        new NoteSpec(4, "Closed_High_Hat", 12),
+        new NoteSpec(8, "Closed_High_Hat", 16),
         new NoteSpec(10, "Snare_Drum_2", 20),
-        new NoteSpec(12, "Closed_High_Hat", 22),
+        new NoteSpec(12, "Closed_High_Hat", 12),
     }, Instrument.drumkit);
     static MeasureSpec base1 = base0.ReplaceAllPitches("Gs4");
     static MeasureSpec base2 = base0.ReplaceAllPitches("Ds4");
