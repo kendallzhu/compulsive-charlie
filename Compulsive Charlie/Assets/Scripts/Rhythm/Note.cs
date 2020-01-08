@@ -19,12 +19,18 @@ public class Note : MonoBehaviour
     public GameObject hitPrefab;
     public GameObject missPrefab;
     public GameObject deflectPrefab;
+    public SpriteRenderer icon;
+    public SpriteRenderer arrow;
+    public SpriteRenderer xMark;
 
     void Awake()
     {
         runManager = FindObjectOfType<RunManager>();
         rhythmManager = FindObjectOfType<RhythmManager>();
         hitArea = GameObject.FindWithTag("HitArea").transform;
+        icon = transform.Find("Icon").GetComponent<SpriteRenderer>();
+        arrow = transform.Find("Arrow").GetComponent<SpriteRenderer>();
+        xMark = transform.Find("XMark").GetComponent<SpriteRenderer>();
     }
 
     public void Initialize(float trueSpawnTime, AudioClip soundClip)
@@ -34,11 +40,14 @@ public class Note : MonoBehaviour
         startingOffset = transform.position - hitArea.position;
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.clip = soundClip;
-        GameObject arrow = transform.Find("Arrow").gameObject;
-        if (arrow)
-        {
-            arrow.SetActive(false);
-        }
+        arrow.enabled = false;
+        xMark.enabled = false;
+        xMark.color = icon.color;
+    }
+
+    public bool IsSuppressed()
+    {
+        return runManager.runState.CurrentActivity().suppressedEmotions.Contains(emotionType);
     }
 
     // hack to generate unique float for each note in a group, so their colors don't blend weirdly when they overlap
@@ -67,6 +76,13 @@ public class Note : MonoBehaviour
         Vector3 newPos = (Vector2)hitArea.position + startingOffset * scaleFactor;
         // use z position for ordering to make overlap colors more normal
         transform.position = new Vector3(newPos.x, newPos.y, GetZPosition(emotionType));
+        // gray out suppressed emotions, add X
+        if (IsSuppressed() && !isResolved)
+        {
+            xMark.enabled = true;
+            icon.color = new Color(.2f, .2f, .2f);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(.6f, .6f, .6f);
+        }
     }
 
     public void OnDeflect()
@@ -81,11 +97,14 @@ public class Note : MonoBehaviour
     public void OnMiss(RunState runState)
     {
         isResolved = true;
-        runState.BreakCombo();
-        MissEffect(runState);
+        if (!IsSuppressed())
+        {
+            runState.BreakCombo();
+            MissEffect(runState);
+            Instantiate(missPrefab, transform.position, Quaternion.identity, hitArea);
+            rhythmManager.player.GetComponent<Animator>().SetTrigger("activityFail");
+        }
         Destroy(gameObject);
-        Instantiate(missPrefab, transform.position, Quaternion.identity, hitArea);
-        rhythmManager.player.GetComponent<Animator>().SetTrigger("activityFail");
     }
 
     // (Delay so that sound occurs when note would have arrived)
@@ -94,13 +113,16 @@ public class Note : MonoBehaviour
         isResolved = true;
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(delay);
-        runState.IncreaseCombo();
-        HitEffect(runState);
-        Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
-        rhythmManager.player.GetComponent<Animator>().ResetTrigger("activityFail");
-        // play audio and destroy when done
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.Play();
+        if (!IsSuppressed())
+        {
+            runState.IncreaseCombo();
+            HitEffect(runState);
+            Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
+            rhythmManager.player.GetComponent<Animator>().ResetTrigger("activityFail");
+            // play audio and destroy when done
+            audioSource.Play();
+        }
         Destroy(gameObject, audioSource.clip.length);
     }
 
@@ -112,6 +134,7 @@ public class Note : MonoBehaviour
     public IEnumerator AutoHitAfterDelay(float delay)
     {
         isResolved = true;
+        emotionType = EmotionType.None;
         // dark out note and move it back
         transform.localScale = new Vector3(.5f, .5f, 0);
         transform.Translate(new Vector3(0, 0, -1f));
@@ -120,7 +143,10 @@ public class Note : MonoBehaviour
         // Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
         // play audio and destroy when done
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.Play();
+        if (!IsSuppressed())
+        {
+            audioSource.Play();
+        }
         Destroy(gameObject, audioSource.clip.length);
     }
 

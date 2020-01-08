@@ -13,6 +13,8 @@ public class PanicAttack : Activity
         isUnlocked = true;
         isBreakdown = true;
         song = new Heartbeat(EmotionType.anxiety).song;
+        suppressedEmotions.Add(EmotionType.despair);
+        suppressedEmotions.Add(EmotionType.frustration);
     }
 
     // (weighted) availability of activity, given state of run

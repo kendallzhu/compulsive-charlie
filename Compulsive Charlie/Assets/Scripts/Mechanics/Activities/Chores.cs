@@ -9,7 +9,7 @@ public class Chores : Activity
         name = "Chores";
         descriptionText = "less mess";
         heightRating = 1;
-        emotionEffect = new EmotionState(2, 6, 2);
+        emotionEffect = new EmotionState(6, 6, 6);
         isUnlocked = true;
     }
 }

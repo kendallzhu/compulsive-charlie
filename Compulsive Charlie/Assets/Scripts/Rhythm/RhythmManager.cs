@@ -115,9 +115,13 @@ public class RhythmManager : MonoBehaviour
     {
         // choose a note type based on current emotional state
         EmotionState curr = runManager.runState.emotions;
-        int exposedAnxiety = activity.suppressedEmotions.Contains(EmotionType.anxiety) ? 0 : curr.anxiety;
-        int exposedFrustration = activity.suppressedEmotions.Contains(EmotionType.frustration) ? 0 : curr.frustration;
-        int exposedDespair = activity.suppressedEmotions.Contains(EmotionType.despair) ? 0 : curr.despair;
+        // for now, we are spawning all types of notes, but letting the notes themselves be suppressed (have X's)
+        int exposedAnxiety = curr.anxiety;
+        // activity.suppressedEmotions.Contains(EmotionType.anxiety) ? 0 : curr.anxiety;
+        int exposedFrustration = curr.frustration;
+        // activity.suppressedEmotions.Contains(EmotionType.frustration) ? 0 : curr.frustration;
+        int exposedDespair = curr.despair;
+        // activity.suppressedEmotions.Contains(EmotionType.despair) ? 0 : curr.despair;
         EmotionType type = EmotionType.None;
         // if specified, do that, else choose either energy, or an emotion (w/ weighted probability)
         // (ignore supressed emotions)
@@ -254,14 +258,7 @@ public class RhythmManager : MonoBehaviour
                 notes.Remove(note);
             }
             // only show arrows for active notes inside the beam
-            GameObject arrow = note.transform.Find("Arrow").gameObject;
-            if (arrow)
-            {
-                arrow.SetActive(!IsAboveBeam(note) && !note.isResolved);
-            } else
-            {
-                Debug.Log("Expected note to have arrow child gameobject!");
-            }
+            note.arrow.enabled = !IsAboveBeam(note) && !note.isResolved && !note.IsSuppressed();
         }
 
         // update time - with current settings goes in increments of about .016

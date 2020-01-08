@@ -9,7 +9,8 @@ public class YouTube : Activity
         name = "YouTube";
         descriptionText = "suggested videos";
         heightRating = -3;
-        emotionEffect = new EmotionState(2, 2, 2);
+        emotionEffect = new EmotionState(4, 4, 8);
+        suppressedEmotions.Add(EmotionType.anxiety);
         suppressedEmotions.Add(EmotionType.frustration);
         isUnlocked = true;
     }
@@ -17,10 +18,14 @@ public class YouTube : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.GetDominantEmotion() == EmotionType.anxiety)
+        int availability = 1;
+        /*if (runState.emotions.Extremeness(EmotionType.anxiety) > 2 ||
+            runState.emotions.Extremeness(EmotionType.frustration) > 2)
         {
             return 3;
-        }
+        }*/
+        availability += runState.emotions.Extremeness(EmotionType.anxiety);
+        availability += runState.emotions.Extremeness(EmotionType.frustration);
         return 1;
     }
 

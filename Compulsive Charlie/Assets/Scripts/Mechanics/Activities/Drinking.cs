@@ -11,24 +11,18 @@ public class Drinking : Activity
         heightRating = -3;
         song = MumenRider.song;
         tempoIncrement = .2f;
-        emotionEffect = new EmotionState(0, 0, 6);
+        emotionEffect = new EmotionState(8, 4, 4);
         suppressedEmotions.Add(EmotionType.despair);
+        suppressedEmotions.Add(EmotionType.frustration);
         isUnlocked = true;
     }
 
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.Extremeness() > 1 || runState.timeSteps > 8)
-        {
-            return 3;
-        }
-        return 1;
-    }
-
-    public override void Effect(RunState runState)
-    {
-        runState.emotions.Add(EmotionType.despair, 3);
-        return;
+        int availability = 1;
+        availability += runState.emotions.Extremeness(EmotionType.despair);
+        availability += runState.emotions.Extremeness(EmotionType.frustration);
+        return availability;
     }
 }

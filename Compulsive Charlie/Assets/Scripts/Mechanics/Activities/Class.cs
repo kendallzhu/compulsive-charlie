@@ -9,7 +9,7 @@ public class Class : Activity
         name = "Class";
         descriptionText = "I'm in school?";
         heightRating = 1;
-        emotionEffect = new EmotionState(6, 2, 6);
+        emotionEffect = new EmotionState(6, 6, 6);
         isUnlocked = true;
         song = WakeUpGetOutThere.song;
         tempoIncrement = .2f;

@@ -13,6 +13,8 @@ public class Rage : Activity
         isUnlocked = true;
         isBreakdown = true;
         song = new Heartbeat(EmotionType.frustration).song;
+        suppressedEmotions.Add(EmotionType.anxiety);
+        suppressedEmotions.Add(EmotionType.despair);
     }
 
     // (weighted) availability of activity, given state of run

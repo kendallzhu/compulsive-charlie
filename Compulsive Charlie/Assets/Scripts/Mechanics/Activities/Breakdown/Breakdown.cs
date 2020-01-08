@@ -7,12 +7,14 @@ public class Breakdown : Activity
     void Awake()
     {
         name = "Breakdown";
-        descriptionText = "overwhelming meltdown of hopelessness";
+        descriptionText = "overwhelming hopelessness";
         heightRating = 0;
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
         isBreakdown = true;
         song = new Heartbeat(EmotionType.despair).song;
+        suppressedEmotions.Add(EmotionType.anxiety);
+        suppressedEmotions.Add(EmotionType.frustration);
     }
 
     // (weighted) availability of activity, given state of run

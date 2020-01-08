@@ -13,6 +13,7 @@ public class Binge : Activity
         tempoIncrement = .2f;
         emotionEffect = new EmotionState(0, 0, 8);
         suppressedEmotions.Add(EmotionType.despair);
+        suppressedEmotions.Add(EmotionType.anxiety);
         isUnlocked = true;
     }
 
