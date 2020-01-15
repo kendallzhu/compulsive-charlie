@@ -291,6 +291,7 @@ public class RhythmManager : MonoBehaviour
         // detect rhythm hits/misses on the incoming group of notes
         if (notes.Count() > 0)
         {
+            // deal with next wave of notes
             float epsilon = .01f;
             bool isAboutToSpawnNearest = (notesToSpawn.Count() > 0 &&
                 Mathf.Abs(notes[0].arrivalTime - (notesToSpawn[0].spawnTime + travelTime)) < epsilon);
@@ -298,6 +299,19 @@ public class RhythmManager : MonoBehaviour
             if ((nearestNotes.Count() == 0 || nearestNotes.All(n => n.isResolved)) && !isAboutToSpawnNearest)
             {
                 nearestNotes = notes.Where((n) => Mathf.Abs(n.arrivalTime - notes[0].arrivalTime) < epsilon).ToList();
+            }
+            foreach (Note n in nearestNotes)
+            {
+                // for now we consider suppressed notes resolved to prevent further interactions
+                if (n.IsSuppressed())
+                {
+                    n.isResolved = true;
+                }
+                if (n.IsSuppressed() && time >= n.arrivalTime)
+                {
+                    notes.Remove(n);
+                    n.OnHit(time, runState);
+                }
             }
             // unresolved list has all the notes of the current group that are still active
             List<Note> unResolvedNearestNotes = nearestNotes.Where(n => !n.isResolved).ToList();

@@ -72,9 +72,9 @@ public class UIManager : MonoBehaviour
             if (meters[i] == despairMeter) emotionType = EmotionType.despair;
             Activity activity = runState.CurrentActivity();
             if (activity && activity.suppressedEmotions.Contains(emotionType)) {
-                fillerImage.color = new Color(.3f, .3f, .3f);
+                fillerImage.color = new Color(.4f, .4f, .4f);
                 Image XMark = meters[i].transform.Find("XMark").GetComponent<Image>();
-                XMark.color = emotionFillColors[emotionType];
+                // XMark.color = emotionFillColors[emotionType];
                 XMark.enabled = true;
             } else if (emotionType != EmotionType.None)
             {

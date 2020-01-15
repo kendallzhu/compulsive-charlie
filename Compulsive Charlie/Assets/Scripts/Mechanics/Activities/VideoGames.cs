@@ -11,6 +11,7 @@ public class VideoGames : Activity
         heightRating = -1;
         emotionEffect = new EmotionState(4, 8, 4);
         suppressedEmotions.Add(EmotionType.anxiety);
+        suppressedEmotions.Add(EmotionType.despair);
         isUnlocked = true;
     }
 

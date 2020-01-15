@@ -42,7 +42,7 @@ public class Note : MonoBehaviour
         audioSource.clip = soundClip;
         arrow.enabled = false;
         xMark.enabled = false;
-        xMark.color = icon.color;
+        xMark.color = new Color(.24f, .24f, .24f);
     }
 
     public bool IsSuppressed()
@@ -80,8 +80,8 @@ public class Note : MonoBehaviour
         if (IsSuppressed() && !isResolved)
         {
             xMark.enabled = true;
-            icon.color = new Color(.2f, .2f, .2f);
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(.6f, .6f, .6f);
+            // icon.color = new Color(.2f, .2f, .2f);
+            // gameObject.GetComponent<SpriteRenderer>().color = new Color(.6f, .6f, .6f);
         }
     }
 
@@ -97,14 +97,16 @@ public class Note : MonoBehaviour
     public void OnMiss(RunState runState)
     {
         isResolved = true;
-        if (!IsSuppressed())
-        {
-            runState.BreakCombo();
-            MissEffect(runState);
-            Instantiate(missPrefab, transform.position, Quaternion.identity, hitArea);
-            rhythmManager.player.GetComponent<Animator>().SetTrigger("activityFail");
-        }
+        runState.BreakCombo();
+        MissEffect(runState);
+        Instantiate(missPrefab, transform.position, Quaternion.identity, hitArea);
+        rhythmManager.player.GetComponent<Animator>().SetTrigger("activityFail");
         Destroy(gameObject);
+    }
+
+    public void OnHit(float time, RunState runState)
+    {
+        StartCoroutine(HitAfterDelay(arrivalTime - time + RhythmManager.hitWindowLate, runState));
     }
 
     // (Delay so that sound occurs when note would have arrived)
@@ -114,21 +116,20 @@ public class Note : MonoBehaviour
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(delay);
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        if (!IsSuppressed())
+        if (IsSuppressed())
+        {
+            audioSource.clip = Resources.Load<AudioClip>("drum_kit/Crash_Cymbal");
+        }
+        else
         {
             runState.IncreaseCombo();
             HitEffect(runState);
             Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
             rhythmManager.player.GetComponent<Animator>().ResetTrigger("activityFail");
-            // play audio and destroy when done
-            audioSource.Play();
         }
+        // play audio and destroy when done
+        audioSource.Play();
         Destroy(gameObject, audioSource.clip.length);
-    }
-
-    public void OnHit(float time, RunState runState)
-    {
-        StartCoroutine(HitAfterDelay(arrivalTime - time + RhythmManager.hitWindowLate, runState));
     }
 
     public IEnumerator AutoHitAfterDelay(float delay)
@@ -143,10 +144,7 @@ public class Note : MonoBehaviour
         // Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
         // play audio and destroy when done
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        if (!IsSuppressed())
-        {
-            audioSource.Play();
-        }
+        audioSource.Play();
         Destroy(gameObject, audioSource.clip.length);
     }
 
