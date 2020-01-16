@@ -95,7 +95,8 @@ public class RhythmManager : MonoBehaviour
         {
             energy = Mathf.Min(runState.energy, activity.energyCap);
         }
-        return energy;
+        energy -= runState.emotions.GetSum() / 5;
+        return Mathf.Max(energy, 0);
     }
 
     // which notes will be spawned in the middle of the beam 
@@ -306,11 +307,11 @@ public class RhythmManager : MonoBehaviour
                 if (n.IsSuppressed())
                 {
                     n.isResolved = true;
-                }
-                if (n.IsSuppressed() && time >= n.arrivalTime)
-                {
-                    notes.Remove(n);
-                    n.OnHit(time, runState);
+                    if (time >= n.arrivalTime)
+                    {
+                        notes.Remove(n);
+                        n.OnHit(time, runState);
+                    }
                 }
             }
             // unresolved list has all the notes of the current group that are still active

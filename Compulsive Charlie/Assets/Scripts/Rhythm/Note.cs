@@ -119,6 +119,7 @@ public class Note : MonoBehaviour
         if (IsSuppressed())
         {
             audioSource.clip = Resources.Load<AudioClip>("drum_kit/Crash_Cymbal");
+            runState.energy -= 1;
         }
         else
         {
