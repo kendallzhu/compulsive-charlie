@@ -235,12 +235,13 @@ public class RunManager : MonoBehaviour
         List<Activity> availableActivities = AvailableActivities();
         // Put scheduled activity at front of list so it is always offered
         Activity scheduledActivity = gameManager.profile.GetSchedule(runState.timeSteps + 1);
-        availableActivities.Insert(Random.Range(0, 3), scheduledActivity);
+        availableActivities.Insert(0, scheduledActivity);
         // allow multiple of the same
         for (int i = 0; i < 3; i += 1)
         {
             offeredActivities.Add(availableActivities[i]);
         }
+        offeredActivities = offeredActivities.OrderBy(a => a.UnsuppressedEmotionEffect().DotProduct(runState.emotions)).ToList();
         return offeredActivities;
     }
 
@@ -253,7 +254,8 @@ public class RunManager : MonoBehaviour
         Activity defaultActivity = Object.FindObjectOfType<DoNothing>();
         if (defaultActivities.Count() > 0)
         {
-            defaultActivity = defaultActivities.OrderBy(x => Random.value).ToList()[0];
+            // pick the default activity that suppresses the most emotion
+            defaultActivity = defaultActivities.OrderBy(a => -a.TotalEmotionSupression(runState)).ToList()[0];
         }
         return defaultActivity;
     }

@@ -104,6 +104,14 @@ public class Note : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void OnSuppress(RunState runState)
+    {
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = Resources.Load<AudioClip>("drum_kit/Crash_Cymbal");
+        runState.energy -= 1;
+        StartCoroutine(HitAfterDelay(RhythmManager.hitWindowLate, runState));
+    }
+
     public void OnHit(float time, RunState runState)
     {
         StartCoroutine(HitAfterDelay(arrivalTime - time + RhythmManager.hitWindowLate, runState));
@@ -116,12 +124,7 @@ public class Note : MonoBehaviour
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(delay);
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        if (IsSuppressed())
-        {
-            audioSource.clip = Resources.Load<AudioClip>("drum_kit/Crash_Cymbal");
-            runState.energy -= 1;
-        }
-        else
+        if (!IsSuppressed())
         {
             runState.IncreaseCombo();
             HitEffect(runState);

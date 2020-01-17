@@ -91,11 +91,11 @@ public class RhythmManager : MonoBehaviour
     {
         RunState runState = runManager.runState;
         int energy = runState.energy;
+        energy -= runState.emotions.GetSum() / 5;
         if (activity != null)
         {
             energy = Mathf.Min(runState.energy, activity.energyCap);
         }
-        energy -= runState.emotions.GetSum() / 5;
         return Mathf.Max(energy, 0);
     }
 
@@ -261,7 +261,19 @@ public class RhythmManager : MonoBehaviour
             // only show arrows for active notes inside the beam
             note.arrow.enabled = !IsAboveBeam(note) && !note.isResolved && !note.IsSuppressed();
         }
-
+        // deal with suppressed notes
+        foreach (Note n in new List<Note>(notes))
+        {
+            if (n.IsSuppressed())
+            {
+                n.isResolved = true;
+            }
+            if (time >= n.arrivalTime)
+            {
+                notes.Remove(n);
+                n.OnSuppress(runState);
+            }
+        }
         // update time - with current settings goes in increments of about .016
         time += Time.deltaTime;
         // spawn the next preloaded note if the time has come
@@ -300,19 +312,6 @@ public class RhythmManager : MonoBehaviour
             if ((nearestNotes.Count() == 0 || nearestNotes.All(n => n.isResolved)) && !isAboutToSpawnNearest)
             {
                 nearestNotes = notes.Where((n) => Mathf.Abs(n.arrivalTime - notes[0].arrivalTime) < epsilon).ToList();
-            }
-            foreach (Note n in nearestNotes)
-            {
-                // for now we consider suppressed notes resolved to prevent further interactions
-                if (n.IsSuppressed())
-                {
-                    n.isResolved = true;
-                    if (time >= n.arrivalTime)
-                    {
-                        notes.Remove(n);
-                        n.OnHit(time, runState);
-                    }
-                }
             }
             // unresolved list has all the notes of the current group that are still active
             List<Note> unResolvedNearestNotes = nearestNotes.Where(n => !n.isResolved).ToList();

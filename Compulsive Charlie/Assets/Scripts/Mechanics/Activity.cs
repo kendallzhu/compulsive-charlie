@@ -43,6 +43,42 @@ public abstract class Activity : MonoBehaviour {
         // suppressedEmotions.Add(EmotionType.anxiety);
     }
 
+    public int TotalEmotionSupression(RunState runState)
+    {
+        int total = 0;
+        if (suppressedEmotions.Contains(EmotionType.anxiety))
+        {
+            total += runState.emotions.anxiety;
+        }
+        if (suppressedEmotions.Contains(EmotionType.despair))
+        {
+            total += runState.emotions.despair;
+        }
+        if (suppressedEmotions.Contains(EmotionType.frustration))
+        {
+            total += runState.emotions.frustration;
+        }
+        return total;
+    }
+
+    public EmotionState UnsuppressedEmotionEffect()
+    {
+        EmotionState effect = new EmotionState(emotionEffect);
+        if (suppressedEmotions.Contains(EmotionType.anxiety))
+        {
+            effect.anxiety = 0;
+        }
+        if (suppressedEmotions.Contains(EmotionType.despair))
+        {
+            effect.despair = 0;
+        }
+        if (suppressedEmotions.Contains(EmotionType.despair))
+        {
+            effect.despair = 0;
+        }
+        return effect;
+    }
+
     // (weighted) availability specific to activity, given state of run
     public virtual int CustomAvailability(RunState runState)
     {
