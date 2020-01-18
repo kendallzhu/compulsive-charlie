@@ -10,7 +10,7 @@ public class Overcome : HighEmotionThought
         descriptionText = "Striving onward";
         isUnlocked = true;
         energyCost = 12;
-        jumpPower = 3;
+        maxJumpPower = 3;
         emotionType = EmotionType.despair;
     }
 }

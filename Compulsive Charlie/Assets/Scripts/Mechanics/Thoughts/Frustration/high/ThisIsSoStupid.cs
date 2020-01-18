@@ -10,7 +10,7 @@ public class ThisIsSoStupid : HighEmotionThought
         descriptionText = "Disgusting (+ frustration)";
         isUnlocked = true;
         energyCost = 8;
-        jumpPower = 2;
+        maxJumpPower = 2;
         emotionType = EmotionType.frustration;
     }
 }

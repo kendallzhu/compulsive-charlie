@@ -10,7 +10,7 @@ public class NothingCanGoWrong : Thought
         descriptionText = "Empowering, but might lose touch with feelings of danger";
         isUnlocked = false;
         energyCost = 8;
-        jumpPower = 8;
+        maxJumpPower = 8;
         emotionType = EmotionType.anxiety;
     }
 

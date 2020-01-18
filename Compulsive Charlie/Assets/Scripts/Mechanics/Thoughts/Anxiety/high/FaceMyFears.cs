@@ -10,7 +10,7 @@ public class FaceMyFears : HighEmotionThought
         descriptionText = "What's the worst that could happen anyway?";
         isUnlocked = true;
         energyCost = 12;
-        jumpPower = 3;
+        maxJumpPower = 3;
         emotionType = EmotionType.anxiety;
     }
 }

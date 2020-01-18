@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class BackgroundManager : MonoBehaviour
 {
     // static backgrounds
-    public GameObject bgStatic;
     public GameObject staticBase;
     public GameObject staticOverlay;
 
@@ -19,7 +18,6 @@ public class BackgroundManager : MonoBehaviour
     public GameObject bgTile;
     public GameObject tileBase;
     public GameObject tileRain;
-    public GameObject tileLightning;
 
     // background music sources
     public AudioSource rainAudio;

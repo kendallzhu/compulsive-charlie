@@ -10,7 +10,7 @@ public class DealWithIt : LowEmotionThought
         descriptionText = "Suck it up, get over it";
         isUnlocked = true;
         energyCost = 6;
-        jumpPower = 2;
+        maxJumpPower = 2;
         emotionType = EmotionType.frustration;
     }
 }

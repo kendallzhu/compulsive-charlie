@@ -10,7 +10,7 @@ public class AtPeace : Thought
         descriptionText = "I can enjoy most things";
         isUnlocked = true;
         energyCost = 1;
-        jumpPower = 1;
+        maxJumpPower = 1;
         emotionType = EmotionType.None;
     }
 

@@ -25,6 +25,8 @@ public class RunManager : MonoBehaviour
     {
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
+        thoughtMenu = Object.FindObjectOfType<ThoughtMenu>();
+        tutorialManager = Object.FindObjectOfType<TutorialManager>();
         // if no gameManager, load preload scene first
         if (gameManager == null)
         {
@@ -175,10 +177,10 @@ public class RunManager : MonoBehaviour
         Debug.Assert(activities.Count() < 5);
         for (int i = 0; i < activities.Count(); i++)
         {
-            SpawnPlatform(activities[i], i * 3, i + 1);
+            SpawnPlatform(activities[i], i + 1);
         }
-        SpawnPlatform(SelectDefaultActivity(), Activity.defaultPlatformHeightDiff, 0);
-        SpawnPlatform(SelectBreakdownActivity(), Activity.breakdownPlatformHeightDiff, -1);
+        SpawnPlatform(SelectDefaultActivity(), 0);
+        SpawnPlatform(SelectBreakdownActivity(), -1);
         // clear out all other animation triggers
         player.GetComponent<Animator>().ResetTrigger("startJump");
         player.GetComponent<Animator>().ResetTrigger("activityFail");
@@ -205,10 +207,11 @@ public class RunManager : MonoBehaviour
     }
 
     // instantiate a new activity platform
-    private void SpawnPlatform(Activity activity, int heightDiff, int jumpNumber)
+    private void SpawnPlatform(Activity activity, int jumpNumber)
     {
+        int yDiff = ActivityPlatform.PowerToYDiff(jumpNumber);
         GameObject platform = Instantiate(platformPrefab);
-        platform.GetComponent<ActivityPlatform>().Initialize(activity, heightDiff, jumpNumber);
+        platform.GetComponent<ActivityPlatform>().Initialize(activity, yDiff, jumpNumber);
         // add it to list of prospective platforms in runState
         runState.spawnedPlatforms.Add(platform.GetComponent<ActivityPlatform>());
     }

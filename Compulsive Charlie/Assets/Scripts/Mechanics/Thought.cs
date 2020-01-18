@@ -16,7 +16,8 @@ public abstract class Thought : MonoBehaviour
     // changeable parameters
     public bool isUnlocked = false;
     public int energyCost = 0; // now its just a requirement
-    public int jumpPower = 0; // should be >= -1
+    public int minJumpPower = 0;
+    public int maxJumpPower = 0;
     // which emotion(s) it hides
     public EmotionType emotionType = EmotionType.None;
 
@@ -67,7 +68,8 @@ public abstract class Thought : MonoBehaviour
     // common accept effect
     public void AcceptEffect(RunState runState)
     {
-        runState.jumpPower = jumpPower;
+        int chosenJumpPower = GameObject.FindObjectOfType<JumpArrow>().GetJumpPower();
+        runState.jumpPower = chosenJumpPower;
         runState.IncreaseEnergy(-energyCost);
         // make thought-specific effects
         CustomAcceptEffect(runState);

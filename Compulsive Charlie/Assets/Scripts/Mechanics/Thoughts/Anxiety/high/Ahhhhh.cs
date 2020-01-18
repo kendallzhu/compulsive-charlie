@@ -10,7 +10,7 @@ public class Ahhhhh : HighEmotionThought
         descriptionText = "Frantic scramble!!!";
         isUnlocked = true;
         energyCost = 4;
-        jumpPower = 1;
+        maxJumpPower = 1;
         emotionType = EmotionType.anxiety;
     }
 }

@@ -268,7 +268,7 @@ public class RhythmManager : MonoBehaviour
             {
                 n.isResolved = true;
             }
-            if (time >= n.arrivalTime)
+            if (n.IsSuppressed() && time >= n.arrivalTime)
             {
                 notes.Remove(n);
                 n.OnSuppress(runState);

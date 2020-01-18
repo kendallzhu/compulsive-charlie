@@ -10,7 +10,7 @@ public class ScrewThis : LowEmotionThought
         descriptionText = "hmph.";
         isUnlocked = true;
         energyCost = 0;
-        jumpPower = 0;
+        maxJumpPower = 0;
         emotionType = EmotionType.frustration;
     }
 }

@@ -10,7 +10,7 @@ public class Whatever : LowEmotionThought
         descriptionText = "Not gonna let it get to me";
         isUnlocked = true;
         energyCost = 3;
-        jumpPower = 1;
+        maxJumpPower = 1;
         emotionType = EmotionType.frustration;
     }
 }

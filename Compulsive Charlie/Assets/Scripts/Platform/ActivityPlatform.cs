@@ -60,6 +60,8 @@ public class ActivityPlatform : MonoBehaviour {
     public void Initialize(Activity _activity, int heightDiff, int jumpNumber)
     {
         activity = _activity;
+        explored = false;
+        jumpPadExplored = false;
         RunState runState = runManager.runState;
         this.jumpNumber = jumpNumber;
         // set the platform at the proper position
@@ -84,6 +86,35 @@ public class ActivityPlatform : MonoBehaviour {
         Transform jumpPad = gameObject.transform.Find("JumpPad");
         jumpPad.localPosition = new Vector2(length, 0); 
         jumpPad.localScale = new Vector2(jumpPadLength, platformThickness);
+    }
+
+    // y diff of a platform that should be reached with a given power
+    static public int PowerToYDiff(int jumpPower)
+    {
+        Debug.Assert(jumpPower >= -1 && jumpPower < 5);
+        if (jumpPower == -1)
+        {
+            return Activity.breakdownPlatformHeightDiff;
+        }
+        if (jumpPower == 0)
+        {
+            return Activity.defaultPlatformHeightDiff;
+        }
+        return (jumpPower - 1) * 3;
+    }
+
+    static public int YDiffToPower(float ydiff)
+    {
+        // just try converting backwards and return the one just below given ydiff
+        for (int i = -1; i < 5; i++)
+        {
+            if (PowerToYDiff(i) > ydiff)
+            {
+                return i - 1;
+            }
+        }
+        Debug.Log("cannot reach this height with any jump power?");
+        return 0;
     }
 
     // shifts platform up a specified amount

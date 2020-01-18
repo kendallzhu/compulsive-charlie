@@ -10,7 +10,7 @@ public class ICantDoIt : LowEmotionThought
         descriptionText = "I'm powerless";
         isUnlocked = true;
         energyCost = 0;
-        jumpPower = 0;
+        maxJumpPower = 0;
         emotionType = EmotionType.despair;
     }
 }

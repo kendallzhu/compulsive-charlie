@@ -10,7 +10,7 @@ public class BrushItOff : LowEmotionThought
         descriptionText = "Can't let this hold me back";
         isUnlocked = true;
         energyCost = 9;
-        jumpPower = 3;
+        maxJumpPower = 3;
         emotionType = EmotionType.frustration;
     }
 }

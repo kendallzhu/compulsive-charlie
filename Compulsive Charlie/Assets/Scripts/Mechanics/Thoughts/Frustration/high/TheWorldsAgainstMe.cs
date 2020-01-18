@@ -10,7 +10,7 @@ public class TheWorldsAgainstMe : HighEmotionThought
         descriptionText = "I don't deserve this.";
         isUnlocked = true;
         energyCost = 4;
-        jumpPower = 1;
+        maxJumpPower = 1;
         emotionType = EmotionType.frustration;
     }
 }

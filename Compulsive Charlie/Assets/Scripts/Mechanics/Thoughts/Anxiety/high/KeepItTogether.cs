@@ -10,7 +10,7 @@ public class KeepItTogether : HighEmotionThought
         descriptionText = "Just gotta hold on...";
         isUnlocked = true;
         energyCost = 8;
-        jumpPower = 2;
+        maxJumpPower = 2;
         emotionType = EmotionType.anxiety;
     }
 }

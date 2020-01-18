@@ -5797,6 +5797,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794983959}
   m_CullTransparentMesh: 0
+--- !u!1 &815941647 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1743287043617584, guid: 93c3919dbea88a14bb499be23dcd4b40,
+    type: 3}
+  m_PrefabInstance: {fileID: 1296500817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &817280673
 GameObject:
   m_ObjectHideFlags: 0
@@ -9303,7 +9309,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1296500817}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 815941647}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f55444ca8d8e3b44ea18933d218faaa6, type: 3}
@@ -11228,13 +11234,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  player: {fileID: 155495550}
+  player: {fileID: 0}
   rhythmManager: {fileID: 0}
   camera: {fileID: 2023551936}
-  thoughtMenu: {fileID: 1652275283}
-  tutorialManager: {fileID: 1652275280}
-  platformPrefab: {fileID: 1743287043617584, guid: 93c3919dbea88a14bb499be23dcd4b40,
-    type: 3}
+  thoughtMenu: {fileID: 0}
+  tutorialManager: {fileID: 0}
+  platformPrefab: {fileID: 815941647}
 --- !u!4 &1652275279
 Transform:
   m_ObjectHideFlags: 0
@@ -11262,20 +11267,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1031917238}
-  UITutorial:
-  - {fileID: 21702113}
-  - {fileID: 695428934}
-  - {fileID: 1852862555}
-  ThoughtTutorial:
-  - {fileID: 1373227290}
-  - {fileID: 232982706}
-  - {fileID: 1731693715}
-  - {fileID: 272179546}
-  - {fileID: 1852446903}
-  RhythmTutorial:
-  - {fileID: 485600749}
-  EmotionNoteTutorial:
-  - {fileID: 1729123114}
+  UITutorial: []
+  ThoughtTutorial: []
+  RhythmTutorial: []
+  EmotionNoteTutorial: []
   advanceText: {fileID: 1325963173}
   shownUITutorial: 0
   shownThoughtTutorial: 0
@@ -11335,6 +11330,7 @@ MonoBehaviour:
   descriptionText: {fileID: 1905528826}
   energyText: {fileID: 370214730}
   jumpPowerText: {fileID: 1952567946}
+  currentThought: {fileID: 0}
 --- !u!114 &1652275284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11354,9 +11350,9 @@ MonoBehaviour:
   hitArea: {fileID: 373017400}
   NoteLight: {fileID: 1961422040}
   beamWidth: 0
-  runManager: {fileID: 1652275278}
+  runManager: {fileID: 0}
   gameManager: {fileID: 0}
-  tutorialManager: {fileID: 0}
+  tutorialManager: {fileID: 1652275280}
   energyNote: {fileID: 9064274710088238145, guid: d8d1e3b14aef4c649b73483045948e05,
     type: 3}
   anxietyNote: {fileID: 9064274710088238145, guid: d009b57f73e7ef649b6ffba0af20d0ce,
@@ -11384,7 +11380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b89902ec55d4c84294a2743f996a7d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgStatic: {fileID: 746362216}
   staticBase: {fileID: 1155557002}
   staticOverlay: {fileID: 348525134}
   morning: {fileID: 21300000, guid: c7aa304b51e2a644db0d98734df901d4, type: 3}
@@ -11394,12 +11389,11 @@ MonoBehaviour:
   bgTile: {fileID: 1176975324}
   tileBase: {fileID: 2035241328}
   tileRain: {fileID: 2098352512}
-  tileLightning: {fileID: 0}
   rainAudio: {fileID: 1761292213}
   thunderAudio: {fileID: 312677568}
   fireAudio: {fileID: 666533905}
   fogSprites:
-  - {fileID: 21300000, guid: b6df1f110a3748f4a8f2231faba146cd, type: 3}
+  - {fileID: 0}
   - {fileID: 21300000, guid: 8a1da8829c1c32440bdfe1f6cfbf2196, type: 3}
   - {fileID: 21300000, guid: 8bc10e56cfb07844281487a63e7d5796, type: 3}
   - {fileID: 21300000, guid: 55ccb29ea0b84404dadca88402a4a342, type: 3}
@@ -11416,6 +11410,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e97ac920d400347489e022873f6e236d, type: 3}
   - {fileID: 21300000, guid: 9095dec7bfb30624d9852f6ea9bd00bd, type: 3}
   lightningSprites:
+  - {fileID: 21300000, guid: ca64815b441e1014cb929ce928270a2a, type: 3}
+  - {fileID: 21300000, guid: ca64815b441e1014cb929ce928270a2a, type: 3}
   - {fileID: 21300000, guid: ca64815b441e1014cb929ce928270a2a, type: 3}
   firePrefab: {fileID: 3973678373299731871, guid: de84bb35120326240aa6e84e3044def6,
     type: 3}
@@ -11716,6 +11712,102 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1683508196}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1686970377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686970378}
+  - component: {fileID: 1686970380}
+  - component: {fileID: 1686970379}
+  m_Layer: 5
+  m_Name: JumpArrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1686970378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686970377}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 155495551}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1686970379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686970377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bbffee5ff92a44fb41f342e1addb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thoughtMenu: {fileID: 0}
+  runManager: {fileID: 0}
+  player: {fileID: 0}
+--- !u!212 &1686970380
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686970377}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 73c31d1794e7b51449ab96aa79bd7daa, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 3.2, y: 3.2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1694681464
 GameObject:
   m_ObjectHideFlags: 0
@@ -14709,7 +14801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 155495549}
-  zoom: 5.5
+  zoom: 4.8
 --- !u!1 &2035241328
 GameObject:
   m_ObjectHideFlags: 0

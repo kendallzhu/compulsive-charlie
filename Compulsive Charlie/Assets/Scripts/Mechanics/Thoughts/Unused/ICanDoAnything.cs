@@ -10,7 +10,7 @@ public class ICanDoAnything : Thought
         descriptionText = "Empowering, but might lose touch with feelings of vulnerability";
         isUnlocked = false;
         energyCost = 8;
-        jumpPower = 8;
+        maxJumpPower = 8;
         emotionType = EmotionType.despair;
     }
 

@@ -10,7 +10,7 @@ public class NothingCanStopMe : Thought
         descriptionText = "Exciting, but may mask feelings of irritation";
         isUnlocked = false;
         energyCost = 6;
-        jumpPower = 6;
+        maxJumpPower = 6;
         emotionType = EmotionType.frustration;
     }
 

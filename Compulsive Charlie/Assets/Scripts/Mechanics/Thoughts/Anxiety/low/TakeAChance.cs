@@ -10,7 +10,7 @@ public class TakeAChance : LowEmotionThought
         descriptionText = "What's the worst that can happen";
         isUnlocked = true;
         energyCost = 9;
-        jumpPower = 3;
+        maxJumpPower = 3; 
         emotionType = EmotionType.anxiety;
     }
 }

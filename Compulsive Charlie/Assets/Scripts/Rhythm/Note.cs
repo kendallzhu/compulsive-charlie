@@ -77,7 +77,7 @@ public class Note : MonoBehaviour
         // use z position for ordering to make overlap colors more normal
         transform.position = new Vector3(newPos.x, newPos.y, GetZPosition(emotionType));
         // gray out suppressed emotions, add X
-        if (IsSuppressed() && !isResolved)
+        if (IsSuppressed())
         {
             xMark.enabled = true;
             // icon.color = new Color(.2f, .2f, .2f);
@@ -108,7 +108,7 @@ public class Note : MonoBehaviour
     {
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.clip = Resources.Load<AudioClip>("drum_kit/Crash_Cymbal");
-        runState.energy -= 1;
+        runState.IncreaseEnergy(-1);
         StartCoroutine(HitAfterDelay(RhythmManager.hitWindowLate, runState));
     }
 

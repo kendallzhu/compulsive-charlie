@@ -10,7 +10,7 @@ public class Grooving : Thought
         descriptionText = "in sync with life";
         isUnlocked = true;
         energyCost = 2;
-        jumpPower = 2;
+        maxJumpPower = 2;
         emotionType = EmotionType.None;
     }
 

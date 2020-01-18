@@ -10,7 +10,8 @@ public class IGiveUp : HighEmotionThought
         descriptionText = "taking the L";
         isUnlocked = true;
         energyCost = 0;
-        jumpPower = -1;
+        minJumpPower = -1;
+        maxJumpPower = 0;
         emotionType = EmotionType.despair;
     }
 }

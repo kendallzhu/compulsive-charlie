@@ -10,7 +10,7 @@ public class ItllBeOk : LowEmotionThought
         descriptionText = "Don't despair";
         isUnlocked = true;
         energyCost = 3;
-        jumpPower = 1;
+        maxJumpPower = 1;
         emotionType = EmotionType.despair;
     }
 }

@@ -10,7 +10,7 @@ public class TakeItEasy : LowEmotionThought
         descriptionText = "No Need to Panic";
         isUnlocked = true;
         energyCost = 3;
-        jumpPower = 1;
+        maxJumpPower = 1; 
         emotionType = EmotionType.anxiety;
     }
 }

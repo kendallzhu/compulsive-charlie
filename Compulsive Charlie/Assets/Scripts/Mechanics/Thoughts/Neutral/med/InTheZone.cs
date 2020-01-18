@@ -10,7 +10,7 @@ public class InTheZone : Thought
         descriptionText = "Pure focus";
         isUnlocked = true;
         energyCost = 3;
-        jumpPower = 3;
+        maxJumpPower = 3;
         emotionType = EmotionType.None;
     }
 

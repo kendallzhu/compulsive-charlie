@@ -10,7 +10,7 @@ public class Hope : HighEmotionThought
         descriptionText = "Preserve the light";
         isUnlocked = true;
         energyCost = 4;
-        jumpPower = 1;
+        maxJumpPower = 1;
         emotionType = EmotionType.despair;
     }
 }

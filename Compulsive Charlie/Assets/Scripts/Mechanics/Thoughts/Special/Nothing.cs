@@ -10,7 +10,7 @@ public class Nothing : Thought
         descriptionText = "";
         isUnlocked = false;
         energyCost = 0;
-        jumpPower = 1;
+        maxJumpPower = 1;
     }
 
     // whether this activity is available, given state of run

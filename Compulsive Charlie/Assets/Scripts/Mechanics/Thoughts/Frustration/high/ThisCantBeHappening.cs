@@ -10,7 +10,8 @@ public class ThisCantBeHappening : HighEmotionThought
         descriptionText = "This is ridiculous!";
         isUnlocked = true;
         energyCost = 0;
-        jumpPower = -1;
+        minJumpPower = -1;
+        maxJumpPower = 0;
         emotionType = EmotionType.frustration;
     }
 }

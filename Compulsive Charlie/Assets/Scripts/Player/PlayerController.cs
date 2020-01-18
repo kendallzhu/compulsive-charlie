@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
     private Animator anim;
     private Rigidbody2D rb2d;
     private RunManager runManager;
+    public ThoughtMenu thoughtMenu;
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();
+        thoughtMenu = Object.FindObjectOfType<ThoughtMenu>();
     }
 
     // Update is called once per frame
@@ -114,6 +116,10 @@ public class PlayerController : MonoBehaviour {
     // functions for gameplay parameters that depend on runState (emotions, etc.)
     public float PlatformMinForwardSpeed(RunState runState)
     {
+        if (thoughtMenu.currentThought != null)
+        {
+            return 0;
+        }
         Activity activity = runState.CurrentActivity();
         if (runState.timeSteps == 0 || runState.CurrentActivityPlatform().isSongDone)
         {

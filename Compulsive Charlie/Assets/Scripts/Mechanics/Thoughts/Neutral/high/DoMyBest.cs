@@ -10,7 +10,7 @@ public class DoMyBest : Thought
         descriptionText = "100% effort";
         isUnlocked = true;
         energyCost = 6;
-        jumpPower = 3;
+        maxJumpPower = 3;
         emotionType = EmotionType.None;
     }
 

@@ -10,7 +10,7 @@ public class Transcendence : Thought
         descriptionText = "No limits";
         isUnlocked = true;
         energyCost = 0;
-        jumpPower = 4;
+        maxJumpPower = 4;
         emotionType = EmotionType.None;
     }
 

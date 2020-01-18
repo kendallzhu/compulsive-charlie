@@ -10,7 +10,8 @@ public class ImGonnaDie : HighEmotionThought
         descriptionText = "****";
         isUnlocked = true;
         energyCost = 0;
-        jumpPower = -1;
+        minJumpPower = -1;
+        maxJumpPower = 0;
         emotionType = EmotionType.anxiety;
     }
 }

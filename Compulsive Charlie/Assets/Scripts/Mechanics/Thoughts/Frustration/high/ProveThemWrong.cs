@@ -10,7 +10,7 @@ public class ProveThemWrong : HighEmotionThought
         descriptionText = "Screw the haters.";
         isUnlocked = true;
         energyCost = 12;
-        jumpPower = 3;
+        maxJumpPower = 3;
         emotionType = EmotionType.frustration;
     }
 }

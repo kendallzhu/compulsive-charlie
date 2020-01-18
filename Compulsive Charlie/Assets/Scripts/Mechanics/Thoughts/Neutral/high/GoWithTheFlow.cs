@@ -10,7 +10,7 @@ public class GoWithTheFlow : Thought
         descriptionText = "Ride the wave";
         isUnlocked = true;
         energyCost = 2;
-        jumpPower = 1;
+        maxJumpPower = 1;
         emotionType = EmotionType.None;
     }
 

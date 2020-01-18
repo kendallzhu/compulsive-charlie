@@ -10,7 +10,7 @@ public class ThisIsGoingWell : Thought
         descriptionText = "Exciting, but may mask fears of failure";
         isUnlocked = false;
         energyCost = 6;
-        jumpPower = 6;
+        maxJumpPower = 6;
         emotionType = EmotionType.anxiety;
     }
 

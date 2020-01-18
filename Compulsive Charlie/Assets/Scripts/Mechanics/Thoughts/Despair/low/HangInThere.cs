@@ -10,7 +10,7 @@ public class HangInThere : LowEmotionThought
         descriptionText = "Stay Strong";
         isUnlocked = true;
         energyCost = 6;
-        jumpPower = 2;
+        maxJumpPower = 2;
         emotionType = EmotionType.despair;
     }
 }

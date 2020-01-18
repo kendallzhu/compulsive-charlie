@@ -10,7 +10,7 @@ public class LetsDoThis : Thought
         descriptionText = "Making it happen";
         isUnlocked = true;
         energyCost = 4;
-        jumpPower = 2;
+        maxJumpPower = 2;
         emotionType = EmotionType.None;
     }
 

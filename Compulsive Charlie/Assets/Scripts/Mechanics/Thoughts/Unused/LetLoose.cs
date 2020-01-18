@@ -11,7 +11,7 @@ public class LetLoose : Thought
         descriptionText = "Forget everything - might lose touch with anxiety and sadness";
         isUnlocked = false;
         energyCost = 1;
-        jumpPower = 5;
+        maxJumpPower = 5;
     }
 
     // whether this activity is available, given state of run

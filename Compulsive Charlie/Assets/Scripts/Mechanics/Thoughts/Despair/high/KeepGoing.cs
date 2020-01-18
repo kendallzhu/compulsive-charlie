@@ -10,7 +10,7 @@ public class KeepGoing : HighEmotionThought
         descriptionText = "Push Through";
         isUnlocked = true;
         energyCost = 8;
-        jumpPower = 2;
+        maxJumpPower = 2;
         emotionType = EmotionType.despair;
     }
 }

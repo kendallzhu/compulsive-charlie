@@ -14,7 +14,7 @@ public class ThoughtMenu : MonoBehaviour
     public GameObject energyText;
     public GameObject jumpPowerText;
     private RunManager runManager;
-    private Thought currentThought;
+    public Thought currentThought;
 
     public void Awake()
     {
@@ -28,7 +28,7 @@ public class ThoughtMenu : MonoBehaviour
     {
         if (canvas && canvas.activeSelf && !tutorialCanvas.activeSelf)
         {
-            Time.timeScale = 0;
+            // Time.timeScale = 0;
             // todo: dpad/joystick selection
             bool left = Input.GetButtonDown("left");
             bool down = Input.GetButtonDown("down");
@@ -67,7 +67,7 @@ public class ThoughtMenu : MonoBehaviour
         }
         currentThought = thoughts[0];
         // freeze time and activate canvas
-        Time.timeScale = 0;
+        // Time.timeScale = 0;
         canvas.SetActive(true);
         if (!nameText.activeSelf)
         {
@@ -77,19 +77,20 @@ public class ThoughtMenu : MonoBehaviour
         nameText.GetComponent<TextMeshProUGUI>().text = currentThought.name;
         descriptionText.GetComponent<TextMeshProUGUI>().text = currentThought.descriptionText;
         energyText.GetComponent<TextMeshProUGUI>().text = currentThought.energyCost.ToString();
-        jumpPowerText.GetComponent<TextMeshProUGUI>().text = currentThought.jumpPower.ToString();
+        jumpPowerText.GetComponent<TextMeshProUGUI>().text = currentThought.maxJumpPower.ToString();
         // TODO: create a countdown timer to limit decision time?
     }
 
     // activate the thought and end sequence
     public void Accept()
     {
-        Time.timeScale = 1;
+        // Time.timeScale = 1;
         canvas.SetActive(false);
         RunState runState = runManager.runState;
         runState.thoughtHistory.Add(currentThought);
         currentThought.AcceptEffect(runState);
         runManager.PostThoughtSelect();
+        currentThought = null;
     }
 
     // Redraw
@@ -100,8 +101,6 @@ public class ThoughtMenu : MonoBehaviour
         {
             return;
         }
-        Time.timeScale = 1;
-        canvas.SetActive(false);
         if (runManager.runState.energy > 0)
         {
             currentThought.RejectEffect(runManager.runState);

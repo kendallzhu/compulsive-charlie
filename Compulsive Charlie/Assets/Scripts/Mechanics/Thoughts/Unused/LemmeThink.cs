@@ -10,7 +10,7 @@ public class LemmeThink : Thought
         descriptionText = "Anxiously consider the worst possible consequences";
         isUnlocked = false;
         energyCost = 3;
-        jumpPower = 2;
+        maxJumpPower = 2;
     }
 
     // whether this activity is available, given state of run

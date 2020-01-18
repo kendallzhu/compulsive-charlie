@@ -10,7 +10,7 @@ public class GiveItAShot : LowEmotionThought
         descriptionText = "what's the worst that could happen?";
         isUnlocked = true;
         energyCost = 9;
-        jumpPower = 3;
+        maxJumpPower = 3;
         emotionType = EmotionType.despair;
     }
 }
