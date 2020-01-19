@@ -291,6 +291,6 @@ public class MumenRider: Song
         (beats, 15),
         (beats, 16),
         (beats, 17),
-    });
+    }, 30, 60, 90);
     public static Song song = songOnce;
 }

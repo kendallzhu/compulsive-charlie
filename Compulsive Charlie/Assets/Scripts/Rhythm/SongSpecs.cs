@@ -165,6 +165,11 @@ public class MeasureSpec
 // class to put together a bunch of measures into a list of notes
 public class Song
 {
+    // combo values that are achievable, for upgrade unlocking
+    public int easyCombo;
+    public int mediumCombo;
+    public int hardCombo; // this should be only achievable if on increased energy cap
+    
     public const int measureSize = 16;
     public List<NoteSpec> notes;
 
@@ -173,15 +178,21 @@ public class Song
         this.notes = new List<NoteSpec>();
     }
 
-    public Song(List<NoteSpec> notes)
+    public Song(List<NoteSpec> notes, int easyCombo, int mediumCombo, int hardCombo)
     {
         this.notes = notes;
+        this.easyCombo = easyCombo;
+        this.mediumCombo = mediumCombo;
+        this.hardCombo = hardCombo;
     }
 
-    public Song(List<(MeasureSpec, int)> measures)
+    public Song(List<(MeasureSpec, int)> measures, int easyCombo, int mediumCombo, int hardCombo)
     {
         this.notes = new List<NoteSpec>();
         measures.ForEach(data => this.AddMeasure(data.Item1, data.Item2));
+        this.easyCombo = easyCombo;
+        this.mediumCombo = mediumCombo;
+        this.hardCombo = hardCombo;
     }
 
     public void AddMeasure(MeasureSpec measure, int measureNumber)
@@ -202,6 +213,9 @@ public class Song
     {
         MeasureSpec allNotes = new MeasureSpec(this.notes);
         Song repeatedSong = new Song();
+        repeatedSong.easyCombo = this.easyCombo;
+        repeatedSong.mediumCombo = this.mediumCombo;
+        repeatedSong.hardCombo = this.hardCombo;
         for (int i = 0; i < times; i++)
         {
             repeatedSong.AddMeasure(allNotes, i * this.Length() / measureSize);

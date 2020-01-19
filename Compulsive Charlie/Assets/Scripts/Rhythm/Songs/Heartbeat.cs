@@ -22,6 +22,6 @@ public class Heartbeat : Song
         }, Instrument.drumkit);
         this.song = new Song(new List<(MeasureSpec, int)> {
             (beat, 0)
-        }).Repeated(8);
+        }, 4, 8, 12).Repeated(8);
     }
 }

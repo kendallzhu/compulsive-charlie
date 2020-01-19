@@ -229,5 +229,5 @@ public class Luma : Song
         (beats, 12),
         (beats, 13),
         (beats, 14),
-    });
+    }, 15, 30, 45);
 }

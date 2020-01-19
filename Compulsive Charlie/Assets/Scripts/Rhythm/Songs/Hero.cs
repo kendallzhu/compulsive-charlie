@@ -45,6 +45,6 @@ public class Hero : Song
         (melody, 3),
         (beats, 3),
         (base2, 3)
-    });
+    }, 20, 40, 60);
     public static Song song = songOnce.Repeated(3);
 }

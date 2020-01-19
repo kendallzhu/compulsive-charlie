@@ -44,7 +44,7 @@ public class JumpArrow : MonoBehaviour
         float period = .5f; // number of seconds per cycle
         // move position up and down until thought has been chosen, then freeze
         float offset = range == 0 ? 0 : (Time.time * range / period) % range;
-        transform.position = new Vector2(transform.parent.position.x - 0.3f, minY + offset);
+        transform.position = new Vector2(transform.parent.position.x - 0.3f, minY + offset - ActivityPlatform.platformThickness);
         previousPosition = transform.position;
     }
 
@@ -52,7 +52,7 @@ public class JumpArrow : MonoBehaviour
     public int GetJumpPower()
     {
         float zeroY = runManager.runState.height;
-        float ydiff = (transform.position.y - zeroY);
+        float ydiff = (transform.position.y - zeroY + ActivityPlatform.platformThickness);
         return ActivityPlatform.YDiffToPower(ydiff);
     }
 }

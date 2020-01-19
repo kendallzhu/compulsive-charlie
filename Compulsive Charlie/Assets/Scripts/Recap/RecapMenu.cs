@@ -102,8 +102,12 @@ public class RecapMenu : MonoBehaviour
     {
         // get available upgrades according to the category
         Profile p = gameManager.profile;
-        RunState lastRunState = p.allRuns.Last();
         List<Upgrade> allUpgrades = p.upgrades;
+        foreach (Upgrade u in allUpgrades)
+        {
+            Debug.Log(u.name);
+            Debug.Log(u.IsAvailable(p));
+        }
         List<Upgrade> availableUpgrades = allUpgrades.Where(u => u.IsAvailable(p)).ToList();
         availableUpgrades = availableUpgrades.OrderBy(x => Random.value).ToList();
         // populate the upgrade cards

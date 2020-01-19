@@ -114,7 +114,7 @@ public class Note : MonoBehaviour
 
     public void OnHit(float time, RunState runState)
     {
-        StartCoroutine(HitAfterDelay(arrivalTime - time + RhythmManager.hitWindowLate, runState));
+        StartCoroutine(HitAfterDelay(arrivalTime - time, runState));
     }
 
     // (Delay so that sound occurs when note would have arrived)
@@ -155,7 +155,7 @@ public class Note : MonoBehaviour
     public void OnAutoHit(float time)
     {
         // seperate AutoHitAfterDelay function with less effects?
-        StartCoroutine(AutoHitAfterDelay(arrivalTime - time + RhythmManager.hitWindowLate));
+        StartCoroutine(AutoHitAfterDelay(arrivalTime - time));
     }
 
     public virtual void HitEffect(RunState runState)

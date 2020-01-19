@@ -20,11 +20,13 @@ public class Binge : Activity
     // (weighted) availability of activity, given state of run
     public override int CustomAvailability(RunState runState)
     {
-        if (runState.emotions.GetDominantEmotion() == EmotionType.despair)
-        {
-            return 1;
-        }
         Activity balancedMeal = Object.FindObjectOfType<BalancedMeal>();
+        // offer whenever it's time for a meal
+        if (balancedMeal.Availability(runState) > 0)
+        {
+            return 3;
+        }
+        // or if meal was skipped
         int timeSinceEat = System.Math.Min(runState.TimeSinceLast(this), runState.TimeSinceLast(balancedMeal));
         int hunger = System.Math.Max(0, timeSinceEat - 3);
         return hunger;

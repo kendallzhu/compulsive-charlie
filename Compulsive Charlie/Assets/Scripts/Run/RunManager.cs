@@ -162,7 +162,7 @@ public class RunManager : MonoBehaviour
         }
 
         // regenerate energy - ABORTED DUE TO ENERGY = COMBO
-        // runState.IncreaseEnergy(gameManager.profile.energyRegen);
+        runState.IncreaseEnergy(gameManager.profile.energyRegen);
 
         // cap energy
         // runState.energy = System.Math.Min(runState.energy, gameManager.profile.energyCap);

@@ -259,6 +259,6 @@ public class WakeUpGetOutThere : Song
         (beats, 12),
         (beats, 13),
         (beats, 14),
-    });
+    }, 25, 50, 75);
     public static Song song = songOnce;
 }

@@ -9,7 +9,7 @@ public class ActivityPlatform : MonoBehaviour {
     public Activity activity;
     // constants
     private const int jumpPadLength = 2;
-    private const float platformThickness = .3f;
+    public const float platformThickness = .3f;
     private const int standardGapLength = 2;
     private const int platformLength = 24;
     private const float raiseSmooth = 2;
