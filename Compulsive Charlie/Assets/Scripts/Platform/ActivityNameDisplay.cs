@@ -44,6 +44,7 @@ public class ActivityNameDisplay : MonoBehaviour
     // standardize how visible something is based on its y position
     private float GetAlpha(float y)
     {
+        return 1;
         float beamY = runManager.rhythmManager.hitArea.transform.position.y;
         float beamWidth = runManager.rhythmManager.beamWidth;
         float yDiff = Mathf.Abs(y - beamY) + .01f;

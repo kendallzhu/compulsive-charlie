@@ -66,6 +66,7 @@ public class ThoughtMenu : MonoBehaviour
             Debug.Log("need at least 1 thought passed into thought menu");
         }
         currentThought = thoughts[0];
+        runManager.runState.thoughtHistory.Add(currentThought);
         // freeze time and activate canvas
         // Time.timeScale = 0;
         canvas.SetActive(true);
@@ -75,9 +76,9 @@ public class ThoughtMenu : MonoBehaviour
         }
         nameText.GetComponent<TextMeshProUGUI>().color = currentThought.GetColor();
         nameText.GetComponent<TextMeshProUGUI>().text = currentThought.name;
-        descriptionText.GetComponent<TextMeshProUGUI>().text = currentThought.descriptionText;
-        energyText.GetComponent<TextMeshProUGUI>().text = currentThought.energyCost.ToString();
-        jumpPowerText.GetComponent<TextMeshProUGUI>().text = currentThought.maxJumpPower.ToString();
+        // descriptionText.GetComponent<TextMeshProUGUI>().text = currentThought.descriptionText;
+        energyText.GetComponent<TextMeshProUGUI>().text = "-" + currentThought.energyCost.ToString();
+        // jumpPowerText.GetComponent<TextMeshProUGUI>().text = currentThought.maxJumpPower.ToString();*/
         // TODO: create a countdown timer to limit decision time?
     }
 
@@ -103,6 +104,7 @@ public class ThoughtMenu : MonoBehaviour
         }
         if (runManager.runState.energy > 0)
         {
+            runManager.runState.thoughtHistory.RemoveAt(runManager.runState.thoughtHistory.Count - 1);
             currentThought.RejectEffect(runManager.runState);
             runManager.PreJump();
         }

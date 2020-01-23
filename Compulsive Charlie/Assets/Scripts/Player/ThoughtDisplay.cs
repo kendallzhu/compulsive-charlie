@@ -8,12 +8,18 @@ using System.Linq;
 public class ThoughtDisplay : MonoBehaviour
 {
     public RunManager runManager;
+    public ThoughtMenu thoughtMenu;
+    private float x;
+    private float y;
 
     // Initialization
     void Awake()
     {
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();
+        thoughtMenu = Object.FindObjectOfType<ThoughtMenu>();
+        x = transform.localPosition.x;
+        y = transform.localPosition.y;
     }
 
     void Update()
@@ -23,6 +29,13 @@ public class ThoughtDisplay : MonoBehaviour
         {
             string quote = "\"" + currentThought.name + "\"";
             gameObject.GetComponent<TextMeshProUGUI>().text = " " + quote;
+        }
+        if (thoughtMenu.currentThought == null)
+        {
+            transform.localPosition = new Vector2(x + 3.5f, y);
+        }else
+        {
+            transform.localPosition = new Vector2(x, y);
         }
     }
 }

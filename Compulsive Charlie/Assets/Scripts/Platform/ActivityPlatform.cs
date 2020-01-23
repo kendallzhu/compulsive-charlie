@@ -91,7 +91,7 @@ public class ActivityPlatform : MonoBehaviour {
     // y diff of a platform that should be reached with a given power
     static public int PowerToYDiff(int jumpPower)
     {
-        Debug.Assert(jumpPower >= -1 && jumpPower < 5);
+        Debug.Assert(jumpPower >= -1 && jumpPower <= 5);
         if (jumpPower == -1)
         {
             return Activity.breakdownPlatformHeightDiff;
