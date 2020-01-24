@@ -7,8 +7,11 @@ public class CameraController : MonoBehaviour
     private new Camera camera;
 
     public GameObject player;       //Public variable to store a reference to the player game object
+    // different X offsets during thinking vs rhythm phases
+    private const float offsetXZoomedOut = 1;
+    private const float offsetXZoomedNormal = 5;
     private float offsetX;
-    private float offsetY;
+    private const float offsetY = 1.9f;
     private bool followingY; // if in the midst of catching up on y
     private const float YThreshold = 1.5f; // threshold for adjust camera vertically
     private const float YEpsilon = .1f; // close enough to desired position
@@ -23,12 +26,6 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         camera = GetComponent<Camera>();
-        //Calculate and store the offset value by getting the distance between the player's position and camera's position.
-        // Vector3 offset = transform.position - player.transform.position;
-        // offsetX = offset.x;
-        // offsetY = offset.y;
-        offsetX = 5;
-        offsetY = 1.9f;
     }
 
     // LateUpdate is called after Update each frame
@@ -60,11 +57,12 @@ public class CameraController : MonoBehaviour
     public void ZoomOut()
     {
         zoom = zoomedOut;
-        
+        offsetX = offsetXZoomedOut;
     }
 
     public void ZoomNormal()
     {
         zoom = zoomedNormal;
+        offsetX = offsetXZoomedNormal;
     }
 }

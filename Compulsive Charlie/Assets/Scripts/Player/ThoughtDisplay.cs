@@ -27,13 +27,14 @@ public class ThoughtDisplay : MonoBehaviour
         Thought currentThought = runManager.runState.CurrentThought();
         if (currentThought)
         {
-            string quote = "\"" + currentThought.name + "\"";
-            gameObject.GetComponent<TextMeshProUGUI>().text = " " + quote;
+            // string quote = "\"" + currentThought.name + "\"";
+            gameObject.GetComponent<TextMeshProUGUI>().text = currentThought.name;
         }
+        // for shifting position of thought during the thinking phase, if desired
         if (thoughtMenu.currentThought == null)
         {
-            transform.localPosition = new Vector2(x + 3.5f, y);
-        }else
+            transform.localPosition = new Vector2(x + 0f, y);
+        } else
         {
             transform.localPosition = new Vector2(x, y);
         }
