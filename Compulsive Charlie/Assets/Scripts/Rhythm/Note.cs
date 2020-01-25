@@ -12,6 +12,7 @@ public class Note : MonoBehaviour
 
     public bool isResolved = false;
     float spawnTime;
+    float volume;
     public float arrivalTime;
     Vector2 startingOffset;
     public EmotionType emotionType;
@@ -33,8 +34,9 @@ public class Note : MonoBehaviour
         xMark = transform.Find("XMark").GetComponent<SpriteRenderer>();
     }
 
-    public void Initialize(float trueSpawnTime, AudioClip soundClip)
+    public void Initialize(float trueSpawnTime, AudioClip soundClip, float volume = 1)
     {
+        this.volume = volume;
         spawnTime = trueSpawnTime;
         arrivalTime = trueSpawnTime + RhythmManager.travelTime;
         startingOffset = transform.position - hitArea.position;
@@ -124,6 +126,8 @@ public class Note : MonoBehaviour
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(delay);
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.volume = this.volume;
+        Debug.Log(this.volume);
         if (!IsSuppressed())
         {
             runState.IncreaseCombo();

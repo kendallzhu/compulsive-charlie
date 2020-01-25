@@ -9,14 +9,16 @@ public class NoteSpawnSpec
     public float spawnTime;
     public EmotionType emotionType;
     public AudioClip clip;
+    public float volume;
     public int elevation;
 
-    public NoteSpawnSpec(float spawnTime, EmotionType type, AudioClip clip, int elevation)
+    public NoteSpawnSpec(float spawnTime, EmotionType type, AudioClip clip, int elevation, float volume=1)
     {
         this.spawnTime = spawnTime;
         this.emotionType = type;
         this.clip = clip;
         this.elevation = elevation;
+        this.volume = volume;
     }
 }
 
@@ -214,7 +216,7 @@ public class RhythmManager : MonoBehaviour
             {
                 type = EmotionType.None;
             }
-            notesToSpawn.Add(new NoteSpawnSpec(spawnTime, type, clip, n.elevation));
+            notesToSpawn.Add(new NoteSpawnSpec(spawnTime, type, clip, n.elevation, n.GetVolume()));
         }
     }
 
@@ -450,7 +452,7 @@ public class RhythmManager : MonoBehaviour
             Debug.Log("invalid note type");
             return;
         }
-        note.GetComponent<Note>().Initialize(n.spawnTime, n.clip);
+        note.GetComponent<Note>().Initialize(n.spawnTime, n.clip, n.volume);
 
         // notes coming from far enough below get auto-hit!
         // round so we keep notes alive that are off by fraction (i.e. 0 notes when elevation = 1)

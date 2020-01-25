@@ -78,6 +78,22 @@ public class NoteSpec
         return "";
     }
 
+    public float GetVolume()
+    {
+        switch (this.instrument)
+        {
+            // turned out this was questionable, but I'll leave the code here. vol only goes up to 1
+            case Instrument.piano1s:
+                return 1;
+            case Instrument.piano25s:
+                return 1;
+            case Instrument.piano:
+                return 1;
+            default:
+                return 1;
+        }
+    }
+
     public string GetAudioFilePath()
     {
         switch (this.instrument)
