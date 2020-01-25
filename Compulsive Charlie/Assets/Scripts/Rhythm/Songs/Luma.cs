@@ -171,6 +171,8 @@ public class Luma : Song
         new NoteSpec(2, "Closed_High_Hat", 18),
         new NoteSpec(6, "Bass_Drum_3", 20),
         new NoteSpec(8, "Closed_High_Hat", 18),
+        new NoteSpec(12, "Closed_High_Hat", 24),
+        new NoteSpec(14, "Closed_High_Hat", 24),
     }, Instrument.drumkit);
 
     public static Song song = new Song(new List<(MeasureSpec, int)> {

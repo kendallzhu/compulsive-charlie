@@ -12,6 +12,6 @@ public class Walk : Activity
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
         song = Luma.song;
-        tempoIncrement = .1f;
+        tempoIncrement = .11f;
     }
 }

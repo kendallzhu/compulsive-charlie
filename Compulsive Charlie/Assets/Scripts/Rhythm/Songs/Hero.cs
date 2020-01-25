@@ -23,12 +23,12 @@ public class Hero : Song
         new NoteSpec(12, "Fs4", 10),
     }, baseInstrument);
     static MeasureSpec beats = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "Closed_High_Hat", 16),
-        new NoteSpec(2, "Snare_Drum_2", 20),
+        new NoteSpec(2, "Bass_Drum_3", 16),
         new NoteSpec(4, "Closed_High_Hat", 12),
-        new NoteSpec(8, "Closed_High_Hat", 16),
-        new NoteSpec(10, "Snare_Drum_2", 20),
+        new NoteSpec(6, "Bass_Drum_3", 20),
+        new NoteSpec(10, "Bass_Drum_3", 16),
         new NoteSpec(12, "Closed_High_Hat", 12),
+        new NoteSpec(14, "Bass_Drum_3", 20),
     }, Instrument.drumkit);
     static MeasureSpec base1 = base0.ReplaceAllPitches("Gs4");
     static MeasureSpec base2 = base0.ReplaceAllPitches("Ds4");

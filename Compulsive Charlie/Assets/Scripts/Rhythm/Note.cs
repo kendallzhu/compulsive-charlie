@@ -109,12 +109,12 @@ public class Note : MonoBehaviour
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.clip = Resources.Load<AudioClip>("drum_kit/Crash_Cymbal");
         runState.IncreaseEnergy(-1);
-        StartCoroutine(HitAfterDelay(RhythmManager.hitWindowLate, runState));
+        StartCoroutine(HitAfterDelay(0, runState));
     }
 
     public void OnHit(float time, RunState runState)
     {
-        StartCoroutine(HitAfterDelay(arrivalTime - time, runState));
+        StartCoroutine(HitAfterDelay(0, runState));
     }
 
     // (Delay so that sound occurs when note would have arrived)

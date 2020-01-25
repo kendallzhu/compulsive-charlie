@@ -12,7 +12,7 @@ public class SleepIn : Activity
         emotionEffect = new EmotionState(2, 0, 4);
         isUnlocked = true;
         song = Luma.song;
-        tempoIncrement = .1f;
+        tempoIncrement = .11f;
         suppressedEmotions.Add(EmotionType.despair);
     }
 
