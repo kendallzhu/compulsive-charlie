@@ -7,10 +7,10 @@ using System.Linq;
 // script for graphic display of active thought - right now just text but hopefully will be nicer
 public class ThoughtDisplay : MonoBehaviour
 {
+    public GameObject bubble;
+    public GameObject text;
     public RunManager runManager;
     public ThoughtMenu thoughtMenu;
-    private float x;
-    private float y;
 
     // Initialization
     void Awake()
@@ -18,8 +18,8 @@ public class ThoughtDisplay : MonoBehaviour
         // get reference to runManager
         runManager = Object.FindObjectOfType<RunManager>();
         thoughtMenu = Object.FindObjectOfType<ThoughtMenu>();
-        x = transform.localPosition.x;
-        y = transform.localPosition.y;
+        bubble = transform.Find("Bubble").gameObject;
+        text = transform.Find("Text").gameObject;
     }
 
     void Update()
@@ -27,16 +27,17 @@ public class ThoughtDisplay : MonoBehaviour
         Thought currentThought = runManager.runState.CurrentThought();
         if (currentThought)
         {
-            // string quote = "\"" + currentThought.name + "\"";
-            gameObject.GetComponent<TextMeshProUGUI>().text = currentThought.name;
+            text.GetComponent<TextMeshProUGUI>().text = currentThought.name;
         }
-        // for shifting position of thought during the thinking phase, if desired
-        if (thoughtMenu.currentThought == null)
+        // for now, only show when picking a thought
+        if (thoughtMenu.currentThought)
         {
-            transform.localPosition = new Vector2(x + 0f, y);
+            bubble.SetActive(true);
+            text.SetActive(true);
         } else
         {
-            transform.localPosition = new Vector2(x, y);
+            text.SetActive(false);
+            bubble.SetActive(false);
         }
     }
 }

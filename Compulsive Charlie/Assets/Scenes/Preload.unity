@@ -423,7 +423,6 @@ MonoBehaviour:
   name: 
   descriptionText: 
   category: 
-  unlockCombo: 0
 --- !u!1 &241994800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,7 +1210,6 @@ MonoBehaviour:
   name: 
   descriptionText: 
   category: 
-  unlockCombo: 0
 --- !u!1 &643186642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,7 +1680,6 @@ MonoBehaviour:
   name: 
   descriptionText: 
   category: 
-  unlockCombo: 0
 --- !u!1 &886217408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,7 +1777,6 @@ MonoBehaviour:
   name: 
   descriptionText: 
   category: 
-  unlockCombo: 0
 --- !u!1 &901551299
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,7 +2184,6 @@ MonoBehaviour:
   name: 
   descriptionText: 
   category: 
-  unlockCombo: 0
 --- !u!1 &1055576062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,7 +2436,6 @@ MonoBehaviour:
   name: 
   descriptionText: 
   category: 
-  unlockCombo: 0
 --- !u!1 &1363992776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,7 +2482,6 @@ MonoBehaviour:
   name: 
   descriptionText: 
   category: 
-  unlockCombo: 0
 --- !u!1 &1408761704
 GameObject:
   m_ObjectHideFlags: 0
@@ -3255,7 +3248,6 @@ MonoBehaviour:
   name: 
   descriptionText: 
   category: 
-  unlockCombo: 0
 --- !u!1 &2122227343
 GameObject:
   m_ObjectHideFlags: 0
