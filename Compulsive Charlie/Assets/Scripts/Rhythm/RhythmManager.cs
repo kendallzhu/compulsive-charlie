@@ -114,6 +114,11 @@ public class RhythmManager : MonoBehaviour
 
     private EmotionType ChooseEmotionType()
     {
+        // only energy notes for the initial activity (tutorial)
+        if (runManager.runState.timeSteps == 0)
+        {
+            return EmotionType.None;
+        }
         // choose a note type based on current emotional state
         EmotionState curr = runManager.runState.emotions;
         // for now, we are spawning all types of notes, but letting the notes themselves be suppressed (have X's)
@@ -205,8 +210,7 @@ public class RhythmManager : MonoBehaviour
                 type = ChooseEmotionType();
             }
             // also first activity is all energy notes if need to show tutorial
-            if (runManager.runState.activityHistory.Count() < 2 && 
-                gameManager.showTutorial && !tutorialManager.shownEmotionNoteTutorial)
+            if (runManager.runState.activityHistory.Count() < 2 && gameManager.showEmotionNoteTutorial)
             {
                 type = EmotionType.None;
             }
@@ -327,6 +331,12 @@ public class RhythmManager : MonoBehaviour
                     {
                         missTypes.Add(n.emotionType);
                         n.OnMiss(runManager.runState);
+                        // reactivate tutorials if miss many notes in a row
+                        if (runManager.runState.rhythmBreakCount > 7)
+                        {
+                            gameManager.showRhythmTutorial = true;
+                            gameManager.showEmotionNoteTutorial = true;
+                        }
                     }
                 }
                 // update late hit period so late hits do not affect future notes
@@ -395,7 +405,7 @@ public class RhythmManager : MonoBehaviour
         // activate appropriate tutorials
         // show rhythm tutorial once some notes appear on screen
         bool noteVisible = notes.Count > 0 && notes[0].transform.position.x < hitArea.transform.position.x + 5;
-        if (gameManager.showTutorial && !tutorialManager.shownRhythmTutorial && noteVisible)
+        if (gameManager.showRhythmTutorial && noteVisible)
         {
             tutorialManager.ActivateRhythmTutorial();
         }
@@ -403,7 +413,7 @@ public class RhythmManager : MonoBehaviour
         // show emotion note tutorial once some emotion note seen
         bool emotionNoteVisible = notes.Count > 0 && notes[0].emotionType != EmotionType.None && !IsAboveBeam(notes[0]);
         // bool emotionNoteArrived = emotionNoteVisible && (time > notes[0].arrivalTime - hitWindowEarly);
-        if (gameManager.showTutorial && !tutorialManager.shownEmotionNoteTutorial && emotionNoteVisible)
+        if (gameManager.showEmotionNoteTutorial && emotionNoteVisible)
         {
             tutorialManager.ActivateEmotionNoteTutorial();
         }

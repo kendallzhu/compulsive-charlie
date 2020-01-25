@@ -12,8 +12,11 @@ public class GameManager : MonoBehaviour {
     // keep track of profile info
     public Profile profile;
 
-    // tracking if the full tutorial should be shown in next run
-    public bool showTutorial = true;
+    // tracking which tutorials need to be shown
+    public bool showUITutorial = true;
+    public bool showThoughtTutorial = true;
+    public bool showRhythmTutorial = true;
+    public bool showEmotionNoteTutorial = true;
 
     void Start () {
         LoadSplash();
@@ -56,11 +59,6 @@ public class GameManager : MonoBehaviour {
 
     public void StartRun()
     {
-        // do not show tutorial after first run
-        if (profile.allRuns.Count > 0)
-        {
-            showTutorial = false;
-        }
         // go to run scene
         SceneManager.LoadScene(3);
     }
@@ -70,5 +68,13 @@ public class GameManager : MonoBehaviour {
         // record run and go to cut scene
         profile.allRuns.Add(runState);
         SceneManager.LoadScene(4);
+    }
+
+    public void SkipTutorials()
+    {
+        showUITutorial = false;
+        showRhythmTutorial = false;
+        showEmotionNoteTutorial = false;
+        showThoughtTutorial = false;
     }
 }

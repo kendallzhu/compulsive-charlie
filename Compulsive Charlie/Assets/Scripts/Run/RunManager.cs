@@ -65,7 +65,7 @@ public class RunManager : MonoBehaviour
         if (Input.GetKey("n") && Input.GetKey("o"))
         {
             tutorialManager.Skip();
-            gameManager.showTutorial = false;
+            gameManager.SkipTutorials();
         }
         // cheatcodes to add combo/energy and change emotion
         if (Input.GetKeyDown("0"))
@@ -76,15 +76,15 @@ public class RunManager : MonoBehaviour
         {
             runState.emotions.Equilibrate();
         }
-        if (Input.GetKeyDown("a"))
+        if (Input.GetKeyDown("1"))
         {
             runState.emotions.Add(EmotionType.anxiety, 3);
         }
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("2"))
         {
             runState.emotions.Add(EmotionType.frustration, 3);
         }
-        if (Input.GetKeyDown("d"))
+        if (Input.GetKeyDown("3"))
         {
             runState.emotions.Add(EmotionType.despair, 3);
         }
@@ -101,7 +101,7 @@ public class RunManager : MonoBehaviour
         if (newActivityPlatform != null)
         {
             // activate UI tutorial on first platform of run
-            if (gameManager.showTutorial && !tutorialManager.shownUITutorial)
+            if (gameManager.showUITutorial)
             {
                 tutorialManager.ActivateUITutorial();
             }
@@ -140,6 +140,12 @@ public class RunManager : MonoBehaviour
     // for when the player enters the jump Pad
     public void EnterJumpPad(ActivityPlatform activityPlatform)
     {
+        // if failed tutorial, try again
+        if (runState.timeSteps == 0 && runState.rhythmCombo == 0)
+        {
+            gameManager.showRhythmTutorial = true;
+            gameManager.StartRun();
+        }
         // if done, end run (and skip the rest of the procedure)
         if (runState.done)
         {
@@ -194,7 +200,7 @@ public class RunManager : MonoBehaviour
         // offer thoughts
         thoughtMenu.Activate(SelectThoughts());
         // activate thought tutorial on first platform of run
-        if (gameManager.showTutorial && !tutorialManager.shownThoughtTutorial)
+        if (gameManager.showThoughtTutorial)
         {
             tutorialManager.ActivateThoughtTutorial();
         }

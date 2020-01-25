@@ -70,12 +70,12 @@ public class ThoughtMenu : MonoBehaviour
         // freeze time and activate canvas
         // Time.timeScale = 0;
         canvas.SetActive(true);
-        if (!nameText.activeSelf)
+        /*if (!nameText.activeSelf)
         {
             Flip();
-        }
-        nameText.GetComponent<TextMeshProUGUI>().color = currentThought.GetColor();
-        nameText.GetComponent<TextMeshProUGUI>().text = currentThought.name;
+        }*/
+        // nameText.GetComponent<TextMeshProUGUI>().color = currentThought.GetColor();
+        // nameText.GetComponent<TextMeshProUGUI>().text = currentThought.name;
         // descriptionText.GetComponent<TextMeshProUGUI>().text = currentThought.descriptionText;
         energyText.GetComponent<TextMeshProUGUI>().text = "-" + currentThought.energyCost.ToString();
         // jumpPowerText.GetComponent<TextMeshProUGUI>().text = currentThought.maxJumpPower.ToString();*/
@@ -118,6 +118,7 @@ public class ThoughtMenu : MonoBehaviour
     // Toggle info
     public void Flip()
     {
+        return;
         if (!nameText.activeSelf)
         {
             nameText.SetActive(true);

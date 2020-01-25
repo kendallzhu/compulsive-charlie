@@ -13,7 +13,6 @@ public class SleepIn : Activity
         isUnlocked = true;
         song = Luma.song;
         tempoIncrement = .11f;
-        suppressedEmotions.Add(EmotionType.despair);
     }
 
     // (weighted) availability of activity, given state of run

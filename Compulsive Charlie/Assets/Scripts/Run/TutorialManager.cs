@@ -17,12 +17,6 @@ public class TutorialManager : MonoBehaviour
     public List<GameObject> EmotionNoteTutorial;
     public GameObject advanceText;
 
-    // tracking if each tutorial has been shown yet in current run
-    public bool shownUITutorial = false;
-    public bool shownThoughtTutorial = false;
-    public bool shownRhythmTutorial = false;
-    public bool shownEmotionNoteTutorial = false;
-
     // tracking which tutorial sequence is activated, and its status
     private List<GameObject> activeTutorial = null;
     private int activeIndex = 0;
@@ -64,11 +58,6 @@ public class TutorialManager : MonoBehaviour
             activeIndex = 0;
             canvas.SetActive(false);
             Time.timeScale = 1;
-            // By default turn off tutorials for subsequent runs once all are complete
-            if (shownEmotionNoteTutorial && shownRhythmTutorial && shownThoughtTutorial && shownUITutorial)
-            {
-                gameManager.showTutorial = false;
-            }
         }
         // player advance tutorial
         if (CanAdvance())
@@ -95,25 +84,25 @@ public class TutorialManager : MonoBehaviour
     public void ActivateUITutorial()
     {
         activeTutorial = UITutorial;
-        shownUITutorial = true;
+        gameManager.showUITutorial = false;
     }
 
     public void ActivateThoughtTutorial()
     {
         activeTutorial = ThoughtTutorial;
-        shownThoughtTutorial = true;
+        gameManager.showThoughtTutorial = false;
     }
 
     public void ActivateRhythmTutorial()
     {
         activeTutorial = RhythmTutorial;
-        shownRhythmTutorial = true;
+        gameManager.showRhythmTutorial = false;
     }
 
     public void ActivateEmotionNoteTutorial()
     {
         activeTutorial = EmotionNoteTutorial;
-        shownEmotionNoteTutorial = true;
+        gameManager.showEmotionNoteTutorial = false;
     }
 
     // Skip entire tutorial
