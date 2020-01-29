@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     public RunManager runManager;
     public GameManager gameManager;
+    public TutorialManager tutorialManager;
     // refs to UI elements to manage
     public GameObject energyMeter;
     public GameObject despairMeter;
@@ -30,6 +31,7 @@ public class UIManager : MonoBehaviour
         runManager = Object.FindObjectOfType<RunManager>();
         // get reference to gameManager
         gameManager = Object.FindObjectOfType<GameManager>();
+        tutorialManager = Object.FindObjectOfType<TutorialManager>();
         // record emotion fill colors
         emotionFillColors = new Dictionary<EmotionType, Color>();
         emotionFillColors.Add(EmotionType.anxiety, anxietyMeter.transform.Find("Filler").GetComponent<Image>().color);
@@ -74,6 +76,10 @@ public class UIManager : MonoBehaviour
             if (activity && activity.suppressedEmotions.Contains(emotionType)) {
                 fillerImage.color = new Color(.4f, .4f, .4f);
                 Image XMark = meters[i].transform.Find("XMark").GetComponent<Image>();
+                if (gameManager.showSuppressionTutorial)
+                {
+                    tutorialManager.ActivateSuppressionTutorial();
+                }
                 // XMark.color = emotionFillColors[emotionType];
                 XMark.enabled = true;
             } else if (emotionType != EmotionType.None)

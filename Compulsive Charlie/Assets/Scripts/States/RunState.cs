@@ -69,6 +69,7 @@ public class RunState {
     public void IncreaseCombo()
     {
         rhythmCombo++;
+        rhythmBreakCount = 0;
         ActivityPlatform ap = CurrentActivityPlatform();
         if (rhythmCombo > ap.bestCombo)
         {

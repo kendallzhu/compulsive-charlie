@@ -15,6 +15,7 @@ public class TutorialManager : MonoBehaviour
     public List<GameObject> ThoughtTutorial;
     public List<GameObject> RhythmTutorial;
     public List<GameObject> EmotionNoteTutorial;
+    public List<GameObject> SuppressionTutorial;
     public GameObject advanceText;
 
     // tracking which tutorial sequence is activated, and its status
@@ -103,6 +104,18 @@ public class TutorialManager : MonoBehaviour
     {
         activeTutorial = EmotionNoteTutorial;
         gameManager.showEmotionNoteTutorial = false;
+    }
+
+    public void ActivateSuppressionTutorial()
+    {
+        activeTutorial = SuppressionTutorial;
+        gameManager.showSuppressionTutorial = false;
+    }
+
+    public void OnMissingALot()
+    {
+        gameManager.showRhythmTutorial = true;
+        gameManager.showEmotionNoteTutorial = true;
     }
 
     // Skip entire tutorial

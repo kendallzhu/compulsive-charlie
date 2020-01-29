@@ -11,6 +11,7 @@ public class Note : MonoBehaviour
     Transform hitArea;
 
     public bool isResolved = false;
+    public bool isInvisibleHit = false;
     float spawnTime;
     float volume;
     public float arrivalTime;
@@ -81,9 +82,16 @@ public class Note : MonoBehaviour
         // gray out suppressed emotions, add X
         if (IsSuppressed())
         {
-            xMark.enabled = true;
-            // icon.color = new Color(.2f, .2f, .2f);
-            // gameObject.GetComponent<SpriteRenderer>().color = new Color(.6f, .6f, .6f);
+            // xMark.enabled = true;
+
+            // hide notes gradually 
+            float alpha = Mathf.Max(0, scaleFactor - .5f);
+            // float alpha = scaleFactor;
+            xMark.color = new Color(xMark.color.r, xMark.color.g, xMark.color.b, alpha);
+            arrow.color = new Color(arrow.color.r, arrow.color.g, arrow.color.b, alpha);
+            icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, alpha);
+            Color c = gameObject.GetComponent<SpriteRenderer>().color;
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(c.r, c.g, c.b, alpha);
         }
     }
 
@@ -108,10 +116,16 @@ public class Note : MonoBehaviour
 
     public void OnSuppress(RunState runState)
     {
-        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = Resources.Load<AudioClip>("drum_kit/Crash_Cymbal");
+        // AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        // audioSource.clip = Resources.Load<AudioClip>("drum_kit/Crash_Cymbal");
         runState.IncreaseEnergy(-1);
-        StartCoroutine(HitAfterDelay(0, runState));
+        // you can hit them invisibly!
+        if (this.isInvisibleHit)
+        {
+            runState.IncreaseEnergy(1);
+            StartCoroutine(HitAfterDelay(0, runState));
+
+        }
     }
 
     public void OnHit(float time, RunState runState)
@@ -127,14 +141,14 @@ public class Note : MonoBehaviour
         yield return new WaitForSeconds(delay);
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.volume = this.volume;
-        Debug.Log(this.volume);
+        runState.IncreaseCombo();
         if (!IsSuppressed())
         {
-            runState.IncreaseCombo();
             HitEffect(runState);
-            Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
-            rhythmManager.player.GetComponent<Animator>().ResetTrigger("activityFail");
         }
+        // show graphic effect
+        Instantiate(hitPrefab, transform.position, Quaternion.identity, hitArea);
+        rhythmManager.player.GetComponent<Animator>().ResetTrigger("activityFail");
         // play audio and destroy when done
         audioSource.Play();
         Destroy(gameObject, audioSource.clip.length);

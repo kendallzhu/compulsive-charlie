@@ -336,8 +336,7 @@ public class RhythmManager : MonoBehaviour
                         // reactivate tutorials if miss many notes in a row
                         if (runManager.runState.rhythmBreakCount > 7)
                         {
-                            gameManager.showRhythmTutorial = true;
-                            gameManager.showEmotionNoteTutorial = true;
+                            tutorialManager.OnMissingALot();
                         }
                     }
                 }
@@ -373,6 +372,19 @@ public class RhythmManager : MonoBehaviour
                             {
                                 notes.Remove(n);
                                 n.OnHit(time, runManager.runState);
+                            }
+                        }
+                        // log hits for invisible suppressed notes!
+                        foreach (Note n in nearestNotes)
+                        {
+                            if (n.IsSuppressed() && hitTypes.Contains(n.emotionType))
+                            {
+                                // be extra strict about hit window
+                                if (time > n.arrivalTime - hitWindowEarly / 2 &&
+                                    time < n.arrivalTime + hitWindowLate / 2)
+                                {
+                                    n.isInvisibleHit = true;
+                                }
                             }
                         }
                     }
@@ -413,7 +425,8 @@ public class RhythmManager : MonoBehaviour
         }
 
         // show emotion note tutorial once some emotion note seen
-        bool emotionNoteVisible = notes.Count > 0 && notes[0].emotionType != EmotionType.None && !IsAboveBeam(notes[0]);
+        bool emotionNoteVisible = notes.Count > 0 && notes[0].emotionType != EmotionType.None && 
+            !notes[0].IsSuppressed() && !IsAboveBeam(notes[0]);
         // bool emotionNoteArrived = emotionNoteVisible && (time > notes[0].arrivalTime - hitWindowEarly);
         if (gameManager.showEmotionNoteTutorial && emotionNoteVisible)
         {

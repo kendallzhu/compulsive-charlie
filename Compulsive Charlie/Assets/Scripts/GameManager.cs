@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     public bool showThoughtTutorial = true;
     public bool showRhythmTutorial = true;
     public bool showEmotionNoteTutorial = true;
+    public bool showSuppressionTutorial = true;
 
     void Start () {
         LoadSplash();
@@ -76,5 +77,6 @@ public class GameManager : MonoBehaviour {
         showRhythmTutorial = false;
         showEmotionNoteTutorial = false;
         showThoughtTutorial = false;
+        showSuppressionTutorial = false;
     }
 }
