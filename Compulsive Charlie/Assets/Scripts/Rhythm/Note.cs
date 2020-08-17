@@ -118,13 +118,17 @@ public class Note : MonoBehaviour
     {
         // AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         // audioSource.clip = Resources.Load<AudioClip>("drum_kit/Crash_Cymbal");
-        runState.IncreaseEnergy(-1);
+        
         // you can hit them invisibly!
         if (this.isInvisibleHit)
         {
-            runState.IncreaseEnergy(1);
             StartCoroutine(HitAfterDelay(0, runState));
-
+        } else
+        {
+            // if not hit, fail silently
+            runState.IncreaseEnergy(-1);
+            // Instantiate(missPrefab, transform.position, Quaternion.identity, hitArea);
+            runState.BreakCombo();
         }
     }
 
