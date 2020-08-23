@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,13 @@ public class GameManager : MonoBehaviour {
     public bool showRhythmTutorial = true;
     public bool showEmotionNoteTutorial = true;
     public bool showSuppressionTutorial = true;
+
+    public static GameManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start () {
         LoadSplash();
@@ -48,27 +56,26 @@ public class GameManager : MonoBehaviour {
     public void LoadSplash()
     {
         // go to splash screen
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("IntroStory");
     }
 
     public void LoadProfile()
     {
         // go to profile menu
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Profile");
     }
 
     public void StartRun()
     {
         // go to run scene
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Run");
     }
 
     public void EndRun(RunState runState)
     {
         // record run and go to cut scene
         profile.allRuns.Add(runState);
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("Recap");
     }
 
     public void SkipTutorials()
