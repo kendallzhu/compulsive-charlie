@@ -158,7 +158,6 @@ RectTransform:
   - {fileID: 1620467194}
   - {fileID: 482154476}
   - {fileID: 1714596189}
-  - {fileID: 1734795665}
   m_Father: {fileID: 1163098584}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -262,7 +261,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: He had to sit through his classes...
+  m_text: 'He had to sit through his classes...
+
+    <color="green">(and take tests,
+    even though he felt anxious)</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -473,7 +475,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: And eat whatever his Mom cooked for him...
+  m_text: 'And eat whatever his Mom cooked for him...
+
+    <color="red">(even if
+    he felt frustrated with the food)</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -551,142 +556,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482154475}
   m_CullTransparentMesh: 0
---- !u!1 &563281509
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 563281510}
-  - component: {fileID: 563281512}
-  - component: {fileID: 563281511}
-  m_Layer: 5
-  m_Name: Help
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &563281510
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563281509}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.86587006, y: 0.86587006, z: 0.86587006}
-  m_Children: []
-  m_Father: {fileID: 1042728708}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93.99997, y: 202.99998}
-  m_SizeDelta: {x: 243.58, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &563281511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563281509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: "Mom: \r\n\"Charlie, listening to your feelings will help you more than
-    I can...\"\n"
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
-    type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 1
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: -14.33424, y: 0, z: -251.87263, w: -118.79605}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &563281512
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563281509}
-  m_CullTransparentMesh: 0
 --- !u!1 &570438444
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +613,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: And when he felt lonely, he could eat and drink to make it go away!
+  m_text: And when he felt <color="blue">lonely</color>, he could eat and drink to
+    make it go away!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -1190,7 +1060,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: But something was different - Nobody was telling him what to do!
+  m_text: 'He arrived at college in high spirits.
+
+
+    But something was different
+    - Nobody was telling him what to do!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -1304,8 +1178,6 @@ RectTransform:
   - {fileID: 1632986466}
   - {fileID: 1950145637}
   - {fileID: 1959571926}
-  - {fileID: 2086760892}
-  - {fileID: 563281510}
   m_Father: {fileID: 1163098584}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1980,10 +1852,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'But everything he tried only seemed to make things worse...
-
-    He realized
-    he needed to turn things around
+  m_text: 'But the more avoided his feelings, the less he accomplished, and the worse
+    he felt. Charlie realized he needed help...
 
 '
   m_isRightToLeft: 0
@@ -2120,7 +1990,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Make it to after school sports practice (to fulfill his gym requirement)...
+  m_text: 'Make it to after school sports practice to fulfill his gym requirement...
+
+    <color="blue">(even
+    though he sometimes felt sad)</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -2391,7 +2264,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Before he knew it, Charlie graduated and was ready for college!
+  m_text: 'There were many tough times, but nonetheless time flew by.
+
+    Before
+    he knew it, Charlie graduated and was heading to college!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -2469,141 +2345,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714596188}
   m_CullTransparentMesh: 0
---- !u!1 &1734795664
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1734795665}
-  - component: {fileID: 1734795667}
-  - component: {fileID: 1734795666}
-  m_Layer: 5
-  m_Name: College
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1734795665
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734795664}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 368963422}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 94, y: 203}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1734795666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734795664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: "After a relaxing summer, Charlie started college with high spirits\u2026"
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
-    type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 1
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: -14.33424, y: 0, z: -251.87263, w: -118.79605}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1734795667
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734795664}
-  m_CullTransparentMesh: 0
 --- !u!1 &1846105519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,7 +2402,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Working made him anxious, so he played video games instead!
+  m_text: Working made him feel <color="green">anxious</color>, so he played video
+    games instead!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -2872,7 +2614,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Charlie: \n\"Whaddya mean? You want me to stay in touch with my emotions?\""
+  m_text: "Charlie: \n\"Whaddya mean? You want me to feel my emotions instead of
+    trying to make them go away?!\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -3007,8 +2750,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Mom: \n\"Yeah. Just like you\u2019ve stayed in touch with me - you don\u2019t
-    have to do everything I say, but you\u2019ll give me an honest listen...\""
+  m_text: "Mom: \n\"Yeah. Stay in touch with your feelings just like you\u2019ve
+    stayed in touch with me - they're the biggest helpers you've got.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -3226,7 +2969,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Every he had to wake up at 6:30am to get to school on time...
+  m_text: 'Every he had to wake up at 6:30am to get to school on time...
+
+    (even
+    though he felt tired)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
@@ -3303,142 +3049,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059415580}
-  m_CullTransparentMesh: 0
---- !u!1 &2086760891
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2086760892}
-  - component: {fileID: 2086760894}
-  - component: {fileID: 2086760893}
-  m_Layer: 5
-  m_Name: Hmm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2086760892
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086760891}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.86587006, y: 0.86587006, z: 0.86587006}
-  m_Children: []
-  m_Father: {fileID: 1042728708}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93.99997, y: 202.99998}
-  m_SizeDelta: {x: 243.58, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2086760893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086760891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: "Charlie: \n\"Hmm, I don\u2019t see how that\u2019ll make me feel better,
-    but I'll give it a try. Thanks for the help.\""
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
-  m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,
-    type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 1
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: -14.33424, y: 0, z: -251.87263, w: -118.79605}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &2086760894
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086760891}
   m_CullTransparentMesh: 0
 --- !u!1 &2132793589
 GameObject:
