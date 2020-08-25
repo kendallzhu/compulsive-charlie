@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Walk : Activity
+public class Exercise : Activity
 {
     void Awake()
     {
-        name = "Walk";
-        descriptionText = "go on a walk";
+        name = "Exercise";
+        descriptionText = "get the blood moving";
         heightRating = 0;
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;

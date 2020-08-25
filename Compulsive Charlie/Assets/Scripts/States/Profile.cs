@@ -19,11 +19,10 @@ public class Profile
     public List<Activity> defaultSchedule = new List<Activity> {
         Object.FindObjectOfType<Chores>(),
         Object.FindObjectOfType<Class>(),
-        Object.FindObjectOfType<BalancedMeal>(),
         Object.FindObjectOfType<Study>(),
-        Object.FindObjectOfType<Walk>(),
         Object.FindObjectOfType<BalancedMeal>(),
-        Object.FindObjectOfType<Study>(),
+        Object.FindObjectOfType<HangOut>(),
+        Object.FindObjectOfType<Exercise>(),
         Object.FindObjectOfType<Shower>(),
         Object.FindObjectOfType<GoToBed>()
     };
@@ -36,6 +35,9 @@ public class Profile
     public int energyCap;
     public const int defaultBedTime = 9;
     public int bedTime;
+
+    public bool meditateBeforeBed;
+    public bool exerciseMartialArts;
     // run history
     public List<RunState> allRuns;
 
@@ -72,6 +74,18 @@ public class Profile
         energyCap = defaultEnergyCap;
         schedule = new List<Activity>(defaultSchedule);
         bedTime = defaultBedTime;
+    }
+    
+    public int GetInitialEnergy()
+    {
+        int energy = initialEnergy;
+        if (allRuns.Count > 0)
+        {
+            int sleepLate = allRuns.Last().activityHistory.Count - bedTime;
+            sleepLate = Mathf.Max(0, sleepLate);
+            return energy + (10 - sleepLate * 5);
+        }
+        return energy;
     }
 }
 

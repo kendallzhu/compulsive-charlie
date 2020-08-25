@@ -6,7 +6,7 @@ public class ThisCantBeHappening : HighEmotionThought
 {
     void Awake()
     {
-        name = "This Can't Be Happening";
+        name = "Can't Be Happening";
         descriptionText = "This is ridiculous!";
         isUnlocked = true;
         energyCost = 0;

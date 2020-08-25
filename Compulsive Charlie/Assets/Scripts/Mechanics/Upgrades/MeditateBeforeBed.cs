@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class WakeUpFresh : Upgrade
+public class MeditateBeforeBed : Upgrade
 {
     void Awake()
     {
-        name = "Wake Up Fresh";
-        descriptionText = "Start the day with more energy";
+        name = "Meditate Before Bed";
+        descriptionText = "Practice letting go of thoughts";
         category = "action";
     }
 
     // comb through lists of activities and thoughts and modify them to make upgrade
     public override void Activate(Profile profile)
     {
-        profile.initialEnergy = profile.energyCap;
+        profile.meditateBeforeBed = true;
     }
 
     // criteria for upgrade to be available after a run

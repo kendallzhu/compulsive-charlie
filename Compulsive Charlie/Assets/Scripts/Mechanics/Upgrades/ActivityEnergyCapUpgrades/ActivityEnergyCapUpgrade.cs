@@ -10,6 +10,11 @@ public class ActivityEnergyCapUpgrade : Upgrade
         return true;
     }
 
+    public virtual void CustomActivate(Profile profile)
+    {
+        return;
+    }
+
     // comb through lists of activities and thoughts and modify them to make upgrade
     public override void Activate(Profile profile)
     {
@@ -20,6 +25,7 @@ public class ActivityEnergyCapUpgrade : Upgrade
                 a.IncreaseEnergyCap();
             }
         }
+        CustomActivate(profile);
         return;
     }
 

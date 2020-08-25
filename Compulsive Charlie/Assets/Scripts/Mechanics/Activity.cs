@@ -36,7 +36,7 @@ public abstract class Activity : MonoBehaviour {
     private void Start()
     {
         // for debugging/checks
-        // Debug.Log(name + " hash: " + Animator.StringToHash(name));
+        Debug.Log(name + " hash: " + Animator.StringToHash(name));
         // song = Object.FindObjectOfType<GoToBed>().song;
         energyCap = 10;
         // for testing

@@ -12,6 +12,9 @@ public class ThoughtMenu : MonoBehaviour
     public GameObject nameText;
     public GameObject descriptionText;
     public GameObject energyText;
+    public GameObject rejectEnergyText;
+    public GameObject rejectLabelText;
+    public GameObject rejectEnergyIcon;
     public GameObject jumpPowerText;
     private RunManager runManager;
     public Thought currentThought;
@@ -78,6 +81,9 @@ public class ThoughtMenu : MonoBehaviour
         // nameText.GetComponent<TextMeshProUGUI>().text = currentThought.name;
         // descriptionText.GetComponent<TextMeshProUGUI>().text = currentThought.descriptionText;
         energyText.GetComponent<TextMeshProUGUI>().text = "-" + currentThought.energyCost.ToString();
+        rejectEnergyText.GetComponent<TextMeshProUGUI>().text = runManager.FreeRejectThought() ? "FREE" : "-1";
+        rejectLabelText.GetComponent<TextMeshProUGUI>().text = runManager.FreeRejectThought() ? "Let Go" : "Think";
+        rejectEnergyIcon.SetActive(!runManager.FreeRejectThought());
         // jumpPowerText.GetComponent<TextMeshProUGUI>().text = currentThought.maxJumpPower.ToString();*/
         // TODO: create a countdown timer to limit decision time?
     }
@@ -102,9 +108,14 @@ public class ThoughtMenu : MonoBehaviour
         {
             return;
         }
+        runManager.runState.thoughtHistory.RemoveAt(runManager.runState.thoughtHistory.Count - 1);
+        if (runManager.FreeRejectThought())
+        {
+            runManager.PreJump();
+            return;   
+        }
         if (runManager.runState.energy > 0)
         {
-            runManager.runState.thoughtHistory.RemoveAt(runManager.runState.thoughtHistory.Count - 1);
             currentThought.RejectEffect(runManager.runState);
             runManager.PreJump();
         }
@@ -114,7 +125,7 @@ public class ThoughtMenu : MonoBehaviour
             currentThought.RejectEffect(runManager.runState);
         }
     }
-    
+
     // Toggle info
     public void Flip()
     {

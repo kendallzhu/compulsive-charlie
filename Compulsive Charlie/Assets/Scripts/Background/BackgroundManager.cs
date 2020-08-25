@@ -59,15 +59,15 @@ public class BackgroundManager : MonoBehaviour
         EmotionState e = runState.emotions;
         // change the static background based on the time of day
         Sprite newStaticBG = morning;
-        if (runState.timeSteps > 3)
+        if (runState.timeSteps > 2)
         {
             newStaticBG = midday;
         }
-        if (runState.timeSteps > 6)
+        if (runState.timeSteps > 4)
         {
             newStaticBG = sunset;
         }
-        if (runState.timeSteps > 8)
+        if (runState.timeSteps > 6)
         {
             newStaticBG = night;
         }

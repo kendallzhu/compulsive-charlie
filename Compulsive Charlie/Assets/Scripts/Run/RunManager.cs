@@ -19,6 +19,11 @@ public class RunManager : MonoBehaviour
 
     // prefabs
     public GameObject platformPrefab;
+    private static readonly int ChantBeforeBed = Animator.StringToHash("chantBeforeBed");
+    private static readonly int StartActivity = Animator.StringToHash("startActivity");
+    private static readonly int ActivityFail = Animator.StringToHash("activityFail");
+    private static readonly int StartJump = Animator.StringToHash("startJump");
+    private static readonly int ExerciseKick = Animator.StringToHash("ExerciseKick");
 
     // Initialization
     void Awake()
@@ -38,7 +43,7 @@ public class RunManager : MonoBehaviour
         rhythmManager = Object.FindObjectOfType<RhythmManager>();
         // get initial runState based on profile
         runState = new RunState(
-            gameManager.profile.initialEnergy,
+            gameManager.profile.GetInitialEnergy(),
             gameManager.profile.energyCap,
             new EmotionState(gameManager.profile.initialEmotions),
             gameManager.profile.bedTime
@@ -131,6 +136,11 @@ public class RunManager : MonoBehaviour
             // start activity animation
             player.GetComponent<Animator>().SetInteger("activityHash", Animator.StringToHash(newActivityPlatform.activity.name));
             player.GetComponent<Animator>().SetTrigger("startActivity");
+            // hack special case increase energy from martial arts
+            if (GameManager.Instance.profile.exerciseMartialArts && newActivityPlatform.activity.name == "Exercise")
+            {
+                runState.energy += 6;
+            }
         }
 
         // return zoom to normal
@@ -188,9 +198,11 @@ public class RunManager : MonoBehaviour
         SpawnPlatform(SelectDefaultActivity(), 0);
         SpawnPlatform(SelectBreakdownActivity(), -1);
         // clear out all other animation triggers
-        player.GetComponent<Animator>().ResetTrigger("startJump");
-        player.GetComponent<Animator>().ResetTrigger("activityFail");
-        player.GetComponent<Animator>().ResetTrigger("startActivity");
+        player.GetComponent<Animator>().ResetTrigger(StartJump);
+        player.GetComponent<Animator>().ResetTrigger(ActivityFail);
+        player.GetComponent<Animator>().ResetTrigger(StartActivity);
+        player.GetComponent<Animator>().SetBool(ChantBeforeBed, GameManager.Instance.profile.meditateBeforeBed);
+        player.GetComponent<Animator>().SetBool(ExerciseKick, GameManager.Instance.profile.exerciseMartialArts);
     }
 
     // called from player controller after sensing ready to jump
@@ -323,5 +335,10 @@ public class RunManager : MonoBehaviour
             offeredThoughts.Add(t);
         }
         return offeredThoughts;
+    }
+    
+    public bool FreeRejectThought()
+    {
+        return GameManager.Instance.profile.meditateBeforeBed;
     }
 }
