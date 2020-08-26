@@ -23,7 +23,7 @@ public class RunManager : MonoBehaviour
     private static readonly int StartActivity = Animator.StringToHash("startActivity");
     private static readonly int ActivityFail = Animator.StringToHash("activityFail");
     private static readonly int StartJump = Animator.StringToHash("startJump");
-    private static readonly int ExerciseKick = Animator.StringToHash("ExerciseKick");
+    private static readonly int ExerciseKick = Animator.StringToHash("kickExercise");
 
     // Initialization
     void Awake()
@@ -94,7 +94,7 @@ public class RunManager : MonoBehaviour
             runState.emotions.Add(EmotionType.despair, 3);
         }
         // cheatcode to upgrade activity (hard mode)
-        if (Input.GetKeyDown("u") && Input.GetKeyDown("p"))
+        if (Input.GetKey("u") && Input.GetKey("p"))
         {
             runState.CurrentActivity().energyCap = 20;
         }

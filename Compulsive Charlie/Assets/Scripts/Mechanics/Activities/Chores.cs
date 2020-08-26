@@ -11,5 +11,7 @@ public class Chores : Activity
         heightRating = 1;
         emotionEffect = new EmotionState(6, 6, 6);
         isUnlocked = true;
+        song = ReadyFreddy.song;
+        tempoIncrement = .16f;
     }
 }

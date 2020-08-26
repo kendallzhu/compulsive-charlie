@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Luma : Song
 {
+    public override string TitleText => "\"Luma\" (Super Mario Galaxy)";
     // Luma - Super Mario Galaxy: https://www.youtube.com/watch?v=c3jvWynR_Dc
     static Instrument melodyInstrument = Instrument.glocken;
     static Instrument baseInstrument = Instrument.glocken;

@@ -97,6 +97,7 @@ public class Note : MonoBehaviour
 
     public void OnDeflect()
     {
+        Debug.Assert(!isResolved, "on deflect already resolved");
         isResolved = true;
         Destroy(gameObject);
         GameObject deflect = Instantiate(deflectPrefab, transform.position, Quaternion.identity, transform.parent);
@@ -106,6 +107,7 @@ public class Note : MonoBehaviour
     // functions for miss/hit effects
     public void OnMiss(RunState runState)
     {
+        Debug.Assert(!isResolved, "on miss already resolved");
         isResolved = true;
         runState.BreakCombo();
         MissEffect(runState);
@@ -143,6 +145,7 @@ public class Note : MonoBehaviour
     // (Delay so that sound occurs when note would have arrived)
     public IEnumerator HitAfterDelay(float delay, RunState runState)
     {
+        Debug.Assert(!isResolved, "hit after delay - already resolved");
         isResolved = true;
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(delay);
@@ -163,6 +166,7 @@ public class Note : MonoBehaviour
 
     public IEnumerator AutoHitAfterDelay(float delay)
     {
+        Debug.Assert(!isResolved, "auto hit after delay - already resolved");
         isResolved = true;
         emotionType = EmotionType.None;
         // dark out note and move it back

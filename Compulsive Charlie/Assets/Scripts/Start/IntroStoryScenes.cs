@@ -40,6 +40,10 @@ namespace Start
             {
                 Advance();
             }
+            if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.O))
+            {
+                SceneManager.LoadScene("Start");
+            }
         }
 
         private void RefreshDisplay()
@@ -73,6 +77,7 @@ namespace Start
             if (currentSceneIndex >= scenes.Count)
             {
                 SceneManager.LoadScene("Start");
+                return;
             }
             // load children of scene
             texts = scenes[currentSceneIndex].transform.GetComponentsInChildren<TextMeshProUGUI>().ToList();

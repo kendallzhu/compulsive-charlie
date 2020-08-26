@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Hero : Song
 {
+    public override string TitleText => "\"Hero\" (Ping Pong the Animation)"; 
     // "Hero" Ping Pong the Animation OST - https://www.youtube.com/watch?v=62qWI7CpIds
     static Instrument melodyInstrument = Instrument.woodBlock;
     static Instrument baseInstrument = Instrument.woodBlock;

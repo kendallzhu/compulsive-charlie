@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class WakeUpGetOutThere : Song
 {
+    public override string TitleText => "\"Wake Up, get up, get out there\" (Persona 5)";
     // "Wake Up, get up, get out there (Persona 5)" - https://www.youtube.com/watch?v=hVDC109PCU8
     // TODO: trumpet? guitar?
     static Instrument melodyInstrument = Instrument.piano1s;

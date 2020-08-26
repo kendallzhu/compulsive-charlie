@@ -3272,8 +3272,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Mom: \n\"Yeah. They're the biggest <color=\"orange\">helpers</color> you've
-    got. Feeling terrible hurts, but it's better than feeling nothing at all. \""
+  m_text: "Mom: \n\"Yeah. They're the closest <color=\"orange\">friends</color> you've
+    got. Feeling bad hurts, but it's better than feeling nothing at all.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
   m_sharedMaterial: {fileID: -4894543650796488446, guid: ff40cb744e55ccd43b1d62ab51e2e691,

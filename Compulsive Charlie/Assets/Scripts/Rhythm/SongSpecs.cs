@@ -181,11 +181,12 @@ public class MeasureSpec
 // class to put together a bunch of measures into a list of notes
 public class Song
 {
+    public virtual string TitleText => "";
     // combo values that are achievable, for upgrade unlocking
     public int easyCombo;
     public int mediumCombo;
     public int hardCombo; // this should be only achievable if on increased energy cap
-    
+
     public const int measureSize = 16;
     public List<NoteSpec> notes;
 

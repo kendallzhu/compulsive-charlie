@@ -13,6 +13,8 @@ public class YouTube : Activity
         suppressedEmotions.Add(EmotionType.anxiety);
         suppressedEmotions.Add(EmotionType.frustration);
         isUnlocked = true;
+        song = Solutions.song;
+        tempoIncrement = .20f;
     }
 
     // (weighted) availability of activity, given state of run

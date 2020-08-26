@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 // class for spawning stuff
 public class NoteSpawnSpec
@@ -47,6 +48,7 @@ public class RhythmManager : MonoBehaviour
     public RunManager runManager;
     public GameManager gameManager;
     public TutorialManager tutorialManager;
+    public TextMeshProUGUI songTitleText;
     // note prefabs
     public GameObject energyNote;
     public GameObject anxietyNote;
@@ -79,6 +81,12 @@ public class RhythmManager : MonoBehaviour
     {
         lateHitPeriodEnd = 0;
         activity = activity_;
+        if (activity != null)
+            songTitleText.text = "Now Playing - " + activity.song.TitleText;
+        else
+        {
+            songTitleText.text = "";
+        }
         LoadSong();
     }
 
@@ -377,7 +385,7 @@ public class RhythmManager : MonoBehaviour
                         // log hits for invisible suppressed notes!
                         foreach (Note n in nearestNotes)
                         {
-                            if (runState.CurrentActivity().suppressedEmotions.Contains(n.emotionType) && hitTypes.Contains(n.emotionType))
+                            if (n.IsSuppressed() && hitTypes.Contains(n.emotionType))
                             {
                                 // be extra strict about hit window
                                 if (time > n.arrivalTime - hitWindowEarly / 2 &&
