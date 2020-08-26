@@ -60,6 +60,7 @@ public class UpgradeCard : MonoBehaviour
         {
             upgrade.Activate(gameManager.profile);
         }
+        gameManager.profile.upgrades.Remove(upgrade);
         // move to next upgrade category
         recapMenu.CloseUpgrades();
         return;

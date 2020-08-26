@@ -50,7 +50,7 @@ public class Note : MonoBehaviour
 
     public bool IsSuppressed()
     {
-        return runManager.runState.CurrentActivity().suppressedEmotions.Contains(emotionType);
+        return runManager.IsSuppressed(emotionType);
     }
 
     // hack to generate unique float for each note in a group, so their colors don't blend weirdly when they overlap
@@ -111,6 +111,7 @@ public class Note : MonoBehaviour
         MissEffect(runState);
         Instantiate(missPrefab, transform.position, Quaternion.identity, hitArea);
         rhythmManager.player.GetComponent<Animator>().SetTrigger("activityFail");
+        runState.CurrentActivityPlatform().unSuppressedEmotions.Remove(emotionType);
         Destroy(gameObject);
     }
 
@@ -123,11 +124,13 @@ public class Note : MonoBehaviour
         if (this.isInvisibleHit)
         {
             StartCoroutine(HitAfterDelay(0, runState));
+            runState.CurrentActivityPlatform().unSuppressedEmotions.Add(emotionType);
         } else
         {
             // if not hit, fail silently
             runState.IncreaseEnergy(-1);
-            // Instantiate(missPrefab, transform.position, Quaternion.identity, hitArea);
+            // runState.emotions.Add(emotionType, 1);
+            Instantiate(missPrefab, transform.position, Quaternion.identity, hitArea);
             runState.BreakCombo();
         }
     }

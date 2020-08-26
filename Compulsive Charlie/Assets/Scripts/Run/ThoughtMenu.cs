@@ -50,13 +50,7 @@ public class ThoughtMenu : MonoBehaviour
                 Flip();
             }
             // deactivate reject button when no energy
-            if (runManager.runState.energy == 0)
-            {
-                rejectButton.SetActive(false);
-            } else
-            {
-                rejectButton.SetActive(true);
-            }
+            rejectButton.SetActive(runManager.runState.energy >= runManager.RejectThoughtCost());
         }
     }
 
@@ -81,9 +75,10 @@ public class ThoughtMenu : MonoBehaviour
         // nameText.GetComponent<TextMeshProUGUI>().text = currentThought.name;
         // descriptionText.GetComponent<TextMeshProUGUI>().text = currentThought.descriptionText;
         energyText.GetComponent<TextMeshProUGUI>().text = "-" + currentThought.energyCost.ToString();
-        rejectEnergyText.GetComponent<TextMeshProUGUI>().text = runManager.FreeRejectThought() ? "FREE" : "-1";
-        rejectLabelText.GetComponent<TextMeshProUGUI>().text = runManager.FreeRejectThought() ? "Let Go" : "Think";
-        rejectEnergyIcon.SetActive(!runManager.FreeRejectThought());
+        int rejectCost = runManager.RejectThoughtCost();
+        rejectEnergyText.GetComponent<TextMeshProUGUI>().text = rejectCost == 0 ? "FREE" : "-" + rejectCost.ToString();
+        rejectLabelText.GetComponent<TextMeshProUGUI>().text = rejectCost == 0 ? "Let Go" : "Think";
+        rejectEnergyIcon.SetActive(rejectCost != 0);
         // jumpPowerText.GetComponent<TextMeshProUGUI>().text = currentThought.maxJumpPower.ToString();*/
         // TODO: create a countdown timer to limit decision time?
     }
@@ -103,27 +98,16 @@ public class ThoughtMenu : MonoBehaviour
     // Redraw
     public void Reject()
     {
+        runManager.runState.CurrentActivityPlatform().numRejectedThoughts++;
         // optional - disallow reject when no energy
         if (runManager.runState.energy == 0)
         {
             return;
         }
         runManager.runState.thoughtHistory.RemoveAt(runManager.runState.thoughtHistory.Count - 1);
-        if (runManager.FreeRejectThought())
-        {
-            runManager.PreJump();
-            return;   
-        }
-        if (runManager.runState.energy > 0)
-        {
-            currentThought.RejectEffect(runManager.runState);
-            runManager.PreJump();
-        }
-        else
-        {
-            // rejecting when no energy left, with effect
-            currentThought.RejectEffect(runManager.runState);
-        }
+        int rejectCost = runManager.RejectThoughtCost();
+        currentThought.RejectEffect(runManager.runState, rejectCost);
+        runManager.PreJump();
     }
 
     // Toggle info

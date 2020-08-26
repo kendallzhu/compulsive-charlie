@@ -83,10 +83,11 @@ public abstract class Thought : MonoBehaviour
     }
 
     // common reject effect
-    public void RejectEffect(RunState runState)
+    public void RejectEffect(RunState runState, int rejectCost)
     {
+        if (rejectCost == 0) return;
         // if we reject a thought with no energy and nowhere left to go, explode emotions
-        if (runState.energy == 0)
+        if (runState.energy < rejectCost)
         {
             const int explosion = 5;
             runState.emotions.Add(EmotionType.anxiety, explosion);
@@ -94,7 +95,7 @@ public abstract class Thought : MonoBehaviour
             runState.emotions.Add(EmotionType.despair, explosion);
         }
         // drain energy
-        runState.IncreaseEnergy(-1);
+        runState.IncreaseEnergy(-rejectCost);
         // make thought-specific effects
         CustomRejectEffect(runState);
     }

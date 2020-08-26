@@ -74,7 +74,7 @@ public class BackgroundManager : MonoBehaviour
         TransitionStaticBG(staticBase.GetComponent<Image>(), newStaticBG);
         
         // rain if sad
-        if (e.despair >= 10 && !runState.CurrentActivity().suppressedEmotions.Contains(EmotionType.despair))
+        if (e.despair >= 10 && !runState.IsSuppressed(EmotionType.despair))
         {
             tileRain.SetActive(true);
             rainAudio.volume += Time.deltaTime / fadeOutDuration;
@@ -87,7 +87,7 @@ public class BackgroundManager : MonoBehaviour
         Color transparent = new Color(1, 1, 1, (float)e.despair / 20f);
         tileRain.GetComponent<SpriteRenderer>().color = transparent;
         // lightning if anxious
-        if (e.anxiety >= 10 && !runState.CurrentActivity().suppressedEmotions.Contains(EmotionType.anxiety))
+        if (e.anxiety >= 10 && !runState.IsSuppressed(EmotionType.anxiety))
         {
             FlashLightning(.5f, Mathf.Min(0, (20f - e.anxiety) / 5f));
             thunderAudio.volume += Time.deltaTime / fadeInDuration;
@@ -97,7 +97,7 @@ public class BackgroundManager : MonoBehaviour
             thunderAudio.volume -= Time.deltaTime / fadeOutDuration;
         }
         // fire if frustrated
-        if (e.frustration >= 10 && !runState.CurrentActivity().suppressedEmotions.Contains(EmotionType.frustration))
+        if (e.frustration >= 10 && !runState.IsSuppressed(EmotionType.frustration))
         {
             int maxPlumes = e.frustration / 4;
             SpawnFire(runState.CurrentActivityPlatform(), maxPlumes);
@@ -226,5 +226,4 @@ public class BackgroundManager : MonoBehaviour
         Destroy(sr.gameObject);
         numFirePlumes--;
     }
-
 }

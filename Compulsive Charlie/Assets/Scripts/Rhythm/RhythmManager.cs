@@ -377,7 +377,7 @@ public class RhythmManager : MonoBehaviour
                         // log hits for invisible suppressed notes!
                         foreach (Note n in nearestNotes)
                         {
-                            if (n.IsSuppressed() && hitTypes.Contains(n.emotionType))
+                            if (runState.CurrentActivity().suppressedEmotions.Contains(n.emotionType) && hitTypes.Contains(n.emotionType))
                             {
                                 // be extra strict about hit window
                                 if (time > n.arrivalTime - hitWindowEarly / 2 &&

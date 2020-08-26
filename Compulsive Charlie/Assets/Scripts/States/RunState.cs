@@ -141,5 +141,12 @@ public class RunState {
             }
         }
         return time;
-    }    
+    }
+    
+    public bool IsSuppressed(EmotionType emotionType)
+    {
+        bool activitySuppress = CurrentActivity().suppressedEmotions.Contains(emotionType);
+        bool unsuppressed = CurrentActivityPlatform().unSuppressedEmotions.Contains(emotionType);
+        return activitySuppress && !unsuppressed;
+    }
 }

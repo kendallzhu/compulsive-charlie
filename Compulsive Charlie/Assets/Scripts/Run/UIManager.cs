@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
             if (meters[i] == frustrationMeter) emotionType = EmotionType.frustration;
             if (meters[i] == despairMeter) emotionType = EmotionType.despair;
             Activity activity = runState.CurrentActivity();
-            if (activity && activity.suppressedEmotions.Contains(emotionType)) {
+            if (activity && runState.IsSuppressed(emotionType)) {
                 fillerImage.color = new Color(.4f, .4f, .4f);
                 Image XMark = meters[i].transform.Find("XMark").GetComponent<Image>();
                 if (gameManager.showSuppressionTutorial)

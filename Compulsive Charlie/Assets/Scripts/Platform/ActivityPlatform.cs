@@ -23,6 +23,9 @@ public class ActivityPlatform : MonoBehaviour {
     public int jumpNumber;
     public bool isSongDone = false;
 
+    public int numRejectedThoughts = 0;
+    public HashSet<EmotionType> unSuppressedEmotions = new HashSet<EmotionType>();
+
     // other prefabs
     public GameObject rhythmNotePrefab;
 

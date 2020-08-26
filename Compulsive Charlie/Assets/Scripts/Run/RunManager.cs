@@ -336,9 +336,18 @@ public class RunManager : MonoBehaviour
         }
         return offeredThoughts;
     }
-    
-    public bool FreeRejectThought()
+
+    public int RejectThoughtCost()
     {
-        return GameManager.Instance.profile.meditateBeforeBed;
+        const int maxCost = 3;
+        int cost = runState.CurrentActivityPlatform().numRejectedThoughts + 1;
+        if (GameManager.Instance.profile.meditateBeforeBed)
+            cost--;
+        return Mathf.Min(cost, maxCost);
+    }
+    
+    public bool IsSuppressed(EmotionType emotionType)
+    {
+        return runState.IsSuppressed(emotionType);
     }
 }
