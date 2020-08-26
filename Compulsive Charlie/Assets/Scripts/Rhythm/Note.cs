@@ -97,9 +97,10 @@ public class Note : MonoBehaviour
 
     public void OnDeflect()
     {
-        Debug.Assert(!isResolved, "on deflect already resolved");
+        // Debug.Assert(!isResolved, "on deflect already resolved");
+        if (!isResolved) // only destroy if note is not taken care of by another process
+            Destroy(gameObject);
         isResolved = true;
-        Destroy(gameObject);
         GameObject deflect = Instantiate(deflectPrefab, transform.position, Quaternion.identity, transform.parent);
         deflect.GetComponent<MoveFadeOut>().SetDirection(new Vector2(-startingOffset.x, startingOffset.y));
     }

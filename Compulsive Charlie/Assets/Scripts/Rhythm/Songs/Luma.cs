@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class Luma : Song
 {
-    public override string TitleText => "\"Luma\" (Super Mario Galaxy)";
     // Luma - Super Mario Galaxy: https://www.youtube.com/watch?v=c3jvWynR_Dc
     static Instrument melodyInstrument = Instrument.glocken;
     static Instrument baseInstrument = Instrument.glocken;
@@ -176,7 +175,7 @@ public class Luma : Song
         new NoteSpec(14, "Closed_High_Hat", 24),
     }, Instrument.drumkit);
 
-    public static Song song = new Song(new List<(MeasureSpec, int)> {
+    public static Song songOnce = new Song(new List<(MeasureSpec, int)> {
         (melody1, 1),
         (melody2, 2),
         (melody3, 3),
@@ -233,4 +232,5 @@ public class Luma : Song
         (beats, 13),
         (beats, 14),
     }, 15, 30, 45);
+    public static Song song = songOnce.Repeated(1, "\"Luma\" (Super Mario Galaxy)");
 }

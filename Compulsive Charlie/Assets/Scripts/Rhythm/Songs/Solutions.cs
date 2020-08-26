@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class Solutions : Song
 {
-    public override string TitleText => "\"Solutions\" (Original Song)";
     // Original Song
     static Instrument melodyInstrument = Instrument.piano;
     static MeasureSpec melody1 = new MeasureSpec(new List<NoteSpec> {
@@ -116,5 +115,5 @@ public class Solutions : Song
         (melody2, 13),
         (beats, 13),
     }, 20, 40, 60);
-    public static Song song = songOnce.Repeated(1);
+    public static Song song = songOnce.Repeated(1, "\"Solutions\" (Original Song)");
 }

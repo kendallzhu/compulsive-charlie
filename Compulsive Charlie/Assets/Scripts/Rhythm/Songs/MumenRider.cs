@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class MumenRider: Song
 {
-    public override string TitleText => "\"Mumen Rider Theme\" (One Punch Man)";
     // "One Punch Man Sad Theme" - 
     static Instrument melodyInstrument = Instrument.violin;
     static Instrument baseInstrument = Instrument.cello;
@@ -293,5 +292,5 @@ public class MumenRider: Song
         (beats, 16),
         (beats, 17),
     }, 30, 60, 90);
-    public static Song song = songOnce;
+    public static Song song = songOnce.Repeated(1, "\"Mumen Rider Theme\" (One Punch Man)");
 }

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class ReadyFreddy : Song
 {
-    public override string TitleText => "\"Ready Freddy\" (Original Song)";
     // Original Song
     static Instrument melodyInstrument = Instrument.woodBlock;
     static Instrument baseInstrument = Instrument.cello;
@@ -89,5 +88,5 @@ public class ReadyFreddy : Song
         (beats, 7),
         (base0.ReplaceAllPitches("E3"), 7),
     }, 20, 40, 60);
-    public static Song song = songOnce.Repeated(2);
+    public static Song song = songOnce.Repeated(2, "\"Ready Freddy\" (Original Song)");
 }

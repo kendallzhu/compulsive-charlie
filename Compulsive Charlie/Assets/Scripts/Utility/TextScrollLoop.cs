@@ -18,13 +18,16 @@ public class TextScrollLoop : MonoBehaviour {
         textRectTransform = text.GetComponent<RectTransform>();
         
         cloneText = Instantiate(text) as TextMeshProUGUI;
+    }
+
+    void Update()
+    {
         RectTransform cloneRectTransform = cloneText.GetComponent<RectTransform>();
         cloneRectTransform.SetParent(textRectTransform);
         cloneRectTransform.anchorMin = new Vector2(1, 0.5f);
         cloneRectTransform.localPosition = new Vector3(text.preferredWidth, 0, cloneRectTransform.position.z);
         cloneRectTransform.localScale = new Vector3(1, 1, 1);
-        cloneText.text = text.text;  
-
+        cloneText.text = text.text;
     }
 
     private IEnumerator Start()

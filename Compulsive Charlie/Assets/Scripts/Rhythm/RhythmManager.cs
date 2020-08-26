@@ -81,12 +81,7 @@ public class RhythmManager : MonoBehaviour
     {
         lateHitPeriodEnd = 0;
         activity = activity_;
-        if (activity != null)
-            songTitleText.text = "Now Playing - " + activity.song.TitleText;
-        else
-        {
-            songTitleText.text = "";
-        }
+        songTitleText.text = "Now Playing - " + activity.song.titleText;
         LoadSong();
     }
 
@@ -282,7 +277,7 @@ public class RhythmManager : MonoBehaviour
             {
                 n.isResolved = true;
             }
-            if (n.IsSuppressed() && time >= n.arrivalTime)
+            if (activity.suppressedEmotions.Contains(n.emotionType) && n.isResolved && time >= n.arrivalTime)
             {
                 notes.Remove(n);
                 n.OnSuppress(runState);

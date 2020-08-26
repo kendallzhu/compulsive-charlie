@@ -181,7 +181,7 @@ public class MeasureSpec
 // class to put together a bunch of measures into a list of notes
 public class Song
 {
-    public virtual string TitleText => "";
+    public string titleText = "";
     // combo values that are achievable, for upgrade unlocking
     public int easyCombo;
     public int mediumCombo;
@@ -226,7 +226,7 @@ public class Song
         return maxTiming + (measureSize - maxTiming % measureSize);
     }
 
-    public Song Repeated(int times)
+    public Song Repeated(int times, string titleText = "")
     {
         MeasureSpec allNotes = new MeasureSpec(this.notes);
         Song repeatedSong = new Song();
@@ -237,6 +237,7 @@ public class Song
         {
             repeatedSong.AddMeasure(allNotes, i * this.Length() / measureSize);
         }
+        repeatedSong.titleText = titleText;
         return repeatedSong;
     }
 }
