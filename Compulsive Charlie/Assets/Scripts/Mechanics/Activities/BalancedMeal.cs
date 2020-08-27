@@ -11,7 +11,7 @@ public class BalancedMeal : Activity
         heightRating = 3;
         emotionEffect = new EmotionState(0, 6, 6);
         isUnlocked = true;
-        song = WakeUpGetOutThere.song;
+        song = ReadyFreddy.song;
         tempoIncrement = .2f;
     }
 

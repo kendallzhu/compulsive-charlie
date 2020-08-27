@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using TMPro;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 // class for spawning stuff
 public class NoteSpawnSpec
@@ -12,14 +15,16 @@ public class NoteSpawnSpec
     public AudioClip clip;
     public float volume;
     public int elevation;
+    public string lyric;
 
-    public NoteSpawnSpec(float spawnTime, EmotionType type, AudioClip clip, int elevation, float volume=1)
+    public NoteSpawnSpec(float spawnTime, EmotionType type, AudioClip clip, int elevation, float volume=1, string lyric = "")
     {
         this.spawnTime = spawnTime;
         this.emotionType = type;
         this.clip = clip;
         this.elevation = elevation;
         this.volume = volume;
+        this.lyric = lyric;
     }
 }
 
@@ -49,6 +54,8 @@ public class RhythmManager : MonoBehaviour
     public GameManager gameManager;
     public TutorialManager tutorialManager;
     public TextMeshProUGUI songTitleText;
+    public TextMeshProUGUI songLyricText;
+    
     // note prefabs
     public GameObject energyNote;
     public GameObject anxietyNote;
@@ -81,7 +88,8 @@ public class RhythmManager : MonoBehaviour
     {
         lateHitPeriodEnd = 0;
         activity = activity_;
-        songTitleText.text = "Now Playing - " + activity.song.titleText;
+        songTitleText.text = "Song - " + activity.song.titleText;
+        songLyricText.text = "";
         LoadSong();
     }
 
@@ -90,6 +98,7 @@ public class RhythmManager : MonoBehaviour
         ClearAllNotes();
         activity = null;
         runManager.runState.ResetCombo();
+        songLyricText.text = "";
     }
 
     private int EffectiveEnergy()
@@ -219,7 +228,7 @@ public class RhythmManager : MonoBehaviour
             {
                 type = EmotionType.None;
             }
-            notesToSpawn.Add(new NoteSpawnSpec(spawnTime, type, clip, n.elevation, n.GetVolume()));
+            notesToSpawn.Add(new NoteSpawnSpec(spawnTime, type, clip, n.elevation, n.GetVolume(), n.lyric));
         }
     }
 
@@ -436,10 +445,20 @@ public class RhythmManager : MonoBehaviour
             tutorialManager.ActivateEmotionNoteTutorial();
         }
     }
+    
+    IEnumerator ChangeSongLyric(float delay, string lyric)
+    {
+        yield return new WaitForSeconds(delay);
+        songLyricText.text = lyric;
+    }
 
     // create a note with specified type + spawn time
     void SpawnNote(NoteSpawnSpec n)
     {
+        if (!String.IsNullOrEmpty(n.lyric))
+        {
+            StartCoroutine(ChangeSongLyric(2, n.lyric));
+        }
         float spawnElevation = n.elevation - BeamCenterElevation();
         Vector3 offset = new Vector3(travelDist, spawnElevation, 0);
         Vector3 destPos = hitArea.transform.position;

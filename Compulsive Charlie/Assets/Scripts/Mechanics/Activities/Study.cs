@@ -11,5 +11,6 @@ public class Study : Activity
         heightRating = 3;
         emotionEffect = new EmotionState(8, 8, 0);
         isUnlocked = true;
+        song = Hero.song;
     }
 }

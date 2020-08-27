@@ -9,7 +9,7 @@ public class ReadyFreddy : Song
     static Instrument melodyInstrument = Instrument.woodBlock;
     static Instrument baseInstrument = Instrument.cello;
     static MeasureSpec melody1 = new MeasureSpec(new List<NoteSpec> {
-        new NoteSpec(0, "Cs5", 0),
+        new NoteSpec(0, "Cs5", 0, EmotionType.None, melodyInstrument, "Y'all better be ready freddy"),
         new NoteSpec(2, "Cs5", 5),
         new NoteSpec(3, "Cs5", 10),
         new NoteSpec(4, "E5", 2),
@@ -33,7 +33,15 @@ public class ReadyFreddy : Song
     });
     static MeasureSpec melody4 = new MeasureSpec(new List<NoteSpec>
     {
-        new NoteSpec(6, "B5", 5),
+        new NoteSpec(6, "B5", 5, EmotionType.None, melodyInstrument, "Life is gonna happen to you!"),
+        new NoteSpec(8, "Gs5", 5),
+        new NoteSpec(10, "Fs5", 0),
+        new NoteSpec(12, "E5", 2),
+        new NoteSpec(14, "E5", 2),
+    });
+    static MeasureSpec melody4a = new MeasureSpec(new List<NoteSpec>
+    {
+        new NoteSpec(6, "B5", 5, EmotionType.None, melodyInstrument, "Life's already happ'nin' to you!"),
         new NoteSpec(8, "Gs5", 5),
         new NoteSpec(10, "Fs5", 0),
         new NoteSpec(12, "E5", 2),
@@ -87,6 +95,38 @@ public class ReadyFreddy : Song
         (melody5, 7),
         (beats, 7),
         (base0.ReplaceAllPitches("E3"), 7),
+        
+        (melody1, 8),
+        (beats, 8),
+        (base0.ReplaceAllPitches("B3"), 8),
+        
+        (melody2, 9),
+        (beats, 9),
+        (base0.ReplaceAllPitches("Gs3"), 9),
+        
+        (melody1, 10),
+        (beats, 10),
+        (base0.ReplaceAllPitches("Gs3"), 10),
+        
+        (melody3, 11),
+        (beats, 11),
+        (base0.ReplaceAllPitches("B3"), 11),
+        
+        (melody1, 12),
+        (beats, 12),
+        (base0.ReplaceAllPitches("B3"), 12),
+        
+        (melody2, 13),
+        (beats, 13),
+        (base0.ReplaceAllPitches("Gs3"), 13),
+        
+        (melody4a, 14),
+        (beats, 14),
+        (base0.ReplaceAllPitches("Gs3"), 14),
+        
+        (melody5, 15),
+        (beats, 15),
+        (base0.ReplaceAllPitches("E3"), 15),
     }, 20, 40, 60);
-    public static Song song = songOnce.Repeated(2, "\"Ready Freddy\" (Original Song)");
+    public static Song song = songOnce.Repeated(1, "\"Ready Freddy\" (Original Song)");
 }

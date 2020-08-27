@@ -146,7 +146,7 @@ public class Note : MonoBehaviour
     // (Delay so that sound occurs when note would have arrived)
     public IEnumerator HitAfterDelay(float delay, RunState runState)
     {
-        Debug.Assert(!isResolved, "hit after delay - already resolved");
+        // Debug.Assert(!isResolved, "hit after delay - already resolved");
         isResolved = true;
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(delay);

@@ -42,7 +42,7 @@ namespace Start
             }
             if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.O))
             {
-                SceneManager.LoadScene("Start");
+                Finish();
             }
         }
 
@@ -76,12 +76,15 @@ namespace Start
             currentTextIndex = 0;
             if (currentSceneIndex >= scenes.Count)
             {
-                SceneManager.LoadScene("Start");
+                Finish();       
                 return;
             }
             // load children of scene
             texts = scenes[currentSceneIndex].transform.GetComponentsInChildren<TextMeshProUGUI>().ToList();
             RefreshDisplay();
+        }
+        public void Finish(){
+            SceneManager.LoadScene("Start");
         }
     }
 }

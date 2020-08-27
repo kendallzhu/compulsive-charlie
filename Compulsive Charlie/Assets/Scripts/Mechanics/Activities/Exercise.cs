@@ -11,7 +11,7 @@ public class Exercise : Activity
         heightRating = 0;
         emotionEffect = new EmotionState(0, 0, 0);
         isUnlocked = true;
-        song = Luma.song;
-        tempoIncrement = .11f;
+        song = Hero.song;
+        // tempoIncrement = .11f;
     }
 }

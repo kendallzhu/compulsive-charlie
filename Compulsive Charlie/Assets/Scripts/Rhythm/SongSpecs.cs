@@ -21,13 +21,15 @@ public class NoteSpec
     public int elevation;
     public EmotionType emotionType;
     public Instrument instrument;
+    public string lyric;
 
     public NoteSpec(
         int timing, 
         string pitch, 
         int elevation, 
         EmotionType type = EmotionType.None,
-        Instrument instrument = Instrument.woodBlock
+        Instrument instrument = Instrument.woodBlock,
+        string lyric = ""
     )
     {
         this.timing = timing;
@@ -35,6 +37,7 @@ public class NoteSpec
         this.emotionType = type;
         this.elevation = elevation;
         this.instrument = instrument;
+        this.lyric = lyric;
     }
 
     // copy constructor
@@ -45,6 +48,7 @@ public class NoteSpec
         this.emotionType = n.emotionType;
         this.elevation = n.elevation;
         this.instrument = n.instrument;
+        this.lyric = n.lyric;
     }
 
     private string StringsFilePath(string instrumentString, string length)
