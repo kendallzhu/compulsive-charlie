@@ -622,7 +622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Every he had to wake up at 6:30am to get to school on time...
+  m_text: 'Every day he had to wake up at 6:30am to get to school on time...
 
     (even
     though he felt tired)'
@@ -2295,7 +2295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'But the more <color="green">avoided</color> his feelings, the <color="blue">less</color>
+  m_text: 'But the more he <color="green">avoided</color> his feelings, the <color="blue">less</color>
     he accomplished, and the <color="red">worse</color> he felt. Charlie realized
     he needed help...
 
@@ -3136,7 +3136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Charlie: \n\"Whaddya mean? You want me to feel my <color=\"green\">fee</color><color=\"blue\">lin</color><color=\"red\">gs</color>!\"
+  m_text: "Charlie: \n\"Whaddya mean? You want me to feel my <color=\"green\">fee</color><color=\"blue\">lin</color><color=\"red\">gs</color>
     instead of trying to make them go away?!\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff40cb744e55ccd43b1d62ab51e2e691, type: 2}
