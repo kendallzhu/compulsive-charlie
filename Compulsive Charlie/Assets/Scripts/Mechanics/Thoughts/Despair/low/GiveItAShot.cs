@@ -6,7 +6,7 @@ public class GiveItAShot : LowEmotionThought
 {
     void Awake()
     {
-        name = "Give it a shot";
+        name = "I gotta give it my best shot!";
         descriptionText = "what's the worst that could happen?";
         isUnlocked = true;
         energyCost = 9;

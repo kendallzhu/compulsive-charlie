@@ -6,7 +6,7 @@ public class Overcome : HighEmotionThought
 {
     void Awake()
     {
-        name = "Overcome";
+        name = "I will Overcome Adversity!!!";
         descriptionText = "Striving onward";
         isUnlocked = true;
         energyCost = 12;

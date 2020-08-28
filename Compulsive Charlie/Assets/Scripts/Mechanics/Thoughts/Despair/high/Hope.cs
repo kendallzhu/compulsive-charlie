@@ -6,7 +6,7 @@ public class Hope : HighEmotionThought
 {
     void Awake()
     {
-        name = "Hope";
+        name = "Whyyy Meee!";
         descriptionText = "Preserve the light";
         isUnlocked = true;
         energyCost = 4;

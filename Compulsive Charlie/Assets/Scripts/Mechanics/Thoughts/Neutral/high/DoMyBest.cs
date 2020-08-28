@@ -6,7 +6,7 @@ public class DoMyBest : Thought
 {
     void Awake()
     {
-        name = "Do My Best";
+        name = "Let's Roll!";
         descriptionText = "100% effort";
         isUnlocked = true;
         energyCost = 6;

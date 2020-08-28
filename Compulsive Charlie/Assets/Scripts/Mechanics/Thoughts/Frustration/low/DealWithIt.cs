@@ -6,7 +6,7 @@ public class DealWithIt : LowEmotionThought
 {
     void Awake()
     {
-        name = "Deal With It";
+        name = "Whatever, I'll just brush it off!";
         descriptionText = "Suck it up, get over it";
         isUnlocked = true;
         energyCost = 6;

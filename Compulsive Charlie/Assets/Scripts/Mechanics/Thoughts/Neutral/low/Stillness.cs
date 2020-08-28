@@ -6,7 +6,7 @@ public class Stillness : Thought
 {
     void Awake()
     {
-        name = "Stillness";
+        name = "";
         descriptionText = "-";
         isUnlocked = true;
         energyCost = 0;

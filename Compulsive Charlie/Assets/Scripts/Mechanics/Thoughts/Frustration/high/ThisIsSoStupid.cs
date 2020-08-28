@@ -6,7 +6,7 @@ public class ThisIsSoStupid : HighEmotionThought
 {
     void Awake()
     {
-        name = "This Is So Stupid";
+        name = "I Don't Have Time For This Crap!!";
         descriptionText = "Disgusting (+ frustration)";
         isUnlocked = true;
         energyCost = 8;

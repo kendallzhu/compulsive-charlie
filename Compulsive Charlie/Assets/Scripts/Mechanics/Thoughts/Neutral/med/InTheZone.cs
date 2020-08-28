@@ -6,7 +6,7 @@ public class InTheZone : Thought
 {
     void Awake()
     {
-        name = "In The Zone";
+        name = "Life is awesome";
         descriptionText = "Pure focus";
         isUnlocked = true;
         energyCost = 3;

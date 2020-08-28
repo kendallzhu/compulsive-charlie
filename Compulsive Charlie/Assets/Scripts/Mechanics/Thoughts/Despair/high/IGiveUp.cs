@@ -6,7 +6,7 @@ public class IGiveUp : HighEmotionThought
 {
     void Awake()
     {
-        name = "I Give Up";
+        name = "*I Give Up*";
         descriptionText = "taking the L";
         isUnlocked = true;
         energyCost = 0;

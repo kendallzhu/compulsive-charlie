@@ -6,7 +6,7 @@ public class ImGonnaDie : HighEmotionThought
 {
     void Awake()
     {
-        name = "I'm Gonna Die";
+        name = "*I'm Gonna Die*";
         descriptionText = "****";
         isUnlocked = true;
         energyCost = 0;

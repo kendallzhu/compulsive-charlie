@@ -6,7 +6,7 @@ public class LetsDoThis : Thought
 {
     void Awake()
     {
-        name = "Let's Do This";
+        name = "Meh";
         descriptionText = "Making it happen";
         isUnlocked = true;
         energyCost = 4;

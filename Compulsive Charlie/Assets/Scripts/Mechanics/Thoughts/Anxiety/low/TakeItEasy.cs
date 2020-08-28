@@ -6,7 +6,7 @@ public class TakeItEasy : LowEmotionThought
 {
     void Awake()
     {
-        name = "Take It Easy";
+        name = "I'll just play it safe";
         descriptionText = "No Need to Panic";
         isUnlocked = true;
         energyCost = 3;

@@ -6,7 +6,7 @@ public class KeepItTogether : HighEmotionThought
 {
     void Awake()
     {
-        name = "Keep It Together";
+        name = "Keep It Together Charlie!!";
         descriptionText = "Just gotta hold on...";
         isUnlocked = true;
         energyCost = 8;

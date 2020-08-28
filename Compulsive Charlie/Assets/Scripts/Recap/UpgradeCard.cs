@@ -56,16 +56,6 @@ public class UpgradeCard : MonoBehaviour
     // Update is called once per frame
     public void OnClick()
     {
-        if (upgrade)
-        {
-            upgrade.Activate(gameManager.profile);
-            if (upgrade.name == "Real Life")
-                return;
-        }
-        if (upgrade.singleUse)
-            gameManager.profile.upgrades.Remove(upgrade);
-        // move to next upgrade category
-        recapMenu.CloseUpgrades();
-        return;
+        recapMenu.OnChooseUpgrade(upgrade);
     }
 }

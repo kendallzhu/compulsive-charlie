@@ -16,6 +16,7 @@ public class RecapMenu : MonoBehaviour
     public GameObject score;
     public GameObject activityCombos;
     public GameObject scheduleCompletion;
+    private List<Upgrade> availableUpgrades;
 
     // Use this for initialization
     void Awake()
@@ -73,18 +74,17 @@ public class RecapMenu : MonoBehaviour
 
         // reset the profile after every run
         // gameManager.profile.Reset();
+        GetAvailableUpgrades();
     }
 
     private void Update()
     {
         if (Input.GetButtonDown("start"))
         {
-            UpgradesPanel();
+            ShowUpgradesPanel();
         }
-        if (Input.GetButtonDown("back"))
-        {
-            OnProfile();
-        }
+        if (availableUpgrades.Count == 0)
+            CloseUpgrades();
     }
 
     public void OnProfile()
@@ -98,7 +98,18 @@ public class RecapMenu : MonoBehaviour
         gameManager.LoadProfile();
     }
 
-    public void UpgradesPanel()
+    public void OnChooseUpgrade(Upgrade upgrade)
+    {
+        upgrade.Activate(gameManager.profile);
+        if (upgrade.name == "Real Life")
+            return;
+        if (upgrade.singleUse)
+            gameManager.profile.upgrades.Remove(upgrade);
+        availableUpgrades.Remove(upgrade);
+        ShowUpgradesPanel();
+    }
+
+    private void GetAvailableUpgrades()
     {
         // get available upgrades according to the category
         Profile p = gameManager.profile;
@@ -108,8 +119,12 @@ public class RecapMenu : MonoBehaviour
             Debug.Log(u.name);
             Debug.Log(u.IsAvailable(p));
         }
-        List<Upgrade> availableUpgrades = allUpgrades.Where(u => u.IsAvailable(p)).ToList();
+        availableUpgrades = allUpgrades.Where(u => u.IsAvailable(p)).ToList();
         availableUpgrades = availableUpgrades.OrderBy(x => Random.value).ToList();
+    } 
+
+    public void ShowUpgradesPanel()
+    {
         // populate the upgrade cards
         List<Transform> cards = new List<Transform> {
             upgradesPanel.transform.Find("UpgradeCard1"),

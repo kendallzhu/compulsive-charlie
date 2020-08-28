@@ -6,7 +6,7 @@ public class ItllBeOk : LowEmotionThought
 {
     void Awake()
     {
-        name = "It'll Be Ok";
+        name = "I just hope things will be ok";
         descriptionText = "Don't despair";
         isUnlocked = true;
         energyCost = 3;

@@ -6,7 +6,7 @@ public class KeepGoing : HighEmotionThought
 {
     void Awake()
     {
-        name = "Keep Going";
+        name = "I Must Keep Going!!";
         descriptionText = "Push Through";
         isUnlocked = true;
         energyCost = 8;

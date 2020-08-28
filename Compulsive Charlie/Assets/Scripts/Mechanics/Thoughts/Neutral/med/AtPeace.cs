@@ -6,7 +6,7 @@ public class AtPeace : Thought
 {
     void Awake()
     {
-        name = "At Peace";
+        name = "It is what it is";
         descriptionText = "I can enjoy most things";
         isUnlocked = true;
         energyCost = 1;

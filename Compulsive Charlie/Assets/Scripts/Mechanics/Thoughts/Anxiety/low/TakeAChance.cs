@@ -6,7 +6,7 @@ public class TakeAChance : LowEmotionThought
 {
     void Awake()
     {
-        name = "Take A Chance";
+        name = "I Gotta Take My Chances!!";
         descriptionText = "What's the worst that can happen";
         isUnlocked = true;
         energyCost = 9;

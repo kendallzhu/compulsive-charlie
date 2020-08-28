@@ -132,7 +132,7 @@ public class Note : MonoBehaviour
         {
             // if not hit, fail silently
             runState.IncreaseEnergy(-1);
-            // runState.emotions.Add(emotionType, 1);
+            runState.emotions.Add(emotionType, 1);
             Instantiate(missPrefab, transform.position, Quaternion.identity, hitArea);
             runState.BreakCombo();
         }

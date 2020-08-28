@@ -6,7 +6,7 @@ public class GoWithTheFlow : Thought
 {
     void Awake()
     {
-        name = "Go With The Flow";
+        name = "I Don't Wanna";
         descriptionText = "Ride the wave";
         isUnlocked = true;
         energyCost = 2;

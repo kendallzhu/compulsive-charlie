@@ -6,7 +6,7 @@ public class Relax : LowEmotionThought
 {
     void Awake()
     {
-        name = "Relax";
+        name = "It's not the end of the world, Charlie!";
         descriptionText = "Take a deep breath";
         isUnlocked = true;
         energyCost = 6;

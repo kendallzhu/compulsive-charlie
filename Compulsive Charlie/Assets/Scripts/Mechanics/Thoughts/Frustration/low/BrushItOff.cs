@@ -6,7 +6,7 @@ public class BrushItOff : LowEmotionThought
 {
     void Awake()
     {
-        name = "Brush It Off";
+        name = "I Gotta Push Through The Barriers!!";
         descriptionText = "Can't let this hold me back";
         isUnlocked = true;
         energyCost = 9;

@@ -6,7 +6,7 @@ public class Whatever : LowEmotionThought
 {
     void Awake()
     {
-        name = "Whatever";
+        name = "I'll just ignore this crap";
         descriptionText = "Not gonna let it get to me";
         isUnlocked = true;
         energyCost = 3;

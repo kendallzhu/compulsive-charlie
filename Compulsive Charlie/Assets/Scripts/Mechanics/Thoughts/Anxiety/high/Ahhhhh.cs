@@ -6,7 +6,7 @@ public class Ahhhhh : HighEmotionThought
 {
     void Awake()
     {
-        name = "Ahhhhh";
+        name = "Ahhhhh!";
         descriptionText = "Frantic scramble!!!";
         isUnlocked = true;
         energyCost = 4;

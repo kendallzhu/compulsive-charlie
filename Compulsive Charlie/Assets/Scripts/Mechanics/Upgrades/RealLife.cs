@@ -17,6 +17,7 @@ public class RealLife : Upgrade
     // comb through lists of activities and thoughts and modify them to make upgrade
     public override void Activate(Profile profile)
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Credits");
     }
 
@@ -25,7 +26,7 @@ public class RealLife : Upgrade
     {
         // when nothing single use is there anymore
         int numSingleUseLeft = profile.upgrades.Count(u => u.singleUse);
-        Debug.Log(numSingleUseLeft);
-        return numSingleUseLeft == 6;
+        // Debug.Log(numSingleUseLeft);
+        return numSingleUseLeft == 0;
     }
 }

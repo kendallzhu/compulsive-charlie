@@ -6,7 +6,7 @@ public class ProveThemWrong : HighEmotionThought
 {
     void Awake()
     {
-        name = "Prove Them Wrong";
+        name = "I Swear I Will Prove The Haters Wrong!!!";
         descriptionText = "Screw the haters.";
         isUnlocked = true;
         energyCost = 12;

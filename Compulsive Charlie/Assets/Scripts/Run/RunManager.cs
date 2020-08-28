@@ -139,7 +139,7 @@ public class RunManager : MonoBehaviour
             // hack special case increase energy from martial arts
             if (GameManager.Instance.profile.exerciseMartialArts && newActivityPlatform.activity.name == "Exercise")
             {
-                runState.energy += 6;
+                runState.energy += 5;
             }
         }
 

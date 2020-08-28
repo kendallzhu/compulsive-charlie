@@ -6,7 +6,7 @@ public class HangInThere : LowEmotionThought
 {
     void Awake()
     {
-        name = "Hang In There";
+        name = "I'll do what I can!";
         descriptionText = "Stay Strong";
         isUnlocked = true;
         energyCost = 6;

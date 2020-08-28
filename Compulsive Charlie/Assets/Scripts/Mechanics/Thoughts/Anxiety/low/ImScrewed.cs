@@ -6,7 +6,7 @@ public class ImScrewed : LowEmotionThought
 {
     void Awake()
     {
-        name = "I'm Screwed";
+        name = "Lemme just distract myself";
         descriptionText = "It's falling apart";
         isUnlocked = true;
         energyCost = 0;

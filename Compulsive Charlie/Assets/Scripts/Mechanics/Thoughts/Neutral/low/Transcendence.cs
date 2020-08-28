@@ -6,7 +6,7 @@ public class Transcendence : Thought
 {
     void Awake()
     {
-        name = "Transcendence";
+        name = "Free at last";
         descriptionText = "No limits";
         isUnlocked = true;
         energyCost = 0;

@@ -6,7 +6,7 @@ public class Grooving : Thought
 {
     void Awake()
     {
-        name = "Grooving";
+        name = "Life is easy";
         descriptionText = "in sync with life";
         isUnlocked = true;
         energyCost = 2;
