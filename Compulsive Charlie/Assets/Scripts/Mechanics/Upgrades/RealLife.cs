@@ -11,17 +11,21 @@ public class RealLife : Upgrade
         name = "Real Life";
         descriptionText = "???";
         category = "thought";
+        singleUse = false;
     }
 
     // comb through lists of activities and thoughts and modify them to make upgrade
     public override void Activate(Profile profile)
     {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("Credits");
     }
 
     // criteria for upgrade to be available after a run
     public override bool IsAvailable(Profile profile)
     {
-        return profile.upgrades.Count() == 1;
+        // when nothing single use is there anymore
+        int numSingleUseLeft = profile.upgrades.Count(u => u.singleUse);
+        Debug.Log(numSingleUseLeft);
+        return numSingleUseLeft == 6;
     }
 }

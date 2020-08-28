@@ -59,8 +59,11 @@ public class UpgradeCard : MonoBehaviour
         if (upgrade)
         {
             upgrade.Activate(gameManager.profile);
+            if (upgrade.name == "Real Life")
+                return;
         }
-        gameManager.profile.upgrades.Remove(upgrade);
+        if (upgrade.singleUse)
+            gameManager.profile.upgrades.Remove(upgrade);
         // move to next upgrade category
         recapMenu.CloseUpgrades();
         return;

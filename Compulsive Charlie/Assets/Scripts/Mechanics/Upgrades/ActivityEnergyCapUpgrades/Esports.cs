@@ -7,6 +7,7 @@ public class Esports : ActivityEnergyCapUpgrade
 {
     void Awake()
     {
+        // DEPRECATED
         name = "Esports";
         descriptionText = "Major League Gaming";
         category = "action";

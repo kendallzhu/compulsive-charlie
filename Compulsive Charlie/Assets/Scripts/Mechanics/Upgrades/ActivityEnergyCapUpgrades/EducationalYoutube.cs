@@ -7,6 +7,7 @@ public class EducationalYoutube : ActivityEnergyCapUpgrade
 {
     void Awake()
     {
+        // DEPRECATED
         name = "Educational YouTube";
         descriptionText = "Quality Content";
         category = "action";
