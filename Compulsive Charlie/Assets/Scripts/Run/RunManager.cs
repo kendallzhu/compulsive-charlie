@@ -54,7 +54,7 @@ public class RunManager : MonoBehaviour
     private void Update()
     {
         // cheatcode to skip to recap
-        if (Input.GetKey("1") && Input.GetKey("2") && Input.GetKey("3"))
+        /*if (Input.GetKey("1") && Input.GetKey("2") && Input.GetKey("3"))
         {
             gameManager.EndRun(runState);
         }
@@ -97,7 +97,7 @@ public class RunManager : MonoBehaviour
         if (Input.GetKey("u") && Input.GetKey("p"))
         {
             runState.CurrentActivity().energyCap = 20;
-        }
+        }*/
     }
 
     // for when the player arrives on next activity, called via trigger in ActivityPlatform
@@ -339,8 +339,10 @@ public class RunManager : MonoBehaviour
 
     public int RejectThoughtCost()
     {
-        const int maxCost = 3;
+        int emotionBonus = Mathf.Max(0, runState.emotions.Extremeness() - 1);
+        int maxCost = 3 + emotionBonus;
         int cost = runState.CurrentActivityPlatform().numRejectedThoughts + 1;
+        cost += emotionBonus;
         if (GameManager.Instance.profile.meditateBeforeBed)
             cost--;
         return Mathf.Min(cost, maxCost);

@@ -12,7 +12,7 @@ public class BalancedMeal : Activity
         emotionEffect = new EmotionState(0, 6, 6);
         isUnlocked = true;
         song = ReadyFreddy.song;
-        tempoIncrement = .2f;
+        tempoIncrement = .16f;
     }
 
     // (weighted) availability of activity, given state of run

@@ -4,12 +4,12 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-public class RealLife : Upgrade
+public class JustDoIt : Upgrade
 {
     void Awake()
     {
-        name = "Real Life";
-        descriptionText = "???";
+        name = "Vow to 'Just Do It'";
+        descriptionText = "Absolutely No Effect";
         category = "thought";
         singleUse = false;
     }
@@ -17,17 +17,13 @@ public class RealLife : Upgrade
     // comb through lists of activities and thoughts and modify them to make upgrade
     public override void Activate(Profile profile)
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("Credits");
+        // profile.initialEnergy += 1;
     }
 
     // criteria for upgrade to be available after a run
     public override bool IsAvailable(Profile profile)
     {
-        // when nothing single use is there anymore
-        int numSingleUseLeft = profile.upgrades.Count(u => u.singleUse);
-        bool allUpgrades = numSingleUseLeft == 0;
-        // Debug.Log(numSingleUseLeft);
-        return allUpgrades || profile.allRuns.Count >= 5;
+        // default when nothing else is available
+        return profile.upgrades.Count(u=> u.singleUse && u.IsAvailable(profile)) < 3;
     }
 }

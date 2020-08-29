@@ -9,7 +9,7 @@ public class Shower : Activity
         name = "Shower";
         descriptionText = "pls";
         heightRating = 0;
-        emotionEffect = new EmotionState(0, 0, 0);
+        emotionEffect = new EmotionState(0, 0, 2);
         isUnlocked = true;
         song = Luma.song;
         tempoIncrement = .11f;

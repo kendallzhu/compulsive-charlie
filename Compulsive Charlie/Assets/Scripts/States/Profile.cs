@@ -74,6 +74,7 @@ public class Profile
         energyCap = defaultEnergyCap;
         schedule = new List<Activity>(defaultSchedule);
         bedTime = defaultBedTime;
+        
     }
     
     public int GetInitialEnergy()

@@ -9,7 +9,7 @@ public class HangOut : Activity
         name = "Hang Out";
         descriptionText = "Talk to someone";
         heightRating = 1;
-        emotionEffect = new EmotionState(6, 6, 6);
+        emotionEffect = new EmotionState(10, 6, 6);
         isUnlocked = true;
         song = WakeUpGetOutThere.song;
         tempoIncrement = .2f;

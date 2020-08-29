@@ -145,6 +145,7 @@ public class RunState {
     
     public bool IsSuppressed(EmotionType emotionType)
     {
+        if (CurrentActivity() == null) return false;
         bool activitySuppress = CurrentActivity().suppressedEmotions.Contains(emotionType);
         bool unsuppressed = CurrentActivityPlatform().unSuppressedEmotions.Contains(emotionType);
         return activitySuppress && !unsuppressed;

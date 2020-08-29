@@ -4,12 +4,12 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-public class Acceptance : Upgrade
+public class ChillOut : Upgrade
 {
     void Awake()
     {
-        name = "Acceptance";
-        descriptionText = "It is what it is";
+        name = "Chill Out";
+        descriptionText = "No more work- aholism pls";
         category = "thought";
         singleUse = false;
     }
@@ -17,13 +17,17 @@ public class Acceptance : Upgrade
     // comb through lists of activities and thoughts and modify them to make upgrade
     public override void Activate(Profile profile)
     {
-        // profile.initialEnergy += 1;
+        Activity study = Object.FindObjectOfType<Study>();
+        Activity chores = Object.FindObjectOfType<Chores>();
+        study.suppressedEmotions.Clear();
+        chores.suppressedEmotions.Clear();
     }
 
     // criteria for upgrade to be available after a run
     public override bool IsAvailable(Profile profile)
     {
+        Activity study = Object.FindObjectOfType<Study>();
         // default when nothing else is available
-        return profile.upgrades.Count(u=> u.name != this.name && u.IsAvailable(profile)) == 0;
+        return study.suppressedEmotions.Count > 0;
     }
 }

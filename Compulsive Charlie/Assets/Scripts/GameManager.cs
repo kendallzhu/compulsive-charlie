@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour {
     {
         // record run and go to cut scene
         profile.allRuns.Add(runState);
+        profile.Reset();
         SceneManager.LoadScene("Recap");
     }
 

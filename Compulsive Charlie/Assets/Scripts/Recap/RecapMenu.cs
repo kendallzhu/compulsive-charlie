@@ -120,7 +120,7 @@ public class RecapMenu : MonoBehaviour
             Debug.Log(u.IsAvailable(p));
         }
         availableUpgrades = allUpgrades.Where(u => u.IsAvailable(p)).ToList();
-        availableUpgrades = availableUpgrades.OrderBy(x => Random.value).ToList();
+        availableUpgrades = availableUpgrades.OrderBy(u => !u.singleUse).ToList();
     } 
 
     public void ShowUpgradesPanel()
